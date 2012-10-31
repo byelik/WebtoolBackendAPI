@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		creationComplete="skin1_creationCompleteHandler(event)">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("HostComponents.FactsHostComponent.FactsHostComponent")]
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			
+			
+			[Bindable]
+			public var mFactsListData:ArrayCollection;
+			
+			protected function skin1_creationCompleteHandler(event:FlexEvent):void
+			{ 
+				
+				mFactsListData = new ArrayCollection([{label:"Electronics", data:1, desc: "hello"}, 
+													 {label:"Home Goods", data:2, desc: "hellocvcvd"},
+													 {label:"Home Goods", data:2, desc: "helldfdfffdfo"},
+													 {label:"Home Goods", data:2, desc: "hellodsfdfdfdfgfgfg"},
+													 {label:"Home Goods", data:2, desc: "hellogdsdgerffbhfbv"},
+													 {label:"Home Goods", data:2, desc: "hellofkgjfdkgghgfh"},
+													 {label:"Home Goods", data:2, desc: "hellfhjnfgiubo"},
+													 {label:"Home Goods", data:2, desc: "hellognbv"},
+													 {label:"Home Goods", data:2, desc: "hellfjbfvbo"},
+													 {label:"Home Goods", data:2, desc: "hellgvfgfo"},
+													 {label:"Home Goods", data:2, desc: "hellfbgjbgo"},
+													 {label:"Home Goods", data:2, desc: "hellbjfbfo"},
+													 {label:"Home Goods", data:2, desc: "hellobfiofbfbhngnglngngnghnlgng;n,glmngl;ng"},
+													 {label:"Home Goods", data:2, desc: "hellohiofnfb rigjuriotrhgright g"},
+													 {label:"Home Goods", data:2, desc: "hellnbkg;ngklno"},
+													 {label:"Home Goods", data:2, desc: "hellobgknfbkfnbkb"},
+													 {label:"Toys", data:3, desc: "hellogbklgnbgbngbngkbgbkmgbklggkbmgklbmgklbmgklbmgkbmgbmkgeokfeoire okb"} ]);
+			}
+			
+			protected function mFactsList_clickHandler(event:MouseEvent):void
+			{
+				trace(mFactsList.selectedItem);
+			}
+			
+		]]>
+	</fx:Script>
+	<s:VGroup>
+		<s:HGroup>
+			<s:DropDownList id="characterList"
+							labelField="label"
+							dataProvider="{hostComponent.tmpData}"
+							prompt="Select character"
+							width="300"/>	
+		</s:HGroup>
+		
+		<!--Start Horizontal group of components-->
+		<s:HGroup>
+			<!--Start Datagrid-->
+			<s:DataGrid id="mFactsList" 
+						minWidth="300"
+						maxWidth="300"
+						minHeight="300"
+						maxHeight="300"
+						borderVisible="false"
+						editable="false"
+						sortableColumns="false"
+						resizableColumns="false"
+						dataProvider="{mFactsListData}"
+						click="mFactsList_clickHandler(event)">
+				<s:columns>
+					<s:ArrayList>
+						<s:GridColumn dataField="data" headerText="Id"/>
+						<s:GridColumn dataField="data" headerText="xgmlId"/>
+						<s:GridColumn dataField="desc" headerText="Description"/>
+					</s:ArrayList>
+				</s:columns>
+			</s:DataGrid>
+			<!--end DataGrid-->
+			<s:VGroup>
+				<s:Label text="ID in XGML"/>
+				<s:TextInput id="mFactsIdLabel"
+						 	 text="{mFactsList.selectedItem.data}"
+							 editable="false" 
+							 selectable="false"/>		
+				<s:Label text="Description"/>
+				<s:TextArea id="mFactsDescriptionArea"
+							text="{mFactsList.selectedItem.desc}"/>
+			</s:VGroup>
+			<s:HGroup>
+				<s:List id="mAgentsList"
+						minWidth="300"
+						maxWidth="300"
+						minHeight="300"
+						maxHeight="300"
+						dataProvider="{mFactsListData}"/>
+			</s:HGroup>
+			
+		</s:HGroup>
+		<!--end Horizontal group of components-->
+		
+	</s:VGroup>
+	
+	
+	
+	
+	
+</s:Skin>

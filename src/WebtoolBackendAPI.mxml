@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   minWidth="955" minHeight="600" 
+			   xmlns:MenuBarSkin="Skins.MenuBarSkin.*" 
+			   xmlns:MenuBarHostComponent="HostComponents.MenuBarHostComponent.*" 
+			   xmlns:FactsHostComponent="HostComponents.FactsHostComponent.*" 
+			   xmlns:TabBarHostComponent="HostComponents.TabBarHostComponent.*"
+			   creationComplete="InitialiseApp(event)">
+	<fx:Script>
+		<![CDATA[
+			import Data.DataModel;
+			
+			import HostComponents.FactsHostComponent.FactsHostComponent;
+			import HostComponents.MenuBarHostComponent.MenuBarHostComponent;
+			import HostComponents.TabBarHostComponent.TabBarHostComponent;
+			
+			import HttpService.HttpServiceManager;
+			
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			
+			private var HostComponents_MenuBarHostComponent_MenuBarHostComponent_obj:HostComponents.MenuBarHostComponent.MenuBarHostComponent;
+			
+			private var HostComponents_FactsHostComponent_FactsHostComponent_obj:HostComponents.FactsHostComponent.FactsHostComponent;
+			
+			private var HostComponents_TabBarHostComponent_TabBarHostComponent_obj:HostComponents.TabBarHostComponent.TabBarHostComponent;
+			
+			private var mConfigLoader:URLLoader;	
+			private var mHttpServiceConfig:Object;
+			
+			private var mHttpServiceManager:HttpServiceManager;
+			
+			private function InitialiseApp(event:FlexEvent):void
+			{
+//				var mDataModel:DataModel = new DataModel();
+				mHttpServiceManager = new HttpServiceManager();
+				
+				
+				mConfigLoader = new URLLoader();
+				mConfigLoader.addEventListener(IOErrorEvent.IO_ERROR, errorHandler);
+				mConfigLoader.addEventListener(Event.COMPLETE, completeLoadingConfigFile);
+				mConfigLoader.load(new URLRequest("config/config.json"));
+			}
+			
+			private function errorHandler(event:IOErrorEvent):void
+			{
+				var alertHandler:Alert;
+				alertHandler = Alert.show("Error while loading config file: " + event, "Error",	Alert.OK);
+			}
+			
+			private function completeLoadingConfigFile(event:Event):void
+			{
+				mHttpServiceConfig = JSON.parse(event.target.data as String);
+				if(mHttpServiceConfig)
+				{
+					HttpServiceManager.HTTP_URL = mHttpServiceConfig.httpServiceUrl;
+				}
+				
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:VGroup width="100%">
+		<s:HGroup width="100%">
+			<MenuBarHostComponent:MenuBarHostComponent id="mMenuBarComponent"
+													   width="100%"
+													   skinClass="Skins.MenuBarSkin.MenuBarComponent"/>	
+		</s:HGroup>
+		<TabBarHostComponent:TabBarHostComponent id="mTabBarComponent"
+												 skinClass="TabbarComponent.TabBarComponent"/>
+	</s:VGroup>
+	
+</s:Application>

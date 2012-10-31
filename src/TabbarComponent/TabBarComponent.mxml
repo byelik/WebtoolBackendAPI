@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx" 
+		xmlns:FactsHostComponent="HostComponents.FactsHostComponent.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("HostComponents.TabBarHostComponent.TabBarHostComponent")]
+	</fx:Metadata>
+	
+	<s:TabBar id="mTabBar"
+			  dataProvider="{mViewStack}"
+			  left="5"
+			  right="5"/>
+	<mx:ViewStack id="mViewStack"
+				  top="35"
+				  bottom="35"
+				  left="5"
+				  right="5">
+		<s:NavigatorContent label="Locations">
+		</s:NavigatorContent>
+		<s:NavigatorContent label="Facts">
+			<FactsHostComponent:FactsHostComponent id="mFactsComponent"
+												   skinClass="Skins.FactsSkin.FactsComponent"/>
+		</s:NavigatorContent>
+		<s:NavigatorContent label="Beats">
+			<s:Button label="Test beats"/>
+		</s:NavigatorContent>
+		<s:NavigatorContent label="XGML">
+			<s:Button label="Test XGML"/>
+		</s:NavigatorContent>
+	</mx:ViewStack>
+	
+</s:Skin>
