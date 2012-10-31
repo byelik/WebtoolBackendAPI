@@ -21,10 +21,7 @@ package Data.ImportManager
 		{
 			importerFileFilter = new FileFilter("XML", "*.xml");
 			importerFileReference = new FileReference();
-			
-			fileLoader = new Loader();
-			
-			
+			fileLoader = new Loader();			
 		}
 		
 		public function importData():void

@@ -20,6 +20,7 @@
 			
 			import mx.controls.Alert;
 			import mx.events.FlexEvent;
+			import mx.rpc.events.ResultEvent;
 			
 			private var HostComponents_MenuBarHostComponent_MenuBarHostComponent_obj:HostComponents.MenuBarHostComponent.MenuBarHostComponent;
 			
@@ -63,7 +64,7 @@
 		]]>
 	</fx:Script>
 	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		
 	</fx:Declarations>
 	
 	<s:VGroup width="100%">

@@ -1,5 +1,6 @@
 package HttpService
 {
+	import flash.display.Stage;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.net.URLLoader;
@@ -8,17 +9,20 @@ package HttpService
 	import mx.controls.Alert;
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.http.HTTPService;
+	
+	import spark.components.Application;
 
 	public class HttpServiceManager
 	{
 		
 		private static var mJsonResults:Object;
-		private static var httpService:HTTPService;
+		public static var httpService:HTTPService;
 		public static var HTTP_URL:String;
 		
 		public function HttpServiceManager()
 		{
 			initialiseHttpServiceManager();
+//			stage.addEventListener(Event.ENTER_FRAME, checkResult);
 		}
 				
 		protected function initialiseHttpServiceManager():void
@@ -28,18 +32,19 @@ package HttpService
 			httpService.method= "POST";
 			httpService.contentType = "application/json";
 //			httpService.send('{"jsonrpc": "2.0", "method" : "general.extractFactsFromXGML","params":[], "id":7}');
-			httpService.addEventListener(ResultEvent.RESULT, isResult);
-//			stage.addEventListener(Event.ENTER_FRAME, checkResult);
+			httpService.addEventListener(ResultEvent.RESULT, checkResult);
+			
 		}
 		
-//		private function checkResult(event:Event):void
-//		{
-//			
-//		}
+		private function checkRes(event:Event):void
+		{
+			trace("dfdhf");
+		}
 		
 		
 		public static function sendRequest(params:String):void
 		{
+			trace("kgf");
 			httpService.send(params);
 			
 		}
@@ -49,7 +54,7 @@ package HttpService
 			
 		}
 		
-		private function cheResult(event:ResultEvent):void
+		private function checkResult(event:ResultEvent):void
 		{
 			mJsonResults = JSON.parse(event.result as String);		
 			trace(mJsonResults);

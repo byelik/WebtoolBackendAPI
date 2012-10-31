@@ -9,6 +9,7 @@ package HostComponents.TabBarHostComponent
 	import flash.events.MouseEvent;
 	
 	import mx.events.IndexChangedEvent;
+	import mx.rpc.events.ResultEvent;
 	
 	import spark.components.TabBar;
 	import spark.components.supportClasses.SkinnableComponent;
@@ -64,7 +65,8 @@ package HostComponents.TabBarHostComponent
 //					DataModel.getSingleton().mHttpServiceManager.sendRequest('{"jsonrpc": "2.0", "method" : "general.extractFactsFromXGML","params":[], "id":7}');
 //					trace(DataModel.getSingleton().mHttpServiceManager);
 					HttpServiceManager.sendRequest('{"jsonrpc": "2.0", "method" : "general.extractFactsFromXGML","params":[], "id":7}');
-					HttpServiceManager.getResult();
+					//HttpServiceManager.getResult();
+					HttpServiceManager.httpService.addEventListener(ResultEvent.RESULT, getRes);
 					trace("Facts");
 				break;
 				case 2:
@@ -74,6 +76,13 @@ package HostComponents.TabBarHostComponent
 					trace("XGML");
 				break;
 			}
+		}
+		
+		private function getRes(event:ResultEvent):void
+		{
+			var tmp:Object;
+			tmp = JSON.parse(event.result as String);
+			trace(tmp);
 		}
 		
 	}

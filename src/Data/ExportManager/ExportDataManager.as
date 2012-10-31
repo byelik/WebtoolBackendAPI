@@ -1,4 +1,4 @@
-package Data.Exportmanager
+package Data.ExportManager
 {
 	import flash.display.Loader;
 	import flash.net.FileFilter;

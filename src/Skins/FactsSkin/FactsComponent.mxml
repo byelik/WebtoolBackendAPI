@@ -10,6 +10,25 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import HttpService.HttpServiceManager;
+			
+			import mx.rpc.events.ResultEvent;
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				HttpServiceManager.httpService.addEventListener(ResultEvent.RESULT, getRes);
+			}
+			
+			private function getRes(event:ResultEvent):void
+			{
+				var tmp:Object;
+				tmp = JSON.parse(event.result as String);
+				trace(tmp);
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Script>
+		<![CDATA[
 			import mx.collections.ArrayCollection;
 			import mx.events.FlexEvent;
 			
@@ -21,22 +40,22 @@
 			{ 
 				
 				mFactsListData = new ArrayCollection([{label:"Electronics", data:1, desc: "hello"}, 
-													 {label:"Home Goods", data:2, desc: "hellocvcvd"},
-													 {label:"Home Goods", data:2, desc: "helldfdfffdfo"},
-													 {label:"Home Goods", data:2, desc: "hellodsfdfdfdfgfgfg"},
-													 {label:"Home Goods", data:2, desc: "hellogdsdgerffbhfbv"},
-													 {label:"Home Goods", data:2, desc: "hellofkgjfdkgghgfh"},
-													 {label:"Home Goods", data:2, desc: "hellfhjnfgiubo"},
-													 {label:"Home Goods", data:2, desc: "hellognbv"},
-													 {label:"Home Goods", data:2, desc: "hellfjbfvbo"},
-													 {label:"Home Goods", data:2, desc: "hellgvfgfo"},
-													 {label:"Home Goods", data:2, desc: "hellfbgjbgo"},
-													 {label:"Home Goods", data:2, desc: "hellbjfbfo"},
-													 {label:"Home Goods", data:2, desc: "hellobfiofbfbhngnglngngnghnlgng;n,glmngl;ng"},
-													 {label:"Home Goods", data:2, desc: "hellohiofnfb rigjuriotrhgright g"},
-													 {label:"Home Goods", data:2, desc: "hellnbkg;ngklno"},
-													 {label:"Home Goods", data:2, desc: "hellobgknfbkfnbkb"},
-													 {label:"Toys", data:3, desc: "hellogbklgnbgbngbngkbgbkmgbklggkbmgklbmgklbmgklbmgkbmgbmkgeokfeoire okb"} ]);
+													 {label:"Home Goods", data:232, desc: "hellocvcvd"},
+													 {label:"Home Goods", data:32423552, desc: "helldfdfffdfo"},
+													 {label:"Home Goods", data:3453452, desc: "hellodsfdfdfdfgfgfg"},
+													 {label:"Home Goods", data:3454532, desc: "hellogdsdgerffbhfbv"},
+													 {label:"Home Goods", data:34534542, desc: "hellofkgjfdkgghgfh"},
+													 {label:"Home Goods", data:25345345, desc: "hellfhjnfgiubo"},
+													 {label:"Home Goods", data:453453452, desc: "hellognbv"},
+													 {label:"Home Goods", data:453453452, desc: "hellfjbfvbo"},
+													 {label:"Home Goods", data:345345345342, desc: "hellgvfgfo"},
+													 {label:"Home Goods", data:3453452, desc: "hellfbgjbgo"},
+													 {label:"Home Goods", data:2345345345, desc: "hellbjfbfo"},
+													 {label:"Home Goods", data:3453452, desc: "hellobfiofbfbhngnglngngnghnlgng;n,glmngl;ng"},
+													 {label:"Home Goods", data:3453452, desc: "hellohiofnfb rigjuriotrhgright g"},
+													 {label:"Home Goods", data:3453452, desc: "hellnbkg;ngklno"},
+													 {label:"Home Goods", data:345345342, desc: "hellobgknfbkfnbkb"},
+													 {label:"Toys", data:3453453453453453, desc: "hellogbklgnbgbngbngkbgbkmgbklggkbmgklbmgklbmgklbmgkbmgbmkgeokfeoire okb"} ]);
 			}
 			
 			protected function mFactsList_clickHandler(event:MouseEvent):void
@@ -95,6 +114,7 @@
 						minHeight="300"
 						maxHeight="300"
 						dataProvider="{mFactsListData}"/>
+				<s:Button click="button1_clickHandler(event)"/>
 			</s:HGroup>
 			
 		</s:HGroup>

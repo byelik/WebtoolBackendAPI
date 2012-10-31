@@ -1,7 +1,8 @@
 package HostComponents.MenuBarHostComponent
 {
 	
-	import Data.Exportmanager.ExportDataManager;
+
+	import Data.ExportManager.ExportDataManager;
 	import Data.ImportManager.ImportDataManager;
 	
 	import flash.display.Loader;
@@ -28,7 +29,7 @@ package HostComponents.MenuBarHostComponent
 		[SkinPart(required="true")]
 		public var mMenuBar:MenuBar;
 				
-		private var mImportDataManger:ImportDataManager; 
+		private var mImportDataManger:ImportDataManager 
 		private var mExportDataManager:ExportDataManager;
 		
 		
