@@ -10,6 +10,7 @@
 			   creationComplete="InitialiseApp(event)">
 	<fx:Script>
 		<![CDATA[
+			import HostComponents.LocationsHostComponent.LocationsHostComponent;
 			import Data.DataModel;
 			
 			import HostComponents.FactsHostComponent.FactsHostComponent;
@@ -33,9 +34,11 @@
 			
 			private var mHttpServiceManager:HttpServiceManager;
 			
+			private var HostComponents_LocationsHostComponent_LocationsHostComponent_obj:HostComponents.LocationsHostComponent.LocationsHostComponent;
+			
 			private function InitialiseApp(event:FlexEvent):void
 			{
-//				var mDataModel:DataModel = new DataModel();
+				//				var mDataModel:DataModel = new DataModel();
 				mHttpServiceManager = new HttpServiceManager();
 				
 				
@@ -74,7 +77,7 @@
 													   skinClass="Skins.MenuBarSkin.MenuBarComponent"/>	
 		</s:HGroup>
 		<TabBarHostComponent:TabBarHostComponent id="mTabBarComponent"
-												 skinClass="TabbarComponent.TabBarComponent"/>
+												 skinClass="Skins.TabbarComponent.TabBarComponent"/>
 	</s:VGroup>
 	
 </s:Application>

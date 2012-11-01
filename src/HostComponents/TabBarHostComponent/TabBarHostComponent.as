@@ -19,7 +19,7 @@ package HostComponents.TabBarHostComponent
 	
 	public class TabBarHostComponent extends SkinnableComponent
 	{
-		[SkinPart()]
+		[SkinPart(required="true")]
 		public var mTabBar:TabBar;
 		
 		public function TabBarHostComponent()

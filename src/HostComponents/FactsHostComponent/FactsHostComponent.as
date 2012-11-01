@@ -1,7 +1,9 @@
 package HostComponents.FactsHostComponent
 {
 	
-	import Facts.FactsData;
+
+	
+	import Data.Facts.FactsData;
 	
 	import flash.events.Event;
 	
@@ -38,7 +40,7 @@ package HostComponents.FactsHostComponent
 			dataSortField = new SortField();
 			
 			dataSort = new Sort();
-			sortCharacterlist();		
+			sortCharacterList();		
 		}
 		
 		
@@ -74,7 +76,7 @@ package HostComponents.FactsHostComponent
 			}
 		}
 		
-		private function sortCharacterlist():void
+		private function sortCharacterList():void
 		{
 			dataSort.fields = [dataSortField];
 			tmpData.sort = dataSort;

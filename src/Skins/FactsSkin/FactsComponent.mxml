@@ -108,13 +108,15 @@
 							text="{mFactsList.selectedItem.desc}"/>
 			</s:VGroup>
 			<s:HGroup>
-				<s:List id="mAgentsList"
-						minWidth="300"
-						maxWidth="300"
-						minHeight="300"
-						maxHeight="300"
-						dataProvider="{mFactsListData}"/>
-				<s:Button click="button1_clickHandler(event)"/>
+				<s:VGroup>
+					<s:Label text="Agents"/>
+					<s:List id="mAgentsList"
+							minWidth="300"
+							maxWidth="300"
+							minHeight="300"
+							maxHeight="300"
+							dataProvider="{mFactsListData}"/>	
+				</s:VGroup>
 			</s:HGroup>
 			
 		</s:HGroup>

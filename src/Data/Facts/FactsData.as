@@ -1,4 +1,4 @@
-package Facts
+package Data.Facts
 {
 	import mx.rpc.http.HTTPService;
 

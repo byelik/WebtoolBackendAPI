@@ -2,7 +2,8 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx" 
-		xmlns:FactsHostComponent="HostComponents.FactsHostComponent.*">
+		xmlns:FactsHostComponent="HostComponents.FactsHostComponent.*" 
+		xmlns:LocationsHostComponent="HostComponents.LocationsHostComponent.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("HostComponents.TabBarHostComponent.TabBarHostComponent")]
@@ -11,13 +12,22 @@
 	<s:TabBar id="mTabBar"
 			  dataProvider="{mViewStack}"
 			  left="5"
-			  right="5"/>
+			  right="5">
+		<s:layout>
+			<s:HorizontalLayout gap="0" 
+								columnWidth="305"
+								variableColumnWidth="false"/>
+		</s:layout>
+	</s:TabBar>
+	
 	<mx:ViewStack id="mViewStack"
 				  top="35"
 				  bottom="35"
 				  left="5"
-				  right="5">
+				  right="5">	
 		<s:NavigatorContent label="Locations">
+			<LocationsHostComponent:LocationsHostComponent id="mLocationsComponent"
+														   skinClass="Skins.LocationsSkin.LocationsSkin"/>
 		</s:NavigatorContent>
 		<s:NavigatorContent label="Facts">
 			<FactsHostComponent:FactsHostComponent id="mFactsComponent"
