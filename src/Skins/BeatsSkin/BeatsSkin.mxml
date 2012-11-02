@@ -7,27 +7,105 @@
 		[HostComponent("HostComponents.BeatsHostComponent.BeatsHostComponent")]
 	</fx:Metadata>
 	
-	<s:HGroup>
-		<s:VGroup>
-			<s:DropDownList id="mAgentList"
-							labelField="label"
+	<s:VGroup width="100%">
+		<s:HGroup>
+			<s:VGroup>
+				<s:DropDownList id="mAgentList"
+								labelField="label"
+								width="300"
+								prompt="Select location"/>
+				<!-- here must be visualization component of connections... -->
+			</s:VGroup>
+			<s:VGroup>
+				<s:Label text="BEAT" 
+						 fontWeight="bold" 
+						 fontSize="14" 
+						 color="0x000000"/>
+				<s:Label text="Description:"/>
+				<s:TextArea id="mBeatDescriptionField"
+							prompt="Enter description"
+							width="300"/>
+				<s:Label text="Agent:"/>
+				<s:DropDownList id="mChooseAgentList"
+								width="300"
+								prompt="Choose agent"/>
+				<s:Label text="XGML Theme:"/>
+				<s:TextInput id="mXgmlField"
+							 width="300"
+							 prompt="Choose XGML theme"/>
+				<s:Label text="Location:"/>
+				<s:DropDownList id="mLocationList"
+								width="300"
+								prompt="Choose location"/>
+				<s:Label text="Type:"/>
+				<s:DropDownList id="mTypeList"
+								width="300"/>
+				<s:Label text="Priority:"/>
+				<s:TextInput id="mPriorityField" 
+							 text="0"
+							 width="300"/>
+				<s:Label text="Activities:"/>
+				<s:TextArea id="mActivitiesField"
+							prompt="Enter activities"
+							width="300"/>
+			</s:VGroup>	
+			<s:VGroup>
+				<s:Label text="Preconditions" 
+						 fontWeight="bold" 
+						 fontSize="14" 
+						 color="0x000000"/>
+				<s:Label text="Description:"/>
+				<s:TextArea id="mPreconditionsDescriptionField"
+							prompt="Enter description"
+							width="300"/>
+				<s:Label text="Facts known to user:"/>
+				<s:TextArea id="mFactsKnownToUser"
 							width="300"
-							prompt="Select location"/>
-			<!-- visualization of connections -->
-		</s:VGroup>
-		<s:VGroup>
-			<s:Label text="Description"/>
-			<s:TextInput id="mBeatDescriptionField"/>
-			<s:DropDownList id="mChooseAgentList"/>
-			<s:Label text="XGML Theme"/>
-			<s:TextInput id="mXgmlField"
-						 prompt="Choose XGML theme"/>
-			<s:Label text="Location"/>
-			<s:DropDownList id="mLocationList"
-							prompt="Choose location"/>
-			<s:TextInput text="Type"/>
-			<s:DropDownList id="mTypeList"/>
-		</s:VGroup>
-	</s:HGroup>
+							editable="false"/>
+				<s:Label text="Facts known to agent:"/>
+				<s:TextArea id="mFactsKnownToAgent"
+							width="300"
+							editable="false"/>
+				<s:Label text="Beats completed:"/>
+				<s:TextInput id="mBeatsCompletedField"
+							 prompt="Comma - separated list fo ids"
+							 width="300"/>
+				<s:Label text="Affinity:" 
+						 width="300"
+						 textAlign="center"/>
+				<s:HGroup width="100%"
+						  horizontalAlign="center">
+					<s:TextInput id="mAffinityMinField"
+								 width="100%"
+								 text="0"/>
+					<s:TextInput id="mAffinityMaxField"
+								 text="0"
+								 width="100%"/>
+				</s:HGroup>
+				<s:Label text="Nerve:" 
+						 width="300"
+						 textAlign="center"/>
+				<s:HGroup width="100%"
+						  horizontalAlign="center">
+					<s:TextInput id="mNerveMinField" 
+								 text="0"
+								 width="100%"/>
+					<s:TextInput id="mNerveMaxField"
+								 text="0"
+								 width="100%"/>
+				</s:HGroup>	
+			</s:VGroup>
+		</s:HGroup>
+		
+		<s:HGroup width="100%"
+				  horizontalAlign="center">
+			<s:Button label="SAVE" width="300"/>
+			<s:Button label="DELETE" width="300"/>
+		</s:HGroup>	
+	</s:VGroup>
+	
+	
+	
+	
 	
 </s:Skin>

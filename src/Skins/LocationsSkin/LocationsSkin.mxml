@@ -20,16 +20,15 @@
 			<!--draw visual connection-->
 		</s:VGroup>
 		<s:VGroup>
-			<s:Label text="Name"/>
+			<s:Label text="Name:"/>
 			<s:TextInput id="mLocationNameField"
 						 editable="true" 
 						 selectable="true"/>		
-			<s:Label text="Description"/>
+			<s:Label text="Description:"/>
 			<s:TextInput id="mLocationDescriptionField"/>
-			<s:TextInput id="texx"/>
 		</s:VGroup>
 		<s:VGroup>
-			 <s:Label text="Agents"/>
+			 <s:Label text="Agents:"/>
 			 <s:List id="mAgentsList"
 					 minWidth="300"
 					 maxWidth="300"

@@ -2,7 +2,7 @@
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
 			   xmlns:mx="library://ns.adobe.com/flex/mx" 
-			   minWidth="955" minHeight="600" 
+			   minWidth="955" minHeight="900" 
 			   xmlns:MenuBarSkin="Skins.MenuBarSkin.*" 
 			   xmlns:MenuBarHostComponent="HostComponents.MenuBarHostComponent.*" 
 			   xmlns:FactsHostComponent="HostComponents.FactsHostComponent.*" 
@@ -80,6 +80,7 @@
 													   skinClass="Skins.MenuBarSkin.MenuBarComponent"/>	
 		</s:HGroup>
 		<TabBarHostComponent:TabBarHostComponent id="mTabBarComponent"
+												 width="100%"
 												 skinClass="Skins.TabbarComponent.TabBarComponent"/>
 	</s:VGroup>
 	

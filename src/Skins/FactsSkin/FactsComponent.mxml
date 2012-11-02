@@ -98,18 +98,18 @@
 			</s:DataGrid>
 			<!--end DataGrid-->
 			<s:VGroup>
-				<s:Label text="ID in XGML"/>
+				<s:Label text="ID in XGML:"/>
 				<s:TextInput id="mFactsIdLabel"
 						 	 text="{mFactsList.selectedItem.data}"
 							 editable="false" 
 							 selectable="false"/>		
-				<s:Label text="Description"/>
+				<s:Label text="Description:"/>
 				<s:TextArea id="mFactsDescriptionArea"
 							text="{mFactsList.selectedItem.desc}"/>
 			</s:VGroup>
 			<s:HGroup>
 				<s:VGroup>
-					<s:Label text="Agents"/>
+					<s:Label text="Agents:"/>
 					<s:List id="mAgentsList"
 							minWidth="300"
 							maxWidth="300"
