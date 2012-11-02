@@ -7,6 +7,10 @@
 		[HostComponent("HostComponents.BeatsHostComponent.BeatsHostComponent")]
 	</fx:Metadata>
 	
+	<fx:Declarations>
+		
+	</fx:Declarations>
+	
 	<s:VGroup width="100%">
 		<s:HGroup>
 			<s:VGroup>
@@ -41,9 +45,11 @@
 				<s:DropDownList id="mTypeList"
 								width="300"/>
 				<s:Label text="Priority:"/>
-				<s:TextInput id="mPriorityField" 
+				<s:TextInput id="mPriorityField"
 							 text="0"
-							 width="300"/>
+							 width="300"
+							 restrict="0-9"
+							 maxChars="3"/>
 				<s:Label text="Activities:"/>
 				<s:TextArea id="mActivitiesField"
 							prompt="Enter activities"
@@ -99,8 +105,12 @@
 		
 		<s:HGroup width="100%"
 				  horizontalAlign="center">
-			<s:Button label="SAVE" width="300"/>
-			<s:Button label="DELETE" width="300"/>
+			<s:Button id="mSave"
+					  label="SAVE" 
+					  width="300"/>
+			<s:Button id="mDelete"
+					  label="DELETE" 
+					  width="300"/>
 		</s:HGroup>	
 	</s:VGroup>
 	

@@ -1,9 +1,17 @@
 package HostComponents.BeatsHostComponent
 {
 	
+	import Constants.Const;
+	
+	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import flash.events.TextEvent;
 	
+	import mx.controls.Alert;
+	import mx.events.CloseEvent;
+	
+	import spark.components.Button;
 	import spark.components.DropDownList;
 	import spark.components.TextArea;
 	import spark.components.TextInput;
@@ -62,6 +70,13 @@ package HostComponents.BeatsHostComponent
 		[SkinPart(required="true")]
 		public var mNerveMaxField:TextInput;
 		
+		[SkinPart(required="true")]
+		public var mSave:Button;
+		
+		[SkinPart(required="true")]
+		public var mDelete:Button;
+		
+		
 		public function BeatsHostComponent()
 		{
 			super();
@@ -89,6 +104,12 @@ package HostComponents.BeatsHostComponent
 				case "mTypeList":
 					mTypeList.addEventListener(Event.CHANGE, selectType);
 				break;
+				case "mSave":
+					mSave.addEventListener(MouseEvent.CLICK, saveData);
+				break;
+				case "mDelete":
+					mDelete.addEventListener(MouseEvent.CLICK, deleteBeat);
+				break;
 				default:
 					//default
 				break;
@@ -112,6 +133,12 @@ package HostComponents.BeatsHostComponent
 				case "mTypeList":
 					mTypeList.removeEventListener(Event.CHANGE, selectType);
 					break;
+				case "mSave":
+					mSave.removeEventListener(MouseEvent.CLICK, saveData);
+					break;
+				case "mDelete":
+					mDelete.removeEventListener(MouseEvent.CLICK, deleteBeat);
+				break;
 				default:
 					//default
 					break;
@@ -136,6 +163,49 @@ package HostComponents.BeatsHostComponent
 		private function selectType(event:IndexChangeEvent):void
 		{
 			//select type...
+		}
+		
+		private function saveData(event:MouseEvent):void
+		{
+			//save data...
+			checkPriorityValue();
+		}
+		
+		private function deleteBeat(event:MouseEvent):void
+		{
+			//delete beat...
+		}
+		
+		private function checkPriorityValue():void
+		{
+			if(parseInt(mPriorityField.text) < 0 || parseInt(mPriorityField.text) > Const.MAX_VALUE || mPriorityField.text == Const.EMPTY_STRING)
+			{
+				showAlertWindow("Неверное значение приоритета. Допустимые значения от 0 до 100", "Ошибка", Const.ONE_BUTTON, null, setFocusField);
+				
+			}
+		}
+		
+		private function checkAffinityValue():void
+		{
+			
+		}
+		
+		private function checkNerve():void
+		{
+			
+		}
+		
+		private function showAlertWindow(descriptionError:String, title:String, buttonCount:uint, parent:Sprite, functionName:Function):void
+		{
+			Alert.show(descriptionError, title, buttonCount, null, functionName);
+		}
+		
+		private function setFocusField(event:CloseEvent):void
+		{
+			if(event.detail == Alert.OK)
+			{
+				focusManager.setFocus(mPriorityField);
+			}
 		}
 		
 	}

@@ -53,8 +53,8 @@
 			
 			private function errorHandler(event:IOErrorEvent):void
 			{
-				var alertHandler:Alert;
-				alertHandler = Alert.show("Error while loading config file: " + event, "Error",	Alert.OK);
+//				var alertHandler:Alert;
+				/*alertHandler = */Alert.show("Error while loading config file: " + event, "Error",	Alert.OK);
 			}
 			
 			private function completeLoadingConfigFile(event:Event):void
@@ -73,7 +73,7 @@
 		
 	</fx:Declarations>
 	
-	<s:VGroup width="100%">
+	<s:VGroup width="100%" height="100%">
 		<s:HGroup width="100%">
 			<MenuBarHostComponent:MenuBarHostComponent id="mMenuBarComponent"
 													   width="100%"
@@ -81,6 +81,7 @@
 		</s:HGroup>
 		<TabBarHostComponent:TabBarHostComponent id="mTabBarComponent"
 												 width="100%"
+												 height="100%"
 												 skinClass="Skins.TabbarComponent.TabBarComponent"/>
 	</s:VGroup>
 	
