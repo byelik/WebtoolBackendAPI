@@ -10,6 +10,7 @@
 			   creationComplete="InitialiseApp(event)">
 	<fx:Script>
 		<![CDATA[
+			import HostComponents.BeatsHostComponent.BeatsHostComponent;
 			import HostComponents.LocationsHostComponent.LocationsHostComponent;
 			import Data.DataModel;
 			
@@ -35,6 +36,8 @@
 			private var mHttpServiceManager:HttpServiceManager;
 			
 			private var HostComponents_LocationsHostComponent_LocationsHostComponent_obj:HostComponents.LocationsHostComponent.LocationsHostComponent;
+			
+			private var HostComponents_BeatsHostComponent_BeatsHostComponent_obj:HostComponents.BeatsHostComponent.BeatsHostComponent;
 			
 			private function InitialiseApp(event:FlexEvent):void
 			{

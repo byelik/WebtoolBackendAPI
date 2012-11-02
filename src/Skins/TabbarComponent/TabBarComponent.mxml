@@ -3,7 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx" 
 		xmlns:FactsHostComponent="HostComponents.FactsHostComponent.*" 
-		xmlns:LocationsHostComponent="HostComponents.LocationsHostComponent.*">
+		xmlns:LocationsHostComponent="HostComponents.LocationsHostComponent.*" xmlns:BeatsHostComponent="HostComponents.BeatsHostComponent.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("HostComponents.TabBarHostComponent.TabBarHostComponent")]
@@ -34,7 +34,8 @@
 												   skinClass="Skins.FactsSkin.FactsComponent"/>
 		</s:NavigatorContent>
 		<s:NavigatorContent label="Beats">
-			<s:Button label="Test beats"/>
+			<BeatsHostComponent:BeatsHostComponent id="mBeatsComponent"
+												   skinClass="Skins.BeatsSkin.BeatsSkin"/>
 		</s:NavigatorContent>
 		<s:NavigatorContent label="XGML">
 			<s:Button label="Test XGML"/>
