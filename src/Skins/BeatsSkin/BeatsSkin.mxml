@@ -82,11 +82,15 @@
 				<s:HGroup width="100%"
 						  horizontalAlign="center">
 					<s:TextInput id="mAffinityMinField"
+								 text="0"
 								 width="100%"
-								 text="0"/>
+								 restrict="0-9"
+								 maxChars="3"/>
 					<s:TextInput id="mAffinityMaxField"
 								 text="0"
-								 width="100%"/>
+								 width="100%"
+								 restrict="0-9"
+								 maxChars="3"/>
 				</s:HGroup>
 				<s:Label text="Nerve:" 
 						 width="300"
@@ -95,14 +99,17 @@
 						  horizontalAlign="center">
 					<s:TextInput id="mNerveMinField" 
 								 text="0"
-								 width="100%"/>
+								 width="100%"
+								 restrict="0-9"
+								 maxChars="3"/>
 					<s:TextInput id="mNerveMaxField"
 								 text="0"
-								 width="100%"/>
+								 width="100%"
+								 restrict="0-9"
+								 maxChars="3"/>
 				</s:HGroup>	
 			</s:VGroup>
 		</s:HGroup>
-		
 		<s:HGroup width="100%"
 				  horizontalAlign="center">
 			<s:Button id="mSave"

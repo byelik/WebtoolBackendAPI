@@ -3,6 +3,9 @@ package HostComponents.BeatsHostComponent
 	
 	import Constants.Const;
 	
+	import Manager.AlertManager;
+	
+	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -10,6 +13,8 @@ package HostComponents.BeatsHostComponent
 	
 	import mx.controls.Alert;
 	import mx.events.CloseEvent;
+	import mx.managers.IFocusManager;
+	import mx.managers.IFocusManagerComponent;
 	
 	import spark.components.Button;
 	import spark.components.DropDownList;
@@ -76,6 +81,8 @@ package HostComponents.BeatsHostComponent
 		[SkinPart(required="true")]
 		public var mDelete:Button;
 		
+		private var mComponent:IFocusManagerComponent;
+		private var firstTextElement:String;
 		
 		public function BeatsHostComponent()
 		{
@@ -169,6 +176,10 @@ package HostComponents.BeatsHostComponent
 		{
 			//save data...
 			checkPriorityValue();
+			checkMinAffinityValue();
+			checkMaxAffinityValue();
+			checkMinNerveValue();
+			checkMaxNerveValue();
 		}
 		
 		private function deleteBeat(event:MouseEvent):void
@@ -178,33 +189,68 @@ package HostComponents.BeatsHostComponent
 		
 		private function checkPriorityValue():void
 		{
-			if(parseInt(mPriorityField.text) < 0 || parseInt(mPriorityField.text) > Const.MAX_VALUE || mPriorityField.text == Const.EMPTY_STRING)
+			firstTextElement = mPriorityField.text.substring(0,1);
+			if(checkValue(firstTextElement, mPriorityField))
 			{
-				showAlertWindow("Неверное значение приоритета. Допустимые значения от 0 до 100", "Ошибка", Const.ONE_BUTTON, null, setFocusField);
-				
+				Alert.show(Const.ERROR_INPUT_PROIRITY_VALUE, Const.TITLE_ERROR_WINDOW, Alert.OK, null, alertHandler);
+				mComponent = mPriorityField;
 			}
 		}
 		
-		private function checkAffinityValue():void
+		private function checkMinAffinityValue():void
 		{
-			
+			firstTextElement = mAffinityMinField.text.substring(0,1);
+			if(checkValue(firstTextElement, mAffinityMinField))
+			{
+				Alert.show(Const.ERROR_INPUT_AFFINITY_VALUE, Const.TITLE_ERROR_WINDOW, Alert.OK, null, alertHandler);
+				mComponent = mAffinityMinField;
+			}
 		}
 		
-		private function checkNerve():void
+		private function checkMaxAffinityValue():void
 		{
-			
+			firstTextElement = mAffinityMaxField.text.substring(0,1);
+			if(checkValue(firstTextElement, mAffinityMaxField))
+			{
+				Alert.show(Const.ERROR_INPUT_AFFINITY_VALUE, Const.TITLE_ERROR_WINDOW, Alert.OK, null, alertHandler);
+				mComponent = mAffinityMaxField;
+			}
 		}
 		
-		private function showAlertWindow(descriptionError:String, title:String, buttonCount:uint, parent:Sprite, functionName:Function):void
+		private function checkMinNerveValue():void
 		{
-			Alert.show(descriptionError, title, buttonCount, null, functionName);
+			firstTextElement = mNerveMinField.text.substring(0,1);
+			if(checkValue(firstTextElement, mNerveMinField))
+			{
+				Alert.show(Const.ERROR_INPUT_NERVE_VALUE, Const.TITLE_ERROR_WINDOW, Alert.OK, null, alertHandler);
+				mComponent = mNerveMinField;
+			}	
+		}
+
+		private function checkMaxNerveValue():void
+		{
+			firstTextElement = mNerveMaxField.text.substring(0,1);
+			if(checkValue(firstTextElement, mNerveMaxField))
+			{
+				Alert.show(Const.ERROR_INPUT_NERVE_VALUE, Const.TITLE_ERROR_WINDOW, Alert.OK, null, alertHandler);
+				mComponent = mNerveMaxField;
+			}
 		}
 		
-		private function setFocusField(event:CloseEvent):void
+		private function checkValue(str:String, txtField:TextInput):Boolean
+		{
+			if(parseInt(str) == 0 && txtField.text.length > 1 || parseInt(txtField.text) > Const.MAX_VALUE || txtField.text == Const.EMPTY_STRING)	
+			{
+				return true;
+			}
+			return false;
+		}
+		
+		private function alertHandler(event:CloseEvent):void
 		{
 			if(event.detail == Alert.OK)
 			{
-				focusManager.setFocus(mPriorityField);
+				focusManager.setFocus(mComponent);
 			}
 		}
 		
