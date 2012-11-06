@@ -14,7 +14,8 @@ package Constants
 		public static const ERROR_INPUT_PROIRITY_VALUE:String = "Неверное значение приоритета. Допустимые значения от 0 до 100.";
 		public static const ERROR_INPUT_AFFINITY_VALUE:String = "Неверное значение Affinity. Допустимые значения от 0 до 100.";
 		public static const ERROR_INPUT_NERVE_VALUE:String = "Неверное значение Nerve. Допустимые значения от 0 до 100.";
-		
+		public static const TITLE_DELETE_FACT:String = "Внимание";
+		public static const WARRNING_DELETE_FACT:String = "Вы действительно хотите удалить выбраннные факты?";
 		public function Const()
 		{
 		}

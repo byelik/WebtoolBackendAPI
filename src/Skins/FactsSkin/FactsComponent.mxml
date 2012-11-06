@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx"
-		creationComplete="skin1_creationCompleteHandler(event)">
+		xmlns:mx="library://ns.adobe.com/flex/mx">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("HostComponents.FactsHostComponent.FactsHostComponent")]
@@ -12,7 +11,11 @@
 		<![CDATA[
 			import HttpService.HttpServiceManager;
 			
+			import mx.events.DataGridEvent;
 			import mx.rpc.events.ResultEvent;
+			import mx.validators.EmailValidator;
+			
+			import spark.events.GridItemEditorEvent;
 			protected function button1_clickHandler(event:MouseEvent):void
 			{
 				HttpServiceManager.httpService.addEventListener(ResultEvent.RESULT, getRes);
@@ -43,6 +46,17 @@
 				System.setClipboard(mAgentsList.selectedItem);	
 			}
 			
+			protected function mFactsList_gridItemEditorSessionStartHandler(event:GridItemEditorEvent):void
+			{
+				trace(event);
+			}
+			
+			protected function mFactsList_gridItemEditorSessionStartingHandler(event:GridItemEditorEvent):void
+			{
+				trace("starting" + event);
+			}
+			
+						
 		]]>
 	</fx:Script>
 	
@@ -52,47 +66,19 @@
 			import mx.events.FlexEvent;
 			
 			
-			[Bindable]
-			public var mFactsListData:ArrayCollection;
-			
-			protected function skin1_creationCompleteHandler(event:FlexEvent):void
-			{ 
-				
-				mFactsListData = new ArrayCollection([{label:"Electronics", data:1, desc: "hello"}, 
-													 {label:"Home Good", data:232, desc: "hellocvcvd"},
-													 {label:"Home Gods", data:32423552, desc: "helldfdfffdfo"},
-													 {label:"Goods", data:3453452, desc: "hellodsfdfdfdfgfgfg"},
-													 {label:"oe Gds", data:3454532, desc: "hellogdsdgerffbhfbv"},
-													 {label:"Ho Goo", data:34534542, desc: "hellofkgjfdkgghgfh"},
-													 {label:"Hoe Gs", data:25345345, desc: "hellfhjnfgiubo"},
-													 {label:"Hom Goo", data:453453452, desc: "hellognbv"},
-													 {label:"H ds", data:453453452, desc: "hellfjbfvbo"},
-													 {label:"e ds", data:345345345342, desc: "hellgvfgfo"},
-													 {label:"o G", data:3453452, desc: "hellfbgjbgo"},
-													 {label:"e s", data:2345345345, desc: "hellbjfbfo"},
-													 {label:"Hmjje Gfgfgoods", data:3453452, desc: "hellobfiofbfbhngnglngngnghnlgng;n,glmngl;ng"},
-													 {label:"Home Gdfgdfg", data:3453452, desc: "hellohiofnfb rigjuriotrhgright g"},
-													 {label:"Home Goods", data:3453452, desc: "hellnbkg;ngklno"},
-													 {label:"Home Goods", data:345345342, desc: "hellobgknfbkfnbkb"},
-													 {label:"Toys", data:3453453453453453, desc: "hellogbklgnbgbngbngkbgbkmgbklggkbmgklbmgklbmgklbmgkbmgbmkgeokfeoire okb"} ]);
-			}
-			
-			protected function mFactsList_clickHandler(event:MouseEvent):void
-			{
-				trace(mFactsList.selectedItem);
-//				mAgentsList.selectedItem = mFactsList.selectedItem;
-				mAgentsList.selectedItems = mFactsList.selectedItems;
-			}
-			
 		]]>
 	</fx:Script>
 	<s:VGroup>
 		<s:HGroup>
 			<s:DropDownList id="characterList"
-							labelField="label"
-							dataProvider="{hostComponent.tmpData}"
+							labelField="data"
+							dataProvider="{hostComponent.mFactsListData}"
 							prompt="Select character"
 							width="300"/>	
+			<s:Button id="mAddFact"
+					  label="+Fact"/>
+			<s:Button id="mDeleteFact"
+					  label="-Fact"/>
 		</s:HGroup>
 		<!--Start Horizontal group of components-->
 		<s:HGroup>
@@ -105,10 +91,9 @@
 						borderVisible="false"
 						editable="true"
 						selectionMode="multipleRows"
-						sortableColumns="false"
+						sortableColumns="true"
 						resizableColumns="false"
-						dataProvider="{mFactsListData}"
-						click="mFactsList_clickHandler(event)">
+						dataProvider="{hostComponent.mFactsListData}">
 				<s:columns>
 					<s:ArrayList>
 						<s:GridColumn dataField="data" headerText="Id"/>
@@ -138,13 +123,19 @@
 							maxHeight="300"
 							labelField="label"
 							allowMultipleSelection="true"
-							dataProvider="{mFactsListData}"/>	
+							dataProvider="{hostComponent.mFactsListData}"/>
+					<s:HGroup width="100%">
+						<s:Button id="mAddFactOwner"
+								  label="&lt;&lt;" width="100%"/>
+						<s:Button id="mRemoveFactOwner"
+								  label="&gt;&gt;"
+								  width="100%"/>
+					</s:HGroup>
 				</s:VGroup>
 			</s:HGroup>
 			
 		</s:HGroup>
 		<!--end Horizontal group of components-->
-		
 	</s:VGroup>
 	
 	
