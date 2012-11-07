@@ -13,6 +13,29 @@
 	
 	<s:VGroup width="100%">
 		<s:HGroup>
+			<mx:Tree id="tree1"
+					 labelField="@label"
+					 showRoot="true"
+					 borderSkin="{null}"
+					 width="160"
+					 horizontalCenter="0" verticalCenter="0">
+				<mx:XMLListCollection id="MailBox">
+					<fx:XMLList>
+						<folder label="Mail">
+							<folder label="INBOX"/>
+							<folder label="Personal Folder">
+								<Pfolder label="Business" />
+								<Pfolder label="Demo" />
+								<Pfolder label="Personal" isBranch="true" />
+								<Pfolder label="Saved Mail" />
+							</folder>
+							<folder label="Sent" />
+							<folder label="Trash" />
+						</folder>
+					</fx:XMLList>
+				</mx:XMLListCollection>
+			</mx:Tree>
+			
 			<s:VGroup>
 				<s:DropDownList id="mAgentList"
 								labelField="label"

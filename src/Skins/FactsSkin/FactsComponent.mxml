@@ -9,137 +9,151 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import HttpService.HttpServiceManager;
-			
-			import mx.events.DataGridEvent;
 			import mx.rpc.events.ResultEvent;
-			import mx.validators.EmailValidator;
 			
 			import spark.events.GridItemEditorEvent;
 			protected function button1_clickHandler(event:MouseEvent):void
 			{
-				HttpServiceManager.httpService.addEventListener(ResultEvent.RESULT, getRes);
+//				HttpServiceManager.httpService.addEventListener(ResultEvent.RESULT, getRes);
 			}
 			
 			private function getRes(event:ResultEvent):void
 			{
-				var tmp:Object;
-				tmp = JSON.parse(event.result as String);
-				trace(tmp);
-			}
-			
-			protected function mAgentsList_clickHandler(event:MouseEvent):void
-			{
-				var mContextMenuItem:ContextMenuItem = new ContextMenuItem("Copy Data");
-				mContextMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, copyData);
-				
-				var mContextMenu:ContextMenu = new ContextMenu();
-				mContextMenu.hideBuiltInItems();
-				mContextMenu.customItems = [mContextMenuItem];
-				
-				contextMenu = mContextMenu;
-				
-			}
-			
-			private function copyData(event:ContextMenuEvent):void
-			{
-				System.setClipboard(mAgentsList.selectedItem);	
-			}
-			
-			protected function mFactsList_gridItemEditorSessionStartHandler(event:GridItemEditorEvent):void
-			{
-				trace(event);
-			}
-			
-			protected function mFactsList_gridItemEditorSessionStartingHandler(event:GridItemEditorEvent):void
-			{
-				trace("starting" + event);
-			}
-			
-						
+//				var tmp:Object;
+//				tmp = JSON.parse(event.result as String);
+//				trace(tmp);
+			}			
 		]]>
 	</fx:Script>
 	
-	<fx:Script>
-		<![CDATA[
-			import mx.collections.ArrayCollection;
-			import mx.events.FlexEvent;
-			
-			
-		]]>
-	</fx:Script>
-	<s:VGroup>
-		<s:HGroup>
-			<s:DropDownList id="characterList"
-							labelField="data"
-							dataProvider="{hostComponent.mFactsListData}"
-							prompt="Select character"
-							width="300"/>	
-			<s:Button id="mAddFact"
-					  label="+Fact"/>
-			<s:Button id="mDeleteFact"
-					  label="-Fact"/>
-		</s:HGroup>
-		<!--Start Horizontal group of components-->
-		<s:HGroup>
-			<!--Start Datagrid-->
-			<s:DataGrid id="mFactsList" 
-						minWidth="300"
-						maxWidth="300"
-						minHeight="300"
-						maxHeight="300"
+	<s:HGroup>
+		
+		<!-- First VGrop column-->
+		<s:VGroup>
+			<s:HGroup verticalAlign="middle">
+				<s:Label text="Character"/>
+				<s:DropDownList id="mCharacterList"
+								labelField="data"
+								dataProvider="{hostComponent.mFactsListData}"
+								prompt="Select character"
+								width="300"/>				
+			</s:HGroup>
+			<s:HGroup verticalAlign="middle" width="100%">
+				<s:Label width="54" text="Affinity"/>
+				<s:TextInput id="mAffinity"
+							 maxChars="3"
+							 restrict="0-9"
+							 width="50"
+							 text="0"/>
+				<s:HGroup width="100%" horizontalAlign="right">
+					<s:Label text="Nerve"
+							 left="350"/>	
+				</s:HGroup>
+				
+				<s:HGroup width="100%"
+						  horizontalAlign="right">
+					<s:TextInput id="mNerve"
+								 maxChars="3"
+								 restrict="0-9"
+								 width="50"
+								 text="0"/>
+				</s:HGroup>
+				
+			</s:HGroup>
+			<s:HGroup width="357" verticalAlign="middle">
+				<s:Label text="Memory"/>
+				<s:HGroup width="100%" horizontalAlign="right">
+					<s:Button id="mAddVariable"
+							  label="+Variable"/>
+					<s:Button id="mDeleteVariable"
+							  label="-Variable"/>	
+				</s:HGroup>
+				
+			</s:HGroup>
+			<s:DataGrid id="mVariableList" 
+						width="358" 
+						height="102" 
 						borderVisible="false"
+						dataProvider="{hostComponent.mFactsListData}" 
 						editable="true"
+						resizableColumns="false" 
 						selectionMode="multipleRows"
-						sortableColumns="true"
-						resizableColumns="false"
-						dataProvider="{hostComponent.mFactsListData}">
+						sortableColumns="true">
 				<s:columns>
 					<s:ArrayList>
-						<s:GridColumn dataField="data" headerText="Id"/>
-						<s:GridColumn dataField="data" headerText="xgmlId"/>
-						<s:GridColumn dataField="desc" headerText="Description"/>
+						<s:GridColumn dataField="data" headerText="Variable"/>
+						<s:GridColumn dataField="desc" headerText="Value"/>
 					</s:ArrayList>
-				</s:columns>
+				</s:columns>	
 			</s:DataGrid>
-			<!--end DataGrid-->
-			<s:VGroup>
-				<s:Label text="ID in XGML:"/>
-				<s:TextInput id="mFactsIdLabel"
-						 	 text="{mFactsList.selectedItem.data}"
-							 editable="false" 
-							 selectable="false"/>		
-				<s:Label text="Description:"/>
-				<s:TextArea id="mFactsDescriptionArea"
-							text="{mFactsList.selectedItem.desc}"/>
-			</s:VGroup>
+			<s:Label text="Character facts"/>
+			<s:HGroup verticalAlign="middle">
+				<s:DataGrid id="mCharacterFactsList" width="355" height="102" borderVisible="false"
+							dataProvider="{hostComponent.mFactsListData}" editable="true"
+							resizableColumns="false" selectionMode="multipleRows"
+							sortableColumns="true">
+					<s:columns>
+						<s:ArrayList>
+							<s:GridColumn dataField="data" headerText="id"/>
+							<s:GridColumn dataField="desc" headerText="Description"/>
+						</s:ArrayList>
+					</s:columns>
+				</s:DataGrid>
+			</s:HGroup>			
+		</s:VGroup>
+		<!---->
+		
+		
+		<!-- Secod VGroup column-->
+		<s:VGroup verticalAlign="bottom" height="295" bottom="15">
+			<s:Button id="mAddFactOwner"
+					  label="&lt;" 
+					  width="35"
+					  height="35"/>
+			<s:Button id="mDeleteFactOwner"
+					  label="&gt;"
+					  width="35"
+					  height="35"/>
+		</s:VGroup>		
+		<!---->
+		
+		<!-- Third VGroup column-->
+		<s:VGroup>
+			
+		</s:VGroup>
+		<!---->
+		
+		<s:HGroup>
 			<s:HGroup>
 				<s:VGroup>
-					<s:Label text="Agents:"/>
-					<s:List id="mAgentsList"
-							minWidth="300"
-							maxWidth="300"
-							minHeight="300"
-							maxHeight="300"
-							labelField="label"
-							allowMultipleSelection="true"
-							dataProvider="{hostComponent.mFactsListData}"/>
-					<s:HGroup width="100%">
-						<s:Button id="mAddFactOwner"
-								  label="&lt;&lt;" width="100%"/>
-						<s:Button id="mRemoveFactOwner"
-								  label="&gt;&gt;"
-								  width="100%"/>
+					<s:Label text="Location"/>
+					<s:DropDownList id="mLocationList"
+									minWidth="300"
+									maxWidth="300"
+									labelField="label"
+									dataProvider="{hostComponent.mFactsListData}"/>
+					<s:HGroup width="100%" horizontalAlign="right">
+						<s:Button id="mAddFact"
+								  label="+Fact"/>
+						<s:Button id="mDeleteFact"
+								  label="-Fact"
+								  enabled="{mFactsList.selectedItem}"/>	
 					</s:HGroup>
+					<s:Label text="Facts"/>
+					<s:DataGrid id="mFactsList" height="219" minWidth="300" minHeight="300"
+								maxWidth="300" maxHeight="300" borderVisible="false"
+								dataProvider="{hostComponent.mFactsListData}" editable="true"
+								resizableColumns="false" selectionMode="multipleRows"
+								sortableColumns="true">
+						<s:columns>
+							<s:ArrayList>
+								<s:GridColumn dataField="data" headerText="id"/>
+								<s:GridColumn dataField="desc" headerText="Description"/>
+							</s:ArrayList>
+						</s:columns>
+					</s:DataGrid>
 				</s:VGroup>
 			</s:HGroup>
-			
 		</s:HGroup>
-		<!--end Horizontal group of components-->
-	</s:VGroup>
-	
-	
-	
-	
-	
+	</s:HGroup>
 </s:Skin>

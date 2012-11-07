@@ -25,12 +25,12 @@
 				  bottom="35"
 				  left="5"
 				  right="5">	
-		<s:NavigatorContent label="Locations">
+		<!--<s:NavigatorContent label="Locations">
 			<LocationsHostComponent:LocationsHostComponent id="mLocationsComponent"
 														   width="100%"
 														   height="100%"
 														   skinClass="Skins.LocationsSkin.LocationsSkin"/>
-		</s:NavigatorContent>
+		</s:NavigatorContent>-->
 		<s:NavigatorContent label="Facts">
 			<FactsHostComponent:FactsHostComponent id="mFactsComponent"
 												   width="100%"
@@ -43,11 +43,11 @@
 												   height="100%"
 												   skinClass="Skins.BeatsSkin.BeatsSkin"/>
 		</s:NavigatorContent>
-		<s:NavigatorContent label="XGML"
+		<!--<s:NavigatorContent label="XGML"
 							width="100%"
 							height="100%">
 
-		</s:NavigatorContent>
+		</s:NavigatorContent>-->
 	</mx:ViewStack>
 	
 </s:Skin>
