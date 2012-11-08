@@ -17,6 +17,8 @@ package HostComponents.BeatsHostComponent
 	import mx.managers.IFocusManager;
 	import mx.managers.IFocusManagerComponent;
 	
+	import spark.collections.Sort;
+	import spark.collections.SortField;
 	import spark.components.Button;
 	import spark.components.DropDownList;
 	import spark.components.TextArea;
@@ -85,12 +87,21 @@ package HostComponents.BeatsHostComponent
 		private var mComponent:IFocusManagerComponent;
 		private var firstTextElement:String;
 		
+		[Bindable]
+		public var beatTypeList:ArrayCollection; 
 		
-		
+		private var dataSortField:SortField;
+		private var dataSort:Sort;
 		
 		public function BeatsHostComponent()
 		{
 			super();
+			beatTypeList = new ArrayCollection(["exclusive", "normal", "repeated"]);
+			
+			dataSortField = new SortField();
+			
+			dataSort = new Sort();
+			sortBeatTypeList();
 		}
 		
 		override protected function getCurrentSkinState():String
@@ -256,6 +267,17 @@ package HostComponents.BeatsHostComponent
 			{
 				focusManager.setFocus(mComponent);
 			}
+		}
+		
+		private function sortBeatTypeList():void
+		{
+			
+			dataSort.fields = [dataSortField];
+//			dataSort.fields = [new SortField("data", true, true)];
+//			dataSort.reverse();
+			
+			beatTypeList.sort = dataSort;
+			beatTypeList.refresh();
 		}
 		
 	}

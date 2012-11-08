@@ -92,7 +92,9 @@
 								prompt="Choose location"/>
 				<s:Label text="Type:"/>
 				<s:DropDownList id="mTypeList"
-								width="300"/>
+								width="300"
+								selectedIndex="1"
+								dataProvider="{hostComponent.beatTypeList}"/>
 				<s:Label text="Priority:"/>
 				<s:TextInput id="mPriorityField"
 							 text="0"
