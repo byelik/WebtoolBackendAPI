@@ -29,6 +29,7 @@ package HostComponents.FactsHostComponent
 	import spark.components.TextInput;
 	import spark.components.supportClasses.SkinnableComponent;
 	import spark.events.GridItemEditorEvent;
+	import spark.events.GridSelectionEvent;
 	import spark.events.IndexChangeEvent;
 	
 	
@@ -87,26 +88,15 @@ package HostComponents.FactsHostComponent
 																'xyz', 'f', 'e', 'D', 'ABC','Öhlund',
 																'Oehland','Zorn','Aaron','Ohlin','Aaron']);
 		[Bindable]
-		public var mFactsListData:ArrayCollection = new ArrayCollection([{label:"Electronics", data:1, desc: "hello"}, 
-																		{label:"Home Good", data:2, desc: "hellocvcvd"},
-																		{label:"Home Gods", data:5, desc: "helldfdfffdfo"},
-																		{label:"Goods", data:3, desc: "hellodsfdfdfdfgfgfg"},
-																		{label:"oe Gds", data:6, desc: "hellogdsdgerffbhfbv"},
-																		{label:"Ho Goo", data:4, desc: "hellofkgjfdkgghgfh"},
-																		{label:"Hoe Gs", data:7, desc: "hellfhjnfgiubo"},
-																		{label:"Hom Goo", data:9, desc: "hellognbv"},
-																		{label:"H ds", data:8, desc: "hellfjbfvbo"},
-																		{label:"e ds", data:10, desc: "hellgvfgfo"},
-																		{label:"o G", data:12, desc: "hellfbgjbgo"},
-																		{label:"e s", data:11, desc: "hellbjfbfo"},
-																		{label:"Hmjje Gfgfgoods", data:13, desc: "hellobfiofbfbhngnglngngnghnlgng;n,glmngl;ng"},
-																		{label:"Home Gdfgdfg", data:15, desc: "hellohiofnfb rigjuriotrhgright g"},
-																		{label:"Home Goods", data:14, desc: "hellnbkg;ngklno"},
-																		{label:"Home Goods", data:16, desc: "hellobgknfbkfnbkb"},
-																		{label:"Toys", data:17, desc: "hellogbklgnbgbngbngkbgbkmgbklggkbmgklbmgklbmgklbmgkbmgbmkgeokfeoire okb"},
-																		{label:"arni", data:13, desc: "BYELIk"} ]);
+		public var mSystemFactsList:ArrayCollection = new ArrayCollection();
 		
 		
+		
+		[Bindable]
+		public var mCharacterFactItems:ArrayCollection = new ArrayCollection();
+		
+		[Bindable]
+		public var mVariableItems:ArrayCollection = new ArrayCollection();
 		
 		private var dataSortField:SortField;
 		private var dataSort:Sort;
@@ -231,8 +221,8 @@ package HostComponents.FactsHostComponent
 			dataSort.reverse();
 //			tmpData.sort = dataSort;
 //			tmpData.refresh();
-			mFactsListData.sort = dataSort;
-			mFactsListData.refresh();
+//			mSystemFactsList.sort = dataSort;
+//			mSystemFactsList.refresh();
 		}
 		
 		private function selectCharacter(event:IndexChangeEvent):void
@@ -262,17 +252,26 @@ package HostComponents.FactsHostComponent
 		private function addVariable(event:MouseEvent):void
 		{
 			//add variable and refresh all data
+			
+			mVariableItems.addItem({id:"New Variable", description: ""}); 
+//			trace(mVariableList);
 		}
+		
 		
 		private function deleteVariable(event:MouseEvent):void
 		{
 			//delete variable and refresh all data
+			if(mVariableList.selectedItems)
+			{
+				Alert.yesLabel = "Да";
+				Alert.noLabel = "Нет";
+				Alert.show(Const.WARNING_DELETE_VARIABLE, Const.TITLE_DELETE_VARIABLE, Alert.YES | Alert.NO, this, deleteVariableHandler);
+			}
 		}
 		
 		private function selectVariable(event:GridItemEditorEvent):void
 		{
 			//edit variable ENTER(save data and refresh all list)
-			trace("*");
 		}
 		
 		/*private function editFact(event:GridItemEditorEvent):void
@@ -282,19 +281,21 @@ package HostComponents.FactsHostComponent
 		
 		private function selectCharacterFact(event:GridItemEditorEvent):void
 		{
-			trace("character fact");
+			trace(mCharacterFactsList.selectedIndex);	
 		}
 		
 		
 		private function addFactOwner(event:MouseEvent):void
 		{
-			/*selectedAgents = mAgentsList.selectedItems;
-			for(var i:int = 0; i < selectedAgents.length; i++)
+			/*selectedAgents = mAgentsList.selectedItems;*/
+
+//			{"method":"facts.addFactOwner","params":[256,180],"jsonrpc":"2.0","id":38}
+			if(mFactsList.selectedItems)
 			{
-				//				trace(selectedAgents[i].data);
-			}*/
-			//			{"method":"facts.addFactOwner","params":[256,180],"jsonrpc":"2.0","id":38}
-			
+				mCharacterFactItems.addItem(mFactsList.selectedItem);
+				mSystemFactsList.removeItemAt(mFactsList.selectedIndex);
+				mAddFactOwner.enabled = false;
+			}
 		}
 			
 		
@@ -304,11 +305,16 @@ package HostComponents.FactsHostComponent
 		private function deleteFactOwner(event:MouseEvent):void
 		{
 			//{"method":"facts.removeFactOwner","params":[256,181],"jsonrpc":"2.0","id":39}
-			/*selectedAgents = mAgentsList.selectedItems;
-			for(var i:int = 0; i < selectedAgents.length; i++)
+			/*selectedAgents = mAgentsList.selectedItems;*/
+
+			if(mCharacterFactsList.selectedItems)
 			{
-				trace(selectedAgents[i].data);
-			}*/
+				mSystemFactsList.addItem(mCharacterFactsList.selectedItem);
+				mCharacterFactItems.removeItemAt(mCharacterFactsList.selectedIndex);
+				mDeleteFactOwner.enabled = false;
+			}
+			
+			
 		}
 		
 		private function selectLocation(event:IndexChangeEvent):void
@@ -322,15 +328,11 @@ package HostComponents.FactsHostComponent
 //			{"method":"facts.addFact","params":[{}],"jsonrpc":"2.0","id":43}
 //			focusManager.setFocus(mFactsDescriptionArea);
 //			mFactsDescriptionArea.text = "New Fact";
+			mSystemFactsList.addItem({id:"1", description:"New Fact"});
 		}
 		
 		private function deleteFact(event:MouseEvent):void
 		{
-			for(var i:int = 0; i < mFactsList.selectedItems.length; i++)
-			{
-				trace(i);
-			}
-			
 			Alert.yesLabel = "Да";
 			Alert.noLabel = "Нет";
 			Alert.show(Const.WARRNING_DELETE_FACT, Const.TITLE_DELETE_FACT, Alert.YES | Alert.NO, this, deleteFactHandler);
@@ -349,14 +351,37 @@ package HostComponents.FactsHostComponent
 			if(event.detail == Alert.YES)
 			{
 				trace("delete selected fact(s)");
-				
-				mFactsListData.removeItemAt(mFactsList.selectedIndex);	
+				if(mFactsList.selectedItems)
+				{
+					mSystemFactsList.removeItemAt(mFactsList.selectedIndex);
+					mDeleteFact.enabled = false;
+					mAddFactOwner.enabled = false;
+				}
 			}
 			else
 			{
 				trace("close wnd");
 			}
 				
+		}
+		
+		private function deleteVariableHandler(event:CloseEvent):void
+		{
+			//			trace(event.detail);
+			//			var tmp:Vector.<Object>;
+			
+			if(event.detail == Alert.YES)
+			{
+				trace("delete selected variables(s)");
+				
+				mVariableItems.removeItemAt(mVariableList.selectedIndex);
+				mDeleteVariable.enabled = false;
+			}
+			else
+			{
+				trace("close wnd");
+			}
+			
 		}
 		
 		private function checkValue(str:String, txtField:TextInput):Boolean

@@ -1,0 +1,1677 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<data>
+    <facts>
+        <fact id="255">
+            <xgmlId>16</xgmlId>
+            <description>Melany took the pills in her room in the morning.</description>
+            <owners>
+                <owner>177</owner>
+            </owners>
+        </fact>
+        <fact id="260">
+            <xgmlId>10</xgmlId>
+            <description>Henry was in Body's study in the morning.</description>
+            <owners>
+                <owner>179</owner>
+                <owner>178</owner>
+            </owners>
+        </fact>
+        <fact id="261">
+            <xgmlId>13</xgmlId>
+            <description>Doctor is a very good chemist.</description>
+            <owners>
+                <owner>176</owner>
+            </owners>
+        </fact>
+        <fact id="253">
+            <xgmlId>14</xgmlId>
+            <description>Jessica was in Melany's room in the morning. She's the one, who could have swapped the
+                pills.
+            </description>
+            <owners>
+                <owner>178</owner>
+            </owners>
+        </fact>
+        <fact id="254">
+            <xgmlId>15</xgmlId>
+            <description>Melany has some dangerous drugs with her.</description>
+            <owners>
+                <owner>177</owner>
+            </owners>
+        </fact>
+        <fact id="256">
+            <xgmlId>5</xgmlId>
+            <description>Somebody swapped Body's medicines. Somebody gave him a drug that could have killed him.
+            </description>
+            <owners>
+                <owner>176</owner>
+            </owners>
+        </fact>
+        <fact id="257">
+            <xgmlId>8</xgmlId>
+            <description>Melany was in an erotic show with Jessica when young.</description>
+            <owners>
+                <owner>177</owner>
+                <owner>178</owner>
+            </owners>
+        </fact>
+    </facts>
+    <beats>
+        <beat id="77">
+            <description>Jessica talking about weather</description>
+            <agentId>178</agentId>
+            <locationId>-1</locationId>
+            <type>repeated</type>
+            <xgmlTheme>Jess_weather</xgmlTheme>
+            <preConditions>
+                <preCondition>
+                    <description></description>
+                    <factsAvailableToUser/>
+                    <factsAvailableToAgent/>
+                    <beatsCompleted/>
+                    <affinityMin>0</affinityMin>
+                    <affinityMax>100</affinityMax>
+                    <nerveMin>0</nerveMin>
+                    <nerveMax>100</nerveMax>
+                    <subjects/>
+                </preCondition>
+            </preConditions>
+            <activities/>
+            <exclusiveBeatPriority>0</exclusiveBeatPriority>
+        </beat>
+        <beat id="79">
+            <description>Jessica in da flirt</description>
+            <agentId>178</agentId>
+            <locationId>-1</locationId>
+            <type>repeated</type>
+            <xgmlTheme>Jessica_flirt</xgmlTheme>
+            <preConditions>
+                <preCondition>
+                    <description></description>
+                    <factsAvailableToUser/>
+                    <factsAvailableToAgent/>
+                    <beatsCompleted/>
+                    <affinityMin>0</affinityMin>
+                    <affinityMax>100</affinityMax>
+                    <nerveMin>0</nerveMin>
+                    <nerveMax>100</nerveMax>
+                    <subjects/>
+                </preCondition>
+            </preConditions>
+            <activities/>
+            <exclusiveBeatPriority>0</exclusiveBeatPriority>
+        </beat>
+        <beat id="78">
+            <description>Jessica find detective</description>
+            <agentId>178</agentId>
+            <locationId>-1</locationId>
+            <type>repeated</type>
+            <xgmlTheme></xgmlTheme>
+            <preConditions>
+                <preCondition>
+                    <description></description>
+                    <factsAvailableToUser/>
+                    <factsAvailableToAgent/>
+                    <beatsCompleted>
+                        <beatCompleted>87</beatCompleted>
+                    </beatsCompleted>
+                    <affinityMin>0</affinityMin>
+                    <affinityMax>100</affinityMax>
+                    <nerveMin>0</nerveMin>
+                    <nerveMax>100</nerveMax>
+                    <subjects/>
+                </preCondition>
+            </preConditions>
+            <activities>
+                <activity>Idle(30)</activity>
+                <activity>Find(steve)</activity>
+                <activity>StartDialog(steve, Lets flirt with me!)</activity>
+                <activity>CompleteBeat(Jessica_flirt)</activity>
+            </activities>
+            <exclusiveBeatPriority>0</exclusiveBeatPriority>
+        </beat>
+        <beat id="80">
+            <description>Jessica welcome</description>
+            <agentId>178</agentId>
+            <locationId>-1</locationId>
+            <type>repeated</type>
+            <xgmlTheme>Jessica_morning_trusting</xgmlTheme>
+            <preConditions>
+                <preCondition>
+                    <description></description>
+                    <factsAvailableToUser/>
+                    <factsAvailableToAgent/>
+                    <beatsCompleted/>
+                    <affinityMin>0</affinityMin>
+                    <affinityMax>100</affinityMax>
+                    <nerveMin>0</nerveMin>
+                    <nerveMax>100</nerveMax>
+                    <subjects/>
+                </preCondition>
+            </preConditions>
+            <activities/>
+            <exclusiveBeatPriority>0</exclusiveBeatPriority>
+        </beat>
+        <beat id="81">
+            <description>Jessica low affinity</description>
+            <agentId>178</agentId>
+            <locationId>-1</locationId>
+            <type>repeated</type>
+            <xgmlTheme>Jessica_others_lowAffinity</xgmlTheme>
+            <preConditions>
+                <preCondition>
+                    <description></description>
+                    <factsAvailableToUser/>
+                    <factsAvailableToAgent/>
+                    <beatsCompleted/>
+                    <affinityMin>0</affinityMin>
+                    <affinityMax>100</affinityMax>
+                    <nerveMin>0</nerveMin>
+                    <nerveMax>100</nerveMax>
+                    <subjects/>
+                </preCondition>
+            </preConditions>
+            <activities/>
+            <exclusiveBeatPriority>0</exclusiveBeatPriority>
+        </beat>
+        <beat id="86">
+            <description>Philipp find detective</description>
+            <agentId>180</agentId>
+            <locationId>-1</locationId>
+            <type>exclusive</type>
+            <xgmlTheme>First_greeting</xgmlTheme>
+            <preConditions>
+                <preCondition>
+                    <description></description>
+                    <factsAvailableToUser/>
+                    <factsAvailableToAgent/>
+                    <beatsCompleted/>
+                    <affinityMin>0</affinityMin>
+                    <affinityMax>100</affinityMax>
+                    <nerveMin>0</nerveMin>
+                    <nerveMax>100</nerveMax>
+                    <subjects/>
+                </preCondition>
+            </preConditions>
+            <activities>
+                <activity>Idle(3)</activity>
+                <activity>StartDialog(steve, Sir)</activity>
+            </activities>
+            <exclusiveBeatPriority>0</exclusiveBeatPriority>
+        </beat>
+        <beat id="87">
+            <description>Philipp back</description>
+            <agentId>180</agentId>
+            <locationId>-1</locationId>
+            <type>normal</type>
+            <xgmlTheme>Philipp_back</xgmlTheme>
+            <preConditions>
+                <preCondition>
+                    <description></description>
+                    <factsAvailableToUser/>
+                    <factsAvailableToAgent/>
+                    <beatsCompleted>
+                        <beatCompleted>86</beatCompleted>
+                    </beatsCompleted>
+                    <affinityMin>0</affinityMin>
+                    <affinityMax>100</affinityMax>
+                    <nerveMin>0</nerveMin>
+                    <nerveMax>100</nerveMax>
+                    <subjects/>
+                </preCondition>
+            </preConditions>
+            <activities>
+                <activity>Idle(5)</activity>
+                <activity>Move(cabinet)</activity>
+                <activity>Idle(5)</activity>
+                <activity>Find(steve)</activity>
+                <activity>StartDialog(steve, Sir I have news about Mr Boddy)</activity>
+            </activities>
+            <exclusiveBeatPriority>0</exclusiveBeatPriority>
+        </beat>
+        <beat id="88">
+            <description>Philipp greetengs complete</description>
+            <agentId>180</agentId>
+            <locationId>-1</locationId>
+            <type>repeated</type>
+            <xgmlTheme>Philipp_back</xgmlTheme>
+            <preConditions>
+                <preCondition>
+                    <description></description>
+                    <factsAvailableToUser/>
+                    <factsAvailableToAgent/>
+                    <beatsCompleted>
+                        <beatCompleted>87</beatCompleted>
+                    </beatsCompleted>
+                    <affinityMin>0</affinityMin>
+                    <affinityMax>100</affinityMax>
+                    <nerveMin>0</nerveMin>
+                    <nerveMax>100</nerveMax>
+                    <subjects/>
+                </preCondition>
+            </preConditions>
+            <activities/>
+            <exclusiveBeatPriority>0</exclusiveBeatPriority>
+        </beat>
+    </beats>
+    <agents>
+        <agent id="176">
+            <name>eddy</name>
+            <description>Доктор</description>
+            <nerve>0</nerve>
+            <affinity>0</affinity>
+            <locationId>109</locationId>
+        </agent>
+        <agent id="177">
+            <name>melany</name>
+            <description>Дочь Филиппа, ассистентка мистера Бади</description>
+            <nerve>0</nerve>
+            <affinity>0</affinity>
+            <locationId>106</locationId>
+        </agent>
+        <agent id="178">
+            <name>jessica</name>
+            <description>Журналистка</description>
+            <nerve>0</nerve>
+            <affinity>0</affinity>
+            <locationId>106</locationId>
+        </agent>
+        <agent id="179">
+            <name>henry</name>
+            <description>Банкир</description>
+            <nerve>0</nerve>
+            <affinity>0</affinity>
+            <locationId>111</locationId>
+        </agent>
+        <agent id="181">
+            <name>steve</name>
+            <description>Детектив</description>
+            <nerve>0</nerve>
+            <affinity>0</affinity>
+            <locationId>107</locationId>
+        </agent>
+        <agent id="180">
+            <name>philipp</name>
+            <description>Дворецкий</description>
+            <nerve>0</nerve>
+            <affinity>0</affinity>
+            <locationId>107</locationId>
+        </agent>
+    </agents>
+    <locations>
+        <location id="111">
+            <name>bathroom</name>
+            <description>Ванная комната</description>
+            <adjacents>
+                <adjacent>110</adjacent>
+            </adjacents>
+        </location>
+        <location id="106">
+            <name>livingroom</name>
+            <description>Гостиная</description>
+            <adjacents>
+                <adjacent>107</adjacent>
+            </adjacents>
+        </location>
+        <location id="108">
+            <name>hall2</name>
+            <description>Холл 2-го этажа</description>
+            <adjacents>
+                <adjacent>110</adjacent>
+                <adjacent>109</adjacent>
+                <adjacent>107</adjacent>
+            </adjacents>
+        </location>
+        <location id="110">
+            <name>bedroom</name>
+            <description>Спальня (комната Мелани)</description>
+            <adjacents>
+                <adjacent>111</adjacent>
+                <adjacent>108</adjacent>
+            </adjacents>
+        </location>
+        <location id="112">
+            <name>salon</name>
+            <description>Салон</description>
+            <adjacents>
+                <adjacent>107</adjacent>
+            </adjacents>
+        </location>
+        <location id="109">
+            <name>cabinet</name>
+            <description>Кабинет мистера Бади</description>
+            <adjacents>
+                <adjacent>108</adjacent>
+            </adjacents>
+        </location>
+        <location id="107">
+            <name>hall</name>
+            <description></description>
+            <adjacents>
+                <adjacent>106</adjacent>
+                <adjacent>112</adjacent>
+                <adjacent>108</adjacent>
+            </adjacents>
+        </location>
+    </locations>
+    <xgml>
+        <xgml id="194">
+            <filename>common_tokens.xgml</filename>
+            <content>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+                &lt;Dialog xmlns="http://i-free.com/xml/xgml"&gt;
+                &lt;MultiToken name="nDoctor"&gt;(doctor|Eddy|mr. Manhater|mister Manhater|Manhater|House)&lt;/MultiToken&gt;
+                &lt;MultiToken name="nBody"&gt;(professor|Sheylock|mr. Body|mister Body|old fool|pervert|master|Body)&lt;/MultiToken&gt;
+                &lt;MultiToken name="nMelany"&gt;(Melany|Melany Morgan|ms. Morgan|miss Morgan|Melly)&lt;/MultiToken&gt;
+                &lt;MultiToken name="nHenry"&gt;(Henry|Moneyghan|mr Moneyghan|Henry Moneyghan|mister Moneyghan)&lt;/MultiToken&gt;
+                &lt;MultiToken name="nButler"&gt;(Butler|Philip Morgan|Morgan|Philip)&lt;/MultiToken&gt;
+                &lt;MultiToken name="nJess"&gt;(Jessica|mrs White|miss White|Jess|Jessica White)&lt;/MultiToken&gt;
+                &lt;MultiToken name="nLinda"&gt;(Linda|mrs Moneyghan|Linda Moneyghan|missis Moneyghan)&lt;/MultiToken&gt;
+                &lt;MultiToken name="nDrug"&gt;(drug|drugs|medicine|pill|pills|sedative)&lt;/MultiToken&gt;
+                &lt;MultiToken name="nWeather"&gt;(weather)&lt;/MultiToken&gt;
+
+
+                &lt;MultiToken name="pU"&gt;(you|yours|thou|thee|U)&lt;/MultiToken&gt;
+                &lt;MultiToken name="nFood"&gt;(milk|honey|bread|meat|cola)&lt;/MultiToken&gt;
+                &lt;MultiToken name="pYour"&gt;(your|yor|yo)&lt;/MultiToken&gt;
+                &lt;MultiToken name="vCan"&gt;(can | could | will | would| may)&lt;/MultiToken&gt;
+                &lt;MultiToken name="qWhatBe"&gt;(tell (me|) (about|)|I am interested in|what (is|are|were|was|*ould
+                be|)|know what)
+                &lt;/MultiToken&gt;
+                &lt;MultiToken name="qWhatBe0"&gt;(#(qWhatBe)|)&lt;/MultiToken&gt;
+                &lt;MultiToken name="qWhoBe"&gt;(tell (me|) (about|)|I am interested in|who (is|are|was|were|*ould
+                be|)|know who)
+                &lt;/MultiToken&gt;
+                &lt;MultiToken name="qWhoBe0"&gt;(#(qWhoBe)|)&lt;/MultiToken&gt;
+                &lt;MultiToken name="qWhereBe"&gt;(I am interested in|where (is|are|was|were|*ould be|)|know where)
+                &lt;/MultiToken&gt;
+                &lt;MultiToken name="qWhereBe0"&gt;(#(qWhereBe)|)&lt;/MultiToken&gt;
+                &lt;MultiToken name="qWhatAbout"&gt;(tell (me|) (about|)|I am interested in|(what|who|where)
+                (is|are|was|were|*ould
+                be|)|know (what|who|where) |(want|like|) to know * about|do #(pU) know about| have #(pU) * heard
+                about|what *
+                (#(pU)|#(pYour)) * (think|thought*|opinion))
+                &lt;/MultiToken&gt;
+                &lt;MultiToken name="qWhatAbout0"&gt;(#(qWhatAbout)|)&lt;/MultiToken&gt;
+                &lt;MultiToken name="qDoYouHave"&gt;(((do|if|whether) #(pU) (have|own|possess) | have #(pU) ))&lt;/MultiToken&gt;
+                &lt;MultiToken name="qWhy"&gt;(why|how come|(for|due to|) wh*|wh* reason*|wh* purpose*)&lt;/MultiToken&gt;
+                &lt;MultiToken name="qWhy0"&gt;(#(qWhy)|)&lt;/MultiToken&gt;
+                &lt;MultiToken name="mother"&gt;(mother | mothers | mother's | mom | mom's | moms| mum | mum's | mums)&lt;/MultiToken&gt;
+                &lt;MultiToken name="brother"&gt;(brother | brother* | broz | bro | broz's)&lt;/MultiToken&gt;
+                &lt;MultiToken name="father"&gt;(father* |dad |dad's | daddy | daddys | daddy's)&lt;/MultiToken&gt;
+                &lt;MultiToken name="friend"&gt;(friend*|buddy|buddies)&lt;/MultiToken&gt;
+                &lt;MultiToken name="aSilly"&gt;(silly | sily | stupid | fool* | idiot* | moron*)&lt;/MultiToken&gt;
+                &lt;MultiToken name="nNonsense"&gt;(nonsense | rubbish | drivel | garbage | twaddle | trash | babble |
+                puffery | flummery | fool) &lt;/MultiToken&gt;
+                &lt;MultiToken name="aStupid"&gt;(stupid | fool* | silly | (tiny | narrow | small | poor | ill) (brain*
+                | mind*) |
+                narrow-minded | idiot* | cretin* | dummy | dolt| freak)
+                &lt;/MultiToken&gt;
+                &lt;MultiToken name="aSmart"&gt;(smart | clever | intelligent | cute| wise|bright)&lt;/MultiToken&gt;
+                &lt;MultiToken name="aGood"&gt;(good | nice | fine | cool | beautiful | wonderful | well | OK | okay |
+                okey | all right | very well | al*right* | not bad | great | not so bad | terrific | splendid |
+                ex*el*ent|blooming|blossoming) &lt;/MultiToken&gt;
+                &lt;MultiToken name="aBad"&gt;(bad|crappy|rotten|wretched|shitty|like crap|like shit)&lt;/MultiToken&gt;
+                &lt;MultiToken name="nBadWord"&gt;(pig | bastard | suck | idiot | fuck* | motherf* | mother-fuck* | shit
+                | ass | ass-* |
+                asshole | asswipe | gay | homos* | fag | crap*|prostitute|arschloch|arsch|bitch)
+                &lt;/MultiToken&gt;
+                &lt;MultiToken name="qAreYou"&gt;(are #(pU) | (if | whether) | #(pU) are)&lt;/MultiToken&gt;
+                &lt;MultiToken name="ILiveIn"&gt;( my native country is |my native city is | i (live in | am living in |
+                reside in | am from | come from ) )&lt;/MultiToken&gt;
+
+                &lt;MultiToken name="nHello"&gt;(((hi|hello|hallo|salute|bonjour|salut) (there|))|hey there | heil to
+                thee |good
+                (morning|day|afternoon|evening)|g'day |g day| howdy|olleh|halo)
+                &lt;/MultiToken&gt;
+                &lt;MultiToken name="Yes"&gt;(yes|yep|ye|y|OK|yeah|yeh|i do|)&lt;/MultiToken&gt;
+
+                &lt;!-- igolubev --&gt;
+                &lt;MultiToken name="ComeOn"&gt;(#(Yes)|let us|let's|come on)&lt;/MultiToken&gt;
+
+
+                &lt;MultiToken name="No"&gt;(no|non|none|n|never|not|nope|nop|i don't|i do not)&lt;/MultiToken&gt;
+                &lt;MultiToken name="nation"&gt;
+                (american|russian|chinese|british|english|french|spanish|dutch|italian|greek|german|belgian|ukrainian|jew|jewish|canadian|austrian|japanese|polish|polack|bulgarian|hungarian|mexican|brazilian)
+                &lt;/MultiToken&gt;
+                &lt;MultiToken name="Day"&gt;(today|now|yesterday|tomorrow|after tomorrow|next week|* birthday)&lt;/MultiToken&gt;
+                &lt;MultiToken name="Weather"&gt;
+                (rain*|snow*|blizzard|frost*|wind*|storm*|breeze|cyclone|fog*|smog*|haze|sunny|sunshine|sun *
+                bright|cloudy|cold|hot|weather)
+                &lt;/MultiToken&gt;
+                &lt;MultiToken name="aColor"&gt;(red|blue|pink|yellow|black|white|teal|magenta|green|violet|orange)&lt;/MultiToken&gt;
+
+                &lt;!-- igolubev --&gt;
+                &lt;MultiToken name="YouAreWelcome"&gt;
+                ((you are|you're|#(pU)|#(pYour)) welcome|please [feel] [free] [to]|(not|do not|don't) (for that|at
+                all|mention it)|[(is|have)] nothing to|no reason to|forget it)
+                &lt;/MultiToken&gt;
+
+                &lt;MultiToken name="aAbout"&gt;(about|on|of)&lt;/MultiToken&gt;
+                &lt;MultiToken name="aAlways2"&gt;(always)&lt;/MultiToken&gt;
+                &lt;MultiToken name="qDoYouLike"&gt;((do|Are|if) (not|) you * (not|) (like|fond|keen|fan))&lt;/MultiToken&gt;
+                &lt;MultiToken name="Edelweiss"&gt;(your (home|native|) * planet|planet * you * from|place * you *
+                from|Edelweiss|planet * spoonies)&lt;/MultiToken&gt;
+                &lt;MultiToken name="jBored"&gt;(bored|tired|sick and tired|apathetic)&lt;/MultiToken&gt;
+                &lt;MultiToken name="jBad1"&gt;(bad|not good|crappy|shitty|inferior|awful)&lt;/MultiToken&gt;
+                &lt;MultiToken name="jBig1"&gt;(big|large|great|giant|huge|enormous|colossal|defective|terrible)&lt;/MultiToken&gt;
+                &lt;MultiToken name="jFast1"&gt;(fast|speedy|agile|blistering|light*speed|quick)&lt;/MultiToken&gt;
+                &lt;MultiToken name="jOptimum2"&gt;(optimum|optimal|best)&lt;/MultiToken&gt;
+                &lt;MultiToken name="jPerfect1"&gt;(perfect|ideal|unflawed|faultless|errorless)&lt;/MultiToken&gt;
+                &lt;MultiToken name="jSad"&gt;(sad|unhappy|depressed|sorrowful|downhearted|miserable|joyless|melanchol*|saddened)&lt;/MultiToken&gt;
+                &lt;MultiToken name="northpole"&gt;((the|) North Pole|(place|country|location|where) you
+                ((are|come|came|) from|used to (live|dwell)|lived before)) &lt;/MultiToken&gt;
+                &lt;MultiToken name="nproblem1"&gt;(problem*|issue*|difficult*|trouble*)&lt;/MultiToken&gt;
+                &lt;MultiToken name="qWhoBeWho"&gt;(who (is|was|were))&lt;/MultiToken&gt;
+                &lt;MultiToken name="qDoYouKnow"&gt;((do|did|if|) (not) you * know)&lt;/MultiToken&gt;
+                &lt;MultiToken name="qHaveYou"&gt;((have|do|are) (not|) you (have|having|got))&lt;/MultiToken&gt;
+                &lt;MultiToken name="vThink"&gt;(think*|thought*|opinion*|suppose*|believ*|belief*)&lt;/MultiToken&gt;
+                &lt;MultiToken name="DoYouThink"&gt;((Do|if|#(qWhatAbout)) * (you|your) #(vThink))&lt;/MultiToken&gt;
+                &lt;MultiToken name="vGive"&gt;(give*|giving|yield*supply*)&lt;/MultiToken&gt;
+                &lt;MultiToken name="vLike"&gt;(like*|love|lovi*)&lt;/MultiToken&gt;
+                &lt;MultiToken name="qDoYouThink"&gt;((Do|if|#(qWhatAbout)) * (you|your) #(vThink))&lt;/MultiToken&gt;
+                &lt;MultiToken name="vUnderstand1"&gt;(understand*|comprehend*|grasp*)&lt;/MultiToken&gt;
+                &lt;MultiToken name="vWant"&gt;(want*|wish*|desire*|like*|lust*|need*|demand*)&lt;/MultiToken&gt;
+                &lt;MultiToken name="vWork"&gt;(work*|perform*|operate*|operating)&lt;/MultiToken&gt;
+                &lt;MultiToken name="nMoney"&gt;(money|stock*|bond*|share*|account*|deposit*|GAAP|dividend*|payment*|fee*|bill*)&lt;/MultiToken&gt;
+
+                &lt;/Dialog&gt;</content>
+        </xgml>
+        <xgml id="246">
+            <filename>Eddy.xgml</filename>
+            <content>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+                &lt;Dialog xmlns="http://i-free.com/xml/xgml"&gt;
+
+                &lt;Import file="common_tokens.xgml"/&gt;
+
+                &lt;Theme name="Eddy_hears_Melany_fainted"&gt;
+                &lt;QAUnit name="Eddy_hears_Melany"&gt;
+                &lt;Pattern&gt;* help * melany *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* melany * faint* *&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;A patient! Hooray! I hope, she doesn't die till I come. &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;/Theme&gt;
+
+                &lt;Theme name="Eddy_looks_for_patient"&gt;
+                &lt;QAUnit name="Eddy_looks_for_patient"&gt;
+                &lt;Pattern&gt;*&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Detective, we can talk later, when the patient dies. Now I'd better do my duty with the
+                doctoring.&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+                &lt;/Theme&gt;
+
+                &lt;Theme name="Eddy_HelpMelany"&gt;
+                &lt;QAUnit name="Eddy_Melany_help"&gt;
+                &lt;Pattern&gt;* #(nMelany) * (faint*|sick*|unwell|help) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* help * #(nMelany) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;*&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Oh, what a nice surprise. What do we have here.. another Body? No, this one's still
+                breathing and
+                I don't believe they have been secretly married.
+                Hello darling.. Whoa, the whiskey smell.. But I think she took something else as well.
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;NerveChange&gt;+10&lt;/NerveChange&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+                &lt;/Theme&gt;
+
+                &lt;Theme name="Eddy_Melany_recovered"&gt;
+                &lt;QAUnit name="Eddy_Melany_recovered"&gt;
+                &lt;Pattern&gt;*&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Stupid girl, taking it with alcohol! Five more minutes and we'd have another body here,
+                though on
+                quite another stage of scientific career. I told you, it wasn't a sedative, it was a heart
+                drug. If mixed with alcohol - comes to no good. Of course, the girl did not know. Did you give her the
+                pills?
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;!--FACT4 - Melany took a heart drug, thinking it was a sedative named Paciense. Obviously, from the
+                bottle that used to belong to Body.--&gt;
+                &lt;LinkedUnits&gt;
+                &lt;LinkedUnit&gt;Eddy_Melany_Fainted1&lt;/LinkedUnit&gt;
+                &lt;LinkedUnit&gt;Eddy_Melany_Fainted2&lt;/LinkedUnit&gt;
+                &lt;LinkedUnit&gt;Eddy_Melany_Fainted7&lt;/LinkedUnit&gt;
+                &lt;/LinkedUnits&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Eddy_Melany_Fainted1"&gt;
+                &lt;Pattern&gt;* #(No) *&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Just wonderful. Who has then? Where did she get it? And besides.. Something's wrong with the
+                bottle.. Where's the first one? Can you give it to me?
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;LinkedUnits&gt;
+                &lt;LinkedUnit&gt;Eddy_Melany_fanted4&lt;/LinkedUnit&gt;
+                &lt;LinkedUnit&gt;Eddy_Melany_fanted3&lt;/LinkedUnit&gt;
+                &lt;/LinkedUnits&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Eddy_Melany_Fainted2"&gt;
+                &lt;LinkedPattern&gt;* #(Yes) *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;You mean, you gave her the pills? You are an idiot then. But see.. This bottle is different
+                a bit!
+                Check your pockets, man and give me the first pills. Do you have them?&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;NerveChange&gt;+15&lt;/NerveChange&gt;
+                &lt;AffinityChange&gt;+20&lt;/AffinityChange&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;LinkedUnits&gt;
+                &lt;LinkedUnit&gt;Eddy_Melany_fanted4&lt;/LinkedUnit&gt;
+                &lt;LinkedUnit&gt;Eddy_Melany_fanted3&lt;/LinkedUnit&gt;
+                &lt;/LinkedUnits&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Eddy_Melany_Fainted7"&gt;
+                &lt;LinkedPattern&gt;*&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Well, anyway. I see this bottle is a bit different - somebody tried to forge my signature
+                and failed. Give me the medecine from the table, will you. &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;LinkedUnits&gt;
+                &lt;LinkedUnit&gt;Eddy_Melany_fanted4&lt;/LinkedUnit&gt;
+                &lt;LinkedUnit&gt;Eddy_Melany_fanted3&lt;/LinkedUnit&gt;
+                &lt;/LinkedUnits&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Eddy_Melany_Fainted3"&gt;
+                &lt;LinkedPattern&gt;* #(No) *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;You mean, you've lost a clue? Oh, wonderful. Then go and find it.&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;!--FACT5 - Somebody swapped Body's medicines. Somebody gave him a drug that could have killed him--&gt;
+                &lt;Effects&gt;
+                &lt;NerveChange&gt;+15&lt;/NerveChange&gt;
+                &lt;AffinityChange&gt;-10&lt;/AffinityChange&gt;
+                &lt;/Effects&gt;
+                &lt;LinkedUnits&gt;
+                &lt;LinkedUnit&gt;Eddy_Melany_fanted4&lt;/LinkedUnit&gt;
+                &lt;LinkedUnit&gt;Eddy_Melany_fanted3&lt;/LinkedUnit&gt;
+                &lt;/LinkedUnits&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Eddy_Melany_Fainted4"&gt;
+                &lt;Pattern&gt;* (pill*|drug|medicine|bottle) from #(nBody)* * (study|room|table|desk) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* (here|this) * (pill*|drug|medicine|bottle) *&lt;/Pattern&gt;
+                &lt;LinkedPattern&gt;* #(Yes) *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Now, let me see.. Damn it! The medicine from Body's room looks the same.. But it's a
+                stronger
+                drug, not the one I gave him. We have two bottles pretending to be the Paciense sedative here.
+                And none of them is Paciense. Do you know what it means?
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;NerveChange&gt;+15&lt;/NerveChange&gt;
+                &lt;AffinityChange&gt;+20&lt;/AffinityChange&gt;
+                &lt;/Effects&gt;
+                &lt;LinkedUnits&gt;
+                &lt;LinkedUnit&gt;Eddy_Melany_Fainted10&lt;/LinkedUnit&gt;
+                &lt;LinkedUnit&gt;Eddy_Melany_Fainted11&lt;/LinkedUnit&gt;
+                &lt;LinkedUnit&gt;Eddy_Melany_Fainted12&lt;/LinkedUnit&gt;
+                &lt;/LinkedUnits&gt;&lt;!--FACT5 - Somebody swapped Body's medicines. Somebody gave him a drug that
+                could have killed him--&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Eddy_Melany_Fainted11"&gt;
+                &lt;LinkedPattern&gt;* #(Yes) *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Of course! The second medicine could cause a heart attack. And the attack could cause him
+                fall down and have the damned chandelier fall with him. A coincidence after all.
+                Somebody must have swapped the medicines. I'd ask the young lady about where she got her Mickey Finn.&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;NerveChange&gt;+20&lt;/NerveChange&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;RevealedFacts&gt;
+                &lt;Fact id="5"&gt;Somebody swapped Body's medicines. Somebody gave him a drug that could have killed
+                him.&lt;/Fact&gt;
+                &lt;/RevealedFacts&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Eddy_Melany_Fainted10"&gt;
+                &lt;LinkedPattern&gt;* #(No) *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;But that's easy! The second medicine could cause a heart attack. And the attack could cause
+                him fall down and have the damned chandelier fall with him. A coincidence after all.
+                Somebody must have swapped the medicines. I'd ask the young lady about where she got her Mickey Finn.&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;NerveChange&gt;+20&lt;/NerveChange&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;RevealedFacts&gt;
+                &lt;Fact id="5"&gt;Somebody swapped Body's medicines. Somebody gave him a drug that could have killed
+                him.&lt;/Fact&gt;
+                &lt;/RevealedFacts&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Eddy_Melany_Fainted12"&gt;
+                &lt;LinkedPattern&gt;*&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Why, that's easy. The second medicine could cause a heart attack. And the attack could cause
+                him fall down and have the damned chandelier fall with him. A coincidence after all.
+                Somebody must have swapped the medicines. I'd ask the young lady about where she got her Mickey Finn.&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;NerveChange&gt;+20&lt;/NerveChange&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;RevealedFacts&gt;
+                &lt;Fact id="5"&gt;Somebody swapped Body's medicines. Somebody gave him a drug that could have killed
+                him.&lt;/Fact&gt;
+                &lt;/RevealedFacts&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+                &lt;/Theme&gt;
+
+
+                &lt;/Dialog&gt;</content>
+        </xgml>
+        <xgml id="247">
+            <filename>Henry.xgml</filename>
+            <content>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+                &lt;Dialog xmlns="http://i-free.com/xml/xgml"&gt;
+
+                &lt;Theme name ="Henry_Melany_fainted" description="Генри видит лежащую Мелани"&gt;
+                &lt;QAUnit name="Henry_Melany_Fainted"&gt;
+                &lt;Pattern&gt;*&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;What, another one? Or is it some game you are playing? Nothing better to do than lie around.&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+                &lt;/Theme&gt;
+
+                &lt;Theme name="Henry_seeks_doctor" description="Генри ищет врача"&gt;
+                &lt;QAUnit name="Henry_seeks_doctor"&gt;
+                &lt;Pattern&gt;*&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Hey, Manhater. If I were a doctor I'd go and treat a patient. Because we suddenly seem to
+                have one. She's there&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+                &lt;/Theme&gt;
+                &lt;/Dialog&gt;</content>
+        </xgml>
+        <xgml id="249">
+            <filename>Melany.xgml</filename>
+            <content>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+                &lt;Dialog xmlns="http://i-free.com/xml/xgml"&gt;
+
+                &lt;Import file="common_tokens.xgml"/&gt;
+
+                &lt;Theme name="Melany_Faint"&gt;
+                &lt;QAUnit name="Melany_Faint"&gt;
+                &lt;Pattern&gt;* #(nHenry) * your photo* *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* photo* #(nHenry) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* photo* erotic *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* erotic show *&lt;/Pattern&gt;
+
+                &lt;Random&gt;
+                &lt;Text&gt;Oh, no! Mister Farrett.. Mister Farrett.. Where did you.. How.. Ah!&lt;/Text&gt;
+                &lt;!-- анимация --&gt;
+                &lt;/Random&gt;
+
+                &lt;Effects&gt;
+                &lt;NerveChange&gt;-100&lt;/NerveChange&gt;
+                &lt;AffinityChange&gt;+100&lt;/AffinityChange&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;RevealedFacts&gt;
+                &lt;Fact id="15"&gt;Melany has some dangerous drugs with her.&lt;/Fact&gt;
+                &lt;/RevealedFacts&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+                &lt;/Theme&gt;
+
+                &lt;Theme name="Melany_tellTheTruth"&gt; &lt;!--Мелани говорит правду. После обморока? Перед --&gt;
+                &lt;QAUnit name="Melany_tells_truth"&gt;
+                &lt;Pattern&gt;*&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Detective! Listen to me! I was young and had no money to study. That was when I met Jessica.
+                She was so charming, so knowing, so kind to me.
+                She offered me to work in a show, twice a week. Shall I continue?&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;NerveChange&gt;-20&lt;/NerveChange&gt;
+                &lt;/Effects&gt;
+                &lt;LinkedUnits&gt;
+                &lt;LinkedUnit&gt;Melany_tells_truth2&lt;/LinkedUnit&gt;
+                &lt;/LinkedUnits&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Melany_tells_truth2"&gt;
+                &lt;LinkedPattern&gt;* #(Yes) *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;She seduced me and persuaded to work on stage. We looked so good together.. I loved her.
+                Than I saw her with a man.
+                Do you want me to go on?&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;NerveChange&gt;-20&lt;/NerveChange&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Melany_tells_truth3"&gt;
+                &lt;LinkedPattern&gt;* #(Yes) *&lt;/LinkedPattern&gt;
+                &lt;LinkedPattern&gt;* do *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;I left the show, I ran away and nearly starved till I got a grant. But these pictures.. I
+                thought it was all over and past is past.
+                Now I'm ruined. &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;NerveChange&gt;-20&lt;/NerveChange&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;RevealedFacts&gt;
+                &lt;Fact id="8"&gt;Melany was in an erotic show with Jessica when young.&lt;/Fact&gt;
+                &lt;/RevealedFacts&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+                &lt;/Theme&gt;
+
+                &lt;Theme name="Melany_talks_pills" description="Мелани взяла таблетки в своей комнате"&gt;
+                &lt;QAUnit name="Melany_talks_pills"&gt;
+                &lt;Pattern&gt;* where * (pill*|medicine|bottle*|drug*) *&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Oh, that's Paciense, the sedative. I found it on the dressing table in my room, among the
+                cosmetics.
+                It must have been there since I left home.
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;NerveChange&gt;+10&lt;/NerveChange&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;RevealedFacts&gt;
+                &lt;Fact id="16"&gt;Melany took the pills in her room in the morning.&lt;/Fact&gt;
+                &lt;/RevealedFacts&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+                &lt;/Theme&gt;
+
+                &lt;Theme name="Melany_talks_room" description="Джессика ошивалась в комнате Мелани возле таблеток. Если
+                Мелани до этого не пила с детективом виски с эротическими историями."&gt;
+                &lt;QAUnit name="Melany_talks_room"&gt;
+                &lt;Pattern&gt;* *body * else * your room *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* who * your room *&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Well, I guess nobody was there - you see, my room is in the servant's quarters, so the maid
+                doesn't come. Nobody else has the key.. Only.. Only.. Jessica came in. Oh...
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;NerveChange&gt;+30&lt;/NerveChange&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;RevealedFacts&gt;
+                &lt;Fact id="14"&gt;Jessica was in Melany's room in the morning. She's the one, who could have swapped
+                the
+                pills.
+                &lt;/Fact&gt;
+                &lt;/RevealedFacts&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+                &lt;/Theme&gt;
+
+                &lt;/Dialog&gt;</content>
+        </xgml>
+        <xgml id="265">
+            <filename>Philipp.xgml</filename>
+            <content>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+                &lt;Dialog xmlns="http://i-free.com/xml/xgml"&gt;
+
+                &lt;Import file="common_tokens.xgml"/&gt;
+
+                &lt;Theme name="First_greeting"&gt;
+                &lt;QAUnit name="Filipp_greeting"&gt;
+                &lt;Pattern&gt;* knock * knock *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* #(nHello) *&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Good afternoon, sir. You'll be mr. Farrett, if I'm not mistaken. Please, wait a moment here,
+                sir.
+                I'll tell mr. Body.
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+                &lt;/Theme&gt;
+
+                &lt;Theme name="Philipp_back"&gt;
+                &lt;QAUnit name="Filipp_greeting2"&gt;
+                &lt;Pattern&gt;*&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Unfortunately, sir, mr. Body won't be able to see you today.&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;LinkedUnits&gt;
+                &lt;LinkedUnit&gt;Filipp_greeting3&lt;/LinkedUnit&gt;
+                &lt;/LinkedUnits&gt;
+                &lt;/QAUnit&gt;
+                &lt;QAUnit name="Filipp_greeting3"&gt;
+                &lt;LinkedPattern&gt;*&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;However, considering the very limited likelihood that mr. Body will be able to see you
+                later, sir,
+                I suggest you go and see him. Before the coroner comes, sir. Please follow me, sir.
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+                &lt;/Theme&gt;
+                &lt;/Dialog&gt;</content>
+        </xgml>
+        <xgml id="268">
+            <filename>Jessica.xgml</filename>
+            <content>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+                &lt;Dialog xmlns="http://i-free.com/xml/xgml"&gt;
+
+                &lt;Import file="common_tokens.xgml"/&gt;
+
+                &lt;Theme name="Jess_politess"&gt;
+                &lt;QAUnit name="Jess_Hello"&gt;
+                &lt;Pattern&gt;* #(nHello) *&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Hello, detective. I'm really, really glad to see you.&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jess_thank"&gt;
+                &lt;Pattern&gt;* (thank you|thanks|grateful) *&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;My pleasure, mr. Farrett, my pleasure.&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jess_bye"&gt;
+                &lt;Pattern&gt;* (bye-bye|see you|good night|have a nice|so long|take care) *&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Come back soon, mr. Farrett.&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jess_swearing"&gt;
+                &lt;Pattern&gt;* #(nBadWord) *&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Does swearing turn you on, mr. Farrett? Do you experience some kind of problems without it?&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;AffinityChange&gt;-30&lt;/AffinityChange&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+                &lt;/Theme&gt;
+
+                &lt;Theme name = "Jess_weather"&gt;
+                &lt;QAUnit name="Jess_weather"&gt;
+                &lt;Pattern&gt;* #(Weather) *&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Detective, I hate talking about weather, I prefer talking about myself.&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+                &lt;/Theme&gt;
+
+
+                &lt;Theme name="Jessica_lowAffinity" description="Джессика не доверяет детективу, требует комплиментов."&gt;
+                &lt;!--&lt;Conditions&gt;--&gt;
+                &lt;!--&lt;Affinity&gt;low&lt;/Affinity&gt;--&gt;
+                &lt;!--&lt;Nerve&gt;low,middle&lt;/Nerve&gt;--&gt;
+                &lt;!--&lt;/Conditions&gt;--&gt;
+                &lt;QAUnit name="JessLowAffinity_catchall"&gt;
+                &lt;Pattern&gt;*&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Detective, what are you at? I can not trust a man who doesn't pay compliments to a woman
+                he's
+                talking to. He might be either a blind man or a fool.
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;LinkedUnits&gt;
+                &lt;LinkedUnit&gt;JessLowAffinity_compliment1&lt;/LinkedUnit&gt;
+                &lt;LinkedUnit&gt;JessLowAffinity_compliment2&lt;/LinkedUnit&gt;
+                &lt;LinkedUnit&gt;JessLowAffinity_compliment3&lt;/LinkedUnit&gt;
+                &lt;/LinkedUnits&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="JessLowAffinity_compliment1"&gt;
+                &lt;LinkedPattern&gt;* #(pU) *
+                (pretty|beautiful|handsome|stunning|sexy|attractive|nice|gorgeous|wonderful) *
+                &lt;/LinkedPattern&gt;
+                &lt;LinkedPattern&gt;* i #(vLike) * #(pU) * (hair*|leg*|dress|eye*|makeup|face) *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Write it in fire across the night: some men are more or less all right. That's what I say.&lt;/Text&gt;
+                &lt;Text&gt;Well thank you mr. Farrett. As Oscar Wilde said compliments are the only thing men can pay
+                these
+                days.&lt;/Text&gt;
+                &lt;Text&gt;Thank you, detective. I do hope we'll carry on with that.&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;AffinityChange&gt;+50&lt;/AffinityChange&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="JessLowAffinity_compliment2"&gt;
+                &lt;LinkedPattern&gt;* (#(nBadWord)|ass|tit*|arse|knocker*|buttock*) *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;I see, you're used to a very specific kind of women, detective.&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="JessLowAffinity_compliment3"&gt;
+                &lt;LinkedPattern&gt;*&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Hey, detective, what was that? I'm afraid this is too complicated a compliment for me, a
+                poor
+                village girl, huh.
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;/Theme&gt;
+
+                &lt;Theme name="Jessica_normalAffinity_Catchall"&gt; &lt;!--Ответ на непонятные вопросы--&gt;
+                &lt;QAUnit name="catchall"&gt;
+                &lt;Pattern&gt;*&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Your words make me blush under my makeup, detective.&lt;/Text&gt;
+                &lt;Text&gt;Let's change the topic to something more exciting.&lt;/Text&gt;
+                &lt;Text&gt;Is this another new strange way to flirt? Tell me more.&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_cult"&gt;
+                &lt;Pattern&gt;* cult *&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Body was studying it. Was the main part of his research.&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+                &lt;/Theme&gt;
+
+                &lt;Theme name="Jessica_generalDiscussion_highNerve" description="Джессика нервничает"&gt;
+                &lt;QAUnit name="catchall_nervous"&gt;
+                &lt;Pattern&gt;*&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Detective, there's nothing more I can tell you. But I've got something to show - if you only
+                care
+                to see.
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;NerveChange&gt;-10&lt;/NerveChange&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+                &lt;/Theme&gt;
+
+
+                &lt;Theme name="Jessica_flirt"&gt; &lt;!--Джессика внезапно набегает строить глазки пользователю --&gt;
+                &lt;QAUnit name="Jessica_flirt"&gt;
+                &lt;!--&lt;Conditions&gt;--&gt;
+                &lt;!--&lt;Affinity&gt;middle, high&lt;/Affinity&gt;--&gt;
+                &lt;!--&lt;Nerve&gt;low,middle&lt;/Nerve&gt;--&gt;
+                &lt;!--&lt;/Conditions&gt;--&gt;
+                &lt;Pattern&gt;*&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Tell me, detective.. How do you think, is it true that risky circumstances bring people
+                closer.. I
+                do truly believe it.
+                &lt;/Text&gt;
+                &lt;Text&gt;Detective, can you come closer to me? I don't like to shout. And I just enjoy this feeling
+                that
+                you are standing so close to me.
+                &lt;/Text&gt;
+                &lt;Text&gt;Mr. Farrett.. Do people often tell you how handsome you are? I guess they must..&lt;/Text&gt;
+                &lt;Text&gt;Detective, do you have a match to help me light my cigarette?&lt;/Text&gt;
+                &lt;Text&gt;Detective, this murder scares me so much.. I can't sleep at night, I'm afraid to stay alone
+                in my
+                room - the darkness starts to creep from the deep corners.
+                &lt;/Text&gt;
+                &lt;Text&gt;Mr. Farrett.. I've got a HUUUUGE scary beaver in my room. Would you please check?&lt;/Text&gt;
+                &lt;Text&gt;Mr. Farrett, I see you have such a big cigar, have you got a smoke for me? I need a smoke
+                when I'm
+                nervous.
+                &lt;/Text&gt;
+                &lt;Text&gt;Care for speleology tonight? Got a pretty deserted cave.&lt;/Text&gt;
+                &lt;Text&gt;Mr. Farrett, what would you say to a man if you were a woman and wanted to seduce him?&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;NerveChange&gt;-20&lt;/NerveChange&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;LinkedUnits&gt;
+                &lt;LinkedUnit&gt;Jessica_flirt2&lt;/LinkedUnit&gt;
+                &lt;/LinkedUnits&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;/Theme&gt;
+
+                &lt;Theme name="Jessica_morning_trusting" description="Утро Джессики, доверительная версия"&gt;
+                &lt;!--&lt;Conditions&gt;
+                &lt;Affinity&gt;high&lt;/Affinity&gt;
+                &lt;Nervosity&gt;low, middle&lt;/Nervosity&gt;
+                &lt;/Conditions&gt; --&gt;
+                &lt;QAUnit name="Jessica_what_doing_trust"&gt;
+                &lt;Pattern&gt;* (#(qWhatAbout)|describe|where) * you * (morning|murder)* *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* (#(qWhatAbout)|describe) * (morning|day) *&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;It was such a lovely morning detective. I went for a walk in the garden - to freshen my
+                complexion, you see.&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;LinkedUnits&gt;
+                &lt;LinkedUnit&gt;Jessica_morning_what_doing_alibi_trust&lt;/LinkedUnit&gt;
+                &lt;/LinkedUnits&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_morning_what_doing_alibi_trust"&gt;
+                &lt;LinkedPattern&gt;* (alibi|alone) *&lt;/LinkedPattern&gt;
+                &lt;LinkedPattern&gt;* somebody * you *&lt;/LinkedPattern&gt;
+                &lt;LinkedPattern&gt;* somebody * confirm *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;I'm afraid, nobody saw me - if only through the window. You weren't spying on me detective,
+                were
+                you? Sometimes I wish you were.. You know, I took care to wear my most revealing peignoir.
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_suspicious"&gt;
+                &lt;Pattern&gt;* (see|hear|notice) * (suspicious|unusual) *&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Well, actually.. Just before you came I went to check on Melany.. She was so pale, poor
+                child.&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;LinkedUnits&gt;
+                &lt;LinkedUnit&gt;Jessica_somebody&lt;/LinkedUnit&gt;
+                &lt;/LinkedUnits&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_somebody"&gt;
+                &lt;LinkedPattern&gt;* did you * see * (room|study) *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Oh, and when I was coming back from the garden, I saw somebody near his room. I think it was
+                Henry.
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;NerveChange&gt;+2&lt;/NerveChange&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;RevealedFacts&gt;
+                &lt;Fact id="10"&gt;Henry was in Body's study in the morning.&lt;/Fact&gt;
+                &lt;/RevealedFacts&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+                &lt;/Theme&gt;
+
+                &lt;Theme name="Jessica_morning" description="Утро Джессики"&gt;
+
+                &lt;QAUnit name="Jessica_what_doing"&gt;
+                &lt;Pattern&gt;* (#(qWhatAbout)|describe|where) * you * (morning|murder)* *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* (#(qWhatAbout)|describe) * (morning|day) *&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;I was in the garden most of the time.&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;LinkedUnits&gt;
+                &lt;LinkedUnit&gt;Jessica_morning_what_doing_alibi&lt;/LinkedUnit&gt;
+                &lt;/LinkedUnits&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_morning_what_doing_alibi"&gt;
+                &lt;LinkedPattern&gt;* (alibi|alone) *&lt;/LinkedPattern&gt;
+                &lt;LinkedPattern&gt;* somebody * you *&lt;/LinkedPattern&gt;
+                &lt;LinkedPattern&gt;* somebody * confirm *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;I'm afraid, nobody saw me - if only through the window. You weren't spying on me detective,
+                were
+                you? Sometimes I wish you were.. You know, I took care to wear my most revealing peignoir.
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_suspicious"&gt;
+                &lt;Pattern&gt;* (see|hear|notice) * (suspicious|unusual|strange) *&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Nothing much, detective.&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_somebody"&gt;
+                &lt;Pattern&gt;* did you * see * #(nBody) * (room|study) *&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;I think I saw someone near Body's room. Didn't see exactly who.&lt;/Text&gt;
+                &lt;/Random&gt;
+
+                &lt;Effects&gt;
+                &lt;NerveChange&gt;+2&lt;/NerveChange&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+                &lt;/Theme&gt;
+
+                &lt;Theme name="Jessica_others_lowAffinity" description="Джессика не доверяет детективу, хочет говорить
+                только о себе"&gt;
+
+                &lt;QAUnit name="Jessica_others_low_aff"&gt;
+
+                &lt;Pattern&gt;* (#(qWhatAbout)|describe|inform) * (part*|guest*|people|others|everybody) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* who * (else|other|guest*) * (house|mansion|present) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* how long * know #(nMelany) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* you * relat* #(nMelany) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* (tell|who) * #(nMelany) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* how long * know #(nGenry) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* you * relat* #(nGenry) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* (tell|who) * #(nGenry) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* how long * know #(nDoctor) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* you * relat* #(nDoctor) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* (tell|who) * #(nDoctor) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* how long * know #(nButler) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* you * relat* #(nButler) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* (tell|who) * #(nButler) *&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Detective, talking to a beautiful woman about others is a sign of bad upbringing.. you
+                naughty
+                boy.
+                &lt;/Text&gt;
+                &lt;Text&gt;Don't make me think that you really are interested in all these people more than in me. Mr.
+                Farrett.
+                &lt;/Text&gt;
+                &lt;Text&gt;Is it really who you are interested in? Not me?&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;LinkedUnits&gt;
+                &lt;LinkedUnit&gt;Jessica_others_low_aff2&lt;/LinkedUnit&gt;
+                &lt;LinkedUnit&gt;Jessica_others_low_aff3&lt;/LinkedUnit&gt;
+                &lt;/LinkedUnits&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_others_low_aff2"&gt;
+                &lt;LinkedPattern&gt;*&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;If you want me to help you, you'd better say something nice to me - about myself.&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;NerveChange&gt;+3&lt;/NerveChange&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;LinkedUnits&gt;
+                &lt;LinkedUnit&gt;Jessica_others_low_aff3&lt;/LinkedUnit&gt;
+                &lt;/LinkedUnits&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_others_low_aff3"&gt;
+                &lt;LinkedPattern&gt;* #(pU) * (pretty|beautiful|handsome|stunning|sexy|attractive|nice|gorgeous) *
+                &lt;/LinkedPattern&gt;
+                &lt;LinkedPattern&gt;* i #(vLike) * #(pU) * (hair*|leg*|dress|eye*|makeup|face) *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Thank you, detective, that's much, much better. Now I do feel that you respect and admire
+                me. And,
+                of course, you know how much I admire you. Did I tell you you have a gorgeous chin?
+                &lt;/Text&gt;
+                &lt;Text&gt;Thank you, detective. Now, I think I can talk to you about others.&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;AffinityChange&gt;+50&lt;/AffinityChange&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+                &lt;/Theme&gt;
+
+
+                &lt;Theme name="Jessica_others_highAffinity" description="Джессика доверяет детективу, рассказывает про
+                других"&gt;
+
+                &lt;QAUnit name="Jessica_others_general"&gt;
+                &lt;Pattern&gt;* (#(qWhatAbout)|describe|inform) * (part*|guest*|people|others|everybody) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* who * (else|other|guest*) * (house|mansion|present) *&lt;/Pattern&gt;
+
+                &lt;Random&gt;
+                &lt;Text&gt;Well, the others. Here comes Mr. Moneyghan - mr. Body's half brother, sugar daddy from the
+                Wall Street. Melany Morgan is his research assistant - quite a career for a butler's daughter. Mr.
+                Manhater is closest to what you can call a friend, and his doctor as well. And of course
+                there is the butler. Filipp Morgan.
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;LinkedUnits&gt;
+                &lt;LinkedUnit&gt;Jessica_Melany&lt;/LinkedUnit&gt;
+                &lt;LinkedUnit&gt;Jessica_Henry&lt;/LinkedUnit&gt;
+                &lt;LinkedUnit&gt;Jessica_Filipp&lt;/LinkedUnit&gt;
+                &lt;LinkedUnit&gt;Jessica_Eddy&lt;/LinkedUnit&gt;
+                &lt;LinkedUnit&gt;Jessica_relations_Body_Melany&lt;/LinkedUnit&gt;
+                &lt;LinkedUnit&gt;Jessica_relations_Body_Filipp&lt;/LinkedUnit&gt;
+                &lt;LinkedUnit&gt;Jessica_relations_Body_Henry&lt;/LinkedUnit&gt;
+                &lt;LinkedUnit&gt;Jessica_relations_Melany_Henry&lt;/LinkedUnit&gt;
+                &lt;LinkedUnit&gt;Jessica_relations_Melany_Eddy&lt;/LinkedUnit&gt;
+                &lt;LinkedUnit&gt;Jessica_relations_Melany_Filipp&lt;/LinkedUnit&gt;
+                &lt;LinkedUnit&gt;Jessica_relations_Henry_Eddy&lt;/LinkedUnit&gt;
+                &lt;LinkedUnit&gt;Jessica_relations_Henry_Butler&lt;/LinkedUnit&gt;
+                &lt;LinkedUnit&gt;Jessica_relations_Filipp_Eddy&lt;/LinkedUnit&gt;
+                &lt;/LinkedUnits&gt;
+
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_Melany"&gt;
+                &lt;Pattern&gt;* how long * know #(nMelany) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* you * relat* #(nMelany) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* (tell|who) * #(nMelany) *&lt;/Pattern&gt;
+                &lt;LinkedPattern&gt;* #(nMelany) *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Melany, the daughter of the butler and mr. Body's research assistant. It was mr. Body's
+                sister who
+                wanted to give the girl an education.
+                Melany proved to be smart, got to university and even managed to acquire an get grant. Then Body
+                recommended her to a friend of his who works in France -
+                and was quite surprised to see how pretty she had become after 2 years in Paris when she came back
+                recently. She's such an academic birdie -
+                is willing to talk mostly about her thesis and studies, no nonsense with her.
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_Henry"&gt;
+                &lt;Pattern&gt;* how long * know #(nGenry) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* you * relat* #(nGenry) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* (tell|who) * #(nGenry) *&lt;/Pattern&gt;
+                &lt;LinkedPattern&gt;* #(nGenry) *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Mr Body's half-brother. From a second wife of old mr. Body. She married him for money and
+                ran away
+                as soon, as she understood that she wasn't getting any, leaving the child behind. The father didn't even
+                want him have his name. So
+                Henry did all he could to earn money - and succeeded.
+                Money and power are the only things he's interested in, and he despises everyone who thinks
+                otherwise. You want to get Henry Moneyghan - you flatter him,
+                or you talk money to him.
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_Eddy"&gt;
+                &lt;Pattern&gt;* how long * know #(nDoctor) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* you * relat* #(nDoctor) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* (tell|who) * #(nDoctor) *&lt;/Pattern&gt;
+                &lt;LinkedPattern&gt;* #(nDoctor) *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;The Doctor. Nobody knows much about him. He's thought to be Body's only friend, but neither
+                of
+                them is known to have friends. He's a good chemist. There had been rumours that he was helpful to many
+                people who wanted to die.. Or their relatives wanted them to.
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;NerveChange&gt;+2&lt;/NerveChange&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;RevealedFacts&gt;
+                &lt;Fact id="13"&gt;Doctor is a very good chemist.&lt;/Fact&gt;
+                &lt;/RevealedFacts&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_Filipp"&gt;
+                &lt;Pattern&gt;* how long * know #(nButler) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* you * relat* #(nButler) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* (tell|who) * #(nButler) *&lt;/Pattern&gt;
+                &lt;LinkedPattern&gt;* #(nButler) *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Oh, the Butler. Body's family come from England, so they brought the butler with them. And
+                chose a
+                place with an awful climate.
+                And the food is rather old-world, I'm sorry to say. If you want him to trust you - pretend you are
+                religious, and he's yours.
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;NerveChange&gt;+2&lt;/NerveChange&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_relations_Body_Melany"&gt;
+                &lt;Pattern&gt;* #(qWhatAbout) * #(nBody) * #(nMelany) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* #(nBody) * (affair|sleep|sex|fuck) * #(nMelany) * &lt;/Pattern&gt;
+                &lt;Pattern&gt;* #(nBody) * * #(nMelany) * (affair|sleep|sex|fuck|lover*) * &lt;/Pattern&gt;
+                &lt;Pattern&gt;* #(qWhatAbout) * #(nMelany) * #(nBody) *&lt;/Pattern&gt;
+                &lt;LinkedPattern&gt;* #(nBody) * #(nMelany) *&lt;/LinkedPattern&gt;
+                &lt;LinkedPattern&gt;* #(nMelany) * #(nBody) *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Oh, it's really an old story. She grew in the mansion - he didn't notice her. Than she was
+                just her research assistant - all so good and plain.
+                Then she goes to Paris - et voila! Cinderella on the ball and all that stuff. Only the midnight is
+                coming, the pumpkin isn't a real cart. &lt;/Text&gt;
+
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_relations_Body_Eddy"&gt;
+                &lt;Pattern&gt;* #(qWhatAbout) * #(nBody) *(nDoctor) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* #(qWhatAbout) * #(nDoctor) * #(nBody) *&lt;/Pattern&gt;
+                &lt;LinkedPattern&gt;* #(nDoctor) * #(nBody) *&lt;/LinkedPattern&gt;
+                &lt;LinkedPattern&gt;* #(nBody) *(nDoctor) *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;They had somewhat a weird relationship. Two men, each hating everybody else - and not liked
+                much in return by the general world.
+                They didn't display much affection to each other. It seems they were always playing chess. &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_relations_Body_Filipp"&gt;
+                &lt;Pattern&gt;* #(qWhatAbout) * #(nBody) *(nButler) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* #(qWhatAbout) * #(nButler) * #(nBody) *&lt;/Pattern&gt;
+                &lt;LinkedPattern&gt;* #(nButler) * #(nBody) *&lt;/LinkedPattern&gt;
+                &lt;LinkedPattern&gt;* #(nBody) *(nButler) *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Philipp Morgan is just the perfect type of a perfect butler. The one, who comes silently
+                from behind. The one, who is everywhere and knows everything. &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_relations_Melany_Henry"&gt;
+                &lt;Pattern&gt;* #(qWhatAbout) * #(nMelany) *(nGenry) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* #(qWhatAbout) * #(nGenry) * #(nMelany) *&lt;/Pattern&gt;
+                &lt;LinkedPattern&gt;* #(nButler) * #(nBody) *&lt;/LinkedPattern&gt;
+                &lt;LinkedPattern&gt;* #(nGenry) * #(nMelany) *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Mr. Moneyghan pretends to despise Melany, as she's the butler's daughter. But really he
+                envies her - she got what he couldn't get when a child.
+                He thinks her a &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_relations_Melany_Eddy"&gt;
+                &lt;Pattern&gt;* #(qWhatAbout) * #(nMelany) * #(nDoctor) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* #(qWhatAbout) * #(nDoctor) * #(nMelany) *&lt;/Pattern&gt;
+                &lt;LinkedPattern&gt;* #(nDoctor) * #(nMelany) *&lt;/LinkedPattern&gt;
+                &lt;LinkedPattern&gt;* #(nMelany) * #(nDoctor) *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;They hardly know each other. Of course the old spider always watches everybody, but I don't
+                think Melly interested him much. &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_relations_Melany_Filipp"&gt;
+                &lt;Pattern&gt;* #(qWhatAbout) * #(nMelany) * #(nButler) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* #(qWhatAbout) * #(nButler) * #(nMelany) *&lt;/Pattern&gt;
+                &lt;LinkedPattern&gt;* #(nMelany) * #(nButler) *&lt;/LinkedPattern&gt;
+                &lt;LinkedPattern&gt;* #(nButler) * #(nMelany) *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Well, the old man is really crazy about his little angel of a daughter.
+                But he'd rather see her well settled with a good hubby and six crying children than hopping through
+                Paris.
+                And the girl.. Well, she isn't too keen on mentioning in society that her father is a butler.
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_relations_Henry_Eddy"&gt;
+                &lt;Pattern&gt;* #(qWhatAbout) * #(nGenry) * #(nDoctor) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* #(qWhatAbout) * #(nDoctor) * #(nGenry) *&lt;/Pattern&gt;
+                &lt;LinkedPattern&gt;* #(nDoctor) * #(nGenry) *&lt;/LinkedPattern&gt;
+                &lt;LinkedPattern&gt;* #(nGenry) * #(nDoctor) *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;No love lost between these two, I dare say. Moneyghan loves money and power, Manhater
+                chemistry and chess. The only thing they share is general attitude to mankind.
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_relations_Henry_Butler"&gt;
+                &lt;Pattern&gt;* #(qWhatAbout) * #(nGenry) * #(nButler) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* #(qWhatAbout) * #(nButler) * #(nGenry) *&lt;/Pattern&gt;
+                &lt;LinkedPattern&gt;* #(nGenry) * #(nButler) *&lt;/LinkedPattern&gt;
+                &lt;LinkedPattern&gt;* #(nButler) * #(nGenry) *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Well. Filipp saw Henry grow - I guess, he's the one who really cared about him. However it's
+                quite beyond mr. Moneyghan to pay attention to servants. &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_relations_Filipp_Eddy"&gt;
+                &lt;Pattern&gt;* #(qWhatAbout) * #(nButler) * #(nDoctor) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* #(qWhatAbout) * #(nDoctor) * #(nButler) *&lt;/Pattern&gt;
+                &lt;LinkedPattern&gt;* #(nButler) * #(nDoctor) *&lt;/LinkedPattern&gt;
+                &lt;LinkedPattern&gt;* #(nDoctor) * #(nButler) *&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;I guess old Filipp is somewhat impressed by Manhater's austere sobriety, Cthulhu bless him,
+                but is suspicious about his failing to be a good Christian. And Manhater is just polite with him. &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;/Theme&gt;
+
+                &lt;Theme name ="Jessica_interrogation"&gt;
+                &lt;QAUnit name="Jessica_who_was_it"&gt;
+                &lt;Pattern&gt;* who * (murder*|kill*|) * #(nBody) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* who * is * (guilty|murderer|culprit) *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* who want #(nBody) dead *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* who * you * susp* *&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Oh, mr. Farrett, how could I tell? Considering the size of the chandelier, the person must
+                be strong, perhaps, a man.&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_who_profits"&gt;
+                &lt;Pattern&gt;* who * (profit*|inherit*|get) * (murder|death|crime|assassination) * &lt;/Pattern&gt;
+                &lt;Pattern&gt;* who * heir *&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Well, nobody knows if mr. Boddy has made a will. His attorney isn't coming from the town
+                till Monday. If there's no will, his nephew, Adam, will inherit. &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;QAUnit name="Jessica_enemies"&gt;
+                &lt;Pattern&gt;* #(nBody) * enem* *&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Talking about enemies.. Mr. Boddy had his relatives and colleagues, you see. His brother,
+                Moneyghan, wasn't happy about the way their father had about the inheritance.
+                His assistant, Melany Morgan, saw him most of all like a step to her career. The Manhater man kind
+                of deserves his name.&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;/Theme&gt;
+
+                &lt;Theme name = "Jessica_about_herself"&gt;
+                &lt;QAUnit name="Jessica_who_are_you"&gt;
+                &lt;Pattern&gt;* who are you *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* tell * about yourself *&lt;/Pattern&gt;
+                &lt;Pattern&gt;* what is your name *&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Nice to meet you again, mr. Farrett. My name is Jessica White and I'm a journalist in the
+                local branch of the Times.
+                I've been staying here for nearly three months already. My current assignment was to write mr. Boddy's
+                biography. I'll be happy to help you with the investigation. &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+                &lt;/Theme&gt;
+
+                &lt;Theme name="Jessica_cult_cult"&gt;
+                &lt;!--Джессика о культе --&gt;
+
+                &lt;QAUnit name="Jessica_cult_first"&gt;
+                &lt;Pattern&gt;* cult *&lt;/Pattern&gt;
+
+                &lt;Random&gt;
+                &lt;Text&gt;Boddy was studying it. Was the main part of his research.
+                The Cult is the main religion that existed here before white missionaries came in. The Indians
+                worshipped Cthulhu - a great Octopus sleeping in the ocean.
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;LinkedUnits&gt;
+                &lt;LinkedUnit&gt;Jess_cult_1&lt;/LinkedUnit&gt;
+                &lt;/LinkedUnits&gt;
+                &lt;/QAUnit&gt;
+
+
+                &lt;QAUnit name="Jess_cult_1"&gt;
+                &lt;LinkedPattern&gt;*&lt;/LinkedPattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;This is quite an ancient things - the Cult is said to deal with black magic, and human
+                sacrifices.
+                The Cult was supposed to extinguish long before Europeans came here.. however it is said to have
+                though a small but a number of adepts through last 5 centuries. The monuments are much, much older. But
+                you see,
+                some people even claim that there's a conspiracy of worshippers even now.. Crazy as it might sound.
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+
+                &lt;QAUnit name="Jessica_cult_discovery"&gt;
+                &lt;Pattern&gt;* #(qWhatAbout) * #(nBody) * (discovery|finding|research) *&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;I'm not quite sure. You see, he thought me quite unworthy to understand his big science. Was
+                just
+                talking a lot about the eternal glory and his citation index going up and up and up.
+                &lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+
+                &lt;/Theme&gt;
+
+                &lt;Theme name ="Jess_Melany_fainted" description="Джессика видит лежащую Мелани"&gt;
+                &lt;QAUnit name="Jess_Melany_Fainted"&gt;
+                &lt;Pattern&gt;*&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Oh, poor Melly! What's happened to her? Doctor, doctor!&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+                &lt;/Theme&gt;
+
+                &lt;Theme name="Jess_seeks_doctor" description="Джессика ищет врача"&gt;
+                &lt;QAUnit name="Jess_seeks_doctor"&gt;
+                &lt;Pattern&gt;*&lt;/Pattern&gt;
+                &lt;Random&gt;
+                &lt;Text&gt;Doctor, doctor! Please help Melany, she's fainted, something's wrong!&lt;/Text&gt;
+                &lt;/Random&gt;
+                &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;/Effects&gt;
+                &lt;/QAUnit&gt;
+                &lt;/Theme&gt;
+
+                &lt;/Dialog&gt;</content>
+        </xgml>
+    </xgml>
+</data>

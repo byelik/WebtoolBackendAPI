@@ -34,7 +34,6 @@
 				<s:Label text="Character"/>
 				<s:DropDownList id="mCharacterList"
 								labelField="data"
-								dataProvider="{hostComponent.mFactsListData}"
 								prompt="Select character"
 								width="300"/>				
 			</s:HGroup>
@@ -66,7 +65,8 @@
 					<s:Button id="mAddVariable"
 							  label="+Variable"/>
 					<s:Button id="mDeleteVariable"
-							  label="-Variable"/>	
+							  label="-Variable"
+							  enabled="{mVariableList.selectedItem}"/>	
 				</s:HGroup>
 				
 			</s:HGroup>
@@ -74,53 +74,53 @@
 						width="358" 
 						height="102" 
 						borderVisible="false"
-						dataProvider="{hostComponent.mFactsListData}" 
+						dataProvider="{hostComponent.mVariableItems}" 
 						editable="true"
 						resizableColumns="false" 
 						selectionMode="multipleRows"
 						sortableColumns="true">
 				<s:columns>
 					<s:ArrayList>
-						<s:GridColumn dataField="data" headerText="Variable"/>
-						<s:GridColumn dataField="desc" headerText="Value"/>
+						<s:GridColumn dataField="id" headerText="Variable"/>
+						<s:GridColumn dataField="description" headerText="Value"/>
 					</s:ArrayList>
 				</s:columns>	
 			</s:DataGrid>
 			<s:Label text="Character facts"/>
 			<s:HGroup verticalAlign="middle">
-				<s:DataGrid id="mCharacterFactsList" width="355" height="102" borderVisible="false"
-							dataProvider="{hostComponent.mFactsListData}" editable="true"
-							resizableColumns="false" selectionMode="multipleRows"
+				<s:DataGrid id="mCharacterFactsList"
+							width="355" 
+							height="102" 
+							borderVisible="false"
+							dataProvider="{hostComponent.mCharacterFactItems}" 
+							editable="true"
+							resizableColumns="false" 
+							selectionMode="multipleRows"
 							sortableColumns="true">
 					<s:columns>
 						<s:ArrayList>
-							<s:GridColumn dataField="data" headerText="id"/>
-							<s:GridColumn dataField="desc" headerText="Description"/>
+							<s:GridColumn dataField="id" headerText="id"/>
+							<s:GridColumn dataField="description" headerText="Description"/>
 						</s:ArrayList>
 					</s:columns>
 				</s:DataGrid>
 			</s:HGroup>			
 		</s:VGroup>
 		<!---->
-		
-		
+	
 		<!-- Secod VGroup column-->
 		<s:VGroup verticalAlign="bottom" height="295" bottom="15">
 			<s:Button id="mAddFactOwner"
 					  label="&lt;" 
 					  width="35"
-					  height="35"/>
+					  height="35"
+					  enabled="{mFactsList.selectedItem}"/>
 			<s:Button id="mDeleteFactOwner"
 					  label="&gt;"
 					  width="35"
-					  height="35"/>
+					  height="35"
+					  enabled="{mCharacterFactsList.selectedItem}"/>
 		</s:VGroup>		
-		<!---->
-		
-		<!-- Third VGroup column-->
-		<s:VGroup>
-			
-		</s:VGroup>
 		<!---->
 		
 		<s:HGroup>
@@ -130,8 +130,7 @@
 					<s:DropDownList id="mLocationList"
 									minWidth="300"
 									maxWidth="300"
-									labelField="label"
-									dataProvider="{hostComponent.mFactsListData}"/>
+									labelField="label"/>
 					<s:HGroup width="100%" horizontalAlign="right">
 						<s:Button id="mAddFact"
 								  label="+Fact"/>
@@ -140,15 +139,22 @@
 								  enabled="{mFactsList.selectedItem}"/>	
 					</s:HGroup>
 					<s:Label text="Facts"/>
-					<s:DataGrid id="mFactsList" height="219" minWidth="300" minHeight="300"
-								maxWidth="300" maxHeight="300" borderVisible="false"
-								dataProvider="{hostComponent.mFactsListData}" editable="true"
-								resizableColumns="false" selectionMode="multipleRows"
+					<s:DataGrid id="mFactsList" 
+								height="219" 
+								minWidth="300" 
+								minHeight="300"
+								maxWidth="300" 
+								maxHeight="300"
+								borderVisible="false"
+								dataProvider="{hostComponent.mSystemFactsList}" 
+								editable="true"
+								resizableColumns="false" 
+								selectionMode="multipleRows"
 								sortableColumns="true">
 						<s:columns>
 							<s:ArrayList>
-								<s:GridColumn dataField="data" headerText="id"/>
-								<s:GridColumn dataField="desc" headerText="Description"/>
+								<s:GridColumn dataField="id" headerText="id"/>
+								<s:GridColumn dataField="description" headerText="Description"/>
 							</s:ArrayList>
 						</s:columns>
 					</s:DataGrid>

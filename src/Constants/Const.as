@@ -16,6 +16,10 @@ package Constants
 		public static const ERROR_INPUT_NERVE_VALUE:String = "Неверное значение Nerve. Допустимые значения от 0 до 100.";
 		public static const TITLE_DELETE_FACT:String = "Внимание";
 		public static const WARRNING_DELETE_FACT:String = "Вы действительно хотите удалить выбраннные факты?";
+		
+		public static const TITLE_DELETE_VARIABLE:String = "Внимание";
+		public static const WARNING_DELETE_VARIABLE:String = "Вы действительно хотите удалить выбранные переменные?";
+		
 		public function Const()
 		{
 		}

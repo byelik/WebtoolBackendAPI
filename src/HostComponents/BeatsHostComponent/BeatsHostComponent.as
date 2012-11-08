@@ -11,6 +11,7 @@ package HostComponents.BeatsHostComponent
 	import flash.events.MouseEvent;
 	import flash.events.TextEvent;
 	
+	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
 	import mx.events.CloseEvent;
 	import mx.managers.IFocusManager;
@@ -83,6 +84,9 @@ package HostComponents.BeatsHostComponent
 		
 		private var mComponent:IFocusManagerComponent;
 		private var firstTextElement:String;
+		
+		
+		
 		
 		public function BeatsHostComponent()
 		{
