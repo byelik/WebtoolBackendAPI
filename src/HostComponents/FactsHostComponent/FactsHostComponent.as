@@ -309,8 +309,17 @@ package HostComponents.FactsHostComponent
 
 			if(mCharacterFactsList.selectedItems)
 			{
-				mSystemFactsList.addItem(mCharacterFactsList.selectedItem);
-				mCharacterFactItems.removeItemAt(mCharacterFactsList.selectedIndex);
+				var indx:Vector.<Object> = mCharacterFactsList.selectedItems;
+				var tmp:ArrayCollection = new ArrayCollection();
+				for(var i:int = 0; i < indx.length; i++)
+				{
+					tmp.addItem(indx[i]);
+					mCharacterFactItems.removeItemAt(mCharacterFactsList.selectedIndex);
+				}
+				//mCharacterFactItems.re
+//				mSystemFactsList.addItem(mCharacterFactsList.selectedItem);
+				mSystemFactsList.addAll(tmp);
+//				mCharacterFactItems.removeItemAt(mCharacterFactsList.selectedIndex);
 				mDeleteFactOwner.enabled = false;
 			}
 			

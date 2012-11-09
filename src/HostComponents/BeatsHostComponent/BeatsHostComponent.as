@@ -20,6 +20,7 @@ package HostComponents.BeatsHostComponent
 	import spark.collections.Sort;
 	import spark.collections.SortField;
 	import spark.components.Button;
+	import spark.components.DataGrid;
 	import spark.components.DropDownList;
 	import spark.components.TextArea;
 	import spark.components.TextInput;
@@ -30,8 +31,8 @@ package HostComponents.BeatsHostComponent
 	
 	public class BeatsHostComponent extends SkinnableComponent
 	{
-		[SkinPart(required="true")]
-		public var mAgentList:DropDownList;
+		/*[SkinPart(required="true")]
+		public var mAgentList:DropDownList;*/
 		
 		[SkinPart(required="true")]
 		public var mBeatDescriptionField:TextArea;
@@ -54,14 +55,14 @@ package HostComponents.BeatsHostComponent
 		[SkinPart(required="true")]
 		public var mActivitiesField:TextArea;
 		
-		[SkinPart(required="true")]
-		public var mPreconditionsDescriptionField:TextArea;
+		/*[SkinPart(required="true")]
+		public var mPreconditionsDescriptionField:TextArea;*/
 		
 		[SkinPart(required="true")]
-		public var mFactsKnownToUser:TextArea;
+		public var mFactsKnownToUser:DataGrid;
 		
 		[SkinPart(required="true")]
-		public var mFactsKnownToAgent:TextArea;
+		public var mFactsKnownToAgent:DataGrid;
 		
 		[SkinPart(required="true")]
 		public var mBeatsCompletedField:TextInput;
@@ -90,6 +91,9 @@ package HostComponents.BeatsHostComponent
 		[Bindable]
 		public var beatTypeList:ArrayCollection; 
 		
+		[Bindable]
+		public var mBeatVariables:ArrayCollection;
+		
 		private var dataSortField:SortField;
 		private var dataSort:Sort;
 		
@@ -97,7 +101,7 @@ package HostComponents.BeatsHostComponent
 		{
 			super();
 			beatTypeList = new ArrayCollection(["exclusive", "normal", "repeated"]);
-			
+			mBeatVariables = new ArrayCollection();
 			dataSortField = new SortField();
 			
 			dataSort = new Sort();
@@ -114,9 +118,9 @@ package HostComponents.BeatsHostComponent
 			super.partAdded(partName, instance);
 			switch(partName)
 			{
-				case "mAgentList":
+				/*case "mAgentList":
 					mAgentList.addEventListener(Event.CHANGE, selectAgent);
-				break;
+				break;*/
 				case "mChooseAgentList":
 					mChooseAgentList.addEventListener(Event.CHANGE, chooseAgent);
 				break;
@@ -143,34 +147,34 @@ package HostComponents.BeatsHostComponent
 			super.partRemoved(partName, instance);
 			switch(partName)
 			{
-				case "mAgentList":
+				/*case "mAgentList":
 					mAgentList.removeEventListener(Event.CHANGE, selectAgent);
-					break;
+					break;*/
 				case "mChooseAgentList":
 					mChooseAgentList.removeEventListener(Event.CHANGE, chooseAgent);
-					break;
+				break;
 				case "mLocationList":
 					mLocationList.removeEventListener(Event.CHANGE, selectLocation);
-					break;
+				break;
 				case "mTypeList":
 					mTypeList.removeEventListener(Event.CHANGE, selectType);
-					break;
+				break;
 				case "mSave":
 					mSave.removeEventListener(MouseEvent.CLICK, saveData);
-					break;
+				break;
 				case "mDelete":
 					mDelete.removeEventListener(MouseEvent.CLICK, deleteBeat);
 				break;
 				default:
 					//default
-					break;
+				break;
 			}
 		}
 		
-		private function selectAgent(event:IndexChangeEvent):void
+		/*private function selectAgent(event:IndexChangeEvent):void
 		{
 			//select agent...
-		}
+		}*/
 		
 		private function chooseAgent(event:IndexChangeEvent):void
 		{
@@ -196,6 +200,7 @@ package HostComponents.BeatsHostComponent
 			checkMinNerveValue();
 			checkMaxNerveValue();
 		}
+		
 		
 		private function deleteBeat(event:MouseEvent):void
 		{
@@ -278,6 +283,19 @@ package HostComponents.BeatsHostComponent
 			
 			beatTypeList.sort = dataSort;
 			beatTypeList.refresh();
+		}
+		
+		private var beatType:String = "normal";
+		private function getBeatType():String
+		{
+			for each(var type:String in beatTypeList)
+			{
+				if(beatType == type)
+				{
+					return beatType;
+				}
+			}
+			return null;
 		}
 		
 	}
