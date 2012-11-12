@@ -7,23 +7,31 @@ package HostComponents.BeatsHostComponent
 	
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
+	import flash.events.ContextMenuEvent;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.TextEvent;
+	import flash.ui.ContextMenu;
+	import flash.ui.ContextMenuItem;
 	
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
+	import mx.controls.Tree;
+	import mx.controls.listClasses.IListItemRenderer;
 	import mx.events.CloseEvent;
+	import mx.events.ListEvent;
 	import mx.managers.IFocusManager;
 	import mx.managers.IFocusManagerComponent;
 	
 	import spark.collections.Sort;
 	import spark.collections.SortField;
+	import spark.components.BorderContainer;
 	import spark.components.Button;
 	import spark.components.DataGrid;
 	import spark.components.DropDownList;
 	import spark.components.TextArea;
 	import spark.components.TextInput;
+	import spark.components.ToggleButton;
 	import spark.components.supportClasses.SkinnableComponent;
 	import spark.events.IndexChangeEvent;
 	
@@ -33,6 +41,9 @@ package HostComponents.BeatsHostComponent
 	{
 		/*[SkinPart(required="true")]
 		public var mAgentList:DropDownList;*/
+		
+		[SkinPart(required="true")]
+		public var mBeatsTree:Tree;
 		
 		[SkinPart(required="true")]
 		public var mBeatDescriptionField:TextArea;
@@ -85,6 +96,12 @@ package HostComponents.BeatsHostComponent
 		[SkinPart(required="true")]
 		public var mDelete:Button;
 		
+		[SkinPart(required="true")]
+		public var mTreeStateBtn:ToggleButton;
+		
+		[SkinPart(required="true")]
+		public var mTreeBorderContainer:BorderContainer;
+		
 		private var mComponent:IFocusManagerComponent;
 		private var firstTextElement:String;
 		
@@ -97,6 +114,16 @@ package HostComponents.BeatsHostComponent
 		private var dataSortField:SortField;
 		private var dataSort:Sort;
 		
+//		private var addGroupMenuItem:ContextMenuItem;
+//		private var cutMenuItem:ContextMenuItem;
+//		private var copyMenuItem:ContextMenuItem;
+//		private var deleteMenuItem:ContextMenuItem;
+//		private var pasteMenuItem:ContextMenuItem;
+//		private var renameMenuItem:ContextMenuItem;
+		
+		[Bindable]
+		public var treeContextMenu:ContextMenu;
+		
 		public function BeatsHostComponent()
 		{
 			super();
@@ -106,6 +133,42 @@ package HostComponents.BeatsHostComponent
 			
 			dataSort = new Sort();
 			sortBeatTypeList();
+			
+			treeContextMenu = new ContextMenu();
+			treeContextMenu.hideBuiltInItems();
+			
+			var addGroupMenuItem:ContextMenuItem = new ContextMenuItem("Add Group");
+			addGroupMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, addGroupMenuEvent);
+			
+			var cutMenuItem:ContextMenuItem = new ContextMenuItem("Cut");
+			cutMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, cutMenuEvent);
+			
+			var copyMenuItem:ContextMenuItem = new ContextMenuItem("Copy");
+			copyMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, copyMenuEvent);
+			
+			var deleteMenuItem:ContextMenuItem = new ContextMenuItem("Delete");
+			deleteMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, deleteMenuEvent);
+			
+			var pasteMenuItem:ContextMenuItem = new ContextMenuItem("Paste");
+			pasteMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, pasteMenuEvent);
+			
+			var renameMenuItem:ContextMenuItem = new ContextMenuItem("Rename");
+			renameMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, renameMenuEvent);
+			
+			
+//			treeContextMenu.customItems = [addGroupMenuItem, cutMenuItem,
+//											copyMenuItem, deleteMenuItem,
+//											pasteMenuItem, renameMenuItem];
+			
+			treeContextMenu.customItems.push(addGroupMenuItem);
+			treeContextMenu.customItems.push(cutMenuItem);
+			treeContextMenu.customItems.push(copyMenuItem);
+			treeContextMenu.customItems.push(deleteMenuItem);
+			treeContextMenu.customItems.push(pasteMenuItem);
+			treeContextMenu.customItems.push(renameMenuItem);
+//			treeContextMenu.addEventListener(ContextMenuEvent.MENU_SELECT, getSelectedElement);
+			
+//			mSave.contextMenu = treeContextMenu;
 		}
 		
 		override protected function getCurrentSkinState():String
@@ -136,6 +199,15 @@ package HostComponents.BeatsHostComponent
 				case "mDelete":
 					mDelete.addEventListener(MouseEvent.CLICK, deleteBeat);
 				break;
+				case "mTreeStateBtn":
+					mTreeStateBtn.addEventListener(MouseEvent.CLICK, treeStateEvent);
+				break;
+				/*case "mBeatsTree":
+					mBeatsTree.addEventListener(ListEvent.ITEM_ROLL_OVER, rollOverTreeItem);
+				break;*/
+				/*case "mBeatsTree":
+					mBeatsTree.addEventListener(ListEvent.ITEM_CLICK, treeItemClick);
+				break;*/
 				default:
 					//default
 				break;
@@ -165,6 +237,15 @@ package HostComponents.BeatsHostComponent
 				case "mDelete":
 					mDelete.removeEventListener(MouseEvent.CLICK, deleteBeat);
 				break;
+				case "mTreeStateBtn":
+					mTreeStateBtn.removeEventListener(MouseEvent.CLICK, treeStateEvent);
+				break;
+				/*case "mBeatsTree":
+					mBeatsTree.removeEventListener(ListEvent.ITEM_ROLL_OVER, rollOverTreeItem);
+				break;*/
+				/*case "mBeatsTree":
+					mBeatsTree.removeEventListener(ListEvent.ITEM_CLICK, treeItemClick);
+				break;*/
 				default:
 					//default
 				break;
@@ -206,6 +287,81 @@ package HostComponents.BeatsHostComponent
 		{
 			//delete beat...
 		}
+		
+		private function treeStateEvent(event:MouseEvent):void
+		{
+			if(mTreeStateBtn.selected)
+			{
+//				mBeatsTree.includeInLayout = false;
+//				mBeatsTree.visible = false;
+//				currentState = currentState == 'hideBeatsTree' ? '' : 'hideBeatsTree';
+//				mTreeBorderContainer.width = mTreeStateBtn.width;
+			}
+			else
+			{
+//				mBeatsTree.includeInLayout = true;
+//				mBeatsTree.visible = true;
+//				mTreeBorderContainer.width = 200;
+			}
+				
+		}
+		
+		/*private function getSelectedElement(event:ContextMenuEvent):void
+		{
+			trace("Event: " + event);
+			mBeatsTree.selectedIndex = tmp;
+			
+		}*/
+		/*private var tmp:int;
+		private function rollOverTreeItem(event:ListEvent):void
+		{
+			tmp = mBeatsTree.dataProvider.getItemIndex(event.itemRenderer.data);
+
+//			trace(mBeatsTree.selectedIndex);
+//			var renderer:IListItemRenderer = mBeatsTree.indexToItemRenderer(event.rowIndex);
+//			trace(renderer);
+		}*/
+		
+		/*private function treeItemClick(event:ListEvent):void
+		{
+			trace(event);
+		}*/
+		
+		private function addGroupMenuEvent(event:ContextMenuEvent):void
+		{
+			trace("add group event");
+		}
+		
+		private function cutMenuEvent(event:ContextMenuEvent):void
+		{
+			trace("cut event");
+		}
+		
+		private function copyMenuEvent(event:ContextMenuEvent):void
+		{
+			trace("copy event");
+		}
+		
+		private function deleteMenuEvent(event:ContextMenuEvent):void
+		{
+			trace("delete event");
+		}
+		
+		private function pasteMenuEvent(event:ContextMenuEvent):void
+		{
+			trace("paste event");
+		}
+		
+		private function renameMenuEvent(event:ContextMenuEvent):void
+		{
+			trace("rename event" + mBeatsTree.selectedItem);
+			mBeatsTree.editable = true;
+			mBeatsTree.editedItemPosition = {columnIndex:0, rowIndex:mBeatsTree.selectedIndex};
+		}
+		
+		
+		
+		
 		
 		private function checkPriorityValue():void
 		{
@@ -298,5 +454,15 @@ package HostComponents.BeatsHostComponent
 			return null;
 		}
 		
+		private function search():void
+		{
+			/*for(var i:int = 0; i < arr.length; i++)
+			{
+				if(inputText == arr[i].substr(0,3))
+				{
+					trace("result");
+				}
+			}*/
+		}
 	}
 }
