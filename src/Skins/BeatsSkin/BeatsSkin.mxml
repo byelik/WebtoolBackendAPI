@@ -8,33 +8,9 @@
 		[HostComponent("HostComponents.BeatsHostComponent.BeatsHostComponent")]
 	</fx:Metadata>
 	
-	<s:states>
-		<s:State name="hideBeatsTree"/>
-		<s:State name="showBeatsTree"/>
-	</s:states>
+
 	
-	<s:transitions> 
-		<s:Transition id="hideTree"
-					  fromState="*"
-					  toState="hideBeatsTree"> 
-			<s:Sequence id="hideTreeSequence"
-						targets="{[mBeatsTree]}">
-				<s:Wipe direction="left" duration="350"/>
-				<s:SetAction property="visible"/>
-				<s:SetAction property="includeInLayout"/>
-			</s:Sequence> 
-		</s:Transition> 
-		<s:Transition id="showTree"
-					  fromState="*"
-					  toState="*"> 
-			<s:Sequence id="showTreeSequence"
-						targets="{[mBeatsTree]}">
-				<s:SetAction property="includeInLayout"/>
-				<s:SetAction property="visible"/>
-				<s:Wipe direction="right" duration="350"/>
-			</s:Sequence>
-		</s:Transition> 
-	</s:transitions> 
+	
 	
 	<fx:Script>
 		<![CDATA[
@@ -42,20 +18,7 @@
 			import mx.collections.ArrayCollection;
 			import mx.events.ListEvent;
 			
-			protected function togglebutton1_clickHandler(event:MouseEvent):void
-			{
-				/*if(mT.selected)
-				{
-					mBeatsTree.includeInLayout = false;
-					mBeatsTree.visible = false;
-				}
-				else
-				{
-					mBeatsTree.includeInLayout = true;
-					mBeatsTree.visible = true;
-				}*/
-			}
-			
+					
 			protected function skin1_creationCompleteHandler(event:FlexEvent):void
 			{
 //				mSave.contextMenu = hostComponent.treeContextMenu;
@@ -98,12 +61,22 @@
 	<fx:Declarations>
 		<s:SolidColor id="sc1" color="blue" alpha=".3"/>
 		<s:SolidColorStroke id="stroke1" color="blue" weight="1"/>
+		
+		<s:Resize id="showBeatsTree" target="{mTreeBorderContainer}" widthTo="200" duration="500"/>
+		<s:Resize id="hideBeatsTree" target="{mTreeBorderContainer}" widthTo="0" duration="500"/>
 	</fx:Declarations>
 	
 	<s:Scroller width="100%" 
 				height="700">
 		<s:VGroup width="100%" height="100%" id="VerticalContentGroup">
-			
+			<s:HGroup>
+				<s:TextInput id="mSearchField"
+							 width="300"
+							 prompt="Search"/>
+				<s:Button id="mRefreshSearch"
+						  label="Refresh"/>
+							 
+			</s:HGroup>
 			<s:HGroup width="100%">
 				<s:BorderContainer id="mTreeBorderContainer"
 								   width="200" 
@@ -113,63 +86,55 @@
 								   borderWeight="5">
 					<s:HGroup width="100%" 
 							  height="100%">
-						<mx:Tree id="mBeatsTree" 
-								 width="100%"
-								 height="100%" 
-								 allowMultipleSelection="true"
-								 labelField="@label"
-								 doubleClickEnabled="true"
-								 dragEnabled="true"
-								 dragMoveEnabled="true"
-								 dropEnabled="true"
-								 horizontalCenter="0"
-								 itemDoubleClick="renameItem(event)"
-								 itemEditEnd="tree1_itemEditEndHandler(event)"
-								 showRoot="true"
-								 borderVisible="false"
-								 itemClick="mBeatsTree_itemClickHandler(event)"
-								 contentBackgroundAlpha="0"
-								 visible="true"
-								 visible.hideBeatsTree="false"
-								 includeInLayout="true"
-								 includeInLayout.hideBeatsTree="false">
-							
-							<mx:XMLListCollection id="MailBox">
-								<fx:XMLList>
-									<Description label="Mail">
-										<folder label="INBOX"/>
-										<folder label="Personal Folder">
-											<Pfolder label="Business" />
-											<Pfolder label="Demo" />
-											<Pfolder label="Personal" isBrunch="true"/>
-											<Pfolder label="Saved Mail" />
-										</folder>
-										<folder label="Sent" />
-										<folder label="Trash" />
-										<folder label="INBOX"/>
-										<folder label="Personal Folder">
-											<Pfolder label="Business" />
-											<Pfolder label="Demo" />
-											<Pfolder label="Personal" isBrunch="true"/>
-											<Pfolder label="Saved Mail" />
-										</folder>
-										<folder label="Sent" />
-										<folder label="Trash" />
-										<folder label="INBOX"/>
-										<folder label="Personal Folder">
-											<Pfolder label="Business" />
-											<Pfolder label="Demo" />
-											<Pfolder label="Personal" isBrunch="true"/>
-											<Pfolder label="Saved Mail" />
-										</folder>
-										<folder label="Sent" />
-										<folder label="Trash" />
-										<folder label="INBOX"/>
-										<folder label="Personal Folder">
-											<Pfolder label="Business" />
-											<Pfolder label="Demo" />
-											<Pfolder label="Personal" isBrunch="true"/>
-											<Pfolder label="Saved Mail" />
+							<mx:Tree id="mBeatsTree" 
+									 width="100%"
+									 height="100%" 
+									 allowMultipleSelection="true"
+									 labelField="@label"
+									 doubleClickEnabled="true"
+									 dragEnabled="true"
+									 dragMoveEnabled="true"
+									 dropEnabled="true"
+									 horizontalCenter="0"
+									 itemDoubleClick="renameItem(event)"
+									 itemEditEnd="tree1_itemEditEndHandler(event)"
+									 showRoot="true"
+									 borderVisible="false"
+									 itemClick="mBeatsTree_itemClickHandler(event)"
+									 contentBackgroundAlpha="0"
+									 verticalScrollPolicy="auto">
+								
+								<mx:XMLListCollection id="MailBox">
+									<fx:XMLList>
+										<Description label="Mail">
+											<folder label="INBOX"/>
+											<folder label="Personal Folder">
+												<Pfolder label="Business" />
+												<Pfolder label="Demo" />
+												<Pfolder label="Personal" isBrunch="true"/>
+												<Pfolder label="Saved Mail" />
+											</folder>
+											<folder label="Sent" />
+											<folder label="Trash" />
+											<folder label="INBOX"/>
+											<folder label="Personal Folder">
+												<Pfolder label="Business" />
+												<Pfolder label="Demo" />
+												<Pfolder label="Personal" isBrunch="true"/>
+												<Pfolder label="Saved Mail" />
+											</folder>
+											<folder label="Sent" />
+											<folder label="Trash" />
+											<folder label="INBOX"/>
+											<folder label="Personal Folder">
+												<Pfolder label="Business" />
+												<Pfolder label="Demo" />
+												<Pfolder label="Personal" isBrunch="true"/>
+												<Pfolder label="Saved Mail" />
+											</folder>
+											<folder label="Sent" />
+											<folder label="Trash" />
+											<folder label="INBOX"/>
 											<folder label="Personal Folder">
 												<Pfolder label="Business" />
 												<Pfolder label="Demo" />
@@ -190,40 +155,46 @@
 															<Pfolder label="Demo" />
 															<Pfolder label="Personal" isBrunch="true"/>
 															<Pfolder label="Saved Mail" />
+															<folder label="Personal Folder">
+																<Pfolder label="Business" />
+																<Pfolder label="Demo" />
+																<Pfolder label="Personal" isBrunch="true"/>
+																<Pfolder label="Saved Mail" />
+															</folder>
 														</folder>
 													</folder>
 												</folder>
 											</folder>
-										</folder>
-										<folder label="Sent" />
-										<folder label="Trash" />
-										<folder label="INBOX"/>
-										<folder label="Personal Folder">
-											<Pfolder label="Business" />
-											<Pfolder label="Demo" />
-											<Pfolder label="Personal" isBrunch="true"/>
-											<Pfolder label="Saved Mail" />
-										</folder>
-										<folder label="Sent" />
-										<folder label="Trash" />
-										<folder label="INBOX"/>
-										<folder label="Personal Folder">
-											<Pfolder label="Business" />
-											<Pfolder label="Demo" />
-											<Pfolder label="Personal" isBrunch="true"/>
-											<Pfolder label="Saved Mail" />
-										</folder>
-										<folder label="Sent" />
-										<folder label="Trash" />
-									</Description>
-								</fx:XMLList>
-							</mx:XMLListCollection>
-						</mx:Tree>
-						<s:ToggleButton id="mTreeStateBtn"
-										width.hideBeatsTree="16" 
-										height.hideBeatsTree="17" click="currentState = currentState == 'hideBeatsTree' ? '' : 'hideBeatsTree';"/>
+											<folder label="Sent" />
+											<folder label="Trash" />
+											<folder label="INBOX"/>
+											<folder label="Personal Folder">
+												<Pfolder label="Business" />
+												<Pfolder label="Demo" />
+												<Pfolder label="Personal" isBrunch="true"/>
+												<Pfolder label="Saved Mail" />
+											</folder>
+											<folder label="Sent" />
+											<folder label="Trash" />
+											<folder label="INBOX"/>
+											<folder label="Personal Folder">
+												<Pfolder label="Business" />
+												<Pfolder label="Demo" />
+												<Pfolder label="Personal" isBrunch="true"/>
+												<Pfolder label="Saved Mail" />
+											</folder>
+											<folder label="Sent" />
+											<folder label="Trash" />
+										</Description>
+									</fx:XMLList>
+								</mx:XMLListCollection>
+							</mx:Tree>
+					
 					</s:HGroup>
 				</s:BorderContainer>
+				<s:ToggleButton id="mTreeStateBtn"
+								skinClass="Skins.SwitchButtonSkin.SwitchToggleButtonSkin"
+								/>
 				<s:BorderContainer id="mBeatsGraphBorderContainer"
 								   width="100%"
 								   height="100%">
@@ -232,6 +203,7 @@
 						<mx:Panel title="BubbleChart Control Example" height="100%" width="100%">
 							<s:HGroup width="100%" horizontalAlign="left">
 							</s:HGroup>
+							<s:Button/>
 							<mx:BubbleChart id="bubblechart" 
 											height="100%" width="100%"
 											paddingRight="5" paddingLeft="5" 

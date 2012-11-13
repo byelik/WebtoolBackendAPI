@@ -19,6 +19,7 @@ package HostComponents.BeatsHostComponent
 	import mx.controls.Tree;
 	import mx.controls.listClasses.IListItemRenderer;
 	import mx.events.CloseEvent;
+	import mx.events.EffectEvent;
 	import mx.events.ListEvent;
 	import mx.managers.IFocusManager;
 	import mx.managers.IFocusManagerComponent;
@@ -33,7 +34,9 @@ package HostComponents.BeatsHostComponent
 	import spark.components.TextInput;
 	import spark.components.ToggleButton;
 	import spark.components.supportClasses.SkinnableComponent;
+	import spark.effects.Resize;
 	import spark.events.IndexChangeEvent;
+	import spark.events.TextOperationEvent;
 	
 	
 	
@@ -101,6 +104,18 @@ package HostComponents.BeatsHostComponent
 		
 		[SkinPart(required="true")]
 		public var mTreeBorderContainer:BorderContainer;
+		
+		[SkinPart(required="true")]
+		public var showBeatsTree:Resize;
+		
+		[SkinPart(required="true")]
+		public var hideBeatsTree:Resize;
+		
+		[SkinPart(required="true")]
+		public var mSearchField:TextInput;
+		
+		[SkinPart(required="true")]
+		public var mRefreshSearch:Button;
 		
 		private var mComponent:IFocusManagerComponent;
 		private var firstTextElement:String;
@@ -202,6 +217,18 @@ package HostComponents.BeatsHostComponent
 				case "mTreeStateBtn":
 					mTreeStateBtn.addEventListener(MouseEvent.CLICK, treeStateEvent);
 				break;
+				case "showBeatsTree":
+					showBeatsTree.addEventListener(EffectEvent.EFFECT_END, showBeatsTreeEvent);
+				break;
+				case "hideBeatsTree":
+					hideBeatsTree.addEventListener(EffectEvent.EFFECT_START, hideBeatsTreeEvent);
+				break;
+				case "mSearchField":
+					mSearchField.addEventListener(TextOperationEvent.CHANGE, seacrhEvent);
+				break;
+				case "mRefreshSearch":
+					mRefreshSearch.addEventListener(MouseEvent.CLICK, refreshSearch);
+				break;
 				/*case "mBeatsTree":
 					mBeatsTree.addEventListener(ListEvent.ITEM_ROLL_OVER, rollOverTreeItem);
 				break;*/
@@ -239,6 +266,18 @@ package HostComponents.BeatsHostComponent
 				break;
 				case "mTreeStateBtn":
 					mTreeStateBtn.removeEventListener(MouseEvent.CLICK, treeStateEvent);
+				break;
+				case "showBeatsTree":
+					showBeatsTree.removeEventListener(EffectEvent.EFFECT_END, showBeatsTreeEvent);
+				break;
+				case "hideBeatsTree":
+					hideBeatsTree.removeEventListener(EffectEvent.EFFECT_START, hideBeatsTreeEvent);
+				break;
+				case "mSearchField":
+					mSearchField.removeEventListener(TextOperationEvent.CHANGE, seacrhEvent);
+				break;
+				case "mRefreshSearch":
+					mRefreshSearch.removeEventListener(MouseEvent.CLICK, refreshSearch);
 				break;
 				/*case "mBeatsTree":
 					mBeatsTree.removeEventListener(ListEvent.ITEM_ROLL_OVER, rollOverTreeItem);
@@ -296,14 +335,44 @@ package HostComponents.BeatsHostComponent
 //				mBeatsTree.visible = false;
 //				currentState = currentState == 'hideBeatsTree' ? '' : 'hideBeatsTree';
 //				mTreeBorderContainer.width = mTreeStateBtn.width;
+				hideBeatsTree.end(); hideBeatsTree.play();
 			}
 			else
 			{
 //				mBeatsTree.includeInLayout = true;
 //				mBeatsTree.visible = true;
 //				mTreeBorderContainer.width = 200;
+				showBeatsTree.end(); showBeatsTree.play();
 			}
 				
+		}
+		
+		private function showBeatsTreeEvent(event:EffectEvent):void
+		{
+			mBeatsTree.visible = true;
+			mBeatsTree.includeInLayout = true;
+		}
+		
+		private function hideBeatsTreeEvent(event:EffectEvent):void
+		{
+			mBeatsTree.visible = false;
+			mBeatsTree.includeInLayout = false;
+		}
+		
+		private function seacrhEvent(event:TextOperationEvent):void
+		{
+			for(var i:int = 0; i < beatTypeList.length; i++)
+			{
+				if(mSearchField.text == beatTypeList[i].substr(0,3))
+				{
+					trace("search is work");
+				}
+			}
+		}
+		
+		private function refreshSearch(event:MouseEvent):void
+		{
+			//refresh search...
 		}
 		
 		/*private function getSelectedElement(event:ContextMenuEvent):void
@@ -452,17 +521,6 @@ package HostComponents.BeatsHostComponent
 				}
 			}
 			return null;
-		}
-		
-		private function search():void
-		{
-			/*for(var i:int = 0; i < arr.length; i++)
-			{
-				if(inputText == arr[i].substr(0,3))
-				{
-					trace("result");
-				}
-			}*/
 		}
 	}
 }
