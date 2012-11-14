@@ -1,6 +1,6 @@
 package Data
 {
-	import HttpService.HttpServiceManager;
+
 
 	public class DataModel
 	{
