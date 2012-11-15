@@ -5,7 +5,10 @@ package HostComponents.FactsHostComponent
 	
 	import Constants.Const;
 	
+	import Data.DataModel;
 	import Data.Facts.FactsData;
+	
+	import HttpService.HttpServiceManager;
 	
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
@@ -76,7 +79,14 @@ package HostComponents.FactsHostComponent
 		[SkinPart(required="true")]
 		public var mFactsList:DataGrid;
 		
+		[Bindable]
+		public var mAgents:ArrayCollection;
 		
+		[Bindable]
+		public var mLocations:ArrayCollection;
+		
+		[Bindable]
+		public var mSystemFacts:ArrayCollection;
 		
 		
 		private var selectedAgents:Vector.<Object>;
@@ -84,9 +94,9 @@ package HostComponents.FactsHostComponent
 		private var mComponent:IFocusManagerComponent;
 		
 		[Bindable]
-		public var tmpData:ArrayCollection = new ArrayCollection(['geka', 'gang', 'g','côte','b','coté',
+		public var tmpData:ArrayCollection = new ArrayCollection([{id:'geka', desc:10}, {id:'gang', desc:9}, 'g','côte','b','coté',
 																'xyz', 'f', 'e', 'D', 'ABC','Öhlund',
-																'Oehland','Zorn','Aaron','Ohlin','Aaron']);
+																'Oehland','Zorn','Aaron','Ohlin',{id:'Aaron', desc:1}]);
 		[Bindable]
 		public var mSystemFactsList:ArrayCollection = new ArrayCollection();
 		
@@ -105,10 +115,14 @@ package HostComponents.FactsHostComponent
 		public function FactsHostComponent()
 		{
 			super();
-			dataSortField = new SortField();
 			
+			mAgents = DataModel.getSingleton().mAgentsList;
+			mLocations = DataModel.getSingleton().mLocationsList;
+			mSystemFacts = DataModel.getSingleton().mFactsList;
+			
+			dataSortField = new SortField();
 			dataSort = new Sort();
-			sortCharacterList();		
+			sortData();
 		}
 		
 		
@@ -125,7 +139,7 @@ package HostComponents.FactsHostComponent
 			{
 				case "mCharacterList":
 					mCharacterList.addEventListener(Event.CHANGE, selectCharacter);
-					break;
+				break;
 				case "mAffinity":
 					mAffinity.addEventListener(TextEvent.TEXT_INPUT, inputAffinityValue);
 				break;
@@ -212,30 +226,59 @@ package HostComponents.FactsHostComponent
 			}
 		}
 		
-		private function sortCharacterList():void
-		{
-			dataSortField.numeric = true;
+		private function sortData():void
+		{		
+			var sortFactsField:SortField = new SortField();
+			var sortFacts:Sort = new Sort();
+			sortFactsField.name = "id";
+			sortFacts.fields = [sortFactsField];
 			
-//			dataSort.fields = [dataSortField];
-			dataSort.fields = [new SortField("data", true, true)];
-			dataSort.reverse();
-//			tmpData.sort = dataSort;
-//			tmpData.refresh();
-//			mSystemFactsList.sort = dataSort;
-//			mSystemFactsList.refresh();
+
+			
+			dataSortField.name = "name";
+//			dataSortField.numeric = true;
+			dataSort.fields = [dataSortField, new SortField("id",true, true)];
+			
+			if(mAgents)
+			{
+				mAgents.sort = dataSort;
+				mAgents.refresh();
+			}
+			if(mLocations)
+			{
+				mLocations.sort = dataSort;
+				mLocations.refresh();	
+			}
+			if(mSystemFacts)
+			{
+				mSystemFacts.sort = sortFacts;
+				mSystemFacts.refresh();
+			}
 		}
 		
+		/**
+		 * Select character...
+		 */
 		private function selectCharacter(event:IndexChangeEvent):void
-		{
-			trace(event.target.selectedItem.data);
+		{	
+			mAffinity.text = event.target.selectedItem.affinity;
+			mNerve.text = event.target.selectedItem.nerve;
 //			mFactsList.selectedItem = event.target.selectedItem;
 //			mAgentsList.selectedItems = mFactsList.selectedItems;
 			//var mFacts:FactsData = new FactsData();
+			for(var i:int = 0; i < mLocations.length; i++)
+			{
+				if(mCharacterList.selectedItem.locationId == mLocations[i].id)
+				{
+					mLocationList.selectedItem = mLocations[i];
+				}
+					
+			}
 		}
 		
 		private function inputAffinityValue(event:TextEvent):void
 		{
-			trace(mAffinity.text);
+//			trace(mAffinity.text);
 			firstTextElement = mAffinity.text.substring(0,1);
 			if(checkValue(firstTextElement, mAffinity))
 			{
@@ -340,8 +383,12 @@ package HostComponents.FactsHostComponent
 			mSystemFactsList.addItem({id:"1", description:"New Fact"});
 		}
 		
+		private var mFactId:int;
 		private function deleteFact(event:MouseEvent):void
 		{
+			
+			mFactId = mFactsList.selectedItem.id;
+			
 			Alert.yesLabel = "Да";
 			Alert.noLabel = "Нет";
 			Alert.show(Const.WARRNING_DELETE_FACT, Const.TITLE_DELETE_FACT, Alert.YES | Alert.NO, this, deleteFactHandler);
@@ -362,7 +409,8 @@ package HostComponents.FactsHostComponent
 				trace("delete selected fact(s)");
 				if(mFactsList.selectedItems)
 				{
-					mSystemFactsList.removeItemAt(mFactsList.selectedIndex);
+					new HttpServiceManager('{"method":"facts.removeFact","params":["260","257"],"jsonrpc":"2.0","id":0}', null);
+//					mSystemFactsList.removeItemAt(mFactsList.selectedIndex);
 					mDeleteFact.enabled = false;
 					mAddFactOwner.enabled = false;
 				}

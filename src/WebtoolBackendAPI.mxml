@@ -10,11 +10,11 @@
 			   creationComplete="InitialiseApp(event)">
 	<fx:Script>
 		<![CDATA[
-			import HostComponents.BeatsHostComponent.BeatsHostComponent;
-			import HostComponents.LocationsHostComponent.LocationsHostComponent;
 			import Data.DataModel;
 			
+			import HostComponents.BeatsHostComponent.BeatsHostComponent;
 			import HostComponents.FactsHostComponent.FactsHostComponent;
+			import HostComponents.LocationsHostComponent.LocationsHostComponent;
 			import HostComponents.MenuBarHostComponent.MenuBarHostComponent;
 			import HostComponents.TabBarHostComponent.TabBarHostComponent;
 			
@@ -22,7 +22,6 @@
 			
 			import mx.controls.Alert;
 			import mx.events.FlexEvent;
-			import mx.rpc.events.ResultEvent;
 			
 			private var HostComponents_MenuBarHostComponent_MenuBarHostComponent_obj:HostComponents.MenuBarHostComponent.MenuBarHostComponent;
 			
@@ -41,20 +40,23 @@
 			
 			private function InitialiseApp(event:FlexEvent):void
 			{
-				//				var mDataModel:DataModel = new DataModel();
-				mHttpServiceManager = new HttpServiceManager();
-				
-				
 				mConfigLoader = new URLLoader();
 				mConfigLoader.addEventListener(IOErrorEvent.IO_ERROR, errorHandler);
 				mConfigLoader.addEventListener(Event.COMPLETE, completeLoadingConfigFile);
 				mConfigLoader.load(new URLRequest("config/config.json"));
+				
+				new HttpServiceManager('{"method":"agents.getAgents","params":[],"jsonrpc":"2.0","id":0}', DataModel.getSingleton().parseAgentsData);
+				new HttpServiceManager('{"method":"locations.getLocations","params":[],"jsonrpc":"2.0","id":0}', DataModel.getSingleton().parseLocationsData);
+				new HttpServiceManager('{"method":"facts.getFacts","params":[], "jsonrpc": "2.0", "id":7}', DataModel.getSingleton().parseFactsData);
+				
+//				new HttpServiceManager('{"jsonrpc": "2.0", "method" : "general.extractFactsFromXGML","params":[], "id":7}', DataModel.getSingleton().parseFactsData);
+				
 			}
 			
 			private function errorHandler(event:IOErrorEvent):void
 			{
 //				var alertHandler:Alert;
-				/*alertHandler = */Alert.show("Error while loading config file: " + event, "Error",	Alert.OK);
+/*alertHandler = */Alert.show("Error while loading config file: " + event, "Error",	Alert.OK);
 			}
 			
 			private function completeLoadingConfigFile(event:Event):void

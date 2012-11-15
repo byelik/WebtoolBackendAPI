@@ -9,20 +9,12 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import Data.DataModel;
+			
 			import mx.rpc.events.ResultEvent;
 			
 			import spark.events.GridItemEditorEvent;
-			protected function button1_clickHandler(event:MouseEvent):void
-			{
-//				HttpServiceManager.httpService.addEventListener(ResultEvent.RESULT, getRes);
-			}
 			
-			private function getRes(event:ResultEvent):void
-			{
-//				var tmp:Object;
-//				tmp = JSON.parse(event.result as String);
-//				trace(tmp);
-			}			
 		]]>
 	</fx:Script>
 	
@@ -33,9 +25,10 @@
 			<s:HGroup verticalAlign="middle">
 				<s:Label text="Character"/>
 				<s:DropDownList id="mCharacterList"
-								labelField="data"
-								prompt="Select character"
-								width="300"/>				
+								labelField="name"
+								width="300"
+								dataProvider="{hostComponent.mAgents}"
+								requireSelection="true"/>				
 			</s:HGroup>
 			<s:HGroup verticalAlign="middle" width="100%">
 				<s:Label width="54" text="Affinity"/>
@@ -72,13 +65,14 @@
 			</s:HGroup>
 			<s:DataGrid id="mVariableList" 
 						width="358" 
-						height="102" 
+						
 						borderVisible="false"
 						dataProvider="{hostComponent.mVariableItems}" 
 						editable="true"
 						resizableColumns="false" 
 						selectionMode="multipleRows"
-						sortableColumns="true">
+						sortableColumns="true"
+						requestedRowCount="3">
 				<s:columns>
 					<s:ArrayList>
 						<s:GridColumn dataField="id" headerText="Variable"/>
@@ -90,13 +84,14 @@
 			<s:HGroup verticalAlign="middle">
 				<s:DataGrid id="mCharacterFactsList"
 							width="355" 
-							height="102" 
+							 
 							borderVisible="false"
 							dataProvider="{hostComponent.mCharacterFactItems}" 
 							editable="true"
 							resizableColumns="false" 
 							selectionMode="multipleRows"
-							sortableColumns="true">
+							sortableColumns="true"
+							requestedRowCount="3">
 					<s:columns>
 						<s:ArrayList>
 							<s:GridColumn dataField="id" headerText="id"/>
@@ -130,7 +125,8 @@
 					<s:DropDownList id="mLocationList"
 									minWidth="300"
 									maxWidth="300"
-									labelField="label"/>
+									labelField="name"
+									dataProvider="{hostComponent.mLocations}"/>
 					<s:HGroup width="100%" horizontalAlign="right">
 						<s:Button id="mAddFact"
 								  label="+Fact"/>
@@ -142,18 +138,17 @@
 					<s:DataGrid id="mFactsList" 
 								height="219" 
 								minWidth="300" 
-								minHeight="300"
 								maxWidth="300" 
-								maxHeight="300"
 								borderVisible="false"
-								dataProvider="{hostComponent.mSystemFactsList}" 
+								dataProvider="{hostComponent.mSystemFacts}" 
 								editable="true"
 								resizableColumns="false" 
 								selectionMode="multipleRows"
-								sortableColumns="true">
+								sortableColumns="true"
+								requestedRowCount="8">
 						<s:columns>
 							<s:ArrayList>
-								<s:GridColumn dataField="id" headerText="id"/>
+								<s:GridColumn dataField="id" headerText="id" width="50"/>
 								<s:GridColumn dataField="description" headerText="Description"/>
 							</s:ArrayList>
 						</s:columns>

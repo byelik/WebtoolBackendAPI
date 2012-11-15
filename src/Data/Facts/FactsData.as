@@ -1,27 +1,29 @@
 package Data.Facts
 {
-	import mx.rpc.http.HTTPService;
-
 	public class FactsData
 	{
 		private var mId:int;
+		private var mDescription:String;
 		private var mOwners:Array;
-		private var mRequirements:Array;
 		private var mXgml:String;
 		
-		public function FactsData()
+		public function FactsData(data:Object = null)
 		{
-			
+			parse(data);
 		}
-
-		public function get id():int
+		public static function getNewInstance():FactsData
 		{
-			return mId;
+			return new FactsData();
 		}
-
-		public function set id(value:int):void
+		
+		public function get xgml():String
 		{
-			mId = value;
+			return mXgml;
+		}
+		
+		public function set xgml(value:String):void
+		{
+			mXgml = value;
 		}
 		
 		public function get owners():Array
@@ -33,24 +35,44 @@ package Data.Facts
 		{
 			mOwners = value;
 		}
-		public function get xgml():String
+		
+		public function get description():String
 		{
-			return mXgml;
+			return mDescription;
 		}
 		
-		public function set xgml(value:String):void
+		public function set description(value:String):void
 		{
-			mXgml = value;
+			mDescription = value;
 		}
 		
-		public function get requirements():Array
+		public function get id():int
 		{
-			return mRequirements;
+			return mId;
 		}
 		
-		public function set requirements(value:Array):void
+		public function set id(value:int):void
 		{
-			mRequirements = value;
+			mId = value;
+		}
+		
+		public function parse(data:Object):void
+		{
+			if(!data)
+			{
+				id = 0;
+				mDescription = "";
+				mOwners = null;
+				mXgml = "";
+			}
+			else
+			{
+				id = int(data.id);
+				mDescription = String(data.description);
+				mOwners = (data.owners) as Array;
+				mXgml = String(data.xgmlId);
+			}
+			
 		}
 	}
 }

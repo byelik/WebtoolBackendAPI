@@ -7,6 +7,7 @@ package HttpService
 	import flash.net.URLRequest;
 	
 	import mx.controls.Alert;
+	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.http.HTTPService;
 	
@@ -15,55 +16,50 @@ package HttpService
 	public class HttpServiceManager
 	{
 		
-		private static var mJsonResults:Object;
-		public static var httpService:HTTPService;
+		private var mJsonResults:Object;
+		private var mHttpServiceManager:HTTPService;
 		public static var HTTP_URL:String;
+		private var mCallBack:Function;
 		
-		public function HttpServiceManager()
+		public function HttpServiceManager(data:String, callback:Function)
 		{
-			initialiseHttpServiceManager();
-//			stage.addEventListener(Event.ENTER_FRAME, checkResult);
+//			initialiseHttpServiceManager(data, callback);
+			mCallBack = callback;
+			mHttpServiceManager = new HTTPService();
+//			mHttpServiceManager.url = "http://192.168.0.102:8080/webtool-0.1.0/json";//HTTP_URL;
+			mHttpServiceManager.url = "http://java-popov.rhcloud.com/webtool-0.1.0/json";
+			mHttpServiceManager.method= "POST";
+			mHttpServiceManager.contentType = "application/json";
+			mHttpServiceManager.showBusyCursor = true;
+			mHttpServiceManager.addEventListener(FaultEvent.FAULT, faultHandler);
+			mHttpServiceManager.addEventListener(ResultEvent.RESULT, checkResult);
+			mHttpServiceManager.send(data);
 		}
 				
-		protected function initialiseHttpServiceManager():void
+		/*protected function initialiseHttpServiceManager(method:String, callbackFunc:Function):void
 		{
-			httpService = new HTTPService();
-			httpService.url = HTTP_URL;
-			httpService.method= "POST";
-			httpService.contentType = "application/json";
-//			httpService.send('{"jsonrpc": "2.0", "method" : "general.extractFactsFromXGML","params":[], "id":7}');
-			httpService.addEventListener(ResultEvent.RESULT, checkResult);
-			
-		}
+			mHttpServiceManager = new HTTPService();
+			mHttpServiceManager.url = "http://192.168.0.102:8080/webtool-0.1.0/json";//HTTP_URL;
+			mHttpServiceManager.method= "POST";
+			mHttpServiceManager.contentType = "application/json";
+			mHttpServiceManager.showBusyCursor = true;
+			mHttpServiceManager.addEventListener(FaultEvent.FAULT, faultHandler);
+			mHttpServiceManager.addEventListener(ResultEvent.RESULT, checkResult);
+			mHttpServiceManager.send(method);
+		}*/
 		
-		private function checkRes(event:Event):void
+		private function faultHandler(event:FaultEvent):void
 		{
-			trace("dfdhf");
-		}
-		
-		
-		public static function sendRequest(params:String):void
-		{
-			trace("kgf");
-			httpService.send(params);
-			
-		}
-		
-		private function isResult(event:ResultEvent):void
-		{
-			
+			Alert.show(event.fault.faultString, "Error", Alert.OK);
 		}
 		
 		private function checkResult(event:ResultEvent):void
 		{
-			mJsonResults = JSON.parse(event.result as String);		
-			trace(mJsonResults);
-			//return mJsonResults;
-		}
-		
-		public static function getResult():Object
-		{
-			return mJsonResults;
+			mJsonResults = JSON.parse(event.result as String);
+			if(mCallBack != null)
+			{
+				mCallBack(mJsonResults.result);
+			}
 		}
 	}
 }

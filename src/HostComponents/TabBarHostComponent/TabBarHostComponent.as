@@ -64,9 +64,8 @@ package HostComponents.TabBarHostComponent
 				case 1:
 //					DataModel.getSingleton().mHttpServiceManager.sendRequest('{"jsonrpc": "2.0", "method" : "general.extractFactsFromXGML","params":[], "id":7}');
 //					trace(DataModel.getSingleton().mHttpServiceManager);
-					HttpServiceManager.sendRequest('{"jsonrpc": "2.0", "method" : "general.extractFactsFromXGML","params":[], "id":7}');
+
 					//HttpServiceManager.getResult();
-					HttpServiceManager.httpService.addEventListener(ResultEvent.RESULT, getRes);
 					trace("Facts");
 				break;
 				case 2:
