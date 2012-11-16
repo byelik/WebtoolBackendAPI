@@ -58,7 +58,15 @@ package HttpService
 			mJsonResults = JSON.parse(event.result as String);
 			if(mCallBack != null)
 			{
-				mCallBack(mJsonResults.result);
+				if(mJsonResults.error)
+				{
+					mCallBack(mJsonResults.error);
+				}
+				else
+				{
+					mCallBack(mJsonResults.result);	
+				}
+				
 			}
 		}
 	}

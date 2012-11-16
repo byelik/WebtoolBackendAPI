@@ -84,7 +84,6 @@
 			<s:HGroup verticalAlign="middle">
 				<s:DataGrid id="mCharacterFactsList"
 							width="355" 
-							 
 							borderVisible="false"
 							dataProvider="{hostComponent.mCharacterFactItems}" 
 							editable="true"

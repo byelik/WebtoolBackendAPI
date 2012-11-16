@@ -97,8 +97,8 @@ package HostComponents.FactsHostComponent
 		public var tmpData:ArrayCollection = new ArrayCollection([{id:'geka', desc:10}, {id:'gang', desc:9}, 'g','côte','b','coté',
 																'xyz', 'f', 'e', 'D', 'ABC','Öhlund',
 																'Oehland','Zorn','Aaron','Ohlin',{id:'Aaron', desc:1}]);
-		[Bindable]
-		public var mSystemFactsList:ArrayCollection = new ArrayCollection();
+//		[Bindable]
+//		public var mSystemFactsList:ArrayCollection = new ArrayCollection();
 		
 		
 		
@@ -108,9 +108,12 @@ package HostComponents.FactsHostComponent
 		[Bindable]
 		public var mVariableItems:ArrayCollection = new ArrayCollection();
 		
+		
 		private var dataSortField:SortField;
 		private var dataSort:Sort;
 		
+		private var mSelectedSystemFacts:ArrayCollection;
+		private var mSelectedCharacterFacts:ArrayCollection;
 		
 		public function FactsHostComponent()
 		{
@@ -123,6 +126,8 @@ package HostComponents.FactsHostComponent
 			dataSortField = new SortField();
 			dataSort = new Sort();
 			sortData();
+			mSelectedSystemFacts = new ArrayCollection();
+			mSelectedCharacterFacts = new ArrayCollection();
 		}
 		
 		
@@ -173,9 +178,9 @@ package HostComponents.FactsHostComponent
 				case "mDeleteFact":
 					mDeleteFact.addEventListener(MouseEvent.CLICK, deleteFact);
 				break;
-				case "mFactsList":
+				/*case "mFactsList":
 					mFactsList.addEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, selectFact);
-				break;
+				break;*/
 			}
 		}
 		
@@ -220,9 +225,9 @@ package HostComponents.FactsHostComponent
 				case "mDeleteFact":
 					mDeleteFact.removeEventListener(MouseEvent.CLICK, deleteFact);
 					break;
-				case "mFactsList":
+				/*case "mFactsList":
 					mFactsList.removeEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, selectFact);
-				break;
+				break;*/
 			}
 		}
 		
@@ -261,11 +266,10 @@ package HostComponents.FactsHostComponent
 		 */
 		private function selectCharacter(event:IndexChangeEvent):void
 		{	
+			
+//			new HttpServiceManager('{"method":"general.getFactDetails","params":["'+event.target.selectedItem.id+'"],"jsonrpc":"2.0","id":0}', factDetailResult);
 			mAffinity.text = event.target.selectedItem.affinity;
 			mNerve.text = event.target.selectedItem.nerve;
-//			mFactsList.selectedItem = event.target.selectedItem;
-//			mAgentsList.selectedItems = mFactsList.selectedItems;
-			//var mFacts:FactsData = new FactsData();
 			for(var i:int = 0; i < mLocations.length; i++)
 			{
 				if(mCharacterList.selectedItem.locationId == mLocations[i].id)
@@ -274,7 +278,32 @@ package HostComponents.FactsHostComponent
 				}
 					
 			}
+			if(mCharacterFactItems)
+			{
+				mCharacterFactItems.removeAll();
+			}
+			for(var j:int = 0; j < mSystemFacts.length; j++)
+			{	
+				var factsOwner:Object = mSystemFacts[j]; 
+				if(!factsOwner.owners)
+				{
+					continue;
+				}
+				for(var k:int = 0; k < factsOwner.owners.length; k ++)
+				{
+					if(factsOwner.owners[k] == event.target.selectedItem.id)
+					{
+						mCharacterFactItems.addItem(factsOwner);
+					}	
+				}
+			}
 		}
+		
+		private function factDetailResult(result:Object):void
+		{
+			trace(result);
+		}
+			
 		
 		private function inputAffinityValue(event:TextEvent):void
 		{
@@ -330,86 +359,113 @@ package HostComponents.FactsHostComponent
 		
 		private function addFactOwner(event:MouseEvent):void
 		{
-			/*selectedAgents = mAgentsList.selectedItems;*/
-
-//			{"method":"facts.addFactOwner","params":[256,180],"jsonrpc":"2.0","id":38}
 			if(mFactsList.selectedItems)
 			{
-				mCharacterFactItems.addItem(mFactsList.selectedItem);
-				mSystemFactsList.removeItemAt(mFactsList.selectedIndex);
 				mAddFactOwner.enabled = false;
+//				var selectedObjects:Vector.<Object> = mFactsList.selectedItems;
+				new HttpServiceManager('{"method":"facts.addFactOwner","params":["'+mFactsList.selectedItem.id+'","'+mCharacterList.selectedItem.id+'"],"jsonrpc":"2.0","id":9}', addFactOwnerResult);
 			}
 		}
 			
+		private function addFactOwnerResult(result:Object):void
+		{
+			if(result != null)
+			{
+				//error
+			}
+			else
+			{
+				mCharacterFactItems.addItem(mFactsList.selectedItem);
+			}
+			
+		}
+		
 		
 		
 		
 		
 		private function deleteFactOwner(event:MouseEvent):void
 		{
-			//{"method":"facts.removeFactOwner","params":[256,181],"jsonrpc":"2.0","id":39}
-			/*selectedAgents = mAgentsList.selectedItems;*/
-
+			var indx:Vector.<Object> = mCharacterFactsList.selectedItems;
 			if(mCharacterFactsList.selectedItems)
 			{
-				var indx:Vector.<Object> = mCharacterFactsList.selectedItems;
-				var tmp:ArrayCollection = new ArrayCollection();
 				for(var i:int = 0; i < indx.length; i++)
 				{
-					tmp.addItem(indx[i]);
-					mCharacterFactItems.removeItemAt(mCharacterFactsList.selectedIndex);
+					mSelectedCharacterFacts.addItem(indx[i].id);
 				}
-				//mCharacterFactItems.re
-//				mSystemFactsList.addItem(mCharacterFactsList.selectedItem);
-				mSystemFactsList.addAll(tmp);
-//				mCharacterFactItems.removeItemAt(mCharacterFactsList.selectedIndex);
+				new HttpServiceManager('{"method":"facts.removeFactOwner","params":["'+mSelectedCharacterFacts+'","'+mCharacterList.selectedItem.id+'"], "jsonrpc": "2.0", "id":7}', deleteFactOwnerResult);
 				mDeleteFactOwner.enabled = false;
 			}
-			
-			
+		}
+		
+		private function deleteFactOwnerResult(result:Object):void
+		{
+			if(result !=null)
+			{
+				//error
+				Alert.show("Не удалось удалить факт персонажа", "Ошибка", Alert.OK);
+			}
+			else
+			{
+//				mCharacterFactItems.removeItemAt(mCharacterFactsList.selectedIndex);
+			}
 		}
 		
 		private function selectLocation(event:IndexChangeEvent):void
 		{
 			//select location
-			trace(event.target.selectedItem.label);
+			new HttpServiceManager('{"method":"agents.setAgentLocation","params":["'+mCharacterList.selectedItem.id+'","'+event.target.selectedItem.id+'"], "jsonrpc": "2.0", "id":7}', setAgentLocation);
+			
 		}
 
-		private function addFact(event:MouseEvent):void
+		private function setAgentLocation(result:Object):void
 		{
-//			{"method":"facts.addFact","params":[{}],"jsonrpc":"2.0","id":43}
-//			focusManager.setFocus(mFactsDescriptionArea);
-//			mFactsDescriptionArea.text = "New Fact";
-			mSystemFactsList.addItem({id:"1", description:"New Fact"});
+			trace("Result set Location: " + result);
 		}
 		
-		private var mFactId:int;
-		private function deleteFact(event:MouseEvent):void
+		private function addFact(event:MouseEvent):void
 		{
+//			focusManager.setFocus(mFactsDescriptionArea);
+//			mFactsDescriptionArea.text = "New Fact";
+//			mSystemFactsList.addItem({id:"1", description:"New Fact"});
+			new HttpServiceManager('{"method":"facts.addFact","params":[{"description":"New Fact"}],"jsonrpc":"2.0","id":9}', addFactResult);
+		}
+		
+		private function addFactResult(result:Object):void
+		{
+			if(result)
+			{
+				mSystemFacts.addItem(result);				
+			}
+
+		}
+		
+		private function deleteFact(event:MouseEvent):void
+		{	
+			var selectedObjects:Vector.<Object> = mFactsList.selectedItems;
+			if(mSelectedSystemFacts)
+			{
+				mSelectedSystemFacts.removeAll();
+			}
 			
-			mFactId = mFactsList.selectedItem.id;
-			
+			for(var i:int = 0; i < selectedObjects.length; i++)
+			{
+				mSelectedSystemFacts.addItem(selectedObjects[i].id);
+			}						
 			Alert.yesLabel = "Да";
 			Alert.noLabel = "Нет";
 			Alert.show(Const.WARRNING_DELETE_FACT, Const.TITLE_DELETE_FACT, Alert.YES | Alert.NO, this, deleteFactHandler);
 		}
 		
-		private function selectFact(event:GridItemEditorEvent):void
-		{
-			//refresh all data
-		}
-		
 		private function deleteFactHandler(event:CloseEvent):void
-		{
-//			trace(event.detail);
-//			var tmp:Vector.<Object>;
-			
+		{			
 			if(event.detail == Alert.YES)
 			{
 				trace("delete selected fact(s)");
 				if(mFactsList.selectedItems)
 				{
-					new HttpServiceManager('{"method":"facts.removeFact","params":["260","257"],"jsonrpc":"2.0","id":0}', null);
+					new HttpServiceManager('{"method":"facts.removeFact","params":["'+mSelectedSystemFacts+'"],"jsonrpc":"2.0","id":0}', deleteFactResult);
+//					new HttpServiceManager('{"method":"facts.removeFact","params":["258","265"],"jsonrpc":"2.0","id":0}', deleteSystemFactResult);
 //					mSystemFactsList.removeItemAt(mFactsList.selectedIndex);
 					mDeleteFact.enabled = false;
 					mAddFactOwner.enabled = false;
@@ -417,9 +473,23 @@ package HostComponents.FactsHostComponent
 			}
 			else
 			{
-				trace("close wnd");
+				trace("just close wnd ");
 			}
 				
+		}
+		
+		private function deleteFactResult(result:Object):void
+		{
+			trace(result);
+			if(result)
+			{
+//				Alert.show("Code: " + result.code + "\n\Message: " + result.message, "Error", Alert.OK);
+				Alert.show("Ошибка при удалении", "Ошибка", Alert.OK);
+			}
+			if(result == null)
+			{
+				new HttpServiceManager('{"method":"facts.getFacts","params":[], "jsonrpc": "2.0", "id":7}', DataModel.getSingleton().parseFactsData);
+			}
 		}
 		
 		private function deleteVariableHandler(event:CloseEvent):void

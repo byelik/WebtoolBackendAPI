@@ -44,11 +44,15 @@ package Data
 		public function parseFactsData(data:Object):void
 		{
 			var facts:FactsData;
+			if(mFactsList)
+			{
+				mFactsList.removeAll();
+			}
 			for each(var item:Object in data)
 			{
 				facts = FactsData.getNewInstance();
 				facts.parse(item);
-				DataModel.getSingleton().mFactsList.addItem(facts);
+				mFactsList.addItem(facts);
 			}
 		}
 		
@@ -57,38 +61,44 @@ package Data
 			var beats:BeatsData;
 //			for each(var item:Object in data)
 //			{
+			if(mBeatsList)
+			{
+				mBeatsList.removeAll();
+			}
 			beats = BeatsData.getNewInstance();
 			beats.parse(data);
-			DataModel.getSingleton().mBeatsList.addItem(beats);
+			mBeatsList.addItem(beats);
 //			}
 		}
 		
 		public function parseAgentsData(data:Object):void
 		{
 			var agents:AgentsData;
+			if(mAgentsList)
+			{
+				mAgentsList.removeAll();
+			}
 			for each(var item:Object in data)
 			{
 				agents = AgentsData.getNewInstance();
 				agents.parse(item);
-				DataModel.getSingleton().mAgentsList.addItem(agents);
+				mAgentsList.addItem(agents);
 			}
 		}
 		
 		public function parseLocationsData(data:Object):void
 		{
 			var locations:LocationsData;
+			if(mLocationsList)
+			{
+				mLocationsList.removeAll();
+			}
 			for each(var item:Object in data)
 			{
 				locations = LocationsData.getNewInstance();
 				locations.parse(item);
-				DataModel.getSingleton().mLocationsList.addItem(locations);
+				mLocationsList.addItem(locations);
 			}
-//			var dataSortField:SortField = new SortField();
-//			var dataSort:Sort = new Sort();
-//			dataSortField.name = "name";
-//			dataSort.fields = [dataSortField];
-//			DataModel.getSingleton().mLocationsList.sort = dataSort;
-//			DataModel.getSingleton().mLocationsList.refresh();
 		}
 	}
 }
