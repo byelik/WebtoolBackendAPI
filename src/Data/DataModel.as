@@ -59,16 +59,16 @@ package Data
 		public function parseBeatsData(data:Object):void
 		{
 			var beats:BeatsData;
-//			for each(var item:Object in data)
-//			{
 			if(mBeatsList)
 			{
 				mBeatsList.removeAll();
 			}
-			beats = BeatsData.getNewInstance();
-			beats.parse(data);
-			mBeatsList.addItem(beats);
-//			}
+			for each(var item:Object in data)
+			{
+				beats = BeatsData.getNewInstance();
+				beats.parse(item);
+				mBeatsList.addItem(beats);
+			}
 		}
 		
 		public function parseAgentsData(data:Object):void

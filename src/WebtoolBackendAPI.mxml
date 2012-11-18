@@ -49,6 +49,8 @@
 				new HttpServiceManager('{"method":"locations.getLocations","params":[],"jsonrpc":"2.0","id":0}', DataModel.getSingleton().parseLocationsData);
 				new HttpServiceManager('{"method":"facts.getFacts","params":[], "jsonrpc": "2.0", "id":7}', DataModel.getSingleton().parseFactsData);
 				
+				new HttpServiceManager('{"method":"beats.getBeats","params":[], "jsonrpc": "2.0", "id":2}', DataModel.getSingleton().parseBeatsData);
+//				{"method":"general.getBeatsGraphSON","params":[],"jsonrpc":"2.0","id":2}
 //				new HttpServiceManager('{"jsonrpc": "2.0", "method" : "general.extractFactsFromXGML","params":[], "id":7}', DataModel.getSingleton().parseFactsData);
 				
 			}

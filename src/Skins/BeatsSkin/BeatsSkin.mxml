@@ -14,8 +14,10 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import mx.events.FlexEvent;
+			import Data.DataModel;
+			
 			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
 			import mx.events.ListEvent;
 			
 					
@@ -32,6 +34,7 @@
 				{
 					mBeatsTree.expandItem(item, !mBeatsTree.isItemOpen(item), true);
 				}
+				mBeatDescriptionField.text = mBeatsTree.selectedItem.description;
 			}
 			
 			protected function renameItem(event:ListEvent):void
@@ -90,7 +93,7 @@
 									 width="100%"
 									 height="100%" 
 									 allowMultipleSelection="true"
-									 labelField="@label"
+									 labelField="description"
 									 doubleClickEnabled="true"
 									 dragEnabled="true"
 									 dragMoveEnabled="true"
@@ -102,9 +105,10 @@
 									 borderVisible="false"
 									 itemClick="mBeatsTree_itemClickHandler(event)"
 									 contentBackgroundAlpha="0"
-									 verticalScrollPolicy="auto">
+									 verticalScrollPolicy="auto"
+									 dataProvider="{DataModel.getSingleton().mBeatsList}">
 								
-								<mx:XMLListCollection id="MailBox">
+								<!--<mx:XMLListCollection id="MailBox">
 									<fx:XMLList>
 										<Description label="Mail">
 											<folder label="INBOX"/>
@@ -187,9 +191,9 @@
 											<folder label="Trash" />
 										</Description>
 									</fx:XMLList>
-								</mx:XMLListCollection>
+								</mx:XMLListCollection>-->
 							</mx:Tree>
-					
+						<!--<s:List id="mBeatsList" dataProvider="{DataModel.getSingleton().mBeatsList}" labelField="id"/>-->
 					</s:HGroup>
 				</s:BorderContainer>
 				<s:ToggleButton id="mTreeStateBtn"
@@ -199,32 +203,39 @@
 								   width="100%"
 								   height="100%">
 					<mx:Canvas label="Canvas 2" width="100%" height="100%" backgroundColor="#323232" >
-						
-						<mx:Panel title="BubbleChart Control Example" height="100%" width="100%">
-							<s:HGroup width="100%" horizontalAlign="left">
-							</s:HGroup>
-							<s:Button/>
-							<mx:BubbleChart id="bubblechart" 
-											height="100%" width="100%"
-											paddingRight="5" paddingLeft="5" 
-											showDataTips="false" maxRadius="20"
-											dataProvider="{expensesAC}"
-											showAllDataTips="false"
-											dragEnabled="true"
-											dragMoveEnabled="true"
-											dropEnabled="true"
-											selectionMode="multiple">
-								<mx:series>
-									<mx:BubbleSeries 
-										displayName="Profit/Expenses/Amount" 
-										xField="Profit" 
-										yField="Expenses" 
-										radiusField="Amount"
-										fill="{sc1}"
-										stroke="{stroke1}"/>
-								</mx:series>            
-							</mx:BubbleChart>            
-							<mx:Legend dataProvider="{bubblechart}"/>            
+						<mx:Panel title="BubbleChart Control Example" height="100%" width="100%">	
+							<s:Group width="100%">
+								
+								<mx:BubbleChart id="bubblechart" 
+												height="100%" width="100%"
+												paddingRight="5" paddingLeft="5" 
+												showDataTips="false" maxRadius="20"
+												dataProvider="{expensesAC}"
+												showAllDataTips="false"
+												dragEnabled="true"
+												dragMoveEnabled="true"
+												dropEnabled="true"
+												selectionMode="multiple">
+									<mx:series>
+										<mx:BubbleSeries 
+											displayName="Profit/Expenses/Amount" 
+											xField="Profit" 
+											yField="Expenses" 
+											radiusField="Amount"
+											fill="{sc1}"
+											stroke="{stroke1}"/>
+									</mx:series>            
+								</mx:BubbleChart>            
+								<mx:Legend dataProvider="{bubblechart}"/>
+								<s:HGroup width="100%" horizontalAlign="right">
+									<s:VGroup>
+										<s:Button label="-"/>
+										<s:Button label="+"/>
+										<s:Button label="Add beat"/>
+									</s:VGroup>
+								</s:HGroup>
+							</s:Group>
+							            
 						</mx:Panel>
 					</mx:Canvas>	
 				</s:BorderContainer>
@@ -291,9 +302,8 @@
 						</s:HGroup>
 					</s:HGroup>
 					<s:Label text="Activities:"/>
-					<s:TextArea id="mActivitiesField"
-								prompt="Enter activities"
-								width="100%"/>
+					<s:List id="mActivitiesField"
+								width="100%" dataProvider="{DataModel.getSingleton().mBeatsList}" labelField="activities"/>
 					<s:HGroup width="100%"
 							  horizontalAlign="center">
 						<s:Button id="mSave"

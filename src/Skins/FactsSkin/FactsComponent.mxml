@@ -146,7 +146,8 @@
 								resizableColumns="false" 
 								selectionMode="multipleRows"
 								sortableColumns="true"
-								requestedRowCount="8">
+								requestedRowCount="8"
+								rowHeight="25">
 						<s:columns>
 							<s:ArrayList>
 								<s:GridColumn dataField="id" headerText="id" width="50"/>

@@ -3,6 +3,8 @@ package HostComponents.BeatsHostComponent
 	
 	import Constants.Const;
 	
+	import Data.DataModel;
+	
 	import Manager.AlertManager;
 	
 	import flash.display.DisplayObject;
@@ -30,6 +32,7 @@ package HostComponents.BeatsHostComponent
 	import spark.components.Button;
 	import spark.components.DataGrid;
 	import spark.components.DropDownList;
+	import spark.components.List;
 	import spark.components.TextArea;
 	import spark.components.TextInput;
 	import spark.components.ToggleButton;
@@ -67,7 +70,7 @@ package HostComponents.BeatsHostComponent
 		public var mPriorityField:TextInput;
 		
 		[SkinPart(required="true")]
-		public var mActivitiesField:TextArea;
+		public var mActivitiesField:List;
 		
 		/*[SkinPart(required="true")]
 		public var mPreconditionsDescriptionField:TextArea;*/
@@ -184,6 +187,8 @@ package HostComponents.BeatsHostComponent
 //			treeContextMenu.addEventListener(ContextMenuEvent.MENU_SELECT, getSelectedElement);
 			
 //			mSave.contextMenu = treeContextMenu;
+			var tmp:ArrayCollection = DataModel.getSingleton().mBeatsList; 
+			trace(tmp);
 		}
 		
 		override protected function getCurrentSkinState():String
