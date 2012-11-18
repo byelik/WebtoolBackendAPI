@@ -19,6 +19,8 @@ package HostComponents.FactsHostComponent
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
 	import mx.events.CloseEvent;
+	import mx.events.CollectionEvent;
+	import mx.events.DataGridEvent;
 	import mx.events.ItemClickEvent;
 	import mx.managers.IFocusManagerComponent;
 	
@@ -34,6 +36,7 @@ package HostComponents.FactsHostComponent
 	import spark.events.GridItemEditorEvent;
 	import spark.events.GridSelectionEvent;
 	import spark.events.IndexChangeEvent;
+	import spark.events.TextOperationEvent;
 	
 	
 	
@@ -114,6 +117,10 @@ package HostComponents.FactsHostComponent
 		
 		private var mSelectedSystemFacts:ArrayCollection;
 		private var mSelectedCharacterFacts:ArrayCollection;
+		private var mSelectedCharacterFactsItemIndex:Vector.<Object>;
+		
+		
+		private var indexNewElement:int 
 		
 		public function FactsHostComponent()
 		{
@@ -146,10 +153,10 @@ package HostComponents.FactsHostComponent
 					mCharacterList.addEventListener(Event.CHANGE, selectCharacter);
 				break;
 				case "mAffinity":
-					mAffinity.addEventListener(TextEvent.TEXT_INPUT, inputAffinityValue);
+					mAffinity.addEventListener(TextOperationEvent.CHANGE, inputAffinityValue);
 				break;
 				case "mNerve":
-					mNerve.addEventListener(TextEvent.TEXT_INPUT, inputNerveValue);
+					mNerve.addEventListener(TextOperationEvent.CHANGE, inputNerveValue);
 				break;
 				case "mAddVariable":
 					mAddVariable.addEventListener(MouseEvent.CLICK, addVariable);
@@ -158,11 +165,11 @@ package HostComponents.FactsHostComponent
 					mDeleteVariable.addEventListener(MouseEvent.CLICK, deleteVariable);
 				break;
 				case "mVariableList":
-					mVariableList.addEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, selectVariable);
+					mVariableList.addEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, finishEdirVariableDescription);
 				break
-				case "mCharacterFactsList":
+				/*case "mCharacterFactsList":
 					mCharacterFactsList.addEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, selectCharacterFact);
-				break;
+				break;*/
 				case "mAddFactOwner":
 					mAddFactOwner.addEventListener(MouseEvent.CLICK, addFactOwner);
 				break
@@ -178,9 +185,9 @@ package HostComponents.FactsHostComponent
 				case "mDeleteFact":
 					mDeleteFact.addEventListener(MouseEvent.CLICK, deleteFact);
 				break;
-				/*case "mFactsList":
-					mFactsList.addEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, selectFact);
-				break;*/
+				case "mFactsList":
+					mFactsList.addEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, finishEditSystemFactDescription);
+				break;
 			}
 		}
 		
@@ -191,12 +198,12 @@ package HostComponents.FactsHostComponent
 			{
 				case "mCharacterList":
 					mCharacterList.removeEventListener(Event.CHANGE, selectCharacter);
-					break;
+				break;
 				case "mAffinity":
-					mAffinity.addEventListener(Event.CHANGE, inputAffinityValue);
+					mAffinity.removeEventListener(TextOperationEvent.CHANGE, inputAffinityValue);
 					break;
 				case "mNerve":
-					mNerve.removeEventListener(Event.CHANGE, inputNerveValue);
+					mNerve.removeEventListener(TextOperationEvent.CHANGE, inputNerveValue);
 					break;
 				case "mAddVariable":
 					mAddVariable.removeEventListener(MouseEvent.CLICK, addVariable);
@@ -205,11 +212,11 @@ package HostComponents.FactsHostComponent
 					mDeleteVariable.removeEventListener(MouseEvent.CLICK, deleteVariable);
 					break;
 				case "mVariableList":
-					mVariableList.removeEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, selectVariable);
+					mVariableList.removeEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, finishEdirVariableDescription);
 					break
-				case "mCharacterFactsList":
+				/*case "mCharacterFactsList":
 					mCharacterFactsList.removeEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, selectCharacterFact);
-					break;
+				break;*/
 				case "mAddFactOwner":
 					mAddFactOwner.removeEventListener(MouseEvent.CLICK, addFactOwner);
 					break
@@ -225,11 +232,12 @@ package HostComponents.FactsHostComponent
 				case "mDeleteFact":
 					mDeleteFact.removeEventListener(MouseEvent.CLICK, deleteFact);
 					break;
-				/*case "mFactsList":
-					mFactsList.removeEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, selectFact);
-				break;*/
+				case "mFactsList":
+					mFactsList.removeEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, finishEditSystemFactDescription);
+				break;
 			}
 		}
+		
 		
 		private function sortData():void
 		{		
@@ -266,6 +274,9 @@ package HostComponents.FactsHostComponent
 		 */
 		private function selectCharacter(event:IndexChangeEvent):void
 		{	
+			new HttpServiceManager('{"method":"locations.getLocations","params":[],"jsonrpc":"2.0","id":0}', DataModel.getSingleton().parseLocationsData);
+			new HttpServiceManager('{"method":"facts.getFacts","params":[], "jsonrpc": "2.0", "id":7}', DataModel.getSingleton().parseFactsData);
+			new HttpServiceManager('{"method":"agents.getAgents","params":[],"jsonrpc":"2.0","id":0}', DataModel.getSingleton().parseAgentsData);
 			
 //			new HttpServiceManager('{"method":"general.getFactDetails","params":["'+event.target.selectedItem.id+'"],"jsonrpc":"2.0","id":0}', factDetailResult);
 			mAffinity.text = event.target.selectedItem.affinity;
@@ -305,7 +316,7 @@ package HostComponents.FactsHostComponent
 		}
 			
 		
-		private function inputAffinityValue(event:TextEvent):void
+		private function inputAffinityValue(event:TextOperationEvent):void
 		{
 //			trace(mAffinity.text);
 			firstTextElement = mAffinity.text.substring(0,1);
@@ -316,9 +327,14 @@ package HostComponents.FactsHostComponent
 			}
 		}
 		
-		private function inputNerveValue(event:TextEvent):void
+		private function inputNerveValue(event:TextOperationEvent):void
 		{
-			
+			firstTextElement = mNerve.text.substring(0,1);
+			if(checkValue(firstTextElement, mNerve))
+			{
+				Alert.show(Const.ERROR_INPUT_NERVE_VALUE, Const.TITLE_ERROR_WINDOW, Alert.OK, null, alertHandler);
+				mComponent = mNerve;
+			}	
 		}
 		
 		private function addVariable(event:MouseEvent):void
@@ -326,9 +342,22 @@ package HostComponents.FactsHostComponent
 			//add variable and refresh all data
 			
 			mVariableItems.addItem({id:"New Variable", description: ""}); 
-//			trace(mVariableList);
+			mSystemFacts.addEventListener(CollectionEvent.COLLECTION_CHANGE, getIndex);
 		}
 		
+		private function addVariableResult(result:Object):void
+		{
+			if(result == null)
+			{
+				//good
+				mVariableList.startItemEditorSession(indexNewElement, 1)
+			}
+			else
+			{
+				//error...
+			}
+		}
+			
 		
 		private function deleteVariable(event:MouseEvent):void
 		{
@@ -341,20 +370,29 @@ package HostComponents.FactsHostComponent
 			}
 		}
 		
-		private function selectVariable(event:GridItemEditorEvent):void
+		private function finishEdirVariableDescription(event:GridItemEditorEvent):void
 		{
+			var variableDescription:String = mVariableItems.getItemAt(event.rowIndex).description; 
 			//edit variable ENTER(save data and refresh all list)
 		}
 		
-		/*private function editFact(event:GridItemEditorEvent):void
+		private function editVariableResult(result:Object):void
 		{
-			//save data in the system and refresh in all lists 
-		}*/
+			if(result == null)
+			{
+				//good
+			}
+			else
+			{
+				//error...
+			}
+		}
 		
-		private function selectCharacterFact(event:GridItemEditorEvent):void
+		
+		/*private function selectCharacterFact(event:GridItemEditorEvent):void
 		{
 			trace(mCharacterFactsList.selectedIndex);	
-		}
+		}*/
 		
 		
 		private function addFactOwner(event:MouseEvent):void
@@ -383,10 +421,21 @@ package HostComponents.FactsHostComponent
 		
 		
 		
-		
+		 
 		private function deleteFactOwner(event:MouseEvent):void
 		{
 			var indx:Vector.<Object> = mCharacterFactsList.selectedItems;
+			if(mSelectedCharacterFactsItemIndex)
+			{
+				mSelectedCharacterFactsItemIndex = null;
+			}
+			mSelectedCharacterFactsItemIndex = mCharacterFactsList.selectedItems;
+			
+			if(mSelectedCharacterFacts)
+			{
+				mSelectedCharacterFacts.removeAll();
+			}
+				
 			if(mCharacterFactsList.selectedItems)
 			{
 				for(var i:int = 0; i < indx.length; i++)
@@ -407,6 +456,11 @@ package HostComponents.FactsHostComponent
 			}
 			else
 			{
+				for(var i:int = 0; i < mSelectedCharacterFactsItemIndex.length; i++)
+				{
+					mCharacterFactItems.removeItemAt(mCharacterFactsList.selectedIndex);
+				}
+//				mCharacterFactItems.removeItemAt(mSelectedCharacterFactsItemIndex);
 //				mCharacterFactItems.removeItemAt(mCharacterFactsList.selectedIndex);
 			}
 		}
@@ -429,13 +483,15 @@ package HostComponents.FactsHostComponent
 //			mFactsDescriptionArea.text = "New Fact";
 //			mSystemFactsList.addItem({id:"1", description:"New Fact"});
 			new HttpServiceManager('{"method":"facts.addFact","params":[{"description":"New Fact"}],"jsonrpc":"2.0","id":9}', addFactResult);
+			mSystemFacts.addEventListener(CollectionEvent.COLLECTION_CHANGE, getIndex);
 		}
 		
 		private function addFactResult(result:Object):void
 		{
 			if(result)
 			{
-				mSystemFacts.addItem(result);				
+				mSystemFacts.addItem(result);
+				mFactsList.startItemEditorSession(indexNewElement, 1)
 			}
 
 		}
@@ -492,6 +548,24 @@ package HostComponents.FactsHostComponent
 			}
 		}
 		
+		private function finishEditSystemFactDescription(event:GridItemEditorEvent):void
+		{
+			var factDescription:String = mSystemFacts.getItemAt(event.rowIndex).description;
+			trace(factDescription);
+			//send request callback = editFactDescriptionResult;
+		}
+		
+		private function editFactDescriptionResult(result:Object):void
+		{
+			if(result == null)
+			{
+				//good
+			}
+			{
+				//error
+			}
+		}
+		
 		private function deleteVariableHandler(event:CloseEvent):void
 		{
 			//			trace(event.detail);
@@ -526,6 +600,11 @@ package HostComponents.FactsHostComponent
 			{
 				focusManager.setFocus(mComponent);
 			}
+		}
+		
+		private function getIndex(event:CollectionEvent):void
+		{
+			indexNewElement = event.location;
 		}
 	}
 }

@@ -19,7 +19,7 @@
 	</fx:Script>
 	
 	<s:HGroup>
-		
+		<!--requireSelection="true"-->
 		<!-- First VGrop column-->
 		<s:VGroup>
 			<s:HGroup verticalAlign="middle">
@@ -28,7 +28,7 @@
 								labelField="name"
 								width="300"
 								dataProvider="{hostComponent.mAgents}"
-								requireSelection="true"/>				
+								/>				
 			</s:HGroup>
 			<s:HGroup verticalAlign="middle" width="100%">
 				<s:Label width="54" text="Affinity"/>
@@ -36,7 +36,8 @@
 							 maxChars="3"
 							 restrict="0-9"
 							 width="50"
-							 text="0"/>
+							 text="0"
+							 enabled="{mCharacterList.selectedItem}"/>
 				<s:HGroup width="100%" horizontalAlign="right">
 					<s:Label text="Nerve"
 							 left="350"/>	
@@ -48,7 +49,8 @@
 								 maxChars="3"
 								 restrict="0-9"
 								 width="50"
-								 text="0"/>
+								 text="0"
+								 enabled="{mCharacterList.selectedItem}"/>
 				</s:HGroup>
 				
 			</s:HGroup>
@@ -90,7 +92,7 @@
 							resizableColumns="false" 
 							selectionMode="multipleRows"
 							sortableColumns="true"
-							requestedRowCount="3">
+							requestedRowCount="3" rowHeight="25">
 					<s:columns>
 						<s:ArrayList>
 							<s:GridColumn dataField="id" headerText="id"/>
