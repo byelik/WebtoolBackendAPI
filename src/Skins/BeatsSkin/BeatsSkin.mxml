@@ -16,10 +16,15 @@
 		<![CDATA[
 			import Data.DataModel;
 			
+			import mx.charts.events.ChartItemEvent;
 			import mx.collections.ArrayCollection;
+			import mx.collections.IList;
 			import mx.events.FlexEvent;
 			import mx.events.ListEvent;
 			
+			import spark.events.IndexChangeEvent;
+			
+			private var zooming:Boolean;
 					
 			protected function skin1_creationCompleteHandler(event:FlexEvent):void
 			{
@@ -27,6 +32,8 @@
 				mBeatsTree.contextMenu = hostComponent.treeContextMenu;
 			}
 			
+			[Bindable]
+			private var mBeatsListData:ArrayCollection = DataModel.getSingleton().mBeatsList;
 			protected function mBeatsTree_itemClickHandler(event:ListEvent):void
 			{
 				var item:Object = Tree(event.currentTarget).selectedItem;
@@ -35,6 +42,55 @@
 					mBeatsTree.expandItem(item, !mBeatsTree.isItemOpen(item), true);
 				}
 				mBeatDescriptionField.text = mBeatsTree.selectedItem.description;
+				mPriorityField.text = mBeatsTree.selectedItem.exclusiveBeatPriority;
+				mTypeList.selectedItem = mBeatsTree.selectedItem.type;
+
+				mActivitiesList.dataProvider = mBeatsTree.selectedItem.activities;
+
+				for each(var itm:Object in mBeatsTree.selectedItem.preconditions)
+				{
+			   		mAffinityMinField.text = itm.affinityMin;
+					mAffinityMaxField.text = itm.affinityMax;
+					mNerveMinField.text = itm.nerveMin;
+					mNerveMaxField.text = itm.nerveMax;
+					mBeatsCompletedField.text = itm.beatsCompleted;
+				}
+				if(mBeatsTree.selectedItem.preconditions.length == 0)
+				{
+					mAffinityMinField.text = "0";
+					mAffinityMaxField.text = "100";
+					mNerveMinField.text = "0";
+					mNerveMaxField.text = "100";
+					mBeatsCompletedField.text = "";
+				}
+//				mBeatTheme.selectedItem = mBeatsTree.selectedItem.xgmlTheme;
+				for(var i:int = 0; i < mBeatsListData.length; i ++)
+				{
+					if(mBeatsTree.selectedItem.xgmlTheme == mBeatsListData[i].xgmlTheme)
+					{
+						mBeatTheme.selectedItem = mBeatsListData[i];
+					}
+				}
+					
+				for(var k:int = 0; k < DataModel.getSingleton().mLocationsList.length; k++)
+				{
+					if(mBeatsTree.selectedItem.locationId == DataModel.getSingleton().mLocationsList[k].id)
+					{
+						mLocationList.selectedItem = DataModel.getSingleton().mLocationsList[k];
+					}
+					
+				}
+				var mAgentsData:ArrayCollection = DataModel.getSingleton().mAgentsList;
+				for(var j:int = 0; j <  mAgentsData.length; j ++)
+				{
+					if(mBeatsTree.selectedItem.agentId == mAgentsData[j].id)
+					{
+						mChooseAgentList.selectedItem = mAgentsData[j];
+					}
+				}
+				
+//				trace(mBeatsTree.selectedItem.activities);
+				
 			}
 			
 			protected function renameItem(event:ListEvent):void
@@ -52,18 +108,35 @@
 			
 			[Bindable]
 			private var expensesAC:ArrayCollection = new ArrayCollection( [
-				{ Month: "Jan", Profit: 2000, Expenses: 1500, Amount: 450 },
-				{ Month: "Feb", Profit: 1000, Expenses: 200, Amount: 600 },
-				{ Month: "Mar", Profit: 1500, Expenses: 500, Amount: 300 },
-				{ Month: "Apr", Profit: 1800, Expenses: 1200, Amount: 900 },
-				{ Month: "May", Profit: 2400, Expenses: 575, Amount: 500 } ]);
+				{ Month: "beat1", Profit: 2000, Expenses: 2500, Amount: 450 },
+				{ Month: "beat2", Profit: 1000, Expenses: 200, Amount: 450 },
+				{ Month: "beat1", Profit: 1500, Expenses: 500, Amount: 450 },
+				{ Month: "beat4", Profit: 1800, Expenses: 1200, Amount: 450 },
+				{ Month: "beat5", Profit: 2400, Expenses: 575, Amount: 450 } ]);
+			
+			protected function combobox1_changeHandler(event:IndexChangeEvent):void
+			{
+				trace(event);
+			}
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				vaxis.minimum -= 500;
+				haxis.minimum -= 500;
+			}
+			
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+				vaxis.maximum += 500;
+				haxis.maximum += 500;
+			}
 			
 		]]>
 	</fx:Script>
 	
 	<fx:Declarations>
-		<s:SolidColor id="sc1" color="blue" alpha=".3"/>
-		<s:SolidColorStroke id="stroke1" color="blue" weight="1"/>
+		<s:SolidColor id="sc1" color="yellow" alpha="1"/>
+		<s:SolidColorStroke id="stroke1" color="black" weight="2"/>
 		
 		<s:Resize id="showBeatsTree" target="{mTreeBorderContainer}" widthTo="200" duration="500"/>
 		<s:Resize id="hideBeatsTree" target="{mTreeBorderContainer}" widthTo="0" duration="500"/>
@@ -76,6 +149,8 @@
 				<s:TextInput id="mSearchField"
 							 width="300"
 							 prompt="Search"/>
+				<s:ComboBox width="361" change="combobox1_changeHandler(event)"
+							dataProvider="{hostComponent.mUserFacts}" labelField="id"/>
 				<s:Button id="mRefreshSearch"
 						  label="Refresh"/>
 							 
@@ -197,41 +272,53 @@
 					</s:HGroup>
 				</s:BorderContainer>
 				<s:ToggleButton id="mTreeStateBtn"
-								skinClass="Skins.SwitchButtonSkin.SwitchToggleButtonSkin"
-								/>
+								skinClass="Skins.SwitchButtonSkin.SwitchToggleButtonSkin"/>
 				<s:BorderContainer id="mBeatsGraphBorderContainer"
 								   width="100%"
 								   height="100%">
-					<mx:Canvas label="Canvas 2" width="100%" height="100%" backgroundColor="#323232" >
-						<mx:Panel title="BubbleChart Control Example" height="100%" width="100%">	
+					<mx:Canvas label="Canvas 2" width="100%" height="100%" backgroundColor="#323232"> 
+						<mx:Panel height="100%" width="100%">	
 							<s:Group width="100%">
 								
 								<mx:BubbleChart id="bubblechart" 
 												height="100%" width="100%"
 												paddingRight="5" paddingLeft="5" 
-												showDataTips="false" maxRadius="20"
+												showDataTips="false"
+												maxRadius="20"
 												dataProvider="{expensesAC}"
 												showAllDataTips="false"
 												dragEnabled="true"
 												dragMoveEnabled="true"
 												dropEnabled="true"
 												selectionMode="multiple">
+									
+									
+									<!--ZOOM-->
+									<mx:horizontalAxis>
+										<mx:LinearAxis id="haxis"/>
+									</mx:horizontalAxis>
+									
+									<mx:verticalAxis>
+										<mx:LinearAxis id="vaxis"/>
+									</mx:verticalAxis>
+									
 									<mx:series>
 										<mx:BubbleSeries 
-											displayName="Profit/Expenses/Amount" 
 											xField="Profit" 
 											yField="Expenses" 
 											radiusField="Amount"
 											fill="{sc1}"
 											stroke="{stroke1}"/>
-									</mx:series>            
+										
+									</mx:series> 
+									
 								</mx:BubbleChart>            
 								<mx:Legend dataProvider="{bubblechart}"/>
 								<s:HGroup width="100%" horizontalAlign="right">
-									<s:VGroup>
-										<s:Button label="-"/>
-										<s:Button label="+"/>
-										<s:Button label="Add beat"/>
+									<s:VGroup horizontalAlign="center">
+										<s:Button width="35" label="-" click="button1_clickHandler(event)"/>
+										<s:Button width="35" label="+" click="button2_clickHandler(event)"/>
+										<s:Button x="-6" width="80" label="Add beat"/>
 									</s:VGroup>
 								</s:HGroup>
 							</s:Group>
@@ -239,13 +326,10 @@
 						</mx:Panel>
 					</mx:Canvas>	
 				</s:BorderContainer>
-				
-						
-				
 			</s:HGroup>
 			
 			
-			<s:HGroup>
+			<s:HGroup width="100%" right="10">
 				<s:VGroup>
 					<!--<s:DropDownList id="mAgentList"
 					labelField="label"
@@ -264,7 +348,9 @@
 							<s:Label text="Agent:"/>
 							<s:DropDownList id="mChooseAgentList"
 											width="90"
-											prompt="Choose agent"/>	
+											prompt="Choose agent"
+											labelField="name"
+											dataProvider="{DataModel.getSingleton().mAgentsList}"/>	
 						</s:HGroup>
 						<s:HGroup width="100%"
 								  horizontalAlign="center"
@@ -273,9 +359,9 @@
 						</s:HGroup>
 						<s:HGroup width="100%"
 								  horizontalAlign="right">
-							<s:TextInput id="mXgmlField"
-										 width="90"
-										 prompt="Choose XGML theme"/>
+							<s:DropDownList id="mBeatTheme" x="-38" width="128"
+											dataProvider="{mBeatsListData}" labelField="xgmlTheme"
+											prompt="Choose XGML theme"/>
 						</s:HGroup>	
 					</s:HGroup>
 					
@@ -302,8 +388,8 @@
 						</s:HGroup>
 					</s:HGroup>
 					<s:Label text="Activities:"/>
-					<s:List id="mActivitiesField"
-								width="100%" dataProvider="{DataModel.getSingleton().mBeatsList}" labelField="activities"/>
+					<s:List id="mActivitiesList"
+								width="100%" labelField="activities"/>
 					<s:HGroup width="100%"
 							  horizontalAlign="center">
 						<s:Button id="mSave"
@@ -314,7 +400,7 @@
 								  width="100%"/>
 					</s:HGroup>
 				</s:VGroup>
-				<s:VGroup>
+				<s:VGroup width="100%">
 					<s:Label text="Preconditions" 
 							 fontWeight="bold" 
 							 fontSize="14" 
@@ -332,12 +418,16 @@
 						</s:HGroup>
 						<s:DropDownList id="mLocationList"
 										width="120"
-										prompt="Choose location"/>
+										prompt="Choose location"
+										labelField="name"
+										dataProvider="{DataModel.getSingleton().mLocationsList}"/>
 					</s:HGroup>
 					<s:Label text="Facts known to user:"/>
 					<s:DataGrid id="mFactsKnownToUser" 
-								width="253"
-								height="102">
+								width="300"
+								requestedRowCount="4"
+								rowHeight="25"
+								dataProvider="{hostComponent.mUserFacts}" selectionMode="multipleRows">
 						<s:columns>
 							<s:ArrayList>
 								<s:GridColumn dataField="id" headerText="id" width="30"/>
@@ -347,8 +437,9 @@
 					</s:DataGrid>
 					<s:Label text="Facts known to agent:"/>
 					<s:DataGrid id="mFactsKnownToAgent"
-								width="250"
-								height="102">
+								width="300"
+								requestedRowCount="4"
+								rowHeight="25">
 						<s:columns>
 							<s:ArrayList>
 								<s:GridColumn dataField="id" headerText="id" width="30"/>
@@ -357,7 +448,7 @@
 						</s:columns>
 					</s:DataGrid>
 				</s:VGroup>	
-				<s:VGroup height="100%">
+				<s:VGroup height="100%" width="100%">
 					<!--<s:Label text="Preconditions" 
 					fontWeight="bold" 
 					fontSize="14" 
@@ -407,8 +498,8 @@
 					</s:HGroup>
 					<s:Label text="Memory:" 
 							 textAlign="center"/>
-					<s:DataGrid id="mBeatVariableList" width="100%" height="228"
-								dataProvider="{hostComponent.mBeatVariables}">
+					<s:DataGrid id="mBeatVariableList" width="100%" requestedRowCount="10"
+								dataProvider="{hostComponent.mBeatVariables}" rowHeight="25">
 						<s:columns>
 							<s:ArrayList>
 								<s:GridColumn dataField="variable" headerText="Variable"/>

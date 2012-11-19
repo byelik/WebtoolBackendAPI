@@ -102,24 +102,20 @@ package HostComponents.FactsHostComponent
 																'Oehland','Zorn','Aaron','Ohlin',{id:'Aaron', desc:1}]);
 //		[Bindable]
 //		public var mSystemFactsList:ArrayCollection = new ArrayCollection();
-		
-		
-		
+
 		[Bindable]
 		public var mCharacterFactItems:ArrayCollection = new ArrayCollection();
 		
 		[Bindable]
 		public var mVariableItems:ArrayCollection = new ArrayCollection();
-		
-		
+				
 		private var dataSortField:SortField;
 		private var dataSort:Sort;
 		
 		private var mSelectedSystemFacts:ArrayCollection;
 		private var mSelectedCharacterFacts:ArrayCollection;
 		private var mSelectedCharacterFactsItemIndex:Vector.<Object>;
-		
-		
+
 		private var indexNewElement:int 
 		
 		public function FactsHostComponent()
@@ -551,7 +547,6 @@ package HostComponents.FactsHostComponent
 		private function finishEditSystemFactDescription(event:GridItemEditorEvent):void
 		{
 			var factDescription:String = mSystemFacts.getItemAt(event.rowIndex).description;
-			trace(factDescription);
 			//send request callback = editFactDescriptionResult;
 		}
 		

@@ -5,6 +5,8 @@ package HostComponents.BeatsHostComponent
 	
 	import Data.DataModel;
 	
+	import HttpService.HttpServiceManager;
+	
 	import Manager.AlertManager;
 	
 	import flash.display.DisplayObject;
@@ -58,7 +60,7 @@ package HostComponents.BeatsHostComponent
 		public var mChooseAgentList:DropDownList;
 		
 		[SkinPart(required="true")]
-		public var mXgmlField:TextInput;
+		public var mBeatTheme:DropDownList;
 		
 		[SkinPart(required="true")]
 		public var mLocationList:DropDownList;
@@ -70,7 +72,7 @@ package HostComponents.BeatsHostComponent
 		public var mPriorityField:TextInput;
 		
 		[SkinPart(required="true")]
-		public var mActivitiesField:List;
+		public var mActivitiesList:List;
 		
 		/*[SkinPart(required="true")]
 		public var mPreconditionsDescriptionField:TextArea;*/
@@ -142,6 +144,12 @@ package HostComponents.BeatsHostComponent
 		[Bindable]
 		public var treeContextMenu:ContextMenu;
 		
+		[Bindable]
+		public var mUserFacts:ArrayCollection;
+		
+		[Bindable]
+		public var mselectedUserFacts:Vector.<Object>;
+		
 		public function BeatsHostComponent()
 		{
 			super();
@@ -187,8 +195,10 @@ package HostComponents.BeatsHostComponent
 //			treeContextMenu.addEventListener(ContextMenuEvent.MENU_SELECT, getSelectedElement);
 			
 //			mSave.contextMenu = treeContextMenu;
-			var tmp:ArrayCollection = DataModel.getSingleton().mBeatsList; 
-			trace(tmp);
+//			var tmp:ArrayCollection = DataModel.getSingleton().mBeatsList; 
+//			trace(tmp);
+			
+			mUserFacts = DataModel.getSingleton().mFactsList;
 		}
 		
 		override protected function getCurrentSkinState():String
@@ -319,17 +329,58 @@ package HostComponents.BeatsHostComponent
 		private function saveData(event:MouseEvent):void
 		{
 			//save data...
-			checkPriorityValue();
-			checkMinAffinityValue();
-			checkMaxAffinityValue();
-			checkMinNerveValue();
-			checkMaxNerveValue();
+//			checkPriorityValue();
+//			checkMinAffinityValue();
+//			checkMaxAffinityValue();
+//			checkMinNerveValue();
+//			checkMaxNerveValue();text = "88,44"
+			var selectedUserFacts:ArrayCollection = new ArrayCollection();
+			if(mFactsKnownToUser.selectedItems)
+			{
+				for(var jj:int = 0; jj < mFactsKnownToUser.selectedItems.length; jj++)
+				{
+					selectedUserFacts.addItem(mFactsKnownToUser.selectedItems[jj].id);
+				}
+			}
+//			trace(selectedUserFacts);
+			new HttpServiceManager('{"method":"beats.updateBeat","params":[{"id":"'+mBeatsTree.selectedItem.id+'","description":"'+mBeatDescriptionField.text+'","agentId":"'+mBeatsTree.selectedItem.agentId+'","locationId":"'+mLocationList.selectedItem.id+'","type":"'+mTypeList.selectedItem+'","xgmlTheme":"'+mBeatTheme.selectedItem.xgmlTheme+'","activities":["Find(steve)","StartDialog(steve, Lets flirt with me!)","CompleteBeat(Jessica_flirt)"],"exclusiveBeatPriority":"'+mPriorityField.text+'"}],"jsonrpc":"2.0","id":21}', updateBeatResult);
+			new HttpServiceManager('{"method":"beats.updateBeatPrecondition","params":["'+mBeatsTree.selectedItem.id+'",{"description":"","factsAvailableToUser":['+selectedUserFacts+'],"factsAvailableToAgent":[],"beatsCompleted":['+mBeatsCompletedField.text+'],"affinityMin":"'+mAffinityMinField.text+'","affinityMax":"'+mAffinityMaxField.text+'","nerveMin":"'+mNerveMinField.text+'","nerveMax":"'+mNerveMaxField.text+'"}],"jsonrpc":"2.0","id":24}', updateBeatPreconditions);
 		}
 		
+		private function updateBeatResult(result:Object):void
+		{
+			if(result == null)
+			{
+				//good
+			}
+			else
+			{
+				//error
+			}
+		}
 		
+		private function updateBeatPreconditions(result:Object):void
+		{
+			if(result == null)
+			{
+				//good
+			}
+			else
+			{
+				//error
+			}
+				
+		}
 		private function deleteBeat(event:MouseEvent):void
 		{
 			//delete beat...
+			if(mFactsKnownToUser.selectedItems)
+			{
+				for(var i:int = 0; i <mFactsKnownToUser.selectedItems.length; i ++)
+				{
+					trace(mFactsKnownToUser.selectedItems[i].id );	
+				}
+			}
 		}
 		
 		private function treeStateEvent(event:MouseEvent):void
@@ -378,6 +429,7 @@ package HostComponents.BeatsHostComponent
 		private function refreshSearch(event:MouseEvent):void
 		{
 			//refresh search...
+			//close search tree... and show beats tree
 		}
 		
 		/*private function getSelectedElement(event:ContextMenuEvent):void
@@ -518,11 +570,18 @@ package HostComponents.BeatsHostComponent
 		private var beatType:String = "normal";
 		private function getBeatType():String
 		{
-			for each(var type:String in beatTypeList)
+			/*for each(var type:String in beatTypeList)
 			{
 				if(beatType == type)
 				{
 					return beatType;
+				}
+			}*/
+			for(var i:int = 0; i < beatTypeList.length; i++)
+			{
+				if(mBeatsTree.selectedItem.type == beatTypeList[i])
+				{
+					mTypeList.selectedItem = beatTypeList[i];
 				}
 			}
 			return null;
