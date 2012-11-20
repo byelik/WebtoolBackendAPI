@@ -145,7 +145,7 @@ package HostComponents.BeatsHostComponent
 		public var treeContextMenu:ContextMenu;
 		
 		[Bindable]
-		public var mUserFacts:ArrayCollection;
+		public var mFacts:ArrayCollection;
 		
 		[Bindable]
 		public var mselectedUserFacts:Vector.<Object>;
@@ -198,7 +198,7 @@ package HostComponents.BeatsHostComponent
 //			var tmp:ArrayCollection = DataModel.getSingleton().mBeatsList; 
 //			trace(tmp);
 			
-			mUserFacts = DataModel.getSingleton().mFactsList;
+			mFacts = DataModel.getSingleton().mFactsList;
 		}
 		
 		override protected function getCurrentSkinState():String
@@ -326,15 +326,25 @@ package HostComponents.BeatsHostComponent
 			//select type...
 		}
 		
+		private var isPriorityOk:Boolean;
+		private var isMinAffinityOk:Boolean;
+		private var isMaxAffinityOk:Boolean;
+		private var isMinNerveOk:Boolean;
+		private var isMaxNerveOk:Boolean;
+		
 		private function saveData(event:MouseEvent):void
 		{
 			//save data...
-//			checkPriorityValue();
-//			checkMinAffinityValue();
-//			checkMaxAffinityValue();
-//			checkMinNerveValue();
-//			checkMaxNerveValue();text = "88,44"
+			checkPriorityValue();
+			checkMinAffinityValue();
+			checkMaxAffinityValue();
+			checkMinNerveValue();
+			checkMaxNerveValue();
+			
+			trace("good");
 			var selectedUserFacts:ArrayCollection = new ArrayCollection();
+			var selectedAgentFacts:ArrayCollection = new ArrayCollection(); 
+				
 			if(mFactsKnownToUser.selectedItems)
 			{
 				for(var jj:int = 0; jj < mFactsKnownToUser.selectedItems.length; jj++)
@@ -342,9 +352,17 @@ package HostComponents.BeatsHostComponent
 					selectedUserFacts.addItem(mFactsKnownToUser.selectedItems[jj].id);
 				}
 			}
-//			trace(selectedUserFacts);
+			
+			if(mFactsKnownToAgent.selectedItems)
+			{
+				for(var k:int = 0; k < mFactsKnownToAgent.selectedItems.length; k++)
+				{
+					selectedAgentFacts.addItem(mFactsKnownToAgent.selectedItems[k].id);
+				}
+			}
+				
 			new HttpServiceManager('{"method":"beats.updateBeat","params":[{"id":"'+mBeatsTree.selectedItem.id+'","description":"'+mBeatDescriptionField.text+'","agentId":"'+mBeatsTree.selectedItem.agentId+'","locationId":"'+mLocationList.selectedItem.id+'","type":"'+mTypeList.selectedItem+'","xgmlTheme":"'+mBeatTheme.selectedItem.xgmlTheme+'","activities":["Find(steve)","StartDialog(steve, Lets flirt with me!)","CompleteBeat(Jessica_flirt)"],"exclusiveBeatPriority":"'+mPriorityField.text+'"}],"jsonrpc":"2.0","id":21}', updateBeatResult);
-			new HttpServiceManager('{"method":"beats.updateBeatPrecondition","params":["'+mBeatsTree.selectedItem.id+'",{"description":"","factsAvailableToUser":['+selectedUserFacts+'],"factsAvailableToAgent":[],"beatsCompleted":['+mBeatsCompletedField.text+'],"affinityMin":"'+mAffinityMinField.text+'","affinityMax":"'+mAffinityMaxField.text+'","nerveMin":"'+mNerveMinField.text+'","nerveMax":"'+mNerveMaxField.text+'"}],"jsonrpc":"2.0","id":24}', updateBeatPreconditions);
+			new HttpServiceManager('{"method":"beats.updateBeatPrecondition","params":["'+mBeatsTree.selectedItem.id+'",{"description":"","factsAvailableToUser":['+selectedUserFacts+'],"factsAvailableToAgent":['+selectedAgentFacts+'],"beatsCompleted":['+mBeatsCompletedField.text+'],"affinityMin":"'+mAffinityMinField.text+'","affinityMax":"'+mAffinityMaxField.text+'","nerveMin":"'+mNerveMinField.text+'","nerveMax":"'+mNerveMaxField.text+'"}],"jsonrpc":"2.0","id":24}', updateBeatPreconditions);
 		}
 		
 		private function updateBeatResult(result:Object):void
@@ -492,50 +510,55 @@ package HostComponents.BeatsHostComponent
 		private function checkPriorityValue():void
 		{
 			firstTextElement = mPriorityField.text.substring(0,1);
-			if(checkValue(firstTextElement, mPriorityField))
+			if(!checkValue(firstTextElement, mPriorityField))
 			{
 				Alert.show(Const.ERROR_INPUT_PROIRITY_VALUE, Const.TITLE_ERROR_WINDOW, Alert.OK, null, alertHandler);
 				mComponent = mPriorityField;
+				isPriorityOk = false;
 			}
 		}
 		
 		private function checkMinAffinityValue():void
 		{
 			firstTextElement = mAffinityMinField.text.substring(0,1);
-			if(checkValue(firstTextElement, mAffinityMinField))
+			if(!checkValue(firstTextElement, mAffinityMinField))
 			{
 				Alert.show(Const.ERROR_INPUT_AFFINITY_VALUE, Const.TITLE_ERROR_WINDOW, Alert.OK, null, alertHandler);
 				mComponent = mAffinityMinField;
+				isMinAffinityOk = false;
 			}
 		}
 		
 		private function checkMaxAffinityValue():void
 		{
 			firstTextElement = mAffinityMaxField.text.substring(0,1);
-			if(checkValue(firstTextElement, mAffinityMaxField))
+			if(!checkValue(firstTextElement, mAffinityMaxField))
 			{
 				Alert.show(Const.ERROR_INPUT_AFFINITY_VALUE, Const.TITLE_ERROR_WINDOW, Alert.OK, null, alertHandler);
 				mComponent = mAffinityMaxField;
+				isMaxAffinityOk = false;
 			}
 		}
 		
 		private function checkMinNerveValue():void
 		{
 			firstTextElement = mNerveMinField.text.substring(0,1);
-			if(checkValue(firstTextElement, mNerveMinField))
+			if(!checkValue(firstTextElement, mNerveMinField))
 			{
 				Alert.show(Const.ERROR_INPUT_NERVE_VALUE, Const.TITLE_ERROR_WINDOW, Alert.OK, null, alertHandler);
 				mComponent = mNerveMinField;
+				isMinNerveOk = false;
 			}	
 		}
 
 		private function checkMaxNerveValue():void
 		{
 			firstTextElement = mNerveMaxField.text.substring(0,1);
-			if(checkValue(firstTextElement, mNerveMaxField))
+			if(!checkValue(firstTextElement, mNerveMaxField))
 			{
 				Alert.show(Const.ERROR_INPUT_NERVE_VALUE, Const.TITLE_ERROR_WINDOW, Alert.OK, null, alertHandler);
 				mComponent = mNerveMaxField;
+				isMaxNerveOk = false;
 			}
 		}
 		
@@ -543,9 +566,14 @@ package HostComponents.BeatsHostComponent
 		{
 			if(parseInt(str) == 0 && txtField.text.length > 1 || parseInt(txtField.text) > Const.MAX_VALUE || txtField.text == Const.EMPTY_STRING)	
 			{
-				return true;
+				return false;
 			}
-			return false;
+			isPriorityOk = true;
+			isMinAffinityOk = true;
+			isMaxAffinityOk = true;
+			isMinNerveOk = true;
+			isMaxNerveOk = true;
+			return true;
 		}
 		
 		private function alertHandler(event:CloseEvent):void

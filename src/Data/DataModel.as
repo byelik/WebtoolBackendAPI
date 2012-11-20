@@ -43,6 +43,7 @@ package Data
 		
 		public function parseFactsData(data:Object):void
 		{
+			mFactsList.disableAutoUpdate();
 			var facts:FactsData;
 			if(mFactsList)
 			{
@@ -54,10 +55,12 @@ package Data
 				facts.parse(item);
 				mFactsList.addItem(facts);
 			}
+			mFactsList.enableAutoUpdate();
 		}
 		
 		public function parseBeatsData(data:Object):void
 		{
+			mBeatsList.disableAutoUpdate();
 			var beats:BeatsData;
 			if(mBeatsList)
 			{
@@ -69,10 +72,12 @@ package Data
 				beats.parse(item);
 				mBeatsList.addItem(beats);
 			}
+			mBeatsList.enableAutoUpdate();
 		}
 		
 		public function parseAgentsData(data:Object):void
 		{
+			mAgentsList.disableAutoUpdate();
 			var agents:AgentsData;
 			if(mAgentsList)
 			{
@@ -84,10 +89,12 @@ package Data
 				agents.parse(item);
 				mAgentsList.addItem(agents);
 			}
+			mAgentsList.enableAutoUpdate();
 		}
 		
 		public function parseLocationsData(data:Object):void
 		{
+			mLocationsList.disableAutoUpdate();
 			var locations:LocationsData;
 			if(mLocationsList)
 			{
@@ -99,6 +106,7 @@ package Data
 				locations.parse(item);
 				mLocationsList.addItem(locations);
 			}
+			mLocationsList.enableAutoUpdate();
 		}
 	}
 }

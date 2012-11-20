@@ -23,6 +23,8 @@
 			import mx.controls.Alert;
 			import mx.events.FlexEvent;
 			
+			Security.allowDomain("*");
+			
 			private var HostComponents_MenuBarHostComponent_MenuBarHostComponent_obj:HostComponents.MenuBarHostComponent.MenuBarHostComponent;
 			
 			private var HostComponents_FactsHostComponent_FactsHostComponent_obj:HostComponents.FactsHostComponent.FactsHostComponent;

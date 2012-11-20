@@ -11,8 +11,12 @@
 		<![CDATA[
 			import Data.DataModel;
 			
+			import HttpService.HttpServiceManager;
+			
+			import mx.events.FlexEvent;
 			import mx.rpc.events.ResultEvent;
 			
+			import spark.events.DropDownEvent;
 			import spark.events.GridItemEditorEvent;
 			
 		]]>
@@ -27,7 +31,7 @@
 				<s:DropDownList id="mCharacterList"
 								labelField="name"
 								width="300"
-								dataProvider="{hostComponent.mAgents}"
+								dataProvider="{hostComponent.mAgents}" 
 								/>				
 			</s:HGroup>
 			<s:HGroup verticalAlign="middle" width="100%">

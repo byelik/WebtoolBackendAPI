@@ -21,6 +21,7 @@ package HostComponents.FactsHostComponent
 	import mx.events.CloseEvent;
 	import mx.events.CollectionEvent;
 	import mx.events.DataGridEvent;
+	import mx.events.FlexEvent;
 	import mx.events.ItemClickEvent;
 	import mx.managers.IFocusManagerComponent;
 	
@@ -117,6 +118,9 @@ package HostComponents.FactsHostComponent
 		private var mSelectedCharacterFactsItemIndex:Vector.<Object>;
 
 		private var indexNewElement:int 
+		
+		private var mSelectedCharacterIndex:int;
+		private var mSelectedLocationIndex:int;
 		
 		public function FactsHostComponent()
 		{
@@ -270,21 +274,30 @@ package HostComponents.FactsHostComponent
 		 */
 		private function selectCharacter(event:IndexChangeEvent):void
 		{	
-			new HttpServiceManager('{"method":"locations.getLocations","params":[],"jsonrpc":"2.0","id":0}', DataModel.getSingleton().parseLocationsData);
-			new HttpServiceManager('{"method":"facts.getFacts","params":[], "jsonrpc": "2.0", "id":7}', DataModel.getSingleton().parseFactsData);
-			new HttpServiceManager('{"method":"agents.getAgents","params":[],"jsonrpc":"2.0","id":0}', DataModel.getSingleton().parseAgentsData);
+			getCharacterData();
+		}
+		
+		public function getCharacterData():void
+		{
+			mSelectedCharacterIndex = mCharacterList.selectedIndex;
 			
-//			new HttpServiceManager('{"method":"general.getFactDetails","params":["'+event.target.selectedItem.id+'"],"jsonrpc":"2.0","id":0}', factDetailResult);
-			mAffinity.text = event.target.selectedItem.affinity;
-			mNerve.text = event.target.selectedItem.nerve;
+			new HttpServiceManager('{"method":"locations.getLocations","params":[],"jsonrpc":"2.0","id":0}', parseLocationsData);
+			new HttpServiceManager('{"method":"facts.getFacts","params":[], "jsonrpc": "2.0", "id":7}', parseFactsData);
+			new HttpServiceManager('{"method":"agents.getAgents","params":[],"jsonrpc":"2.0","id":0}', parseAgentsData);
+			
+			//			new HttpServiceManager('{"method":"general.getFactDetails","params":["'+event.target.selectedItem.id+'"],"jsonrpc":"2.0","id":0}', factDetailResult);
+			mAffinity.text = mCharacterList.selectedItem.affinity;
+			mNerve.text = mCharacterList.selectedItem.nerve;
 			for(var i:int = 0; i < mLocations.length; i++)
 			{
 				if(mCharacterList.selectedItem.locationId == mLocations[i].id)
 				{
 					mLocationList.selectedItem = mLocations[i];
+					mSelectedLocationIndex = i;
 				}
-					
+				
 			}
+			
 			if(mCharacterFactItems)
 			{
 				mCharacterFactItems.removeAll();
@@ -298,12 +311,34 @@ package HostComponents.FactsHostComponent
 				}
 				for(var k:int = 0; k < factsOwner.owners.length; k ++)
 				{
-					if(factsOwner.owners[k] == event.target.selectedItem.id)
+					if(factsOwner.owners[k] == mCharacterList.selectedItem.id)
 					{
 						mCharacterFactItems.addItem(factsOwner);
 					}	
 				}
-			}
+			}	
+		}
+		
+		private function parseLocationsData(data:Object):void
+		{
+			DataModel.getSingleton().parseLocationsData(data);
+			mCharacterList.selectedIndex = mSelectedCharacterIndex;
+			mLocationList.selectedIndex = mSelectedLocationIndex;
+		}
+		
+		private function parseFactsData(data:Object):void
+		{
+			DataModel.getSingleton().parseFactsData(data);
+			mCharacterList.selectedIndex = mSelectedCharacterIndex;
+			mLocationList.selectedIndex = mSelectedLocationIndex;
+		}
+		
+		
+		private function parseAgentsData(data:Object):void
+		{
+			DataModel.getSingleton().parseAgentsData(data);
+			mCharacterList.selectedIndex = mSelectedCharacterIndex;
+			mLocationList.selectedIndex = mSelectedLocationIndex;
 		}
 		
 		private function factDetailResult(result:Object):void
@@ -471,6 +506,10 @@ package HostComponents.FactsHostComponent
 		private function setAgentLocation(result:Object):void
 		{
 			trace("Result set Location: " + result);
+			if(result == null)
+			{
+				//good
+			}
 		}
 		
 		private function addFact(event:MouseEvent):void
@@ -546,8 +585,10 @@ package HostComponents.FactsHostComponent
 		
 		private function finishEditSystemFactDescription(event:GridItemEditorEvent):void
 		{
+			var factId:int = mSystemFacts.getItemAt(event.rowIndex).id;
+			var xgmlId:String = mSystemFacts.getItemAt(event.rowIndex).xgml;
 			var factDescription:String = mSystemFacts.getItemAt(event.rowIndex).description;
-			//send request callback = editFactDescriptionResult;
+			new HttpServiceManager('{"method":"facts.updateFactDetails","params":['+factId+', "'+xgmlId+'", "'+factDescription+'"], "jsonrpc": "2.0", "id":7}', editFactDescriptionResult);
 		}
 		
 		private function editFactDescriptionResult(result:Object):void
