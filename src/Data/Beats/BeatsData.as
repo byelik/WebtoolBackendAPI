@@ -13,6 +13,7 @@ package Data.Beats
 		private var mType:String;
 		private var mXgmlTheme:String;
 		private var mPreconditions:ArrayCollection;
+		private var mRadius:String = "30";
 		//		private var mPreconditions:ArrayCollection([{affinityMax:int, affinityMin:int, beatsCompleted:Array, 
 		//													description:String, factsAvailableToAgent:Array, factsAvailableToUser:Array, 
 		//													nerveMax:int, nerveMin:int, subjects:Array}]);

@@ -39,7 +39,21 @@ package Data.ImportManager
 		
 		private function loadFile(event:Event):void
 		{
+			var factsXML:XML;
 			xmlData = XML(importerFileReference.data);
+			for each(var fact:XML in xmlData.facts)
+			{
+				factsXML = fact;	
+			}
+			
+			for each(var factId:XML in factsXML.fact)
+			{
+				trace(factId.@id + factId.description);
+				for each(var own:XML in factId.owners.owner)
+				{
+					trace(own);
+				}
+			}
 		}
 		
 		private function errorHandler(event:IOErrorEvent):void

@@ -15,9 +15,12 @@ package HostComponents.BeatsHostComponent
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.TextEvent;
+	import flash.media.Video;
 	import flash.ui.ContextMenu;
 	import flash.ui.ContextMenuItem;
 	
+	import mx.charts.BubbleChart;
+	import mx.charts.series.BubbleSeries;
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
 	import mx.controls.Tree;
@@ -122,6 +125,15 @@ package HostComponents.BeatsHostComponent
 		[SkinPart(required="true")]
 		public var mRefreshSearch:Button;
 		
+		[SkinPart(required="true")]
+		public var mBeatChart:BubbleChart;
+		
+		[SkinPart(required="true")]
+		public var mBeatSeries:BubbleSeries;
+		
+		[SkinPart(required="true")]
+		public var mAddBeat:Button;
+		
 		private var mComponent:IFocusManagerComponent;
 		private var firstTextElement:String;
 		
@@ -150,9 +162,18 @@ package HostComponents.BeatsHostComponent
 		[Bindable]
 		public var mselectedUserFacts:Vector.<Object>;
 		
+		[Bindable]
+		public var mBeatsData:ArrayCollection;
+		
+		[Bindable]
+		public var mBeatRadius:String = "30";
+		
 		public function BeatsHostComponent()
 		{
 			super();
+			
+			mBeatsData = DataModel.getSingleton().mBeatsList;
+			
 			beatTypeList = new ArrayCollection(["exclusive", "normal", "repeated"]);
 			mBeatVariables = new ArrayCollection();
 			dataSortField = new SortField();
@@ -244,6 +265,9 @@ package HostComponents.BeatsHostComponent
 				case "mRefreshSearch":
 					mRefreshSearch.addEventListener(MouseEvent.CLICK, refreshSearch);
 				break;
+				case "mAddBeat":
+					mAddBeat.addEventListener(MouseEvent.CLICK, addBeat);
+				break;
 				/*case "mBeatsTree":
 					mBeatsTree.addEventListener(ListEvent.ITEM_ROLL_OVER, rollOverTreeItem);
 				break;*/
@@ -293,6 +317,9 @@ package HostComponents.BeatsHostComponent
 				break;
 				case "mRefreshSearch":
 					mRefreshSearch.removeEventListener(MouseEvent.CLICK, refreshSearch);
+				break;
+				case "mAddBeat":
+					mAddBeat.addEventListener(MouseEvent.CLICK, addBeat);
 				break;
 				/*case "mBeatsTree":
 					mBeatsTree.removeEventListener(ListEvent.ITEM_ROLL_OVER, rollOverTreeItem);
@@ -470,6 +497,26 @@ package HostComponents.BeatsHostComponent
 		{
 			trace(event);
 		}*/
+		
+		private function addBeat(event:MouseEvent):void
+		{
+			//send request addBeat
+			new HttpServiceManager('{"method":"beats.addBeat","params":[{}],"jsonrpc":"2.0","id":7}', addBeatResult);
+			
+		}
+		
+		private function addBeatResult(result:Object):void
+		{
+			if(result.code)
+			{
+				Alert.show("Error", "Error", Alert.OK);
+			}
+			else
+			{
+//				good	
+				mBeatsData.addItem(result);
+			}
+		}
 		
 		private function addGroupMenuEvent(event:ContextMenuEvent):void
 		{

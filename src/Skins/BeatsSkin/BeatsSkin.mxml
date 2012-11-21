@@ -62,13 +62,16 @@
 					mNerveMaxField.text = itm.nerveMax;
 					mBeatsCompletedField.text = itm.beatsCompleted;
 				}
-				if(mBeatsTree.selectedItem.preconditions.length == 0)
+				if(mBeatsTree.selectedItem.preconditions)
 				{
-					mAffinityMinField.text = "0";
-					mAffinityMaxField.text = "100";
-					mNerveMinField.text = "0";
-					mNerveMaxField.text = "100";
-					mBeatsCompletedField.text = "";
+					if(mBeatsTree.selectedItem.preconditions.length == 0)
+					{
+						mAffinityMinField.text = "0";
+						mAffinityMaxField.text = "100";
+						mNerveMinField.text = "0";
+						mNerveMaxField.text = "100";
+						mBeatsCompletedField.text = "";
+					}
 				}
 //				mBeatTheme.selectedItem = mBeatsTree.selectedItem.xgmlTheme;
 				for(var i:int = 0; i < mBeatsListData.length; i ++)
@@ -96,28 +99,6 @@
 					}
 				}
 				
-				
-				
-				
-//				if(mCharacterFactItems)
-//				{
-//					mCharacterFactItems.removeAll();
-//				}
-//				for(var j:int = 0; j < DataModel.getSingleton().mFactsList.length; j++)
-//				{	
-//					var factsOwner:Object = DataModel.getSingleton().mFactsList[j]; 
-//					if(!factsOwner.owners)
-//					{
-//						continue;
-//					}
-//					for(var k:int = 0; k < factsOwner.owners.length; k ++)
-//					{
-//						if(factsOwner.owners[k] == mBeatsTree.selectedItem.agentId)
-//						{
-//							mSelctedUsersFacts.push(factsOwner);
-//						}	
-//					}
-//				}
 				if(mSelctedUsersFacts)
 				{
 					mSelctedUsersFacts = new Vector.<Object>;
@@ -131,16 +112,10 @@
 							var fact:Object = hostComponent.mFacts[t];
 							if(fact.id == itms.factsAvailableToUser[n])
 							{
-								//							mCharacterFactItems.addItem(factsOwner);
-								trace(fact);
 								mSelctedUsersFacts.push(fact);
-								
 							}	
-						}
-								
+						}			
 					}
-					
-					
 				}
 				mFactsKnownToUser.selectedItems = mSelctedUsersFacts;
 				
@@ -305,7 +280,7 @@
 									 itemClick="mBeatsTree_itemClickHandler(event)"
 									 contentBackgroundAlpha="0"
 									 verticalScrollPolicy="auto"
-									 dataProvider="{DataModel.getSingleton().mBeatsList}">
+									 dataProvider="{hostComponent.mBeatsData}">
 								
 								<!--<mx:XMLListCollection id="MailBox">
 									<fx:XMLList>
@@ -392,7 +367,6 @@
 									</fx:XMLList>
 								</mx:XMLListCollection>-->
 							</mx:Tree>
-						<!--<s:List id="mBeatsList" dataProvider="{DataModel.getSingleton().mBeatsList}" labelField="id"/>-->
 					</s:HGroup>
 				</s:BorderContainer>
 				<s:ToggleButton id="mTreeStateBtn"
@@ -404,48 +378,45 @@
 						<!--<mx:Panel height="100%" width="100%">-->	
 							<s:Group width="100%">
 								
-								<mx:BubbleChart id="bubblechart" 
+								<mx:BubbleChart id="mBeatChart" 
 												height="100%" width="100%"
 												paddingRight="5" paddingLeft="5" 
 												showDataTips="false"
 												maxRadius="20"
-												dataProvider="{expensesAC}"
+												dataProvider="{DataModel.getSingleton().mBeatsList}"
 												showAllDataTips="false"
 												dragEnabled="true"
 												dragMoveEnabled="true"
 												dropEnabled="true"
-												selectionMode="multiple" color="0xFFFFFF" backgroundElements="{tmp}" creationComplete="drawLabels(event)">
+												selectionMode="multiple" color="0xFFFFFF" 
+												backgroundElements="{tmp}" 
+												creationComplete="drawLabels(event)">
 									<mx:annotationElements>
 										<mx:CartesianDataCanvas id="canvas" includeInRanges="true"/>
-									</mx:annotationElements>
-									
+									</mx:annotationElements>								
 									<!--ZOOM-->
 									<mx:horizontalAxis>
 										<mx:LinearAxis id="haxis"/>
 									</mx:horizontalAxis>
-									
 									<mx:verticalAxis>
 										<mx:LinearAxis id="vaxis"/>
-									</mx:verticalAxis>
-									
+									</mx:verticalAxis>	
+									<!--end ZOOM-->	
 									<mx:series>
-										<mx:BubbleSeries 
-											xField="Profit" 
-											yField="Expenses" 
-											radiusField="Amount"
+										<mx:BubbleSeries id="mBeatSeries"
+											xField="id"
+											yField="id"
+											radiusField="mBeatRadius"
 											fill="{sc1}"
 											stroke="{stroke1}"/>
-										
-										
-									</mx:series> 
-									
+									</mx:series> 									
 								</mx:BubbleChart>            
-								<mx:Legend dataProvider="{bubblechart}"/>
+								<!--<mx:Legend dataProvider="{mBeatChart}"/>-->
 								<s:HGroup width="100%" horizontalAlign="right">
+									<s:Button id="mAddBeat" x="-6" width="80" label="Add beat" click="connectTwoPoints('beat1', 2000, 'beat2', 1000);"/>
 									<s:VGroup horizontalAlign="center">
 										<s:Button width="35" label="-" click="button1_clickHandler(event)"/>
 										<s:Button width="35" label="+" click="button2_clickHandler(event)"/>
-										<s:Button x="-6" width="80" label="Add beat" click="connectTwoPoints('beat1', 2000, 'beat2', 1000);"/>
 									</s:VGroup>
 								</s:HGroup>
 							</s:Group>
