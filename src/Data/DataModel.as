@@ -27,6 +27,9 @@ package Data
 		[Bindable]
 		public var mLocationsList:ArrayCollection = new ArrayCollection();
 		
+		public var mBubbleBeatData:ArrayCollection = new ArrayCollection([{beatPosX:1, beatPosY:1, beatRadius:40,
+																	beatId:1, beatDescription:"desc", beatType:"normal", beatCompleted:""}]);
+		
 		public function DataModel()
 		{
 			
@@ -72,6 +75,7 @@ package Data
 				beats.parse(item);
 				mBeatsList.addItem(beats);
 			}
+			parseOriginalBeatData();
 			mBeatsList.enableAutoUpdate();
 		}
 		
@@ -107,6 +111,30 @@ package Data
 				mLocationsList.addItem(locations);
 			}
 			mLocationsList.enableAutoUpdate();
+		}
+		
+		private function parseOriginalBeatData():void
+		{
+			if(mBubbleBeatData)
+			{
+				mBubbleBeatData.removeAll();	
+			}
+			for each(var originalBeatData:Object in mBeatsList)
+			{
+				var tmp:Object={beatPosX:100, beatPosY:100, beatRadius:20};
+				
+				tmp["beatId"] = originalBeatData.id;
+				tmp["beatDescription"] = originalBeatData.description;
+				tmp["beatType"] = originalBeatData.type;
+				for each(var beatPrecondition:Object in originalBeatData.preconditions)
+				{
+					tmp["beatCompleted"] = beatPrecondition.beatsCompleted;
+				}
+				tmp["beatPosX"] += Math.random() * 2000;
+				tmp["beatPosY"] += Math.random() * 2000;
+				mBubbleBeatData.addItem(tmp);
+			}
+			
 		}
 	}
 }

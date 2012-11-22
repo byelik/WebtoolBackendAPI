@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				autoDrawBackground="true"
+				creationComplete="itemrenderer1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import flash.sampler.NewObjectSample;
+			
+			import mx.core.UIComponent;
+			import mx.events.FlexEvent;
+			
+			import spark.components.Label;
+			
+			private var beatData:Object;
+			
+			private var mWhiteBeat:uint = 0xFFFFFF;
+			private var mOrangeBeat:uint = 0xFFA500;
+			private var mGreenBeat:uint = 0x008000;
+			
+			protected function itemrenderer1_creationCompleteHandler(event:FlexEvent):void
+			{
+				beatData = data;
+				
+				var graphicalContainer:UIComponent = new UIComponent();
+				var  beat:Sprite = new Sprite();
+				var beatColor:uint;
+				beat.graphics.clear();
+				
+				switch(beatData.item.beatType)
+				{
+					case "normal":
+						//color = FFFFFF;
+						beatColor = mWhiteBeat;
+						break;
+					case "exclusive":
+						//color = FFA500
+						beatColor = mOrangeBeat;
+						break;
+					case "repeated":
+						//color = green
+						beatColor = mGreenBeat;	
+						break;
+					default:
+						//
+						break;
+					
+				}
+				
+				beat.graphics.beginFill(beatColor, 1);      
+				beat.graphics.lineStyle(1, 0x000000);
+				beat.graphics.drawCircle(0, 0, 20);
+				beat.graphics.endFill();
+				beat.mouseEnabled = false;
+				beat.mouseChildren = false;
+				addElement(graphicalContainer);
+				graphicalContainer.addChild(beat);
+				
+				
+				var idLabel:TextField = new TextField();
+				idLabel.text = "" + beatData.item.beatId;
+				
+				var idLabelTextFormatter:TextFormat = new TextFormat();
+				idLabelTextFormatter.color = 0x000000;
+				idLabelTextFormatter.font = "Verdana";
+				idLabelTextFormatter.bold = true;
+				idLabelTextFormatter.size = 12;
+				
+				//				idLabel.defaultTextFormat = idLabelTextFormatter;
+				idLabel.setTextFormat(idLabelTextFormatter);
+				
+				graphicalContainer.addChild(idLabel);
+				
+				var descriptionLabel:TextField = new TextField();
+				descriptionLabel.text = "" + beatData.item.beatDescription;
+				descriptionLabel.width = 300;
+				descriptionLabel.x = 40;
+				descriptionLabel.setTextFormat(idLabelTextFormatter);
+				graphicalContainer.addChild(descriptionLabel);
+			}
+		]]>
+	</fx:Script>
+	
+</s:ItemRenderer>

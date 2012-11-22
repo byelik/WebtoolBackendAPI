@@ -11,6 +11,7 @@ package HostComponents.BeatsHostComponent
 	
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
+	import flash.display.Stage;
 	import flash.events.ContextMenuEvent;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -22,9 +23,11 @@ package HostComponents.BeatsHostComponent
 	import mx.charts.BubbleChart;
 	import mx.charts.series.BubbleSeries;
 	import mx.collections.ArrayCollection;
+	import mx.containers.Canvas;
 	import mx.controls.Alert;
 	import mx.controls.Tree;
 	import mx.controls.listClasses.IListItemRenderer;
+	import mx.core.UIComponent;
 	import mx.events.CloseEvent;
 	import mx.events.EffectEvent;
 	import mx.events.ListEvent;
@@ -133,6 +136,9 @@ package HostComponents.BeatsHostComponent
 		
 		[SkinPart(required="true")]
 		public var mAddBeat:Button;
+		
+		[SkinPart(required="true")]
+		public var mBubbleCanvas:Canvas;
 		
 		private var mComponent:IFocusManagerComponent;
 		private var firstTextElement:String;
@@ -660,6 +666,39 @@ package HostComponents.BeatsHostComponent
 				}
 			}
 			return null;
+		}
+		
+		public function drawBeatConnection():void
+		{
+			var beatContainer:UIComponent = new UIComponent();
+			var  beatLine:Sprite = new Sprite();
+			beatLine.graphics.clear();
+			beatLine.graphics.lineStyle(3, 0x000000,1);
+			
+			for(var i:int = 0; i < mBeatSeries.items.length; i++)
+			{
+				if(mBeatSeries.items[i].item.beatCompleted)
+				{
+					for(var k:int = 0; k < mBeatSeries.items[i].item.beatCompleted.length; k++)
+					{
+						for(var j:int = 0; j < mBeatSeries.items.length; j++)
+						{
+							if(mBeatSeries.items[j].item.beatId == mBeatSeries.items[i].item.beatCompleted[k] )
+							{
+								beatLine.graphics.moveTo(mBeatSeries.items[j].x, mBeatSeries.items[j].y);
+								beatLine.graphics.lineTo(mBeatSeries.items[i].x, mBeatSeries.items[i].y);
+							}
+						}
+					}
+				}
+			}				
+//			canvas.graphics.moveTo(bubleSeries.items[0].x, bubleSeries.items[0].y);
+//			canvas.graphics.lineTo(bubleSeries.items[2].x, bubleSeries.items[2].y);//bubleSeries.items[0]);
+			beatLine.graphics.endFill();
+			beatContainer.addChild(beatLine);
+//			addElement(cont);
+			mBubbleCanvas.addElement(beatContainer);
+//			
 		}
 	}
 }
