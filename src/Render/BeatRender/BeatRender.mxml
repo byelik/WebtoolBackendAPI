@@ -50,7 +50,7 @@
 				
 				beat.graphics.beginFill(beatColor, 1);      
 				beat.graphics.lineStyle(1, 0x000000);
-				beat.graphics.drawCircle(0, 0, 20);
+				beat.graphics.drawCircle(0.5*this.width, 0.5*this.height, 0.5*this.width);
 				beat.graphics.endFill();
 				beat.mouseEnabled = false;
 				beat.mouseChildren = false;

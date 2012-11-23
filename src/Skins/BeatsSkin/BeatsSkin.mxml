@@ -186,6 +186,11 @@
 			[Bindable]
 			private var tmp:Array = new Array();
 			
+			protected function mBeatChart_itemClickHandler(event:ChartItemEvent):void
+			{
+				trace(event);
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -338,14 +343,14 @@
 												height="100%" width="100%"
 												paddingRight="5" paddingLeft="5" 
 												showDataTips="false"
-												
 												dataProvider="{DataModel.getSingleton().mBubbleBeatData}"
 												showAllDataTips="false"
 												dragEnabled="true"
 												dragMoveEnabled="true"
 												dropEnabled="true"
 												selectionMode="multiple" color="0xFFFFFF" 
-												backgroundElements="{tmp}">
+												backgroundElements="{tmp}"
+												itemClick="mBeatChart_itemClickHandler(event)">
 									<!--<mx:annotationElements>
 										<mx:CartesianDataCanvas id="canvas" includeInRanges="true"/>
 									</mx:annotationElements>-->								

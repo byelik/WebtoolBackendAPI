@@ -121,7 +121,7 @@ package Data
 			}
 			for each(var originalBeatData:Object in mBeatsList)
 			{
-				var tmp:Object={beatPosX:100, beatPosY:100, beatRadius:20};
+				var tmp:Object={beatPosX:100, beatPosY:100, beatRadius:40};
 				
 				tmp["beatId"] = originalBeatData.id;
 				tmp["beatDescription"] = originalBeatData.description;
@@ -129,7 +129,24 @@ package Data
 				for each(var beatPrecondition:Object in originalBeatData.preconditions)
 				{
 					tmp["beatCompleted"] = beatPrecondition.beatsCompleted;
+					tmp["affinityMax"] = beatPrecondition.affinityMax;
+					tmp["affinityMin"] = beatPrecondition.affinityMin;
+					tmp["beatPreconditionsDescription"] = beatPrecondition.description;
+					tmp["factsAvailableToAgent"] = beatPrecondition.factsAvailableToAgent;
+					tmp["factsAvailableToUser "] = beatPrecondition.factsAvailableToUser;
+					tmp["nerveMax"] = beatPrecondition.nerveMax;
+					tmp["nerveMin"] = beatPrecondition.nerveMin;
+					tmp["subjects"] = beatPrecondition.subjects;
 				}
+				tmp["activities"] = originalBeatData.activities;
+				tmp["agentId"] = originalBeatData.agentId;
+				tmp["exclusiveBeatPriority"] = originalBeatData.exclusiveBeatPriority;
+				tmp["id"] = originalBeatData.id;
+				tmp["ocationId"] = originalBeatData.locationId;
+				tmp["type"] = originalBeatData.type;
+				tmp["xgmlTheme"] = originalBeatData.xgmlTheme;
+//				tmp["preconditions"] = originalBeatData.preConditions;
+				
 				tmp["beatPosX"] += Math.random() * 2000;
 				tmp["beatPosY"] += Math.random() * 2000;
 				mBubbleBeatData.addItem(tmp);

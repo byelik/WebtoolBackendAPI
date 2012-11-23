@@ -21,6 +21,7 @@ package HostComponents.BeatsHostComponent
 	import flash.ui.ContextMenuItem;
 	
 	import mx.charts.BubbleChart;
+	import mx.charts.events.ChartItemEvent;
 	import mx.charts.series.BubbleSeries;
 	import mx.collections.ArrayCollection;
 	import mx.containers.Canvas;
@@ -274,6 +275,9 @@ package HostComponents.BeatsHostComponent
 				case "mAddBeat":
 					mAddBeat.addEventListener(MouseEvent.CLICK, addBeat);
 				break;
+				case "mBeatChart":
+					mBeatChart.addEventListener(ChartItemEvent.ITEM_CLICK, selectBeatOnGraph);
+				break;
 				/*case "mBeatsTree":
 					mBeatsTree.addEventListener(ListEvent.ITEM_ROLL_OVER, rollOverTreeItem);
 				break;*/
@@ -326,6 +330,9 @@ package HostComponents.BeatsHostComponent
 				break;
 				case "mAddBeat":
 					mAddBeat.addEventListener(MouseEvent.CLICK, addBeat);
+				break;
+				case "mBeatChart":
+					mBeatChart.removeEventListener(ChartItemEvent.ITEM_CLICK, selectBeatOnGraph);
 				break;
 				/*case "mBeatsTree":
 					mBeatsTree.removeEventListener(ListEvent.ITEM_ROLL_OVER, rollOverTreeItem);
@@ -509,6 +516,11 @@ package HostComponents.BeatsHostComponent
 			//send request addBeat
 			new HttpServiceManager('{"method":"beats.addBeat","params":[{}],"jsonrpc":"2.0","id":7}', addBeatResult);
 			
+		}
+		
+		private function selectBeatOnGraph(event:ChartItemEvent):void
+		{
+			trace(event);
 		}
 		
 		private function addBeatResult(result:Object):void
@@ -695,9 +707,10 @@ package HostComponents.BeatsHostComponent
 //			canvas.graphics.moveTo(bubleSeries.items[0].x, bubleSeries.items[0].y);
 //			canvas.graphics.lineTo(bubleSeries.items[2].x, bubleSeries.items[2].y);//bubleSeries.items[0]);
 			beatLine.graphics.endFill();
-			beatContainer.addChild(beatLine);
+//			beatContainer.addChild(beatLine);
+			mBeatSeries.addChild(beatLine);
 //			addElement(cont);
-			mBubbleCanvas.addElement(beatContainer);
+//			mBubbleCanvas.addElement(beatContainer);
 //			
 		}
 	}
