@@ -28,6 +28,7 @@ package HostComponents.BeatsHostComponent
 	import mx.controls.Alert;
 	import mx.controls.Tree;
 	import mx.controls.listClasses.IListItemRenderer;
+	import mx.core.FlexGlobals;
 	import mx.core.UIComponent;
 	import mx.events.CloseEvent;
 	import mx.events.EffectEvent;
@@ -160,14 +161,15 @@ package HostComponents.BeatsHostComponent
 //		private var pasteMenuItem:ContextMenuItem;
 //		private var renameMenuItem:ContextMenuItem;
 		
-		[Bindable]
+		//[Bindable]
 		public var treeContextMenu:ContextMenu;
+		
+		//[Bindable]
+		
 		
 		[Bindable]
 		public var mFacts:ArrayCollection;
 		
-		[Bindable]
-		public var mselectedUserFacts:Vector.<Object>;
 		
 		[Bindable]
 		public var mBeatsData:ArrayCollection;
@@ -175,10 +177,24 @@ package HostComponents.BeatsHostComponent
 		[Bindable]
 		public var mBeatRadius:String = "30";
 		
+		[Bindable]
+		public var mBeatsListData:ArrayCollection = DataModel.getSingleton().mBeatsList;
+		
+		[Bindable]
+		public var mSelectedUsersFacts:Vector.<Object> = new Vector.<Object>;
+		
+		[Bindable]
+		private var mSelectedAgentFacts:Vector.<Object> = new Vector.<Object>;
+		
+		private var mSelectedBeatOnGraph:Object;
+		
+		private var mSelectedBeatsId:ArrayCollection;
+		
 		public function BeatsHostComponent()
 		{
 			super();
 			
+			mSelectedBeatsId = new ArrayCollection();
 			mBeatsData = DataModel.getSingleton().mBeatsList;
 			
 			beatTypeList = new ArrayCollection(["exclusive", "normal", "repeated"]);
@@ -191,13 +207,18 @@ package HostComponents.BeatsHostComponent
 			treeContextMenu = new ContextMenu();
 			treeContextMenu.hideBuiltInItems();
 			
+			
+			
 			var addGroupMenuItem:ContextMenuItem = new ContextMenuItem("Add Group");
+			treeContextMenu.customItems.push(addGroupMenuItem);
 			addGroupMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, addGroupMenuEvent);
 			
 			var cutMenuItem:ContextMenuItem = new ContextMenuItem("Cut");
+			treeContextMenu.customItems.push(cutMenuItem);
 			cutMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, cutMenuEvent);
 			
 			var copyMenuItem:ContextMenuItem = new ContextMenuItem("Copy");
+			treeContextMenu.customItems.push(copyMenuItem);
 			copyMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, copyMenuEvent);
 			
 			var deleteMenuItem:ContextMenuItem = new ContextMenuItem("Delete");
@@ -214,12 +235,19 @@ package HostComponents.BeatsHostComponent
 //											copyMenuItem, deleteMenuItem,
 //											pasteMenuItem, renameMenuItem];
 			
-			treeContextMenu.customItems.push(addGroupMenuItem);
-			treeContextMenu.customItems.push(cutMenuItem);
-			treeContextMenu.customItems.push(copyMenuItem);
+			
+			
+			
+			
+			
+			
+			
 			treeContextMenu.customItems.push(deleteMenuItem);
 			treeContextMenu.customItems.push(pasteMenuItem);
 			treeContextMenu.customItems.push(renameMenuItem);
+			
+			
+			
 //			treeContextMenu.addEventListener(ContextMenuEvent.MENU_SELECT, getSelectedElement);
 			
 //			mSave.contextMenu = treeContextMenu;
@@ -227,6 +255,8 @@ package HostComponents.BeatsHostComponent
 //			trace(tmp);
 			
 			mFacts = DataModel.getSingleton().mFactsList;
+			
+			
 		}
 		
 		override protected function getCurrentSkinState():String
@@ -381,7 +411,7 @@ package HostComponents.BeatsHostComponent
 			checkMinNerveValue();
 			checkMaxNerveValue();
 			
-			trace("good");
+
 			var selectedUserFacts:ArrayCollection = new ArrayCollection();
 			var selectedAgentFacts:ArrayCollection = new ArrayCollection(); 
 				
@@ -431,13 +461,33 @@ package HostComponents.BeatsHostComponent
 		}
 		private function deleteBeat(event:MouseEvent):void
 		{
-			//delete beat...
-			if(mFactsKnownToUser.selectedItems)
+			deleteBeatWindow();
+		}
+		
+		private function deleteBeatWindow():void
+		{
+			Alert.yesLabel = "Да";
+			Alert.noLabel = "Нет";
+			Alert.show("Вы действительно хотите удалить выбранные биты?", "Удаление бита", Alert.YES | Alert.NO, this, deleteBeatHandler);
+		}
+		
+		private function deleteBeatHandler(event:CloseEvent):void
+		{
+			if(event.detail == Alert.YES)
 			{
-				for(var i:int = 0; i <mFactsKnownToUser.selectedItems.length; i ++)
-				{
-					trace(mFactsKnownToUser.selectedItems[i].id );	
-				}
+				new HttpServiceManager('{"method":"beats.removeBeat","params":["'+mSelectedBeatsId+'"],"jsonrpc":"2.0","id":45}', deleteBeatResult);
+			}
+			else
+			{
+				//close window...
+			}
+		}
+		
+		private function deleteBeatResult(result:Object):void
+		{
+			if(result == null)
+			{
+				new HttpServiceManager('{"method":"beats.getBeats","params":[], "jsonrpc": "2.0", "id":2}', DataModel.getSingleton().parseBeatsData);
 			}
 		}
 		
@@ -445,17 +495,10 @@ package HostComponents.BeatsHostComponent
 		{
 			if(mTreeStateBtn.selected)
 			{
-//				mBeatsTree.includeInLayout = false;
-//				mBeatsTree.visible = false;
-//				currentState = currentState == 'hideBeatsTree' ? '' : 'hideBeatsTree';
-//				mTreeBorderContainer.width = mTreeStateBtn.width;
 				hideBeatsTree.end(); hideBeatsTree.play();
 			}
 			else
 			{
-//				mBeatsTree.includeInLayout = true;
-//				mBeatsTree.visible = true;
-//				mTreeBorderContainer.width = 200;
 				showBeatsTree.end(); showBeatsTree.play();
 			}
 				
@@ -520,7 +563,106 @@ package HostComponents.BeatsHostComponent
 		
 		private function selectBeatOnGraph(event:ChartItemEvent):void
 		{
-			trace(event);
+			
+			mSelectedBeatOnGraph = event.hitData.item;
+			
+			if(mSelectedBeatsId)
+			{
+				mSelectedBeatsId.removeAll();
+			}
+			for(var i:int = 0; i < event.currentTarget.selectedChartItems.length; i ++)
+			{
+				mSelectedBeatsId.addItem(event.currentTarget.selectedChartItems[i].item.beatId);
+			}
+			//mSelectedBeatsId.addItem(mSelectedBeatOnGraph.beatId);
+			
+			if(mSelectedBeatOnGraph)
+			{
+				mBeatDescriptionField.text = mSelectedBeatOnGraph.beatDescription;
+				mPriorityField.text = mSelectedBeatOnGraph.exclusiveBeatPriority;
+				mTypeList.selectedItem = mSelectedBeatOnGraph.type;
+				mActivitiesList.dataProvider = mSelectedBeatOnGraph.activities;
+				
+				mAffinityMinField.text = mSelectedBeatOnGraph.affinityMin;
+				mAffinityMaxField.text = mSelectedBeatOnGraph.affinityMax;
+				mNerveMinField.text = mSelectedBeatOnGraph.nerveMin;
+				mNerveMaxField.text = mSelectedBeatOnGraph.nerveMax;
+				mBeatsCompletedField.text = mSelectedBeatOnGraph.beatsCompleted;
+				
+				//mBeatTheme.selectedItem = selectedBeatOnGraph.xgmlTheme;
+				for(var i:int = 0; i < mBeatsListData.length; i ++)
+				{
+					if(mSelectedBeatOnGraph.xgmlTheme == mBeatsListData[i].xgmlTheme)
+					{
+						mBeatTheme.selectedItem = mBeatsListData[i];
+					}
+				}
+				
+				for(var k:int = 0; k < DataModel.getSingleton().mLocationsList.length; k++)
+				{
+					if(mSelectedBeatOnGraph.locationId == DataModel.getSingleton().mLocationsList[k].id)
+					{
+						mLocationList.selectedItem = DataModel.getSingleton().mLocationsList[k];
+					}
+					
+				}
+				
+				var mAgentsData:ArrayCollection = DataModel.getSingleton().mAgentsList;
+				for(var j:int = 0; j <  mAgentsData.length; j ++)
+				{
+					if(mSelectedBeatOnGraph.agentId == mAgentsData[j].id)
+					{
+						mChooseAgentList.selectedItem = mAgentsData[j];
+					}
+				}
+				
+				if(mSelectedUsersFacts)
+				{
+					mSelectedUsersFacts = new Vector.<Object>;
+				}
+				
+				//for each(var itms:Object in selectedBeatOnGraph.preconditions)
+				//{ 
+					for(var n:int = 0; n < mSelectedBeatOnGraph.factsAvailableToUser.length; n ++)
+					{
+						for(var t:int = 0; t < mFacts.length; t++)
+						{
+							var fact:Object = mFacts[t];
+							if(fact.xgml == mSelectedBeatOnGraph.factsAvailableToUser[n])
+							{
+								mSelectedUsersFacts.push(fact);
+							}	
+						}			
+					}
+				//}
+				mFactsKnownToUser.selectedItems = mSelectedUsersFacts;
+			
+				
+				
+				if(mSelectedAgentFacts)
+				{
+					mSelectedAgentFacts = new Vector.<Object>;
+				}
+				//for each(var itms:Object in mBeatsTree.selectedItem.preconditions)
+				//{ 
+					for(var n:int = 0; n < mSelectedBeatOnGraph.factsAvailableToAgent.length; n ++)
+					{
+						for(var t:int = 0; t < mFacts.length; t++)
+						{
+							var fact:Object = mFacts[t];
+							if(fact.xgml == mSelectedBeatOnGraph.factsAvailableToAgent[n])
+							{
+//								mCharacterFactItems.addItem(factsOwner);
+								mSelectedAgentFacts.push(fact);	
+							}	
+						}
+						
+					}		
+				//}
+				mFactsKnownToAgent.selectedItems = mSelectedAgentFacts;
+			}
+			
+			
 		}
 		
 		private function addBeatResult(result:Object):void
@@ -660,16 +802,16 @@ package HostComponents.BeatsHostComponent
 			beatTypeList.refresh();
 		}
 		
-		private var beatType:String = "normal";
+		/*private var beatType:String = "normal";
 		private function getBeatType():String
 		{
-			/*for each(var type:String in beatTypeList)
-			{
-				if(beatType == type)
-				{
-					return beatType;
-				}
-			}*/
+			//for each(var type:String in beatTypeList)
+			//{
+			//	if(beatType == type)
+			//	{
+			//		return beatType;
+			//	}
+			//}
 			for(var i:int = 0; i < beatTypeList.length; i++)
 			{
 				if(mBeatsTree.selectedItem.type == beatTypeList[i])
@@ -678,7 +820,7 @@ package HostComponents.BeatsHostComponent
 				}
 			}
 			return null;
-		}
+		}*/
 		
 		public function drawBeatConnection():void
 		{
@@ -689,13 +831,13 @@ package HostComponents.BeatsHostComponent
 			
 			for(var i:int = 0; i < mBeatSeries.items.length; i++)
 			{
-				if(mBeatSeries.items[i].item.beatCompleted)
+				if(mBeatSeries.items[i].item.beatsCompleted)
 				{
-					for(var k:int = 0; k < mBeatSeries.items[i].item.beatCompleted.length; k++)
+					for(var k:int = 0; k < mBeatSeries.items[i].item.beatsCompleted.length; k++)
 					{
 						for(var j:int = 0; j < mBeatSeries.items.length; j++)
 						{
-							if(mBeatSeries.items[j].item.beatId == mBeatSeries.items[i].item.beatCompleted[k] )
+							if(mBeatSeries.items[j].item.beatId == mBeatSeries.items[i].item.beatsCompleted[k] )
 							{
 								beatLine.graphics.moveTo(mBeatSeries.items[j].x, mBeatSeries.items[j].y);
 								beatLine.graphics.lineTo(mBeatSeries.items[i].x, mBeatSeries.items[i].y);

@@ -27,6 +27,7 @@ package Data
 		[Bindable]
 		public var mLocationsList:ArrayCollection = new ArrayCollection();
 		
+		[Bindable]
 		public var mBubbleBeatData:ArrayCollection = new ArrayCollection([{beatPosX:1, beatPosY:1, beatRadius:40,
 																	beatId:1, beatDescription:"desc", beatType:"normal", beatCompleted:""}]);
 		
@@ -125,15 +126,14 @@ package Data
 				
 				tmp["beatId"] = originalBeatData.id;
 				tmp["beatDescription"] = originalBeatData.description;
-				tmp["beatType"] = originalBeatData.type;
 				for each(var beatPrecondition:Object in originalBeatData.preconditions)
 				{
-					tmp["beatCompleted"] = beatPrecondition.beatsCompleted;
+					tmp["beatsCompleted"] = beatPrecondition.beatsCompleted;
 					tmp["affinityMax"] = beatPrecondition.affinityMax;
 					tmp["affinityMin"] = beatPrecondition.affinityMin;
 					tmp["beatPreconditionsDescription"] = beatPrecondition.description;
 					tmp["factsAvailableToAgent"] = beatPrecondition.factsAvailableToAgent;
-					tmp["factsAvailableToUser "] = beatPrecondition.factsAvailableToUser;
+					tmp["factsAvailableToUser"] = beatPrecondition.factsAvailableToUser;
 					tmp["nerveMax"] = beatPrecondition.nerveMax;
 					tmp["nerveMin"] = beatPrecondition.nerveMin;
 					tmp["subjects"] = beatPrecondition.subjects;
@@ -142,7 +142,7 @@ package Data
 				tmp["agentId"] = originalBeatData.agentId;
 				tmp["exclusiveBeatPriority"] = originalBeatData.exclusiveBeatPriority;
 				tmp["id"] = originalBeatData.id;
-				tmp["ocationId"] = originalBeatData.locationId;
+				tmp["locationId"] = originalBeatData.locationId;
 				tmp["type"] = originalBeatData.type;
 				tmp["xgmlTheme"] = originalBeatData.xgmlTheme;
 //				tmp["preconditions"] = originalBeatData.preConditions;

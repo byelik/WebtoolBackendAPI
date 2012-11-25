@@ -8,7 +8,20 @@
 		[HostComponent("HostComponents.BeatsHostComponent.BeatsHostComponent")]
 	</fx:Metadata>
 	
-
+	<fx:Style>
+		
+		Tree {
+		/* these three styles are inherited by the itemRenderer */
+		line-alpha: 1;	
+		line-color: #000000;
+		line-style: solid;
+		line-thickness: 1;
+		/* these two styles make the tree lines look better */
+		padding-top: 0;		/* default is 2 */
+		padding-bottom: 0;	/* default is 2 */
+		}
+		
+	</fx:Style>
 	
 	
 	
@@ -25,20 +38,36 @@
 			import spark.events.IndexChangeEvent;
 			
 			private var zooming:Boolean;
-					
+				
+			[Bindable]
+			public var mBeatContextMenu:ContextMenu;
 			protected function skin1_creationCompleteHandler(event:FlexEvent):void
 			{
 //				mSave.contextMenu = hostComponent.treeContextMenu;
 				mBeatsTree.contextMenu = hostComponent.treeContextMenu;
 				
+				
+				mBeatContextMenu = new ContextMenu();
+				mBeatContextMenu.hideBuiltInItems();
+				
+				var deleteBeatMenuItem:ContextMenuItem = new ContextMenuItem("Delete");
+				mBeatContextMenu.customItems.push(deleteBeatMenuItem);
+				deleteBeatMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, deleteBeatMenuEvent);
+				
+				mBeatChart.contextMenu = /*hostComponent.treeContextMenu;// */mBeatContextMenu;
+				
 				hostComponent.drawBeatConnection();
 			}
 			
-			[Bindable]
-			private var mBeatsListData:ArrayCollection = DataModel.getSingleton().mBeatsList;
 			
-			[Bindable]
-			private var mSelctedUsersFacts:Vector.<Object> = new Vector.<Object>;
+			private function deleteBeatMenuEvent(event:ContextMenuEvent):void
+			{
+				trace("delete beat");
+			}
+			
+			
+			/*[Bindable]
+			private var mSelctedUsersFacts:Vector.<Object> = new Vector.<Object>;*/
 			
 			[Bindable]
 			private var mSelctedAgentFacts:Vector.<Object> = new Vector.<Object>;
@@ -50,21 +79,21 @@
 				{
 					mBeatsTree.expandItem(item, !mBeatsTree.isItemOpen(item), true);
 				}
-				mBeatDescriptionField.text = mBeatsTree.selectedItem.description;
-				mPriorityField.text = mBeatsTree.selectedItem.exclusiveBeatPriority;
-				mTypeList.selectedItem = mBeatsTree.selectedItem.type;
+//				mBeatDescriptionField.text = mBeatsTree.selectedItem.description;
+//				mPriorityField.text = mBeatsTree.selectedItem.exclusiveBeatPriority;
+//				mTypeList.selectedItem = mBeatsTree.selectedItem.type;
 
-				mActivitiesList.dataProvider = mBeatsTree.selectedItem.activities;
+//				mActivitiesList.dataProvider = mBeatsTree.selectedItem.activities;
 
 				for each(var itm:Object in mBeatsTree.selectedItem.preconditions)
 				{
-			   		mAffinityMinField.text = itm.affinityMin;
-					mAffinityMaxField.text = itm.affinityMax;
-					mNerveMinField.text = itm.nerveMin;
-					mNerveMaxField.text = itm.nerveMax;
-					mBeatsCompletedField.text = itm.beatsCompleted;
+//			   		mAffinityMinField.text = itm.affinityMin;
+//					mAffinityMaxField.text = itm.affinityMax;
+//					mNerveMinField.text = itm.nerveMin;
+//					mNerveMaxField.text = itm.nerveMax;
+//					mBeatsCompletedField.text = itm.beatsCompleted;
 				}
-				if(mBeatsTree.selectedItem.preconditions)
+				/*if(mBeatsTree.selectedItem.preconditions)
 				{
 					if(mBeatsTree.selectedItem.preconditions.length == 0)
 					{
@@ -74,36 +103,37 @@
 						mNerveMaxField.text = "100";
 						mBeatsCompletedField.text = "";
 					}
-				}
+				}*/
 //				mBeatTheme.selectedItem = mBeatsTree.selectedItem.xgmlTheme;
-				for(var i:int = 0; i < mBeatsListData.length; i ++)
+				/*for(var i:int = 0; i < hostComponent.mBeatsListData.length; i ++)
 				{
-					if(mBeatsTree.selectedItem.xgmlTheme == mBeatsListData[i].xgmlTheme)
+					if(mBeatsTree.selectedItem.xgmlTheme == hostComponent.mBeatsListData[i].xgmlTheme)
 					{
-						mBeatTheme.selectedItem = mBeatsListData[i];
+						mBeatTheme.selectedItem = hostComponent.mBeatsListData[i];
 					}
-				}
+				}*/
 					
-				for(var k:int = 0; k < DataModel.getSingleton().mLocationsList.length; k++)
+				/*for(var k:int = 0; k < DataModel.getSingleton().mLocationsList.length; k++)
 				{
 					if(mBeatsTree.selectedItem.locationId == DataModel.getSingleton().mLocationsList[k].id)
 					{
 						mLocationList.selectedItem = DataModel.getSingleton().mLocationsList[k];
 					}
 					
-				}
-				var mAgentsData:ArrayCollection = DataModel.getSingleton().mAgentsList;
+				}*/
+				
+				/*var mAgentsData:ArrayCollection = DataModel.getSingleton().mAgentsList;
 				for(var j:int = 0; j <  mAgentsData.length; j ++)
 				{
 					if(mBeatsTree.selectedItem.agentId == mAgentsData[j].id)
 					{
 						mChooseAgentList.selectedItem = mAgentsData[j];
 					}
-				}
+				}*/
 				
-				if(mSelctedUsersFacts)
+				if(hostComponent.mSelectedUsersFacts)
 				{
-					mSelctedUsersFacts = new Vector.<Object>;
+					hostComponent.mSelectedUsersFacts = new Vector.<Object>;
 				}
 				for each(var itms:Object in mBeatsTree.selectedItem.preconditions)
 				{ 
@@ -114,15 +144,15 @@
 							var fact:Object = hostComponent.mFacts[t];
 							if(fact.id == itms.factsAvailableToUser[n])
 							{
-								mSelctedUsersFacts.push(fact);
+								hostComponent.mSelectedUsersFacts.push(fact);
 							}	
 						}			
 					}
 				}
-				mFactsKnownToUser.selectedItems = mSelctedUsersFacts;
+				mFactsKnownToUser.selectedItems = hostComponent.mSelectedUsersFacts;
 				
 				
-				if(mSelctedAgentFacts)
+				/*if(mSelctedAgentFacts)
 				{
 					mSelctedAgentFacts = new Vector.<Object>;
 				}
@@ -135,7 +165,7 @@
 							var fact:Object = hostComponent.mFacts[t];
 							if(fact.id == itms.factsAvailableToAgent[n])
 							{
-								//							mCharacterFactItems.addItem(factsOwner);
+//								mCharacterFactItems.addItem(factsOwner);
 								trace(fact);
 								mSelctedAgentFacts.push(fact);
 								
@@ -146,7 +176,7 @@
 					
 					
 				}
-				mFactsKnownToAgent.selectedItems = mSelctedAgentFacts;
+				mFactsKnownToAgent.selectedItems = mSelctedAgentFacts;*/
 				
 				
 				
@@ -188,7 +218,7 @@
 			
 			protected function mBeatChart_itemClickHandler(event:ChartItemEvent):void
 			{
-				trace(event);
+//				trace(event);
 			}
 			
 		]]>
@@ -228,7 +258,7 @@
 									 width="100%"
 									 height="100%" 
 									 allowMultipleSelection="true"
-									 labelField="description"
+									 labelField="@label"
 									 doubleClickEnabled="true"
 									 dragEnabled="true"
 									 dragMoveEnabled="true"
@@ -241,92 +271,18 @@
 									 itemClick="mBeatsTree_itemClickHandler(event)"
 									 contentBackgroundAlpha="0"
 									 verticalScrollPolicy="auto"
-									 dataProvider="{hostComponent.mBeatsData}">
-								
-								<!--<mx:XMLListCollection id="MailBox">
+									 itemRenderer="Skins.BeatsSkin.TreeItemLinesRenderer">
+									<mx:XMLListCollection id="MailBox">
 									<fx:XMLList>
-										<Description label="Mail">
-											<folder label="INBOX"/>
-											<folder label="Personal Folder">
-												<Pfolder label="Business" />
-												<Pfolder label="Demo" />
-												<Pfolder label="Personal" isBrunch="true"/>
-												<Pfolder label="Saved Mail" />
+										<Description label="ODN">
+											<folder label="Group 1: Description"/>
+											<folder label="Group 2: Description">
+												<Pfolder label="test1"/>
+												<Pfolder label="test 2"/>
 											</folder>
-											<folder label="Sent" />
-											<folder label="Trash" />
-											<folder label="INBOX"/>
-											<folder label="Personal Folder">
-												<Pfolder label="Business" />
-												<Pfolder label="Demo" />
-												<Pfolder label="Personal" isBrunch="true"/>
-												<Pfolder label="Saved Mail" />
-											</folder>
-											<folder label="Sent" />
-											<folder label="Trash" />
-											<folder label="INBOX"/>
-											<folder label="Personal Folder">
-												<Pfolder label="Business" />
-												<Pfolder label="Demo" />
-												<Pfolder label="Personal" isBrunch="true"/>
-												<Pfolder label="Saved Mail" />
-											</folder>
-											<folder label="Sent" />
-											<folder label="Trash" />
-											<folder label="INBOX"/>
-											<folder label="Personal Folder">
-												<Pfolder label="Business" />
-												<Pfolder label="Demo" />
-												<Pfolder label="Personal" isBrunch="true"/>
-												<Pfolder label="Saved Mail" />
-												<folder label="Personal Folder">
-													<Pfolder label="Business" />
-													<Pfolder label="Demo" />
-													<Pfolder label="Personal" isBrunch="true"/>
-													<Pfolder label="Saved Mail" />
-													<folder label="Personal Folder">
-														<Pfolder label="Business" />
-														<Pfolder label="Demo" />
-														<Pfolder label="Personal" isBrunch="true"/>
-														<Pfolder label="Saved Mail" />
-														<folder label="Personal Folder">
-															<Pfolder label="Business" />
-															<Pfolder label="Demo" />
-															<Pfolder label="Personal" isBrunch="true"/>
-															<Pfolder label="Saved Mail" />
-															<folder label="Personal Folder">
-																<Pfolder label="Business" />
-																<Pfolder label="Demo" />
-																<Pfolder label="Personal" isBrunch="true"/>
-																<Pfolder label="Saved Mail" />
-															</folder>
-														</folder>
-													</folder>
-												</folder>
-											</folder>
-											<folder label="Sent" />
-											<folder label="Trash" />
-											<folder label="INBOX"/>
-											<folder label="Personal Folder">
-												<Pfolder label="Business" />
-												<Pfolder label="Demo" />
-												<Pfolder label="Personal" isBrunch="true"/>
-												<Pfolder label="Saved Mail" />
-											</folder>
-											<folder label="Sent" />
-											<folder label="Trash" />
-											<folder label="INBOX"/>
-											<folder label="Personal Folder">
-												<Pfolder label="Business" />
-												<Pfolder label="Demo" />
-												<Pfolder label="Personal" isBrunch="true"/>
-												<Pfolder label="Saved Mail" />
-											</folder>
-											<folder label="Sent" />
-											<folder label="Trash" />
 										</Description>
 									</fx:XMLList>
-								</mx:XMLListCollection>-->
+								</mx:XMLListCollection>
 							</mx:Tree>
 					</s:HGroup>
 				</s:BorderContainer>
@@ -351,6 +307,7 @@
 												selectionMode="multiple" color="0xFFFFFF" 
 												backgroundElements="{tmp}"
 												itemClick="mBeatChart_itemClickHandler(event)">
+								
 									<!--<mx:annotationElements>
 										<mx:CartesianDataCanvas id="canvas" includeInRanges="true"/>
 									</mx:annotationElements>-->								
@@ -419,7 +376,7 @@
 						<s:HGroup width="100%"
 								  horizontalAlign="right">
 							<s:DropDownList id="mBeatTheme" x="-38" width="128"
-											dataProvider="{mBeatsListData}" labelField="xgmlTheme"
+											dataProvider="{hostComponent.mBeatsListData}" labelField="xgmlTheme"
 											prompt="Choose XGML theme"/>
 						</s:HGroup>	
 					</s:HGroup>

@@ -2,7 +2,7 @@
 <s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				xmlns:s="library://ns.adobe.com/flex/spark" 
 				xmlns:mx="library://ns.adobe.com/flex/mx" 
-				autoDrawBackground="true"
+				autoDrawBackground="false"
 				creationComplete="itemrenderer1_creationCompleteHandler(event)">
 	<fx:Script>
 		<![CDATA[
@@ -28,7 +28,7 @@
 				var beatColor:uint;
 				beat.graphics.clear();
 				
-				switch(beatData.item.beatType)
+				switch(beatData.item.type)
 				{
 					case "normal":
 						//color = FFFFFF;
@@ -59,6 +59,10 @@
 				
 				
 				var idLabel:TextField = new TextField();
+//				idLabel.height = 20;
+				idLabel.mouseEnabled = false;
+				
+				idLabel.autoSize = TextFieldAutoSize.LEFT;
 				idLabel.text = "" + beatData.item.beatId;
 				
 				var idLabelTextFormatter:TextFormat = new TextFormat();
@@ -73,8 +77,9 @@
 				graphicalContainer.addChild(idLabel);
 				
 				var descriptionLabel:TextField = new TextField();
+//				descriptionLabel.height
 				descriptionLabel.text = "" + beatData.item.beatDescription;
-				descriptionLabel.width = 300;
+				descriptionLabel.autoSize = TextFieldAutoSize.LEFT;
 				descriptionLabel.x = 40;
 				descriptionLabel.setTextFormat(idLabelTextFormatter);
 				graphicalContainer.addChild(descriptionLabel);
