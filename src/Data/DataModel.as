@@ -4,6 +4,7 @@ package Data
 	import Data.Beats.BeatsData;
 	import Data.Facts.FactsData;
 	import Data.Locations.LocationsData;
+	import Data.XGML.XgmslData;
 	
 	import mx.collections.ArrayCollection;
 	
@@ -30,6 +31,9 @@ package Data
 		[Bindable]
 		public var mBubbleBeatData:ArrayCollection = new ArrayCollection([{beatPosX:1, beatPosY:1, beatRadius:40,
 																	beatId:1, beatDescription:"desc", beatType:"normal", beatCompleted:""}]);
+		
+		[Bindable]
+		public var mXgmlsData:ArrayCollection = new ArrayCollection();
 		
 		public function DataModel()
 		{
@@ -152,6 +156,23 @@ package Data
 				mBubbleBeatData.addItem(tmp);
 			}
 			
+		}
+		
+		public function parseXgmlsData(data:Object):void
+		{
+			mXgmlsData.disableAutoUpdate();
+			var xgmls:XgmslData;
+			if(mXgmlsData)
+			{
+				mXgmlsData.removeAll();
+			}
+			for each(var item:Object in data)
+			{
+				xgmls = XgmslData.getNewInstance();
+				xgmls.parse(item);
+				mXgmlsData.addItem(xgmls);
+			}
+			mXgmlsData.enableAutoUpdate();
 		}
 	}
 }

@@ -258,7 +258,7 @@
 									 width="100%"
 									 height="100%" 
 									 allowMultipleSelection="true"
-									 labelField="@label"
+									 labelField="@name"
 									 doubleClickEnabled="true"
 									 dragEnabled="true"
 									 dragMoveEnabled="true"
@@ -274,11 +274,11 @@
 									 itemRenderer="Skins.BeatsSkin.TreeItemLinesRenderer">
 									<mx:XMLListCollection id="MailBox">
 									<fx:XMLList>
-										<Description label="ODN">
-											<folder label="Group 1: Description"/>
-											<folder label="Group 2: Description">
-												<Pfolder label="test1"/>
-												<Pfolder label="test 2"/>
+										<Description name="ODN">
+											<folder name="Group 1: Description"/>
+											<folder name="Group 2: Description">
+												<Pfolder name="test1"/>
+												<Pfolder name="test 2"/>
 											</folder>
 										</Description>
 									</fx:XMLList>

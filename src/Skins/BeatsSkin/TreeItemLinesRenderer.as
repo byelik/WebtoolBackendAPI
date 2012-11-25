@@ -22,7 +22,8 @@ package Skins.BeatsSkin
 			super();
 		}
 		
-		override public function set data(value:Object):void {
+		override public function set data(value:Object):void
+		{
 			super.data = value;
 		}
 		
