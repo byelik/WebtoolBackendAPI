@@ -2,45 +2,68 @@
 <s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				xmlns:s="library://ns.adobe.com/flex/spark" 
 				xmlns:mx="library://ns.adobe.com/flex/mx" 
-				autoDrawBackground="false"
+				autoDrawBackground="true"
 				creationComplete="itemrenderer1_creationCompleteHandler(event)">
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="hovered"/>
+		<s:State name="select"/>
+	</s:states>
+	
 	<fx:Script>
 		<![CDATA[
 			import flash.sampler.NewObjectSample;
 			
 			import mx.core.UIComponent;
 			import mx.events.FlexEvent;
+			import mx.graphics.IFill;
 			
 			import spark.components.Label;
 			
+			[Bindable]
 			private var beatData:Object;
 			
 			private var mWhiteBeat:uint = 0xFFFFFF;
 			private var mOrangeBeat:uint = 0xFFA500;
 			private var mGreenBeat:uint = 0x008000;
 			
+			private var graphicalContainer:UIComponent = new UIComponent();
+			
+			[Bindable]
+			private var mBeatColor:uint;
+			
+			[Bindable]
+			private var mBeatStrokeColor:uint;
+			
 			protected function itemrenderer1_creationCompleteHandler(event:FlexEvent):void
 			{
+				mBeatStrokeColor = 0x0000FF;
+				
+				
 				beatData = data;
 				
-				var graphicalContainer:UIComponent = new UIComponent();
+				
+				
+				
+//				mNormalGroupState.addElement(graphicalContainer);
+				
 				var  beat:Sprite = new Sprite();
-				var beatColor:uint;
+				
 				beat.graphics.clear();
 				
 				switch(beatData.item.type)
 				{
 					case "normal":
 						//color = FFFFFF;
-						beatColor = mWhiteBeat;
+						mBeatColor = mWhiteBeat;
 						break;
 					case "exclusive":
 						//color = FFA500
-						beatColor = mOrangeBeat;
+						mBeatColor = mOrangeBeat;
 						break;
 					case "repeated":
 						//color = green
-						beatColor = mGreenBeat;	
+						mBeatColor = mGreenBeat;	
 						break;
 					default:
 						//
@@ -48,17 +71,19 @@
 					
 				}
 				
-				beat.graphics.beginFill(beatColor, 1);      
+				/*beat.graphics.beginFill(beatColor, 1);      
 				beat.graphics.lineStyle(1, 0x000000);
 				beat.graphics.drawCircle(0.5*this.width, 0.5*this.height, 0.5*this.width);
 				beat.graphics.endFill();
 				beat.mouseEnabled = false;
 				beat.mouseChildren = false;
 				addElement(graphicalContainer);
-				graphicalContainer.addChild(beat);
+				graphicalContainer.addChild(beat);*/
 				
 				
-				var idLabel:TextField = new TextField();
+				
+				
+				/*var idLabel:TextField = new TextField();
 //				idLabel.height = 20;
 				idLabel.mouseEnabled = false;
 				
@@ -82,9 +107,68 @@
 				descriptionLabel.autoSize = TextFieldAutoSize.LEFT;
 				descriptionLabel.x = 40;
 				descriptionLabel.setTextFormat(idLabelTextFormatter);
-				graphicalContainer.addChild(descriptionLabel);
+				graphicalContainer.addChild(descriptionLabel);*/
 			}
+			
+			protected function mNormalGroupState_clickHandler(event:MouseEvent):void
+			{
+				event.stopImmediatePropagation();
+			}
+			
+			protected function mHoveredGroupState_clickHandler(event:MouseEvent):void
+			{
+				event.stopImmediatePropagation();
+			}
+			
 		]]>
 	</fx:Script>
 	
+	<s:Group id="mNormalGroupState" includeIn="normal" width="100%" height="100%" click="mNormalGroupState_clickHandler(event)">
+		<!--<s:Rect width="100%" height="100%">                              
+			<s:stroke>
+				<s:SolidColorStroke color="0x000000" weight="2"/>
+			</s:stroke>
+			<s:fill>
+				<s:SolidColor color="0x551122"/>
+			</s:fill>
+		</s:Rect>-->
+		<s:Ellipse width="25" height="25">
+			<s:stroke>
+				<s:SolidColorStroke color="#000000" weight="1"/>
+			</s:stroke>
+			<s:fill>
+				<s:SolidColor color="{mBeatColor}"/>
+			</s:fill>
+		</s:Ellipse>
+	</s:Group>
+	
+	<s:Group id="mHoveredGroupState" includeIn="hovered" click="mHoveredGroupState_clickHandler(event)">
+		<s:Ellipse width="25" height="25" id="mEllipse">
+			<s:stroke>
+				<s:SolidColorStroke color="{mBeatStrokeColor}" weight="3"/>
+			</s:stroke>
+			<s:fill>
+				<s:SolidColor color="{mBeatColor}"/>
+			</s:fill>
+		</s:Ellipse>
+	</s:Group>
+		
+	<!--<s:Group id="mSelectedGroupState" includeIn="select">
+		<s:Ellipse width="28" height="28">
+			<s:stroke>
+				<s:SolidColorStroke color="#9900FF" weight="5"/>
+			</s:stroke>
+			<s:fill>
+				<s:SolidColor color="{mColor}"/>
+			</s:fill>
+		</s:Ellipse>
+	</s:Group>-->
+	<s:Label id="mBeatIdLabel" 
+			 text="{beatData.item.beatId}" 
+			 left="7" top="7" 
+			 color="0x000000"/>
+	<s:Label id="mBeatdescription"
+			 text="{beatData.item.beatDescription}"
+			 left="30" top="7"
+			 color="0x000000"/>
 </s:ItemRenderer>

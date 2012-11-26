@@ -5,9 +5,9 @@ package Data.XGML
 	public class XgmslData
 	{
 		private var mId:int;
-		private var mDescription:String;
-		private var mOwners:ArrayCollection;
-		private var mXgmlId:String;
+		private var mClassName:String;
+		private var mFileName:String;
+		private var mContent:XML;
 		
 		public function XgmslData(data:Object = null)
 		{
@@ -24,34 +24,34 @@ package Data.XGML
 			mId = value;
 		}
 
-		public function get description():String
+		public function get className():String
 		{
-			return mDescription;
+			return mClassName;
 		}
 
-		public function set description(value:String):void
+		public function set className(value:String):void
 		{
-			mDescription = value;
+			mClassName = value;
 		}
 
-		public function get owners():ArrayCollection
+		public function get filename():String
 		{
-			return mOwners;
+			return mFileName;
 		}
 
-		public function set owners(value:ArrayCollection):void
+		public function set filename(value:String):void
 		{
-			mOwners = value;
+			mFileName = value;
 		}
 
-		public function get xgmlId():String
+		public function get content():XML
 		{
-			return mXgmlId;
+			return mContent;
 		}
 
-		public function set xgmlId(value:String):void
+		public function set content(value:XML):void
 		{
-			mXgmlId = value;
+			mContent = value;
 		}
 
 		public static function getNewInstance():XgmslData
@@ -64,16 +64,16 @@ package Data.XGML
 			if(!data)
 			{
 				mId = 0;
-				mDescription = "";
-				mOwners = null;
-				mXgmlId = "";
+				mClassName = "";
+				mFileName = "";
+				mContent = null;
 			}
 			else
 			{
 				mId = int(data.id);
-				mDescription = String(data.description);
-				mOwners = (data.owners);
-				mXgmlId = "";
+				mClassName = String(data.className);
+				mFileName = String(data.filename);
+				mContent = XML(data.content);
 			}
 		}
 	}
