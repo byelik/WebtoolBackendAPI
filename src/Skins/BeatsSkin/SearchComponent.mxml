@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" gap="0"
+		 creationComplete="vgroup1_creationCompleteHandler(event)" height="30" depth="1000">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.events.CollectionEvent;
+			import mx.events.FlexEvent;
+			
+			import spark.events.IndexChangeEvent;
+			
+			private var mIsShowSearchList:Boolean = true;
+			
+			[Bindable]
+			public var mSearchFieldPromt:String;
+			
+			[Bindable]
+			public var mSearchMatch:ArrayCollection = new ArrayCollection();
+			
+			protected function mSearchField_clickHandler(event:MouseEvent):void
+			{
+				if(mIsShowSearchList)
+				{
+					mSearchList.visible = true;
+					mSearchList.includeInLayout = true;
+					mIsShowSearchList = false;
+				}
+				else
+				{
+					mSearchList.visible = false;
+					mSearchList.includeInLayout = false;
+					mIsShowSearchList = true;
+				}
+			}
+			
+			protected function vgroup1_creationCompleteHandler(event:FlexEvent):void
+			{
+				mSearchMatch.addEventListener(CollectionEvent.COLLECTION_CHANGE, changeSearchListState);
+			}
+			
+			private function changeSearchListState(event:CollectionEvent):void
+			{
+				if(mSearchMatch.length != 0)
+				{
+					mSearchList.visible = true;
+					mSearchList.includeInLayout = true;
+					mIsShowSearchList = false;
+				}
+				else
+				{
+					mSearchList.visible = false;
+					mSearchList.includeInLayout = false;
+					mIsShowSearchList = true;
+				}
+			}
+			
+			protected function mSearchList_changeHandler(event:IndexChangeEvent):void
+			{
+				mSearchInputField.text = mSearchList.selectedItem;
+				mSearchList.visible = false;
+				mSearchList.includeInLayout = false;
+				mIsShowSearchList = true;
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:TextInput id="mSearchInputField" click="mSearchField_clickHandler(event)" prompt="{mSearchFieldPromt}" width="300"/>
+	<s:List id="mSearchList" visible="false" includeInLayout="false"  dataProvider="{mSearchMatch}" width="300" change="mSearchList_changeHandler(event)"/>
+</s:VGroup>

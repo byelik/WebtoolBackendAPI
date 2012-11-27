@@ -11,14 +11,6 @@
 		<![CDATA[
 			import Data.DataModel;
 			
-			import HttpService.HttpServiceManager;
-			
-			import mx.events.FlexEvent;
-			import mx.rpc.events.ResultEvent;
-			
-			import spark.events.DropDownEvent;
-			import spark.events.GridItemEditorEvent;
-			
 		]]>
 	</fx:Script>
 	
@@ -31,8 +23,7 @@
 				<s:DropDownList id="mCharacterList"
 								labelField="name"
 								width="300"
-								dataProvider="{hostComponent.mAgents}" 
-								/>				
+								dataProvider="{hostComponent.mAgents}"/>				
 			</s:HGroup>
 			<s:HGroup verticalAlign="middle" width="100%">
 				<s:Label width="54" text="Affinity"/>
@@ -69,42 +60,46 @@
 				</s:HGroup>
 				
 			</s:HGroup>
-			<s:DataGrid id="mVariableList" 
-						width="358" 
-						
-						borderVisible="false"
-						dataProvider="{hostComponent.mVariableItems}" 
-						editable="true"
-						resizableColumns="false" 
-						selectionMode="multipleRows"
-						sortableColumns="true"
-						requestedRowCount="3">
-				<s:columns>
-					<s:ArrayList>
-						<s:GridColumn dataField="id" headerText="Variable"/>
-						<s:GridColumn dataField="description" headerText="Value"/>
-					</s:ArrayList>
-				</s:columns>	
-			</s:DataGrid>
-			<s:Label text="Character facts"/>
-			<s:HGroup verticalAlign="middle">
-				<s:DataGrid id="mCharacterFactsList"
-							width="355" 
-							borderVisible="false"
-							dataProvider="{hostComponent.mCharacterFactItems}" 
+			<s:Panel title="Memory">
+				<s:DataGrid id="mVariableList" 
+							width="358" 
+							borderVisible="true"
+							dataProvider="{hostComponent.mVariableItems}" 
 							editable="true"
 							resizableColumns="false" 
 							selectionMode="multipleRows"
 							sortableColumns="true"
-							requestedRowCount="3" rowHeight="25">
+							requestedRowCount="3">
 					<s:columns>
 						<s:ArrayList>
-							<s:GridColumn dataField="id" headerText="id"/>
-							<s:GridColumn dataField="description" headerText="Description"/>
+							<s:GridColumn dataField="id" headerText="Variable"/>
+							<s:GridColumn dataField="description" headerText="Value"/>
 						</s:ArrayList>
-					</s:columns>
-				</s:DataGrid>
-			</s:HGroup>			
+					</s:columns>	
+				</s:DataGrid>	
+			</s:Panel>
+			
+			<!--<s:Label text="Character facts"/>-->
+			<!--<s:HGroup verticalAlign="middle">-->
+				<s:Panel title="Character facts">
+					<s:DataGrid id="mCharacterFactsList"
+								width="355" 
+								borderVisible="true"
+								dataProvider="{hostComponent.mCharacterFactItems}" 
+								editable="true"
+								resizableColumns="false" 
+								selectionMode="multipleRows"
+								sortableColumns="true"
+								requestedRowCount="3" rowHeight="25">
+						<s:columns>
+							<s:ArrayList>
+								<s:GridColumn dataField="id" headerText="id"/>
+								<s:GridColumn dataField="description" headerText="Description"/>
+							</s:ArrayList>
+						</s:columns>
+					</s:DataGrid>
+				</s:Panel>				
+			<!--</s:HGroup>-->			
 		</s:VGroup>
 		<!---->
 	
@@ -123,9 +118,9 @@
 		</s:VGroup>		
 		<!---->
 		
-		<s:HGroup>
-			<s:HGroup>
-				<s:VGroup>
+		<s:HGroup height="100%">
+			<s:HGroup height="100%">
+				<s:VGroup height="100%">
 					<s:Label text="Location"/>
 					<s:DropDownList id="mLocationList"
 									minWidth="300"
@@ -139,28 +134,89 @@
 								  label="-Fact"
 								  enabled="{mFactsList.selectedItem}"/>	
 					</s:HGroup>
-					<s:Label text="Facts"/>
-					<s:DataGrid id="mFactsList" 
-								height="219" 
-								minWidth="300" 
-								maxWidth="300" 
-								borderVisible="false"
-								dataProvider="{hostComponent.mSystemFacts}" 
-								editable="true"
-								resizableColumns="false" 
-								selectionMode="multipleRows"
-								sortableColumns="true"
-								requestedRowCount="8"
-								rowHeight="25">
-						<s:columns>
-							<s:ArrayList>
-								<s:GridColumn dataField="id" headerText="id" width="50"/>
-								<s:GridColumn dataField="description" headerText="Description"/>
-							</s:ArrayList>
-						</s:columns>
-					</s:DataGrid>
+					<!--<s:Label text="Facts"/>-->
+					<s:Panel title="Facts" height="100%">
+						<s:DataGrid id="mFactsList" 
+									minWidth="300" 
+									maxWidth="300" 
+									height="100%"
+									borderVisible="true"
+									dataProvider="{hostComponent.mSystemFacts}" 
+									editable="true"
+									resizableColumns="false" 
+									selectionMode="multipleRows"
+									sortableColumns="true"
+									requestedRowCount="9"
+									rowHeight="25">
+							<s:columns>
+								<s:ArrayList>
+									<s:GridColumn dataField="id" headerText="id" width="50"/>
+									<s:GridColumn dataField="description" headerText="Description"/>
+								</s:ArrayList>
+							</s:columns>
+						</s:DataGrid>	
+					</s:Panel>
 				</s:VGroup>
 			</s:HGroup>
 		</s:HGroup>
+		<s:VGroup height="100%" paddingTop="73">
+			<s:Panel title="Items" height="100%">
+				<s:DataGrid id="mItemsGrid"
+							height="100%"
+							resizableColumns="false"
+							editable="true"
+							selectionMode="multipleRows"
+							sortableColumns="true"
+							requestedRowCount="8"
+							dataProvider="{DataModel.getSingleton().mAgentsList}">
+					<s:columns>
+						<s:ArrayList>
+							<s:GridColumn dataField="name"  headerText="Type">
+								<s:itemRenderer>
+									<fx:Component>
+										<s:GridItemRenderer>
+											<fx:Script>
+												<![CDATA[
+													import Data.DataModel;
+												]]>
+											</fx:Script>
+											<s:ComboBoxGridItemEditor dataProvider="{DataModel.getSingleton().mAgentsList}"/>
+										</s:GridItemRenderer>
+									</fx:Component>
+								</s:itemRenderer>
+							</s:GridColumn>
+							<s:GridColumn dataField="name" headerText="Owner">
+								<s:itemRenderer>
+									<fx:Component>
+										<s:GridItemRenderer>
+											<fx:Script>
+												<![CDATA[
+													import Data.DataModel;
+												]]>
+											</fx:Script>
+											<s:ComboBoxGridItemEditor dataProvider="{DataModel.getSingleton().mAgentsList}"/>
+										</s:GridItemRenderer>
+									</fx:Component>
+								</s:itemRenderer>
+							</s:GridColumn>
+							<s:GridColumn dataField="name" headerText="Number" width="100">
+								<s:itemRenderer>
+									<fx:Component>
+										<s:GridItemRenderer>
+											<s:TextInput restrict="0-9"/>
+										</s:GridItemRenderer>
+									</fx:Component>
+								</s:itemRenderer>
+							</s:GridColumn>
+						</s:ArrayList>
+					</s:columns>
+				</s:DataGrid>
+			</s:Panel>
+			<s:HGroup width="100%" horizontalAlign="left">
+				<s:Button id="mAddItem" label="+Item"/>
+				<s:Button id="mDeleteItem" label="-Label"/>
+			</s:HGroup>
+		</s:VGroup>
+		
 	</s:HGroup>
 </s:Skin>

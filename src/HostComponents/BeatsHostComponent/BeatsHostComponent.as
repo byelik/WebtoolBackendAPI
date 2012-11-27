@@ -9,6 +9,8 @@ package HostComponents.BeatsHostComponent
 	
 	import Manager.AlertManager;
 	
+	import Skins.BeatsSkin.SearchComponent;
+	
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.display.Stage;
@@ -24,6 +26,7 @@ package HostComponents.BeatsHostComponent
 	import mx.charts.events.ChartItemEvent;
 	import mx.charts.series.BubbleSeries;
 	import mx.collections.ArrayCollection;
+	import mx.collections.XMLListCollection;
 	import mx.containers.Canvas;
 	import mx.controls.Alert;
 	import mx.controls.Tree;
@@ -85,11 +88,11 @@ package HostComponents.BeatsHostComponent
 		/*[SkinPart(required="true")]
 		public var mPreconditionsDescriptionField:TextArea;*/
 		
-		[SkinPart(required="true")]
-		public var mFactsKnownToUser:DataGrid;
+//		[SkinPart(required="true")]
+//		public var mFactsKnownToUser:DataGrid;
 		
-		[SkinPart(required="true")]
-		public var mFactsKnownToAgent:DataGrid;
+//		[SkinPart(required="true")]
+//		public var mFactsKnownToAgent:DataGrid;
 		
 		[SkinPart(required="true")]
 		public var mBeatsCompletedField:TextInput;
@@ -125,7 +128,7 @@ package HostComponents.BeatsHostComponent
 		public var hideBeatsTree:Resize;
 		
 		[SkinPart(required="true")]
-		public var mSearchField:TextInput;
+		public var mSearchField:SearchComponent;
 		
 		[SkinPart(required="true")]
 		public var mRefreshSearch:Button;
@@ -190,6 +193,9 @@ package HostComponents.BeatsHostComponent
 		
 		private var mSelectedBeatsId:ArrayCollection;
 		
+		[Bindable]
+		public var mBeatContextMenu:ContextMenu;
+		
 		public function BeatsHostComponent()
 		{
 			super();
@@ -213,46 +219,62 @@ package HostComponents.BeatsHostComponent
 			treeContextMenu.customItems.push(addGroupMenuItem);
 			addGroupMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, addGroupMenuEvent);
 			
-			var cutMenuItem:ContextMenuItem = new ContextMenuItem("Cut");
+			var cutMenuItem:ContextMenuItem = new ContextMenuItem("Cut item");
 			treeContextMenu.customItems.push(cutMenuItem);
 			cutMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, cutMenuEvent);
 			
-			var copyMenuItem:ContextMenuItem = new ContextMenuItem("Copy");
+			var copyMenuItem:ContextMenuItem = new ContextMenuItem("Copy item");
 			treeContextMenu.customItems.push(copyMenuItem);
 			copyMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, copyMenuEvent);
 			
-			var deleteMenuItem:ContextMenuItem = new ContextMenuItem("Delete");
+			var deleteMenuItem:ContextMenuItem = new ContextMenuItem("Delete item");
 			deleteMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, deleteMenuEvent);
 			
-			var pasteMenuItem:ContextMenuItem = new ContextMenuItem("Paste");
+			var pasteMenuItem:ContextMenuItem = new ContextMenuItem("Paste item");
 			pasteMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, pasteMenuEvent);
 			
-			var renameMenuItem:ContextMenuItem = new ContextMenuItem("Rename");
+			var renameMenuItem:ContextMenuItem = new ContextMenuItem("Rename item");
 			renameMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, renameMenuEvent);
 			
-			
-//			treeContextMenu.customItems = [addGroupMenuItem, cutMenuItem,
-//											copyMenuItem, deleteMenuItem,
-//											pasteMenuItem, renameMenuItem];
-			
-			
-			
-			
-			
-			
-			
-			
+			treeContextMenu.customItems.push(addGroupMenuItem);
+			treeContextMenu.customItems.push(cutMenuItem);
+			treeContextMenu.customItems.push(copyMenuItem);
 			treeContextMenu.customItems.push(deleteMenuItem);
 			treeContextMenu.customItems.push(pasteMenuItem);
 			treeContextMenu.customItems.push(renameMenuItem);
 			
 			
-			
 //			treeContextMenu.addEventListener(ContextMenuEvent.MENU_SELECT, getSelectedElement);
 			
-//			mSave.contextMenu = treeContextMenu;
-//			var tmp:ArrayCollection = DataModel.getSingleton().mBeatsList; 
-//			trace(tmp);
+			var addBeatContextMenuItem:ContextMenuItem = new ContextMenuItem("Add Beat");
+			addBeatContextMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, addBeatContextMenuHandler);
+			
+			var cutBeatContextMenuItem:ContextMenuItem = new ContextMenuItem("Cut Beat");
+			cutBeatContextMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, cutBeatContextMenuHandler);
+			
+			var copyBeatContextMenuItem:ContextMenuItem = new ContextMenuItem("Copy Beat");
+			copyBeatContextMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, copyBeatContextMenuHandler);
+			
+			var deleteBeatContextMenuItem:ContextMenuItem = new ContextMenuItem("Delete Beat");
+			deleteBeatContextMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, deleteBeatContextMenuHandler);
+			
+			var pasteBeatContextMenuItem:ContextMenuItem = new ContextMenuItem("Paste Beat");
+			pasteBeatContextMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, pasteBeatContextMenuHandler);
+			
+			var renameBeatContextMenuItem:ContextMenuItem = new ContextMenuItem("Rename Beat");
+			renameBeatContextMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, renameBeatContextMenuHandler);
+			
+			
+			
+			mBeatContextMenu = new ContextMenu();
+			mBeatContextMenu.hideBuiltInItems();
+			mBeatContextMenu.customItems.push(addBeatContextMenuItem);
+			mBeatContextMenu.customItems.push(cutBeatContextMenuItem);
+			mBeatContextMenu.customItems.push(copyBeatContextMenuItem);
+			mBeatContextMenu.customItems.push(deleteBeatContextMenuItem);
+			mBeatContextMenu.customItems.push(pasteBeatContextMenuItem);
+			mBeatContextMenu.customItems.push(renameBeatContextMenuItem);
+			
 			
 			mFacts = DataModel.getSingleton().mFactsList;
 			
@@ -297,7 +319,7 @@ package HostComponents.BeatsHostComponent
 					hideBeatsTree.addEventListener(EffectEvent.EFFECT_START, hideBeatsTreeEvent);
 				break;
 				case "mSearchField":
-					mSearchField.addEventListener(TextOperationEvent.CHANGE, seacrhEvent);
+					mSearchField.mSearchInputField.addEventListener(TextOperationEvent.CHANGE, seacrhEvent);
 				break;
 				case "mRefreshSearch":
 					mRefreshSearch.addEventListener(MouseEvent.CLICK, refreshSearch);
@@ -353,7 +375,7 @@ package HostComponents.BeatsHostComponent
 					hideBeatsTree.removeEventListener(EffectEvent.EFFECT_START, hideBeatsTreeEvent);
 				break;
 				case "mSearchField":
-					mSearchField.removeEventListener(TextOperationEvent.CHANGE, seacrhEvent);
+					mSearchField.mSearchInputField.removeEventListener(TextOperationEvent.CHANGE, seacrhEvent);
 				break;
 				case "mRefreshSearch":
 					mRefreshSearch.removeEventListener(MouseEvent.CLICK, refreshSearch);
@@ -415,7 +437,7 @@ package HostComponents.BeatsHostComponent
 			var selectedUserFacts:ArrayCollection = new ArrayCollection();
 			var selectedAgentFacts:ArrayCollection = new ArrayCollection(); 
 				
-			if(mFactsKnownToUser.selectedItems)
+			/*if(mFactsKnownToUser.selectedItems)
 			{
 				for(var jj:int = 0; jj < mFactsKnownToUser.selectedItems.length; jj++)
 				{
@@ -429,7 +451,7 @@ package HostComponents.BeatsHostComponent
 				{
 					selectedAgentFacts.addItem(mFactsKnownToAgent.selectedItems[k].id);
 				}
-			}
+			}*/
 				
 			new HttpServiceManager('{"method":"beats.updateBeat","params":[{"id":"'+mBeatsTree.selectedItem.id+'","description":"'+mBeatDescriptionField.text+'","agentId":"'+mBeatsTree.selectedItem.agentId+'","locationId":"'+mLocationList.selectedItem.id+'","type":"'+mTypeList.selectedItem+'","xgmlTheme":"'+mBeatTheme.selectedItem.xgmlTheme+'","activities":["Find(steve)","StartDialog(steve, Lets flirt with me!)","CompleteBeat(Jessica_flirt)"],"exclusiveBeatPriority":"'+mPriorityField.text+'"}],"jsonrpc":"2.0","id":21}', updateBeatResult);
 			new HttpServiceManager('{"method":"beats.updateBeatPrecondition","params":["'+mBeatsTree.selectedItem.id+'",{"description":"","factsAvailableToUser":['+selectedUserFacts+'],"factsAvailableToAgent":['+selectedAgentFacts+'],"beatsCompleted":['+mBeatsCompletedField.text+'],"affinityMin":"'+mAffinityMinField.text+'","affinityMax":"'+mAffinityMaxField.text+'","nerveMin":"'+mNerveMinField.text+'","nerveMax":"'+mNerveMaxField.text+'"}],"jsonrpc":"2.0","id":24}', updateBeatPreconditions);
@@ -520,9 +542,17 @@ package HostComponents.BeatsHostComponent
 		{
 			for(var i:int = 0; i < beatTypeList.length; i++)
 			{
-				if(mSearchField.text == beatTypeList[i].substr(0,3))
+				if(mSearchField.mSearchInputField.text == beatTypeList[i].substr(0,3))
 				{
 					trace("search is work");
+					if(mSearchField.mSearchMatch.length <=7)
+					{
+						mSearchField.mSearchMatch.addItem(mSearchField.mSearchInputField.text);
+					}
+				}
+				if(mSearchField.mSearchInputField.text.length == 0)
+				{
+					mSearchField.mSearchMatch.removeAll();
 				}
 			}
 		}
@@ -531,6 +561,11 @@ package HostComponents.BeatsHostComponent
 		{
 			//refresh search...
 			//close search tree... and show beats tree
+			mSearchField.mSearchInputField.text = "";
+			if(mSearchField)
+			{
+				mSearchField.mSearchMatch.removeAll();
+			}
 		}
 		
 		/*private function getSelectedElement(event:ContextMenuEvent):void
@@ -563,7 +598,7 @@ package HostComponents.BeatsHostComponent
 		
 		private function selectBeatOnGraph(event:ChartItemEvent):void
 		{
-			
+			event.stopImmediatePropagation();
 			mSelectedBeatOnGraph = event.hitData.item;
 			
 			if(mSelectedBeatsId)
@@ -616,7 +651,7 @@ package HostComponents.BeatsHostComponent
 					}
 				}
 				
-				if(mSelectedUsersFacts)
+				/*if(mSelectedUsersFacts)
 				{
 					mSelectedUsersFacts = new Vector.<Object>;
 				}
@@ -635,11 +670,11 @@ package HostComponents.BeatsHostComponent
 						}			
 					}
 				//}
-				mFactsKnownToUser.selectedItems = mSelectedUsersFacts;
+//				mFactsKnownToUser.selectedItems = mSelectedUsersFacts;*/
 			
 				
 				
-				if(mSelectedAgentFacts)
+				/*if(mSelectedAgentFacts)
 				{
 					mSelectedAgentFacts = new Vector.<Object>;
 				}
@@ -659,7 +694,7 @@ package HostComponents.BeatsHostComponent
 						
 					}		
 				//}
-				mFactsKnownToAgent.selectedItems = mSelectedAgentFacts;
+//				mFactsKnownToAgent.selectedItems = mSelectedAgentFacts;*/
 			}
 			
 			
@@ -680,7 +715,7 @@ package HostComponents.BeatsHostComponent
 		
 		private function addGroupMenuEvent(event:ContextMenuEvent):void
 		{
-			trace("add group event");
+			
 		}
 		
 		private function cutMenuEvent(event:ContextMenuEvent):void
@@ -693,10 +728,30 @@ package HostComponents.BeatsHostComponent
 			trace("copy event");
 		}
 		
+		[Bindable]
+		public var mBetsTreeData:XMLListCollection;
+		
+		
 		private function deleteMenuEvent(event:ContextMenuEvent):void
 		{
-			trace("delete event");
+			Alert.yesLabel = "Да";
+			Alert.noLabel = "Нет";
+			Alert.show("Вы действительно хотите удалить выбранные уровни?", "Внимание", Alert.YES | Alert.NO, null, deleteBeatLevelHandler);
 		}
+		
+		private function deleteBeatLevelHandler(event:CloseEvent):void
+		{
+			if(event.detail == Alert.YES)
+			{
+				//request to the server
+			}
+		}
+		
+		private function deleteBeatLevelResult(result:Object):void
+		{
+			//result...
+		}
+		
 		
 		private function pasteMenuEvent(event:ContextMenuEvent):void
 		{
@@ -854,6 +909,35 @@ package HostComponents.BeatsHostComponent
 //			addElement(cont);
 //			mBubbleCanvas.addElement(beatContainer);
 //			
+		}
+		
+		private function addBeatContextMenuHandler(evt:ContextMenuEvent):void 
+		{
+		}
+		
+		private function cutBeatContextMenuHandler(event:ContextMenuEvent):void
+		{
+			
+		}
+		
+		private function copyBeatContextMenuHandler(event:ContextMenuEvent):void
+		{
+			
+		}
+		
+		private function deleteBeatContextMenuHandler(event:ContextMenuEvent):void
+		{
+			
+		}
+		
+		private function pasteBeatContextMenuHandler(event:MouseEvent):void
+		{
+			
+		}
+		
+		private function renameBeatContextMenuHandler(event:MouseEvent):void
+		{
+			
 		}
 	}
 }

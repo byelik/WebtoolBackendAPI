@@ -2,13 +2,13 @@
 <s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				xmlns:s="library://ns.adobe.com/flex/spark" 
 				xmlns:mx="library://ns.adobe.com/flex/mx" 
-				autoDrawBackground="true"
+				autoDrawBackground="false"
 				creationComplete="itemrenderer1_creationCompleteHandler(event)">
-	<s:states>
+	<!--<s:states>
 		<s:State name="normal"/>
 		<s:State name="hovered"/>
 		<s:State name="select"/>
-	</s:states>
+	</s:states>-->
 	
 	<fx:Script>
 		<![CDATA[
@@ -112,18 +112,18 @@
 			
 			protected function mNormalGroupState_clickHandler(event:MouseEvent):void
 			{
-				event.stopImmediatePropagation();
+//				event.stopImmediatePropagation();
 			}
 			
 			protected function mHoveredGroupState_clickHandler(event:MouseEvent):void
 			{
-				event.stopImmediatePropagation();
+//				event.stopImmediatePropagation();
 			}
 			
 		]]>
 	</fx:Script>
 	
-	<s:Group id="mNormalGroupState" includeIn="normal" width="100%" height="100%" click="mNormalGroupState_clickHandler(event)">
+	<s:Group id="mNormalGroupState" width="100%" height="100%" click="mNormalGroupState_clickHandler(event)">
 		<!--<s:Rect width="100%" height="100%">                              
 			<s:stroke>
 				<s:SolidColorStroke color="0x000000" weight="2"/>
@@ -142,7 +142,7 @@
 		</s:Ellipse>
 	</s:Group>
 	
-	<s:Group id="mHoveredGroupState" includeIn="hovered" click="mHoveredGroupState_clickHandler(event)">
+	<s:Group id="mHoveredGroupState"  click="mHoveredGroupState_clickHandler(event)">
 		<s:Ellipse width="25" height="25" id="mEllipse">
 			<s:stroke>
 				<s:SolidColorStroke color="{mBeatStrokeColor}" weight="3"/>

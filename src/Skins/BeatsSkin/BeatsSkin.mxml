@@ -2,7 +2,7 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		creationComplete="skin1_creationCompleteHandler(event)">
+		creationComplete="skin1_creationCompleteHandler(event)" xmlns:BeatsSkin="Skins.BeatsSkin.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("HostComponents.BeatsHostComponent.BeatsHostComponent")]
@@ -32,6 +32,7 @@
 			import mx.charts.events.ChartItemEvent;
 			import mx.collections.ArrayCollection;
 			import mx.collections.IList;
+			import mx.events.DragEvent;
 			import mx.events.FlexEvent;
 			import mx.events.ListEvent;
 			
@@ -41,36 +42,19 @@
 				
 			[Bindable]
 			public var mBeatContextMenu:ContextMenu;
+			
+			[Bindable]
+			private var mSelctedAgentFacts:Vector.<Object> = new Vector.<Object>;
+			
 			protected function skin1_creationCompleteHandler(event:FlexEvent):void
 			{
-//				mSave.contextMenu = hostComponent.treeContextMenu;
 				mBeatsTree.contextMenu = hostComponent.treeContextMenu;
-				
-				
-				mBeatContextMenu = new ContextMenu();
-				mBeatContextMenu.hideBuiltInItems();
-				
-				var deleteBeatMenuItem:ContextMenuItem = new ContextMenuItem("Delete");
-				mBeatContextMenu.customItems.push(deleteBeatMenuItem);
-				deleteBeatMenuItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, deleteBeatMenuEvent);
-				
-				mBeatChart.contextMenu = /*hostComponent.treeContextMenu;// */mBeatContextMenu;
-				
+				mBeatChart.contextMenu = hostComponent.mBeatContextMenu;	
 				hostComponent.drawBeatConnection();
 			}
 			
 			
-			private function deleteBeatMenuEvent(event:ContextMenuEvent):void
-			{
-				trace("delete beat");
-			}
 			
-			
-			/*[Bindable]
-			private var mSelctedUsersFacts:Vector.<Object> = new Vector.<Object>;*/
-			
-			[Bindable]
-			private var mSelctedAgentFacts:Vector.<Object> = new Vector.<Object>;
 			
 			protected function mBeatsTree_itemClickHandler(event:ListEvent):void
 			{
@@ -78,111 +62,7 @@
 				if (mBeatsTree.dataDescriptor.isBranch(item)) 
 				{
 					mBeatsTree.expandItem(item, !mBeatsTree.isItemOpen(item), true);
-				}
-//				mBeatDescriptionField.text = mBeatsTree.selectedItem.description;
-//				mPriorityField.text = mBeatsTree.selectedItem.exclusiveBeatPriority;
-//				mTypeList.selectedItem = mBeatsTree.selectedItem.type;
-
-//				mActivitiesList.dataProvider = mBeatsTree.selectedItem.activities;
-
-				for each(var itm:Object in mBeatsTree.selectedItem.preconditions)
-				{
-//			   		mAffinityMinField.text = itm.affinityMin;
-//					mAffinityMaxField.text = itm.affinityMax;
-//					mNerveMinField.text = itm.nerveMin;
-//					mNerveMaxField.text = itm.nerveMax;
-//					mBeatsCompletedField.text = itm.beatsCompleted;
-				}
-				/*if(mBeatsTree.selectedItem.preconditions)
-				{
-					if(mBeatsTree.selectedItem.preconditions.length == 0)
-					{
-						mAffinityMinField.text = "0";
-						mAffinityMaxField.text = "100";
-						mNerveMinField.text = "0";
-						mNerveMaxField.text = "100";
-						mBeatsCompletedField.text = "";
-					}
-				}*/
-//				mBeatTheme.selectedItem = mBeatsTree.selectedItem.xgmlTheme;
-				/*for(var i:int = 0; i < hostComponent.mBeatsListData.length; i ++)
-				{
-					if(mBeatsTree.selectedItem.xgmlTheme == hostComponent.mBeatsListData[i].xgmlTheme)
-					{
-						mBeatTheme.selectedItem = hostComponent.mBeatsListData[i];
-					}
-				}*/
-					
-				/*for(var k:int = 0; k < DataModel.getSingleton().mLocationsList.length; k++)
-				{
-					if(mBeatsTree.selectedItem.locationId == DataModel.getSingleton().mLocationsList[k].id)
-					{
-						mLocationList.selectedItem = DataModel.getSingleton().mLocationsList[k];
-					}
-					
-				}*/
-				
-				/*var mAgentsData:ArrayCollection = DataModel.getSingleton().mAgentsList;
-				for(var j:int = 0; j <  mAgentsData.length; j ++)
-				{
-					if(mBeatsTree.selectedItem.agentId == mAgentsData[j].id)
-					{
-						mChooseAgentList.selectedItem = mAgentsData[j];
-					}
-				}*/
-				
-				if(hostComponent.mSelectedUsersFacts)
-				{
-					hostComponent.mSelectedUsersFacts = new Vector.<Object>;
-				}
-				for each(var itms:Object in mBeatsTree.selectedItem.preconditions)
-				{ 
-					for(var n:int = 0; n < itms.factsAvailableToUser.length; n ++)
-					{
-						for(var t:int = 0; t < hostComponent.mFacts.length; t++)
-						{
-							var fact:Object = hostComponent.mFacts[t];
-							if(fact.id == itms.factsAvailableToUser[n])
-							{
-								hostComponent.mSelectedUsersFacts.push(fact);
-							}	
-						}			
-					}
-				}
-				mFactsKnownToUser.selectedItems = hostComponent.mSelectedUsersFacts;
-				
-				
-				/*if(mSelctedAgentFacts)
-				{
-					mSelctedAgentFacts = new Vector.<Object>;
-				}
-				for each(var itms:Object in mBeatsTree.selectedItem.preconditions)
-				{ 
-					for(var n:int = 0; n < itms.factsAvailableToAgent.length; n ++)
-					{
-						for(var t:int = 0; t < hostComponent.mFacts.length; t++)
-						{
-							var fact:Object = hostComponent.mFacts[t];
-							if(fact.id == itms.factsAvailableToAgent[n])
-							{
-//								mCharacterFactItems.addItem(factsOwner);
-								trace(fact);
-								mSelctedAgentFacts.push(fact);
-								
-							}	
-						}
-						
-					}
-					
-					
-				}
-				mFactsKnownToAgent.selectedItems = mSelctedAgentFacts;*/
-				
-				
-				
-//				mFactsKnownToUser.selectedItems = mSelctedUsersFacts;
-//				trace(mBeatsTree.selectedItem.activities);
-				
+				}				
 			}
 			
 			protected function renameItem(event:ListEvent):void
@@ -216,9 +96,35 @@
 			[Bindable]
 			private var tmp:Array = new Array();
 			
-			protected function mBeatChart_itemClickHandler(event:ChartItemEvent):void
+			
+			protected function mBeatChart_dragCompleteHandler(event:DragEvent):void
 			{
-//				trace(event);
+				
+				
+			}
+			
+			protected function mBeatChart_mouseMoveHandler(event:MouseEvent):void
+			{
+				if(mBeatChart.selectedChartItem)
+				{
+					mBeatChart.selectedChartItem.item.beatPosX = mouseX;
+					mBeatChart.selectedChartItem.item.beatPosY = mouseY;
+				}
+			}
+			
+			protected function mBeatChart_dragStartHandler(event:DragEvent):void
+			{
+				trace(event);
+				/*if(mBeatChart.selectedChartItem)
+				{
+					mBeatChart.selectedChartItem.fill.alpha;
+					mBeatChart.selectedChartItem.item.beatPosY = mouseY;
+				}*/
+			}
+			
+			protected function mBeatChart_dragEnterHandler(event:DragEvent):void
+			{
+//				event.dragSource.chartitems[0].element.visible = false;
 			}
 			
 		]]>
@@ -236,13 +142,15 @@
 				height="100%">
 		<s:VGroup width="100%" height="100%" id="VerticalContentGroup">
 			<s:HGroup>
-				<s:TextInput id="mSearchField"
+				<!--<s:TextInput id="mSearchField"
 							 width="300"
-							 prompt="Search"/>
+							 prompt="Search"/>-->
+				<BeatsSkin:SearchComponent id="mSearchField" mSearchFieldPromt="Search" depth="1000"/>
 				<!--<s:ComboBox width="361" change="combobox1_changeHandler(event)"
-							dataProvider="{hostComponent.mFacts}" labelField="id"/>-->
+							dataProvider="{mBetsTreeData}" labelField="name"/>-->
 				<s:Button id="mRefreshSearch"
 						  label="Refresh"/>
+				
 							 
 			</s:HGroup>
 			<s:HGroup width="100%">
@@ -272,8 +180,8 @@
 									 contentBackgroundAlpha="0"
 									 verticalScrollPolicy="auto"
 									 itemRenderer="Skins.BeatsSkin.TreeItemLinesRenderer">
-									<mx:XMLListCollection id="MailBox">
-									<fx:XMLList>
+									<mx:XMLListCollection id="mBetsTreeData">
+									<fx:XMLList id="mXmlList">
 										<Description name="ODN">
 											<folder name="Group 1: Description"/>
 											<folder name="Group 2: Description">
@@ -306,7 +214,7 @@
 												dropEnabled="true"
 												selectionMode="multiple" color="0xFFFFFF" 
 												backgroundElements="{tmp}"
-												itemClick="mBeatChart_itemClickHandler(event)">
+												dragComplete="mBeatChart_dragCompleteHandler(event)" mouseMove="mBeatChart_mouseMoveHandler(event)" dragStart="mBeatChart_dragStartHandler(event)" dragEnter="mBeatChart_dragEnterHandler(event)">
 								
 									<!--<mx:annotationElements>
 										<mx:CartesianDataCanvas id="canvas" includeInRanges="true"/>
@@ -346,7 +254,7 @@
 			
 			
 			<s:HGroup width="100%" right="10">
-				<s:VGroup>
+				<s:VGroup width="100%">
 					<!--<s:DropDownList id="mAgentList"
 					labelField="label"
 					width="90"
@@ -363,7 +271,7 @@
 								  verticalAlign="middle">
 							<s:Label text="Agent:"/>
 							<s:DropDownList id="mChooseAgentList"
-											width="90"
+											width="200"
 											prompt="Choose agent"
 											labelField="name"
 											dataProvider="{DataModel.getSingleton().mAgentsList}"/>	
@@ -375,7 +283,7 @@
 						</s:HGroup>
 						<s:HGroup width="100%"
 								  horizontalAlign="right">
-							<s:DropDownList id="mBeatTheme" x="-38" width="128"
+							<s:DropDownList id="mBeatTheme" x="-38" width="200"
 											dataProvider="{hostComponent.mBeatsListData}" labelField="xgmlTheme"
 											prompt="Choose XGML theme"/>
 						</s:HGroup>	
@@ -385,13 +293,13 @@
 							  verticalAlign="middle">
 						<s:Label width="33" text="Type:"/>
 						<s:DropDownList id="mTypeList"
-										width="90"
+										width="200"
 										selectedItem="normal"
 										dataProvider="{hostComponent.beatTypeList}"/>	
 						<s:HGroup width="100%"
 								  verticalAlign="middle">
-							<s:HGroup width="80" horizontalAlign="left">
-								<s:Label text="Priority:"/>	
+							<s:HGroup width="118" horizontalAlign="left">
+								<s:Label text="Priority:" paddingLeft="20"/>	
 							</s:HGroup>
 							<s:HGroup width="100%"
 									  horizontalAlign="left">
@@ -425,7 +333,7 @@
 						<s:Label text="Beats completed:"/>
 						<s:TextInput id="mBeatsCompletedField"
 									 prompt="Comma - separated list fo ids"
-									 width="120"/>	
+									 width="300"/>	
 					</s:HGroup>
 					<s:HGroup
 						verticalAlign="middle">
@@ -438,93 +346,55 @@
 										labelField="name"
 										dataProvider="{DataModel.getSingleton().mLocationsList}"/>
 					</s:HGroup>
-					<s:Label text="Facts known to user:"/>
-					<s:DataGrid id="mFactsKnownToUser" 
-								width="300"
-								requestedRowCount="4"
-								rowHeight="25"
-								dataProvider="{hostComponent.mFacts}" selectionMode="multipleRows" selectionColor="0x808080">
-						<s:columns>
-							<s:ArrayList>
-								<s:GridColumn dataField="id" headerText="id" width="30"/>
-								<s:GridColumn dataField="description" headerText="Description"/>
-							</s:ArrayList>
-						</s:columns>
-					</s:DataGrid>
-					<s:Label text="Facts known to agent:"/>
-					<s:DataGrid id="mFactsKnownToAgent"
-								width="300"
-								requestedRowCount="4"
-								rowHeight="25"
-								dataProvider="{hostComponent.mFacts}" selectionMode="multipleRows" selectionColor="0x808080">
-						<s:columns>
-							<s:ArrayList>
-								<s:GridColumn dataField="id" headerText="id" width="30"/>
-								<s:GridColumn dataField="description" headerText="Description"/>
-							</s:ArrayList>
-						</s:columns>
-					</s:DataGrid>
-				</s:VGroup>	
-				<s:VGroup height="100%" width="100%">
-					<!--<s:Label text="Preconditions" 
-					fontWeight="bold" 
-					fontSize="14" 
-					color="0x000000"/>
-					<s:Label text="Description:"/>
-					<s:TextArea id="mPreconditionsDescriptionField"
-					prompt="Enter description"
-					width="300"/>-->
 					<s:Spacer/>
 					<s:Spacer/>
-					<s:Spacer/>					
+					<s:Spacer/>
+					<s:Spacer/>
 					<s:HGroup width="100%"
-							  horizontalAlign="center"
+							  horizontalAlign="left"
 							  verticalAlign="middle" top="100">
-						<s:HGroup>
+						<s:HGroup width="100">
 							<s:Label text="Affinity:" 
 									 textAlign="center"/>	
 						</s:HGroup>
-						<s:TextInput id="mAffinityMinField"
-									 text="0"
-									 width="50"
-									 restrict="0-9"
-									 maxChars="3"/>
-						<s:TextInput id="mAffinityMaxField"
-									 text="0"
-									 width="50"
-									 restrict="0-9"
-									 maxChars="3"/>
+						<s:HGroup>
+							<s:TextInput id="mAffinityMinField"
+										 text="0"
+										 width="50"
+										 restrict="0-9"
+										 maxChars="3"/>
+							<s:TextInput id="mAffinityMaxField"
+										 text="0"
+										 width="50"
+										 restrict="0-9"
+										 maxChars="3"/>	
+						</s:HGroup>
+						
 					</s:HGroup>
 					<s:HGroup width="100%"
-							  horizontalAlign="center"
+							  horizontalAlign="left"
 							  verticalAlign="middle">
-						<s:HGroup>
+						<s:HGroup width="100">
 							<s:Label text="Nerve:" 
-									 textAlign="center"/>	
+									 textAlign="left"/>	
 						</s:HGroup>
-						<s:TextInput id="mNerveMinField" 
-									 text="0"
-									 width="50"
-									 restrict="0-9"
-									 maxChars="3"/>
-						<s:TextInput id="mNerveMaxField"
-									 text="0"
-									 width="50"
-									 restrict="0-9"
-									 maxChars="3"/>
+						<s:HGroup>
+							<s:TextInput id="mNerveMinField" 
+										 text="0"
+										 width="50"
+										 restrict="0-9"
+										 maxChars="3"/>
+							<s:TextInput id="mNerveMaxField"
+										 text="0"
+										 width="50"
+										 restrict="0-9"
+										 maxChars="3"/>	
+						</s:HGroup>
 					</s:HGroup>
-					<s:Label text="Memory:" 
-							 textAlign="center"/>
-					<s:DataGrid id="mBeatVariableList" width="100%" requestedRowCount="10"
-								dataProvider="{hostComponent.mBeatVariables}" rowHeight="25">
-						<s:columns>
-							<s:ArrayList>
-								<s:GridColumn dataField="variable" headerText="Variable"/>
-								<s:GridColumn dataField="value" headerText="Value"/>
-							</s:ArrayList>
-						</s:columns>
-					</s:DataGrid>
-				</s:VGroup>
+					
+					<s:Label text="Preconditions function"/>
+					<s:TextArea id="mPreconditionsFunction" width="100%" height="111"/>
+				</s:VGroup>	
 			</s:HGroup>	
 		</s:VGroup>
 	</s:Scroller>

@@ -83,6 +83,15 @@ package HostComponents.FactsHostComponent
 		[SkinPart(required="true")]
 		public var mFactsList:DataGrid;
 		
+		[SkinPart(required="true")]
+		public var mItemsGrid:DataGrid;
+		
+		[SkinPart(required="true")]
+		public var mAddItem:Button;
+		
+		[SkinPart(required="true")]
+		public var mDeleteItem:Button;
+		
 		[Bindable]
 		public var mAgents:ArrayCollection;
 		
@@ -188,6 +197,12 @@ package HostComponents.FactsHostComponent
 				case "mFactsList":
 					mFactsList.addEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, finishEditSystemFactDescription);
 				break;
+				case "mAddItem":
+					mAddItem.addEventListener(MouseEvent.CLICK, addItem);
+				break;
+				case "mDeleteItem":
+					mDeleteItem.addEventListener(MouseEvent.CLICK, deleteItem);
+				break;
 			}
 		}
 		
@@ -234,6 +249,12 @@ package HostComponents.FactsHostComponent
 					break;
 				case "mFactsList":
 					mFactsList.removeEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, finishEditSystemFactDescription);
+				break;
+				case "mAddItem":
+					mAddItem.addEventListener(MouseEvent.CLICK, addItem);
+					break;
+				case "mDeleteItem":
+					mDeleteItem.addEventListener(MouseEvent.CLICK, deleteItem);
 				break;
 			}
 		}
@@ -601,6 +622,33 @@ package HostComponents.FactsHostComponent
 				//error
 			}
 		}
+		
+		////////////////////////addItem//////////////////////////////////
+		private function addItem(event:MouseEvent):void
+		{
+			
+		}
+		
+		private function addItemResult(result:Object):void
+		{
+			
+		}
+		////////////////////////addItem//////////////////////////////////
+		
+		
+		
+		////////////////////////deleteItem//////////////////////////////////
+		private function deleteItem(event:MouseEvent):void
+		{
+			
+		}
+		
+		private function deleteItemResult(result:Object):void
+		{
+			
+		}
+		////////////////////////deleteItem//////////////////////////////////
+		
 		
 		private function deleteVariableHandler(event:CloseEvent):void
 		{

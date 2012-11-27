@@ -1,11 +1,14 @@
 package Data.ImportManager
 {
+	import Data.DataModel;
+	
 	import flash.display.Loader;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.net.FileFilter;
 	import flash.net.FileReference;
 	
+	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
 	import mx.events.CloseEvent;
 
@@ -36,7 +39,8 @@ package Data.ImportManager
 			importerFileReference.addEventListener(Event.COMPLETE, loadFile);
 			importerFileReference.load();
 		}
-		
+		[Bindable]
+		public var tmp:ArrayCollection = new ArrayCollection();
 		private function loadFile(event:Event):void
 		{
 			var factsXML:XML;
@@ -45,15 +49,21 @@ package Data.ImportManager
 			{
 				factsXML = fact;	
 			}
-			
 			for each(var factId:XML in factsXML.fact)
 			{
-				trace(factId.@id + factId.description);
+				var factObject:Object = {};
+				factObject["id"] = int(factId.@id);
+				factObject["description"] = String(factId.description[0]);
 				for each(var own:XML in factId.owners.owner)
 				{
 					trace(own);
+					factObject["owners"] = own;
 				}
+				
+				tmp.addItem(factObject);
 			}
+			
+			DataModel.getSingleton().parseFactsData(tmp);
 		}
 		
 		private function errorHandler(event:IOErrorEvent):void
