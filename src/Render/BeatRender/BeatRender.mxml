@@ -3,7 +3,9 @@
 				xmlns:s="library://ns.adobe.com/flex/spark" 
 				xmlns:mx="library://ns.adobe.com/flex/mx" 
 				autoDrawBackground="false"
-				creationComplete="itemrenderer1_creationCompleteHandler(event)">
+				creationComplete="itemrenderer1_creationCompleteHandler(event)"
+				mouseOver="itemrenderer1_mouseOverHandler(event)"
+				mouseOut="itemrenderer1_mouseOutHandler(event)">
 	<!--<s:states>
 		<s:State name="normal"/>
 		<s:State name="hovered"/>
@@ -37,7 +39,7 @@
 			
 			protected function itemrenderer1_creationCompleteHandler(event:FlexEvent):void
 			{
-				mBeatStrokeColor = 0x0000FF;
+				mBeatStrokeColor = 0x000000;
 				
 				
 				beatData = data;
@@ -118,6 +120,17 @@
 			protected function mHoveredGroupState_clickHandler(event:MouseEvent):void
 			{
 //				event.stopImmediatePropagation();
+			}
+			
+			protected function itemrenderer1_mouseOverHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				mBeatStrokeColor = 0x0000FF;
+			}
+			
+			protected function itemrenderer1_mouseOutHandler(event:MouseEvent):void
+			{
+				mBeatStrokeColor = 0x000000;
 			}
 			
 		]]>

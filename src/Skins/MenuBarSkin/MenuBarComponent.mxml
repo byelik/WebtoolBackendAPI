@@ -18,7 +18,7 @@
 				right="5"
 				top="5">
 		<fx:XMLList>
-			<menuitem label = "Файл">
+			<menuitem label = "Сценарии">
 				<menuitem label = "Экспорт"/>
 				<menuitem label = "Импорт"/>
 			</menuitem>

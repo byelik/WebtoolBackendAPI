@@ -73,13 +73,11 @@ package HostComponents.MenuBarHostComponent
 			switch(event.label)
 			{
 				case "Экспорт":
-					 trace("Экспорт");
 					 var mExportDataManager:ExportDataManager;
 					 mExportDataManager = new ExportDataManager();
 					 mExportDataManager.exportData();
 				break;
 				case "Импорт":
-					trace("Импорт");
 					mImportDataManger.importData();
 				break;
 			}

@@ -710,6 +710,7 @@ package HostComponents.BeatsHostComponent
 			{
 //				good	
 				mBeatsData.addItem(result);
+				focusManager.setFocus(mBeatDescriptionField);
 			}
 		}
 		
