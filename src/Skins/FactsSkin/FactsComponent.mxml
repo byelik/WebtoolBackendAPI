@@ -95,7 +95,20 @@
 							<s:ArrayList>
 								<s:GridColumn dataField="id" headerText="id"/>
 								<s:GridColumn dataField="description" headerText="Description"/>
-								<s:GridColumn dataField="status" headerText="Status"/>
+								<s:GridColumn dataField="status" headerText="Status">
+									<s:itemRenderer>
+										<fx:Component>
+											<s:GridItemRenderer>
+												<fx:Script>
+													<![CDATA[
+														import Data.DataModel;
+													]]>
+												</fx:Script>
+												<s:ComboBoxGridItemEditor dataProvider="{DataModel.getSingleton().mAgentsList}"/>
+											</s:GridItemRenderer>
+										</fx:Component>
+									</s:itemRenderer>
+								</s:GridColumn>
 							</s:ArrayList>
 						</s:columns>
 					</s:DataGrid>

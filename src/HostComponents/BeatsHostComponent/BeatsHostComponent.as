@@ -609,6 +609,7 @@ package HostComponents.BeatsHostComponent
 			{
 				mSelectedBeatsId.addItem(event.currentTarget.selectedChartItems[i].item.beatId);
 			}
+			trace(mSelectedBeatsId);
 			//mSelectedBeatsId.addItem(mSelectedBeatOnGraph.beatId);
 			
 			if(mSelectedBeatOnGraph)
@@ -902,14 +903,8 @@ package HostComponents.BeatsHostComponent
 					}
 				}
 			}				
-//			canvas.graphics.moveTo(bubleSeries.items[0].x, bubleSeries.items[0].y);
-//			canvas.graphics.lineTo(bubleSeries.items[2].x, bubleSeries.items[2].y);//bubleSeries.items[0]);
 			beatLine.graphics.endFill();
-//			beatContainer.addChild(beatLine);
 			mBeatSeries.addChild(beatLine);
-//			addElement(cont);
-//			mBubbleCanvas.addElement(beatContainer);
-//			
 		}
 		
 		private function addBeatContextMenuHandler(evt:ContextMenuEvent):void 
@@ -928,7 +923,7 @@ package HostComponents.BeatsHostComponent
 		
 		private function deleteBeatContextMenuHandler(event:ContextMenuEvent):void
 		{
-			
+			deleteBeatWindow();
 		}
 		
 		private function pasteBeatContextMenuHandler(event:MouseEvent):void

@@ -124,6 +124,7 @@
 			
 			protected function mBeatChart_dragEnterHandler(event:DragEvent):void
 			{
+				trace(event);
 //				event.dragSource.chartitems[0].element.visible = false;
 			}
 			
