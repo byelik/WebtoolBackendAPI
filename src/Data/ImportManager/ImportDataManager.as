@@ -20,6 +20,12 @@ package Data.ImportManager
 		private var xmlData:XML;
 		private var alertHandler:Alert;
 		
+		[Bindable]
+		private var mFacts:ArrayCollection = new ArrayCollection();
+		
+		[Bindable]
+		private var mBeats:ArrayCollection = new ArrayCollection();
+		
 		public function ImportDataManager()
 		{
 			importerFileFilter = new FileFilter("XML", "*.xml");
@@ -39,11 +45,13 @@ package Data.ImportManager
 			importerFileReference.addEventListener(Event.COMPLETE, loadFile);
 			importerFileReference.load();
 		}
-		[Bindable]
-		public var tmp:ArrayCollection = new ArrayCollection();
+		
 		private function loadFile(event:Event):void
 		{
 			var factsXML:XML;
+			var beatsXML:XML;
+			
+			
 			xmlData = XML(importerFileReference.data);
 			for each(var fact:XML in xmlData.facts)
 			{
@@ -52,18 +60,65 @@ package Data.ImportManager
 			for each(var factId:XML in factsXML.fact)
 			{
 				var factObject:Object = {};
+				
+				
+//				trace(factId.@id);
 				factObject["id"] = int(factId.@id);
 				factObject["description"] = String(factId.description[0]);
+				
 				for each(var own:XML in factId.owners.owner)
+				{
+//					trace(own);
+					factObject["owners"] = own;
+				}
+				mFacts.addItem(factObject);
+			}
+			DataModel.getSingleton().parseFactsData(mFacts);
+			
+			//parse beats data from XML
+			for each(var beats:XML in xmlData.beats)
+			{
+				beatsXML = beats;
+			}
+			for each(var beat:XML in beatsXML.beat)
+			{
+				trace(beat.@id);
+				var beatsObject:Object = {};
+				beatsObject["activities"] = (beat.activities) as Array;
+				beatsObject["agentId"] = int(beat.agentId);
+				beatsObject["description"] = String(beat.description);
+				beatsObject["exclusiveBeatPriority"] = int(beat.exclusiveBeatPriority);
+				beatsObject["id"] = int(beat.@id);
+				beatsObject["locationId"] = int(beat.locationId);
+				beatsObject["preConditions"] = (beat.preConditions) as Array;
+				beatsObject["type"] = String(beat.type);
+				beatsObject["xgmlTheme"] = String(beat.xgmlTheme);
+				for each(var beatPreconditions:XML in beat.preConditions)
+				{
+					trace(beatPreconditions.preConditions);
+//					beatsObject["affinityMax"] = int(beatPreconditions.affinityMax);
+//					beatsObject["affinityMin"] = int(beatsObject.affinityMin);
+					beatsObject["preConditions"] = beatPreconditions;
+					
+				}
+				mBeats.addItem(beatsObject);
+			}
+//			for each(var beats:XML in beatsXML.beats)
+//			{
+				
+				
+				
+				
+//				beatsObject["id"] = int(factId.@id);
+//				factObject["description"] = String(factId.description[0]);
+				/*for each(var own:XML in factId.owners.owner)
 				{
 					trace(own);
 					factObject["owners"] = own;
-				}
-				
-				tmp.addItem(factObject);
-			}
-			
-			DataModel.getSingleton().parseFactsData(tmp);
+				}*/
+//				mFacts.addItem(factObject);
+//			}
+			DataModel.getSingleton().parseBeatsData(mBeats);
 		}
 		
 		private function errorHandler(event:IOErrorEvent):void

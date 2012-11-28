@@ -6,21 +6,35 @@ package Data.ExportManager
 
 	public class ExportDataManager
 	{
-		private var fileName:Date;
+		private var currentDate:Date;
 		
 		private var exportFileFilter:FileFilter;
 		private var exportFileReference:FileReference;
 		
+		private var currentYear:uint;
+		private var currentMonth:uint;
+		private var currentDay:uint;
+		private var currentHour:uint;
+		private var currentMinutes:uint;
+		private var mFileName:String;
 		public function ExportDataManager()
 		{
-			fileName = new Date();
+			currentDate = new Date();
 			exportFileFilter = new FileFilter("XML", "*.xml");
 			exportFileReference = new FileReference();
+			
+			currentYear = currentDate.getFullYear();
+			currentMonth = currentDate.getMonth();
+			currentDay = currentDate.getDay();
+			currentHour = currentDate.getHours();
+			currentMinutes = currentDate.getMinutes();
+			
+			mFileName = "" + currentYear + "-" + currentMonth + "-" + currentDay + "-" + currentHour + "-" + currentMinutes + ".xml";
 		}
 		
 		public function exportData():void
 		{
-			exportFileReference.save("Test", "test.xml");
+			exportFileReference.save("Test", mFileName);
 		}
 	}
 }

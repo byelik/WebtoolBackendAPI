@@ -30,7 +30,7 @@ package HostComponents.MenuBarHostComponent
 		public var mMenuBar:MenuBar;
 				
 		private var mImportDataManger:ImportDataManager 
-		private var mExportDataManager:ExportDataManager;
+		
 		
 		
 		public function MenuBarHostComponent()
@@ -38,7 +38,7 @@ package HostComponents.MenuBarHostComponent
 			super();
 			
 			mImportDataManger = new ImportDataManager();
-			mExportDataManager = new ExportDataManager();
+			
 		}
 		
 		override protected function getCurrentSkinState():String
@@ -74,6 +74,8 @@ package HostComponents.MenuBarHostComponent
 			{
 				case "Экспорт":
 					 trace("Экспорт");
+					 var mExportDataManager:ExportDataManager;
+					 mExportDataManager = new ExportDataManager();
 					 mExportDataManager.exportData();
 				break;
 				case "Импорт":
