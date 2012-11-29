@@ -35,6 +35,9 @@ package Data
 		[Bindable]
 		public var mXgmlsData:ArrayCollection = new ArrayCollection();
 		
+		[Bindable]
+		public var mAgentXgml:ArrayCollection = new ArrayCollection();
+		
 		public function DataModel()
 		{
 			

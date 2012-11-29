@@ -437,22 +437,7 @@ package HostComponents.BeatsHostComponent
 			var selectedUserFacts:ArrayCollection = new ArrayCollection();
 			var selectedAgentFacts:ArrayCollection = new ArrayCollection(); 
 				
-			/*if(mFactsKnownToUser.selectedItems)
-			{
-				for(var jj:int = 0; jj < mFactsKnownToUser.selectedItems.length; jj++)
-				{
-					selectedUserFacts.addItem(mFactsKnownToUser.selectedItems[jj].id);
-				}
-			}
 			
-			if(mFactsKnownToAgent.selectedItems)
-			{
-				for(var k:int = 0; k < mFactsKnownToAgent.selectedItems.length; k++)
-				{
-					selectedAgentFacts.addItem(mFactsKnownToAgent.selectedItems[k].id);
-				}
-			}*/
-				
 			new HttpServiceManager('{"method":"beats.updateBeat","params":[{"id":"'+mBeatsTree.selectedItem.id+'","description":"'+mBeatDescriptionField.text+'","agentId":"'+mBeatsTree.selectedItem.agentId+'","locationId":"'+mLocationList.selectedItem.id+'","type":"'+mTypeList.selectedItem+'","xgmlTheme":"'+mBeatTheme.selectedItem.xgmlTheme+'","activities":["Find(steve)","StartDialog(steve, Lets flirt with me!)","CompleteBeat(Jessica_flirt)"],"exclusiveBeatPriority":"'+mPriorityField.text+'"}],"jsonrpc":"2.0","id":21}', updateBeatResult);
 			new HttpServiceManager('{"method":"beats.updateBeatPrecondition","params":["'+mBeatsTree.selectedItem.id+'",{"description":"","factsAvailableToUser":['+selectedUserFacts+'],"factsAvailableToAgent":['+selectedAgentFacts+'],"beatsCompleted":['+mBeatsCompletedField.text+'],"affinityMin":"'+mAffinityMinField.text+'","affinityMax":"'+mAffinityMaxField.text+'","nerveMin":"'+mNerveMinField.text+'","nerveMax":"'+mNerveMaxField.text+'"}],"jsonrpc":"2.0","id":24}', updateBeatPreconditions);
 		}
@@ -591,15 +576,18 @@ package HostComponents.BeatsHostComponent
 		
 		private function addBeat(event:MouseEvent):void
 		{
-			//send request addBeat
+			addBeatHandler();
+		}
+		
+		private function addBeatHandler():void
+		{
 			new HttpServiceManager('{"method":"beats.addBeat","params":[{}],"jsonrpc":"2.0","id":7}', addBeatResult);
-			
 		}
 		
 		private function selectBeatOnGraph(event:ChartItemEvent):void
 		{
 			event.stopImmediatePropagation();
-			mSelectedBeatOnGraph = event.hitData.item;
+			mSelectedBeatOnGraph = event.hitData.item;		
 			
 			if(mSelectedBeatsId)
 			{
@@ -609,7 +597,7 @@ package HostComponents.BeatsHostComponent
 			{
 				mSelectedBeatsId.addItem(event.currentTarget.selectedChartItems[i].item.beatId);
 			}
-			trace(mSelectedBeatsId);
+//			trace(mSelectedBeatsId);
 			//mSelectedBeatsId.addItem(mSelectedBeatOnGraph.beatId);
 			
 			if(mSelectedBeatOnGraph)
@@ -649,56 +637,30 @@ package HostComponents.BeatsHostComponent
 					if(mSelectedBeatOnGraph.agentId == mAgentsData[j].id)
 					{
 						mChooseAgentList.selectedItem = mAgentsData[j];
+						new HttpServiceManager('{"method":"general.getXGMLThemesForAgent","params":["'+mChooseAgentList.selectedItem.name+'"],"jsonrpc":"2.0","id":8}', getXgmlThemesForAgentResult);
 					}
 				}
-				
-				/*if(mSelectedUsersFacts)
-				{
-					mSelectedUsersFacts = new Vector.<Object>;
-				}
-				
-				//for each(var itms:Object in selectedBeatOnGraph.preconditions)
-				//{ 
-					for(var n:int = 0; n < mSelectedBeatOnGraph.factsAvailableToUser.length; n ++)
-					{
-						for(var t:int = 0; t < mFacts.length; t++)
-						{
-							var fact:Object = mFacts[t];
-							if(fact.xgml == mSelectedBeatOnGraph.factsAvailableToUser[n])
-							{
-								mSelectedUsersFacts.push(fact);
-							}	
-						}			
-					}
-				//}
-//				mFactsKnownToUser.selectedItems = mSelectedUsersFacts;*/
-			
-				
-				
-				/*if(mSelectedAgentFacts)
-				{
-					mSelectedAgentFacts = new Vector.<Object>;
-				}
-				//for each(var itms:Object in mBeatsTree.selectedItem.preconditions)
-				//{ 
-					for(var n:int = 0; n < mSelectedBeatOnGraph.factsAvailableToAgent.length; n ++)
-					{
-						for(var t:int = 0; t < mFacts.length; t++)
-						{
-							var fact:Object = mFacts[t];
-							if(fact.xgml == mSelectedBeatOnGraph.factsAvailableToAgent[n])
-							{
-//								mCharacterFactItems.addItem(factsOwner);
-								mSelectedAgentFacts.push(fact);	
-							}	
-						}
-						
-					}		
-				//}
-//				mFactsKnownToAgent.selectedItems = mSelectedAgentFacts;*/
 			}
-			
-			
+		}
+		
+		[Bindable]
+		private var mAgentThemes:ArrayCollection = new ArrayCollection();
+		private function getXgmlThemesForAgentResult(result:Object):void
+		{
+			if(result.code)
+			{
+				Alert.show("Ошибка при загрузке списка тем для агента", "Внимание", Alert.OK);
+			}
+			else
+			{
+				if(mAgentThemes)
+				{
+					mAgentThemes.removeAll();
+				}
+				
+				mAgentThemes.addItem(result);
+				mBeatTheme.dataProvider = mAgentThemes;
+			}
 		}
 		
 		private function addBeatResult(result:Object):void
@@ -729,10 +691,6 @@ package HostComponents.BeatsHostComponent
 		{
 			trace("copy event");
 		}
-		
-		[Bindable]
-		public var mBetsTreeData:XMLListCollection;
-		
 		
 		private function deleteMenuEvent(event:ContextMenuEvent):void
 		{
@@ -852,8 +810,6 @@ package HostComponents.BeatsHostComponent
 		{
 			
 			dataSort.fields = [dataSortField];
-//			dataSort.fields = [new SortField("data", true, true)];
-//			dataSort.reverse();
 			
 			beatTypeList.sort = dataSort;
 			beatTypeList.refresh();
@@ -909,6 +865,7 @@ package HostComponents.BeatsHostComponent
 		
 		private function addBeatContextMenuHandler(evt:ContextMenuEvent):void 
 		{
+			addBeatHandler();
 		}
 		
 		private function cutBeatContextMenuHandler(event:ContextMenuEvent):void
