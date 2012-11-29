@@ -196,6 +196,9 @@ package HostComponents.BeatsHostComponent
 		[Bindable]
 		public var mBeatContextMenu:ContextMenu;
 		
+		[Bindable]
+		public var mAgentThemes:ArrayCollection = new ArrayCollection();
+		
 		public function BeatsHostComponent()
 		{
 			super();
@@ -643,8 +646,7 @@ package HostComponents.BeatsHostComponent
 			}
 		}
 		
-		[Bindable]
-		private var mAgentThemes:ArrayCollection = new ArrayCollection();
+		
 		private function getXgmlThemesForAgentResult(result:Object):void
 		{
 			if(result.code)
@@ -657,9 +659,24 @@ package HostComponents.BeatsHostComponent
 				{
 					mAgentThemes.removeAll();
 				}
+				var str:String = result.toString();
+				var themes:Array = str.split(",");
+				for(var i:int = 0; i < themes.length; i++)
+				{
+					mAgentThemes.addItem(themes[i]);	
+				}
 				
-				mAgentThemes.addItem(result);
 				mBeatTheme.dataProvider = mAgentThemes;
+				for(var j:int; j < mAgentThemes.length; j++)
+				{
+					if(mAgentThemes[j] == mSelectedBeatOnGraph.xgmlTheme)
+					{
+						mBeatTheme.selectedItem = mAgentThemes[j];
+//						mBeatTheme.selectedIndex(j);
+//						trace(mAgentThemes[j]);
+					}
+				
+				}
 			}
 		}
 		
