@@ -32,6 +32,12 @@ package Data.ImportManager
 		[Bindable]
 		private var mAgents:ArrayCollection = new ArrayCollection();
 		
+		[Bindable]
+		private var mDescriptor:ArrayCollection = new ArrayCollection();
+		
+		[Bindable]
+		private var mItems:ArrayCollection = new ArrayCollection();
+		
 		public function ImportDataManager()
 		{
 			importerFileFilter = new FileFilter("XML", "*.xml");
@@ -58,6 +64,8 @@ package Data.ImportManager
 			var beatsXML:XML;
 			var locationsXml:XML;
 			var agentsXml:XML;
+			var descriptorXml:XML;
+			var itemsXml:XML;
 			
 			xmlData = XML(importerFileReference.data);
 			//parse facts
@@ -189,6 +197,53 @@ package Data.ImportManager
 				mAgents.addItem(agentObject);
 			}
 			DataModel.getSingleton().parseAgentsData(mAgents);
+			
+			if(mDescriptor)
+			{
+				mDescriptor.removeAll();
+			}
+			/*for each(var s:XML in xmlData.agents)
+			{
+				agentsXml = agents;	
+			}*/
+			for each(var descriptor:XML in xmlData.descriptor)
+			{
+				var descriptorObject:Object = {};				
+				descriptorObject["id"] = int(descriptor.@id);
+				descriptorObject["scenarioId"] = String(descriptor.scenarioId);
+				mDescriptor.addItem(descriptorObject);
+			}
+//			DataModel.getSingleton().parseAgentsData(mAgents);
+			
+			//parse items
+			if(mItems)
+			{
+				mItems.removeAll();
+			}
+			for each(var items:XML in xmlData.items)
+			{
+				itemsXml = items;	
+			}
+			for each(var item:XML in itemsXml.item)
+			{
+				var itemObject:Object = {"maps":[]};				
+				itemObject["itemType"] = String(item.itemType);
+				for each(var itemMap:XML in item.maps.children())
+				{
+					var mapChildren:XMLList = itemMap.children();
+					var mapObj:Object = new Object();
+					mapObj["placeType"] = mapChildren[0].toString();
+					mapObj["placeId"] = mapChildren[1].toString();
+					mapObj["count"] = mapChildren[2].toString();
+					itemObject["maps"].push(mapObj);
+				}
+				
+				
+				
+				mItems.addItem(itemObject);
+			}
+//			DataModel.getSingleton().parseAgentsData(mAgents);
+			
 		}
 		
 		private function errorHandler(event:IOErrorEvent):void
