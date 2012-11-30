@@ -5,7 +5,11 @@
 				autoDrawBackground="false"
 				creationComplete="itemrenderer1_creationCompleteHandler(event)"
 				mouseOver="itemrenderer1_mouseOverHandler(event)"
-				mouseOut="itemrenderer1_mouseOutHandler(event)">
+				mouseOut="itemrenderer1_mouseOutHandler(event)"
+				mouseDown="itemrenderer1_mouseDownHandler(event)"
+				mouseMove="itemrenderer1_mouseMoveHandler(event)" 
+				dragEnter="itemrenderer1_dragEnterHandler(event)"
+				dragStart="itemrenderer1_dragStartHandler(event)">
 	<!--<s:states>
 		<s:State name="normal"/>
 		<s:State name="hovered"/>
@@ -16,7 +20,12 @@
 		<![CDATA[
 			import flash.sampler.NewObjectSample;
 			
+			import mx.charts.DateTimeAxis;
+			import mx.charts.LinearAxis;
+			import mx.charts.chartClasses.CartesianTransform;
+			import mx.charts.series.BubbleSeries;
 			import mx.core.UIComponent;
+			import mx.events.DragEvent;
 			import mx.events.FlexEvent;
 			import mx.graphics.IFill;
 			
@@ -36,6 +45,21 @@
 			
 			[Bindable]
 			private var mBeatStrokeColor:uint;
+			
+			////////////////////////////////
+			private var stageX:Number;
+			private var stageY:Number;
+			private var dataX:Number;
+			private var dataY:Number;
+			
+			
+			private var hAxis:DateTimeAxis;
+			private var vAxis:LinearAxis;
+			
+			private var hMin:Number;
+			private var hMax:Number;
+			private var vMin:Number;
+			private var vMax:Number;
 			
 			protected function itemrenderer1_creationCompleteHandler(event:FlexEvent):void
 			{
@@ -131,6 +155,47 @@
 			protected function itemrenderer1_mouseOutHandler(event:MouseEvent):void
 			{
 				mBeatStrokeColor = 0x000000;
+			}
+			
+			protected function itemrenderer1_mouseDownHandler(event:MouseEvent):void
+			{
+				hAxis = DateTimeAxis(BubbleSeries(parent).getAxis(CartesianTransform.HORIZONTAL_AXIS));
+				vAxis = LinearAxis(BubbleSeries(parent).getAxis(CartesianTransform.VERTICAL_AXIS));
+				hMin = hAxis.minimum.time;
+				hMax = hAxis.maximum.time;
+				vMin = vAxis.minimum;
+				vMax = vAxis.maximum;
+				
+				stageX = event.stageX;
+				stageY = event.stageY;
+				
+				dataX = data.item.beatPosX;
+				dataY = data.item.beatY;
+			}
+			
+			protected function itemrenderer1_mouseMoveHandler(event:MouseEvent):void
+			{
+				
+			}
+			
+			protected function itemrenderer1_dragEnterHandler(event:DragEvent):void
+			{
+
+			}
+			
+			protected function itemrenderer1_dragStartHandler(event:DragEvent):void
+			{
+				var dtTermino:Number = dataX + (event.stageX - stageX) * (hMax - hMin) / parent.width;
+				if (dtTermino >= hMin && dtTermino <= hMax)
+				{
+					data.item.dtTermino = new Date(dtTermino);
+				}
+				
+				var andamento:Number = Math.round(dataY + (stageY - event.stageY) * 100 / parent.height);
+				if (andamento >= vMin && andamento <= vMax)
+				{
+					//					_data.item.andamento = andamento;
+				}
 			}
 			
 		]]>

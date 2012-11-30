@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Dialog xmlns="http://i-free.com/xml/xgml">
+
+
+    <Theme name = "SECOND_Jessica_Interrogation_Others">
+        <!-- ready -->
+        <QAUnit name="SECOND_Jessica_Interrogation_Others_1">
+            <Pattern>* (#(qWhatAbout)|describe|inform|tell) * (part*|guest*|people|others|everybody|friend*) *</Pattern>
+            <Pattern>* who * (else|other|guest*) * (house|mansion|present) *</Pattern>
+            <Random>
+                <Text>Melany is a such a child, but she can be very quick-tempered. Sometimes she just can't control herself - goes hysterical and can be dangerous for the society.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+                <RevealedFacts>
+                    <Fact id="201">Jessica thinks that Melany can be very quick-tempered and sometimes can not control herself.</Fact>
+                </RevealedFacts>
+            </Effects>
+        </QAUnit>
+    </Theme>
+
+
+    <Theme name = "SECOND_Jessica_Interrogation_Suspicious">
+        <!-- ready -->
+        <QAUnit name="SECOND_Jessica_Interrogation_Suspicious_1">
+            <Pattern>* #(pU) * (suspicious|strange|unusual|interesting) *</Pattern>
+            <Pattern>* what * #(pU) * (know|tell) *</Pattern>
+            <Random>
+                <Text>The day before the murder I heard Henry talk loudly to mr. Boddy. I don't know what they talked about but it wasn't a pleasant conversation.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+                <RevealedFacts>
+                    <Fact id="200">Jessica claims to have heard mr. Boddy and Henry engaged in some loud and obviously unpleasant conversation the day before Boddy's death.</Fact>
+                </RevealedFacts>
+            </Effects>
+        </QAUnit>
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Jessica_Interrogation_Suspicious_3">
+            <Pattern>* who * you * (think|guess|suspic*|could) *</Pattern>
+            <Pattern>* who * (kill*|murder*|shot|shoot|strangle) *</Pattern>
+            <Pattern>* who * (benefit*|motive|reason) *</Pattern>
+            <Random>
+                <Text>Hard to say. Boddy had no enemies, but I know he quarelled with some of the guests. Talk to them.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+    </Theme>
+
+    <Theme name = "SECOND_Jessica_Interrogation_Places">
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Jessica_Interrogation_Places_You">
+            <Pattern>* (where|what) * you * (do*|did|) * (time|evening|moment|when) * (murder*|kill*|happen|) *</Pattern>
+            <Random>
+                <Text>In the evening I was seeing mr. Boddy - needed to talk about the book, and then, till late, I was working on it. It's a pity he'll never see the book. He'd like it.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Jessica_Interrogation_Places_Philipp">
+            <Pattern>* (where|you see*|you saw) * #(nButler) * (evening|night|murder*|kill*) *</Pattern>
+            <Random>
+                <Text>Detective, I work twenty four hours a day, I have no time to watch anybody.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Jessica_Interrogation_Places_Henry">
+            <Pattern>* (where|you see*|you saw) * #(nHenry) * (evening|night|murder*|kill*) *</Pattern>
+            <Random>
+                <Text>I don't know and I don't care.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Jessica_Interrogation_Places_Melany">
+            <Pattern>* (where|you see*|you saw) * #(nMelany) * (evening|night|murder*|kill*) *</Pattern>
+            <Random>
+                <Text>Mm.. Maybe, finally she took to sleeping in the barn. Just as a simple and humble girl should.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Jessica_Interrogation_Places_Eddy">
+            <Pattern>* (where|you see*|you saw) * #(nDoctor) * (evening|night|murder*|kill*) *</Pattern>
+            <Random>
+                <Text>Eddy? He's the last person on Earth whose whereabouts would interest me.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+    </Theme>
+
+    <Theme name = "Jessica_AffinityVariator">
+		<QAUnit name="Jessp_beauty">
+				<Pattern>* #(pU) * (pretty|beautiful|handsome|stunning|sexy|attractive|nice|gorgeous|wonderful) *
+				</Pattern>
+				<Pattern>* i #(vLike) * (#(pU)|your) * (hair*|leg*|dress|eye*|makeup|face|boobs|tits|bottom|buttocks|) *</Pattern>
+				<Random>
+					<Text>Oh, detective, thank you so much. I can see you are a gentleman. </Text>
+					<Text>Thank you soo much, mr. Farrett.</Text>
+				</Random>
+			<Effects>        
+				<AffinityChange>+50</AffinityChange>
+			</Effects>
+		</QAUnit>
+    </Theme>
+	
+</Dialog>

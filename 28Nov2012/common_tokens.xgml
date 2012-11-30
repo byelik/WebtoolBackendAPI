@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Dialog xmlns="http://i-free.com/xml/xgml">
+    <MultiToken name="nDoctor">(doctor|Eddy|mr. Manhater|mister Manhater|Manhater|House)</MultiToken>
+    <MultiToken name="nBoddy">(professor|Sheylock|mr. Boddy|mister Boddy|old fool|pervert|master|Boddy|sheylok|sheilok|Body)</MultiToken>
+    <MultiToken name="nMelany">(Melany|Melany Morgan|ms. Morgan|miss Morgan|Melly|Mel)</MultiToken>
+    <MultiToken name="nHenry">(Henry|Moneyghan|mr Moneyghan|Henry Moneyghan|mister Moneyghan)</MultiToken>
+    <MultiToken name="nButler">(Butler|Philip Morgan|Morgan|Philip|philipp|filipp|filip|filip morgan|philipp morgan|filipp morgan)</MultiToken>
+    <MultiToken name="nJess">(Jessica|mrs White|miss White|Jess|Jessica White)</MultiToken>
+    <MultiToken name="nLinda">(Linda|mrs Moneyghan|Linda Moneyghan|missis Moneyghan)</MultiToken>
+    <MultiToken name="nDrug">(drug|drugs|medicine|pill|pills|sedative)</MultiToken>
+    <MultiToken name="vLike">(like|love|enjoy|adore)</MultiToken>
+    <MultiToken name="nSteve">(Steve|Faret|Farret|Farett|Farrett|Steven)</MultiToken>
+
+
+
+
+
+    <MultiToken name="pU">(you|yours|thou|thee|U)</MultiToken>
+    <MultiToken name="nFood">(milk|honey|bread|meat|cola)</MultiToken>
+    <MultiToken name="pYour">(your|yor|yo)</MultiToken>
+    <MultiToken name="vCan">(can | could | will | would| may)</MultiToken>
+    <MultiToken name="qWhatBe">(tell (me|) (about|)|I am interested in|what (is|are|were|was|*ould be|)|know what)
+    </MultiToken>
+    <MultiToken name="qWhatBe0">(#(qWhatBe)|)</MultiToken>
+    <MultiToken name="qWhoBe">(tell (me|) (about|)|I am interested in|who (is|are|was|were|*ould be|)|know who)
+    </MultiToken>
+    <MultiToken name="qWhoBe0">(#(qWhoBe)|)</MultiToken>
+    <MultiToken name="qWhereBe">(I am interested in|where (is|are|was|were|*ould be|)|know where)
+    </MultiToken>
+    <MultiToken name="qWhereBe0">(#(qWhereBe)|)</MultiToken>
+    <MultiToken name="qWhatAbout">(tell (me|) (about|)|I am interested in|(what|who|where) (is|are|was|were|*ould
+        be|)|know (what|who|where) |(want|like|) to know * about|do #(pU) know about| have #(pU) * heard about|what *
+        (#(pU)|#(pYour)) * (think|thought*|opinion)|describe|inform)
+    </MultiToken>
+    <MultiToken name="qWhatAbout0">(#(qWhatAbout)|)</MultiToken>
+    <MultiToken name="qDoYouHave">(((do|if|whether) #(pU) (have|own|possess) | have #(pU) ))</MultiToken>
+    <MultiToken name="qWhy">(why|how come|(for|due to|) wh*|wh* reason*|wh* purpose*)</MultiToken>
+    <MultiToken name="qWhy0">(#(qWhy)|)</MultiToken>
+    <MultiToken name="mother">(mother | mothers | mother's | mom | mom's | moms| mum | mum's | mums)</MultiToken>
+    <MultiToken name="brother">(brother | brother* | broz | bro | broz's)</MultiToken>
+    <MultiToken name="father">(father* |dad |dad's | daddy | daddys | daddy's)</MultiToken>
+    <MultiToken name="friend">(friend*|buddy|buddies)</MultiToken>
+    <MultiToken name="aSilly">(silly | sily | stupid | fool* | idiot* | moron*)</MultiToken>
+    <MultiToken name="nNonsense">(nonsense | rubbish | drivel | garbage | twaddle | trash | babble | puffery | flummery | fool) </MultiToken>
+    <MultiToken name="aStupid">(stupid | fool* | silly | (tiny | narrow | small | poor | ill) (brain* | mind*) |
+        narrow-minded | idiot* | cretin* | dummy | dolt| freak)
+    </MultiToken>
+    <MultiToken name="aSmart">(smart | clever | intelligent | cute| wise|bright)</MultiToken>
+    <MultiToken name="aGood">(good | nice | fine | cool | beautiful | wonderful | well | OK | okay | okey | all right | very well | al*right* | not bad | great | not so bad | terrific | splendid | ex*el*ent|blooming|blossoming) </MultiToken>
+    <MultiToken name="aBad">(bad|crappy|rotten|wretched|shitty|like crap|like shit)</MultiToken>
+    <MultiToken name="nBadWord">(pig | bastard | suck | idiot | fuck* | motherf* | mother-fuck* | shit | ass | ass-* |
+        asshole | asswipe | gay | homos* | fag | crap*|prostitute|arschloch|arsch|bitch|dick)
+    </MultiToken>
+    <MultiToken name="qAreYou">(are #(pU) | (if | whether) | #(pU) are)</MultiToken>
+    <MultiToken name="ILiveIn">( my native country is |my native city is | i (live in | am living in | reside in | am from | come from ) )</MultiToken>
+
+    <MultiToken name="nHello">(((hi|hello|hallo|salute|bonjour|salut) (there|))|hey there | heil to thee |good
+        (morning|day|afternoon|evening)|g'day |g day| howdy|olleh|halo)
+    </MultiToken>
+    <MultiToken name="Yes">(yes|yep|ye|y|OK|yeah|yeh)</MultiToken>
+
+    <!-- igolubev -->
+    <MultiToken name="ComeOn">(#(Yes)|let us|let's|come on)</MultiToken>
+
+
+    <MultiToken name="No">(no|non|none|n|never|not|nope|nop|i don't|i do not)</MultiToken>
+    <MultiToken name="nation">
+        (american|russian|chinese|british|english|french|spanish|dutch|italian|greek|german|belgian|ukrainian|jew|jewish|canadian|austrian|japanese|polish|polack|bulgarian|hungarian|mexican|brazilian)
+    </MultiToken>
+    <MultiToken name="Day">(today|now|yesterday|tomorrow|after tomorrow|next week|* birthday)</MultiToken>
+    <MultiToken name="Weather">
+        (rain*|snow*|blizzard|frost*|wind*|storm*|breeze|cyclone|fog*|smog*|haze|sunny|sunshine|sun *
+        bright|cloudy|cold|hot|weather)
+    </MultiToken>
+    <MultiToken name="aColor">(red|blue|pink|yellow|black|white|teal|magenta|green|violet|orange)</MultiToken>
+
+    <!-- igolubev -->
+    <MultiToken name="YouAreWelcome">
+        ((you are|you're|#(pU)|#(pYour)) welcome|please [feel] [free] [to]|(not|do not|don't) (for that|at all|mention it)|[(is|have)] nothing to|no reason to|forget it)
+    </MultiToken>
+
+    <MultiToken name="aAbout">(about|on|of)</MultiToken>
+    <MultiToken name="aAlways2">(always)</MultiToken>
+    <MultiToken name="qDoYouLike">((do|Are|if) (not|) you * (not|) (like|fond|keen|fan))</MultiToken>
+    <MultiToken name="Edelweiss">(your (home|native|) * planet|planet * you * from|place * you * from|Edelweiss|planet * spoonies)</MultiToken>
+    <MultiToken name="jBored">(bored|tired|sick and tired|apathetic)</MultiToken>
+    <MultiToken name="jBad1">(bad|not good|crappy|shitty|inferior|awful)</MultiToken>
+    <MultiToken name="jBig1">(big|large|great|giant|huge|enormous|colossal|defective|terrible)</MultiToken>
+    <MultiToken name="jFast1">(fast|speedy|agile|blistering|light*speed|quick)</MultiToken>
+    <MultiToken name="jOptimum2">(optimum|optimal|best)</MultiToken>
+    <MultiToken name="jPerfect1">(perfect|ideal|unflawed|faultless|errorless)</MultiToken>
+    <MultiToken name="jSad">(sad|unhappy|depressed|sorrowful|downhearted|miserable|joyless|melanchol*|saddened)</MultiToken>
+    <MultiToken name="northpole">((the|) North Pole|(place|country|location|where) you ((are|come|came|) from|used to (live|dwell)|lived before)) </MultiToken>
+    <MultiToken name="nproblem1">(problem*|issue*|difficult*|trouble*)</MultiToken>
+    <MultiToken name="qWhoBeWho">(who (is|was|were))</MultiToken>
+    <MultiToken name="qDoYouKnow">((do|did|if|) (not) you * know)</MultiToken>
+    <MultiToken name="qHaveYou">((have|do|are) (not|) you (have|having|got))</MultiToken>
+    <MultiToken name="vThink">(think*|thought*|opinion*|suppose*|believ*|belief*)</MultiToken>
+    <MultiToken name="DoYouThink">((Do|if|#(qWhatAbout)) * (you|your) #(vThink))</MultiToken>
+    <MultiToken name="vGive">(give*|giving|yield*supply*)</MultiToken>
+    <MultiToken name="vLike">(like*|love|lovi*)</MultiToken>
+    <MultiToken name="qDoYouThink">((Do|if|#(qWhatAbout)) * (you|your) #(vThink))</MultiToken>
+    <MultiToken name="vUnderstand1">(understand*|comprehend*|grasp*)</MultiToken>
+    <MultiToken name="vWant">(want*|wish*|desire*|like*|lust*|need*|demand*)</MultiToken>
+    <MultiToken name="vWork">(work*|perform*|operate*|operating)</MultiToken>
+
+</Dialog>

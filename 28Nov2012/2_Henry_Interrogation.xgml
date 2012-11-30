@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Dialog xmlns="http://i-free.com/xml/xgml">
+
+
+
+    <Theme name = "SECOND_Henry_Interrogation_BoddysEnemies">
+        <!-- ready -->
+        <QAUnit name="SECOND_Henry_Interrogation_BoddysEnemies_1">
+            <Pattern>* you * #(nBoddy) * (quarrel*|disagreement*|problem*) *</Pattern>
+            <Random>
+                <Text>Quarrels.. Well, It's all in the past now. I didn't get anything from my father, but all I have I have earned myself - and hold no grudge now. I just wanted to keep closer to what family I have.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+                <RevealedFacts>
+                    <Fact id="302">There are rumours that Henry and his brother were enemies, but all family feuds are long in the past now.</Fact>
+                </RevealedFacts>
+            </Effects>
+        </QAUnit>
+    </Theme>
+
+    <Theme name = "SECOND_Henry_Interrogation_Others">
+        <!-- ready -->
+        <QAUnit name="SECOND_Henry_Interrogation_Others_1">
+            <Pattern>* (#(qWhatAbout)|describe|inform|tell) * (part*|guest*|people|others|everybody|friend*) *</Pattern>
+            <Pattern>* who * (else|other|guest*) * (house|mansion|present) *</Pattern>
+            <Random>
+                <Text>Philipp is a good butler. However, he's a bit too religious for his own good and was quite unhappy about Boddy's Cult studies. I'd watch out for him, if I were you.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+                <RevealedFacts>
+                    <Fact id="301">Philipp is very religious and does not approve of mr. Boddy's occult studies.</Fact>
+                </RevealedFacts>
+            </Effects>
+        </QAUnit>
+    </Theme>
+
+    <Theme name = "SECOND_Henry_Interrogation_Suspicious_HighAffinity">
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Henry_Interrogation_Suspicious_HighAffinity_1">
+            <Pattern>* who * you * (think|guess|suspic*|could) *</Pattern>
+            <Pattern>* who * (kill*|murder*|shot|shoot|strangle) *</Pattern>
+            <Pattern> * who * (benefit*|motive|reason) *</Pattern>
+            <Random>
+                <Text>I don't want to accuse anybody, but recently I heard the butler talk to his daughter. He was quite beyond himself with anger when knew that old Boddy made a pass at his little angel.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+                <RevealedFacts>
+                    <Fact id="300">Philipp threatened to kill mr. Boddy when he knew, he had been harrassing Philip's only daughter.</Fact>
+                </RevealedFacts>
+            </Effects>
+        </QAUnit>
+
+    </Theme>
+
+    <Theme name = "SECOND_Henry_Interrogation_Suspicious">
+        <!-- ready -->
+        <QAUnit name="SECOND_Henry_Interrogation_Suspicious_1">
+            <Pattern>* who * you * (think|guess|suspic*|could) *</Pattern>
+            <Pattern>* who * (kill*|murder*|shot|shoot|strangle) *</Pattern>
+            <Pattern> * who * (benefit*|motive|reason) *</Pattern>
+            <Random>
+                <Text>How could I know! Or even better - why should I tell you if you can always use my words against me.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Henry_Interrogation_Suspicious_2">
+            <Pattern>* #(pU) * (suspicious|strange|unusual|interesting) *</Pattern>
+            <Pattern>* what * #(pU) * (know|tell) *</Pattern>
+            <Random>
+                <Text>I just remember that yesterday Melany ran out of the study all red in the face. Perhaps the old geezer told her one of his dirty jokes?</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Henry_Interrogation_Suspicious_3">
+            <Pattern>* #(nBoddy) * (recently|lately|these days|time) *</Pattern>
+            <Random>
+                <Text>Well.. What can I say.. He was just as crazy as usual.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+    </Theme>
+
+
+
+    <Theme name = "SECOND_Henry_Interrogation_Places">
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Henry_Interrogation_Places_You">
+            <Pattern>* (where|what) * you * (do*|did|) * (time|evening|moment|when) * (murder*|kill*|happen|) *</Pattern>
+            <Random>
+                <Text>I was in the saloon - I like to have a glass or two and a good cigar before going to bed. After that I went back to my room and fell asleep.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Henry_Interrogation_Places_Philipp">
+            <Pattern>* (where|you see*|you saw) * #(nButler) * (evening|night|murder*|kill*) *</Pattern>
+            <Random>
+                <Text>You know, when I was in the saloon I saw Philipp walking to and fro, ad he looked very nervous.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Henry_Interrogation_Places_Eddy">
+            <Pattern>* (where|you see*|you saw) * #(nDoctor) * (evening|night|murder*|kill*) *</Pattern>
+            <Random>
+                <Text>I haven't seen him since last night. And I'm quite happy about it, frankly speaking.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Henry_Interrogation_Places_Jessica">
+            <Pattern>* (where|you see*|you saw) * #(nJess) * (evening|night|murder*|kill*) *</Pattern>
+            <Random>
+                <Text>Miss White? I saw her with Boddy in the evening, they were discussing something - but all in whisper.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Henry_Interrogation_Places_Melany">
+            <Pattern>* (where|you see*|you saw) * #(nMelany) * (evening|night|murder*|kill*) *</Pattern>
+            <Random>
+                <Text>She's been around the drawing room the whole evening. I couldn't care less about where she spent the night.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+    </Theme>
+
+    <Theme name = "Henry_AffinityVariator">
+		<QAUnit name="Henry_money">
+            <Pattern>* (money|finance|rich|prestige|account|bank|mortgage) *</Pattern>
+            <Random>
+                <Text>I always say - money is what rules the world. Who has money - has everything.</Text>
+                <Text>Detective, seems, you are a clever man.</Text>
+                <Text>If you want my advice on the finance - don't go into the stock exchange now. Wait till the
+                    elections are over.
+                </Text>
+            </Random>
+            <Effects>
+                <AffinityChange>+15</AffinityChange>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+    </Theme>
+</Dialog>

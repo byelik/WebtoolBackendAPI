@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Dialog xmlns="http://i-free.com/xml/xgml">
+
+    <!-- ready -->
+    <Theme name = "SECOND_Eddy_Interrogation_YouAndBoddy">
+        <QAUnit name="SECOND_Eddy_Interrogation_YouAndBoddy_1">
+            <Pattern>* how long * know #(nBoddy) *</Pattern>
+            <Pattern>* you * relat* #(nBoddy) *</Pattern>
+            <Pattern>* (#(qWhatAbout)|tell) * #(nBoddy) *</Pattern>
+            <Random>
+                <Text>I'll miss him. It's not easy to fin a decent partner for chess these days. Recently his health wasn't so good, so even somebody not too strong could do him in.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+                <RevealedFacts>
+                    <Fact id="400">Doctor tells that Body had some health issues and, most probably, could not show much resistance. Even somebody of less than athletic build coud do him in.</Fact>
+                </RevealedFacts>
+            </Effects>
+        </QAUnit>
+    </Theme>
+
+    <!-- ready -->
+    <Theme name = "SECOND_Eddy_Interrogation_BoddysEnemies_HighAffinity">
+        <QAUnit name="SECOND_Eddy_Interrogation_BoddysEnemies_HighAffinity_1">
+            <Pattern>* #(nBoddy) * (enemies|trouble|quarrel*|argue|threat*) *</Pattern>
+            <Random>
+                <Text>I don't know much about his enemies, but he had a dear brother. That was quite enough, especially taking into account that it was Boddy who got everything after their father's death.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+                <RevealedFacts>
+                    <Fact id="401">Doctor says that there was no love lost between Henry Moneyghan and Sheylock Boddy. One of the reasons being that Sheylock was the only heir of their father.</Fact>
+                </RevealedFacts>
+            </Effects>
+        </QAUnit>
+    </Theme>
+
+    <!-- ready -->
+    <Theme name = "SECOND_Eddy_Interrogation_BoddysEnemies">
+        <QAUnit name="SECOND_Eddy_Interrogation_BoddysEnemies_1">
+            <Pattern>* #(nBoddy) * (enemies|trouble|quarrel*|argue|threat*) *</Pattern>
+            <Random>
+                <Text>Enemies? What kind of enemies? He was a university professor, not a member of cosa nostra.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+    </Theme>
+
+
+    <Theme name = "SECOND_Eddy_Interrogation_Suspicious">
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Eddy_Interrogation_Suspicious_1">
+            <Pattern>* #(pU) * (suspicious|strange|unusual|interesting) *</Pattern>
+            <Pattern>* what * #(pU) * (know|tell) *</Pattern>
+            <Random>
+                <Text>Something strange? Everybody here is acting strange. If it wasn't for Boddy, this house would earn its title of "Istitution" long ago.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Eddy_Interrogation_Suspicious_2">
+            <Pattern>* #(nBoddy) * (recently|lately|these days|time) *</Pattern>
+            <Random>
+                <Text>Can hardly say.. After making this discovery he was acting quite weird.. Always thought that he was being followed.. Maybe there was something to it.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Eddy_Interrogation_Suspicious_3">
+            <Pattern>* who * you * (think|guess|suspic*|could) *</Pattern>
+            <Pattern>* who * (kill*|murder*|shot|shoot|strangle) *</Pattern>
+            <Pattern> * who * (benefit*|motive|reason) *</Pattern>
+            <Random>
+                <Text>This house is a bit of a nest of vipers. Trust nobody, I won't be surprised if that was a joint venture.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+    </Theme>
+
+    <Theme name = "SECOND_Eddy_Interrogation_Places">
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Eddy_Interrogation_Places_You">
+            <Pattern>* (where|what) * you * (do*|did|) * (time|evening|moment|when) * (murder*|kill*|happen|) *</Pattern>
+            <Random>
+                <Text>Oh, your instruction is to suspect everybody? Do you always follow instructions, with women too? Ok, take it easy. All the night I spent in my room reading and fell asleep only in the morning.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Eddy_Interrogation_Places_Philipp">
+            <Pattern>* (where|you see*|you saw) * #(nButler) * (evening|night|murder*|kill*) *</Pattern>
+            <Random>
+                <Text>I think he went to sleep - of course, only after saying his prayers and cleaning all glass and silverware. He does work a lot.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Eddy_Interrogation_Places_Henry">
+            <Pattern>* (where|you see*|you saw) * #(nHenry) * (evening|night|murder*|kill*) *</Pattern>
+            <Random>
+                <Text>Where was mr. Money? No idea.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Eddy_Interrogation_Places_Jessica">
+            <Pattern>* (where|you see*|you saw) * #(nJess) * (evening|night|murder*|kill*) *</Pattern>
+            <Random>
+                <Text>If she wasn't in Boddy's bed, than she was in her room. Can't say for sure, I'm not watching her.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Eddy_Interrogation_Places_Melany">
+            <Pattern>* (where|you see*|you saw) * #(nMelany) * (evening|night|murder*|kill*) *</Pattern>
+            <Random>
+                <Text>Little Melany goes to bed early - gets too busy doing nothing during the day.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+    </Theme>
+
+    <Theme name = "Eddy_AffinityVariator">
+        <QAUnit name="Eddy_chess">
+            <Pattern>* (medicine|chemistry|science|silence|chess|sudoku|mahjong|checkers) *</Pattern>
+            <Random>
+                <Text>Hm, Farrett? I guess, you are a clever man. </Text>
+            </Random>
+            <Effects>
+                <AffinityChange>+50</AffinityChange>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+    </Theme>
+
+</Dialog>

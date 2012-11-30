@@ -640,7 +640,22 @@ package HostComponents.FactsHostComponent
 		////////////////////////deleteItem//////////////////////////////////
 		private function deleteItem(event:MouseEvent):void
 		{
-			
+			deleteItemAlertWnd();
+		}
+		
+		private function deleteItemAlertWnd():void
+		{
+			Alert.yesLabel = "Да";
+			Alert.noLabel = "Нет";
+			Alert.show("Вы действительно хотите удалить выбранные обьекты?", "Внимание", Alert.YES | Alert.NO, null, deleteItemHandler);	
+		}
+		
+		private function deleteItemHandler(event:CloseEvent):void
+		{
+			if(event.detail == Alert.YES)
+			{
+				// send to the server selected items, after response we delete selected items
+			}
 		}
 		
 		private function deleteItemResult(result:Object):void

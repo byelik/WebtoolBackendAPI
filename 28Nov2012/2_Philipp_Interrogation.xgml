@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Dialog xmlns="http://i-free.com/xml/xgml">
+
+
+
+
+    <Theme name = "SECOND_Philipp_Interrogation_MelanyBoddy_HighAffinity">
+        <!-- ready -->
+        <QAUnit name="SECOND_Philipp_Interrogation_MelanyBoddy_HighAffinity_1">
+            <Pattern>* #(nMelany) * #(nBoddy) * you *</Pattern>
+            <Pattern>* you * #(nMelany) * #(nBoddy) *</Pattern>
+
+            <Random>
+                <Text>What are you talking about, sir? I'm not a murderer, I'd never. Of course, mr. Boddy's conduct appalled me so I ask him to make his apologies to Melany, but that was that.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+                <RevealedFacts>
+                    <Fact id="500">Philipp says that he had been offended by mr. Boddy's behaviour, but denies that he killed him.</Fact>
+                </RevealedFacts>
+            </Effects>
+        </QAUnit>
+    </Theme>
+
+    <Theme name = "SECOND_Philipp_Interrogation_MelanyBoddy">
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Philipp_Interrogation_MelanyBoddy_1">
+            <Pattern>* #(nMelany) * #(nBoddy) * you *</Pattern>
+            <Pattern>* you * #(nMelany) * #(nBoddy) *</Pattern>
+
+            <Random>
+                <Text>How dare you talk about this ugly, this hideous matter? I don't want any talking about it!</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+    </Theme>
+
+
+    <Theme name = "SECOND_Philipp_Interrogation_AboutMelany">
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Philipp_Interrogation_AboutMelany_1">
+            <Pattern>* about #(nMelany) *</Pattern>
+            <Random>
+                <Text>She's an angel, mr. Farrett. She's the most important thing in my life. If someone dares to question her honour, I swear, he'll regret.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+                <RevealedFacts>
+                    <Fact id="502">Philipp warns everybody against disrespecting his daughter.</Fact>
+                </RevealedFacts>
+            </Effects>
+        </QAUnit>
+
+    </Theme>
+
+
+    <Theme name = "SECOND_Philipp_Interrogation_MelanyKiller">
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Philipp_Interrogation_MelanyKiller_1">
+            <Pattern>* #(nMelany) * (murder|kill|do it) *</Pattern>
+            <Random>
+                <Text>No, sir. Mr. Boddy did a vile thing, but Melany is but a child, she's not able to kill a person. I've raised her a good Christian, she's so kind-hearted!</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+                <RevealedFacts>
+                    <Fact id="501">Philipp thinks that Melany is not somebody who could commit a murder.</Fact>
+                </RevealedFacts>
+            </Effects>
+        </QAUnit>
+
+    </Theme>
+
+
+
+    <Theme name = "SECOND_Philipp_Interrogation_Suspicious">
+
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Philipp_Interrogation_Suspicious_2">
+            <Pattern>* #(pU) * (suspicious|strange|unusual|interesting) *</Pattern>
+            <Pattern>* what * #(pU) * (know|tell) *</Pattern>
+            <Random>
+                <Text>Sir, everything goes as it should - I keep the house in order, the guests keep disrupting it.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Philipp_Interrogation_Suspicious_3">
+            <Pattern>* #(nBoddy) * (recently|lately|these days|time) *</Pattern>
+            <Random>
+                <Text>Mr. Boddy was very much excited about his discovery. He kept telling that it will establish hisname in the world of the modern archeology.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+    </Theme>
+
+
+
+    <Theme name = "SECOND_Philipp_Interrogation_Places">
+
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Philipp_Interrogation_Places_You">
+            <Pattern>* (where|what) * you * (do*|did|) * (time|evening|moment|when) * (murder*|kill*|happen|) *</Pattern>
+            <Random>
+                <Text>In the evening I wasn't feeling well, but there was a lot of things to do. The guests left me more cleaning than usually.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Philipp_Interrogation_Places_Henry">
+            <Pattern>* (where|you see*|you saw) * #(nHenry) * (evening|night|murder*|kill*) *</Pattern>
+            <Random>
+                <Text>I saw mr. Moneyghan in the saloon late in the evening.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Philipp_Interrogation_Places_Eddy">
+            <Pattern>* (where|you see*|you saw) * #(nDoctor) * (evening|night|murder*|kill*) *</Pattern>
+            <Random>
+                <Text>When I was cleaning in the hall I saw mr. Manhater read something in his room - the door was open.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Philipp_Interrogation_Places_Jessica">
+            <Pattern>* (where|you see*|you saw) * #(nJess) * (evening|night|murder*|kill*) *</Pattern>
+            <Random>
+                <Text>I didn't see her through the whole course of the evening.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <!-- ready -->
+        <QAUnit name="SECOND_Philipp_Interrogation_Places_Melany">
+            <Pattern>* (where|you see*|you saw) * #(nMelany) * (evening|night|murder*|kill*) *</Pattern>
+            <Random>
+                <Text>Yesterday Melany was helping me to clean the house. We parted late at night.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+
+
+    </Theme>
+
+    <Theme name = "Philipp_AffinityVariator">
+		<QAUnit name="Philipp_anti_religion">
+            <Pattern>* (i am|i'm) * (atheist|agnostic|pagan*|not religious) *</Pattern>
+            <Pattern>* i (don't|do not) (believe|trust|worship|fear) * (God*|Jesus|Christ*) *</Pattern>
+            <Random>
+                <Text>Mr. Farrett, the Lord tells us "It is mine to avenge; I will repay" so I leave you to His will, to
+                    reap what you sow. It is beyond my duty to talk to you, quite beyond. But I'll pray for you. See, if
+                    it helps you with your interrogation.
+                </Text>
+            </Random>
+            <Effects>
+                <AffinityChange>-50</AffinityChange>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+        <QAUnit name="Philipp_religion">
+            <Pattern>* (faith|church|christian|bible|pious|pray|jesus|christ|god) *</Pattern>
+            <Random>
+                <Text>Pray to God and he will save you from the deepest pit of darkness. It is not
+                    miserable to be blind; he only is miserable who cannot acqiuesce in his blindness.
+                </Text>
+                <Text>We must be humble in front of God, if pride turned some of the angels into demons,
+                    then humility can doubtless make angels out of demons
+                </Text>
+                <Text>When a man is getting better he understands more and more clearly the evil that is still left in
+                    him. When a man is getting worse he understands his own badness less and less.
+                    So let us pray to God to open our eyes to our faults.
+                </Text>
+            </Random>
+            <Effects>
+                <AffinityChange>+40</AffinityChange>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+    </Theme>
+
+</Dialog>

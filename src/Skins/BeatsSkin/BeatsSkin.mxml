@@ -9,7 +9,6 @@
 	</fx:Metadata>
 	
 	<fx:Style>
-		
 		Tree {
 		/* these three styles are inherited by the itemRenderer */
 		line-alpha: 1;	
@@ -20,19 +19,15 @@
 		padding-top: 0;		/* default is 2 */
 		padding-bottom: 0;	/* default is 2 */
 		}
-		
-	</fx:Style>
-	
-	
+	</fx:Style>	
 	
 	<fx:Script>
 		<![CDATA[
 			import Data.DataModel;
 			
-			import mx.charts.events.ChartItemEvent;
-			import mx.collections.ArrayCollection;
-			import mx.collections.IList;
-			import mx.events.DragEvent;
+			import mx.charts.DateTimeAxis;
+			import mx.charts.HitData;
+			import mx.charts.chartClasses.IAxis;
 			import mx.events.FlexEvent;
 			import mx.events.ListEvent;
 			
@@ -46,15 +41,21 @@
 			[Bindable]
 			private var mSelctedAgentFacts:Vector.<Object> = new Vector.<Object>;
 			
+			public static const millisecondsPerDay:int = 1000 * 60 * 60 * 24;
+			
 			protected function skin1_creationCompleteHandler(event:FlexEvent):void
 			{
 				mBeatsTree.contextMenu = hostComponent.treeContextMenu;
 				mBeatChart.contextMenu = hostComponent.mBeatContextMenu;	
 				hostComponent.drawBeatConnection();
-			}
-			
-			
-			
+				
+				var min:Date = new Date(new Date().time - millisecondsPerDay * 2);
+				var max:Date = new Date(new Date().time + millisecondsPerDay * 45);
+//				var min:int = 0;
+//				var max:int = 100;
+				hAxis.minimum = min;
+				hAxis.maximum = max;
+			}		
 			
 			protected function mBeatsTree_itemClickHandler(event:ListEvent):void
 			{
@@ -83,55 +84,58 @@
 			
 			protected function button1_clickHandler(event:MouseEvent):void
 			{
-				vaxis.minimum -= 500;
-				haxis.minimum -= 500;
+//				vaxis.minimum -= 500;
+//				haxis.minimum -= 500;
 			}
 			
 			protected function button2_clickHandler(event:MouseEvent):void
 			{
-				vaxis.maximum += 500;
-				haxis.maximum += 500;
+//				vaxis.maximum += 500;
+//				haxis.maximum += 500;
 			}
 			
 			[Bindable]
 			private var tmp:Array = new Array();
 			
 			
-			protected function mBeatChart_dragCompleteHandler(event:DragEvent):void
+			
+			
+			/*private function completeHandler():void
 			{
-				
-				
+				var min:Date = new Date(new Date().time - millisecondsPerDay * 2);
+				var max:Date = new Date(new Date().time + millisecondsPerDay * 45);
+				hAxis.minimum = min;
+				hAxis.maximum = max;
+			}*/
+			
+			private function percentFormat(value:Object, arg2:Object, arg3:Object):String
+			{
+				return ""+value+"%";
 			}
 			
-			protected function mBeatChart_mouseMoveHandler(event:MouseEvent):void
+			/*private function formatDataTip(hitData:HitData):String
 			{
-				if(mBeatChart.selectedChartItem)
-				{
-					mBeatChart.selectedChartItem.item.beatPosX = mouseX;
-					mBeatChart.selectedChartItem.item.beatPosY = mouseY;
-				}
-			}
+				//var nome:String = hitData.item.nome;
+				//var status:String = hitData.item.status;
+				var dtInicio:Date = hitData.item.beatPosX;
+				var dtTermino:Date = hitData.item.beatPosY;
+				//var andamento:Number = hitData.item.andamento;
+				//var prioridade:Number = hitData.item.prioridade;
+				//return "<b>"+nome+"</b><br>Status: "+status+"<br>Início: "+df.format(dtInicio)+"<br>Término previsto: "+df.format(dtTermino)+"<br>Andamento: "+nf.format(andamento)+"%"+"<br>Priodidade: "+ prioridade/10;
+				return "<br>Início: "+df.format(dtInicio)+"<br>Término previsto: "+df.format(dtTermino);
+			}*/
 			
-			protected function mBeatChart_dragStartHandler(event:DragEvent):void
+			/*private function formatHAxis(labelValue:Object, previousValue:Object, axis:IAxis):String 
 			{
-				trace(event);
-				/*if(mBeatChart.selectedChartItem)
-				{
-					mBeatChart.selectedChartItem.fill.alpha;
-					mBeatChart.selectedChartItem.item.beatPosY = mouseY;
-				}*/
-			}
-			
-			protected function mBeatChart_dragEnterHandler(event:DragEvent):void
-			{
-				trace(event);
-//				event.dragSource.chartitems[0].element.visible = false;
-			}
+				return df.format(labelValue);	
+			}*/
 			
 		]]>
 	</fx:Script>
 	
 	<fx:Declarations>
+		<mx:DateFormatter id="df" formatString="DD/MM/YYYY" />
+		
 		<s:SolidColor id="sc1" color="yellow" alpha="1"/>
 		<s:SolidColorStroke id="stroke1" color="black" weight="2"/>
 		
@@ -214,20 +218,33 @@
 												dragMoveEnabled="true"
 												dropEnabled="true"
 												selectionMode="multiple" color="0xFFFFFF" 
-												backgroundElements="{tmp}"
-												dragComplete="mBeatChart_dragCompleteHandler(event)" mouseMove="mBeatChart_mouseMoveHandler(event)" dragStart="mBeatChart_dragStartHandler(event)" dragEnter="mBeatChart_dragEnterHandler(event)">
+												backgroundElements="{tmp}">
 								
-									<!--<mx:annotationElements>
-										<mx:CartesianDataCanvas id="canvas" includeInRanges="true"/>
-									</mx:annotationElements>-->								
-									<!--ZOOM-->
 									<mx:horizontalAxis>
-										<mx:LinearAxis id="haxis"/>
+										<mx:DateTimeAxis id="hAxis" dataUnits="days"/>
 									</mx:horizontalAxis>
+									
+									<mx:horizontalAxisRenderers>
+										<mx:AxisRenderer axis="{hAxis}" showLabels="true" canDropLabels="true">
+											<mx:axisStroke>
+												<s:SolidColorStroke weight="1" color="#999999"/>
+											</mx:axisStroke>
+										</mx:AxisRenderer>
+									</mx:horizontalAxisRenderers>
+									
 									<mx:verticalAxis>
-										<mx:LinearAxis id="vaxis"/>
-									</mx:verticalAxis>	
-									<!--end ZOOM-->	
+										<mx:LinearAxis id="vAxis" minimum="0" maximum="100"/>
+									</mx:verticalAxis>
+									
+									<mx:verticalAxisRenderers>
+										<mx:AxisRenderer axis="{vAxis}">
+											<mx:axisStroke>
+												<s:SolidColorStroke weight="1" color="#999999"/>
+											</mx:axisStroke>
+										</mx:AxisRenderer>
+									</mx:verticalAxisRenderers>
+									
+										
 									<mx:series>
 										<mx:BubbleSeries id="mBeatSeries" 
 														 xField="beatPosX" 
@@ -235,7 +252,7 @@
 														 radiusField="beatRadius"
 														 fill="{sc1}"
 														 stroke="{stroke1}"
-														 itemRenderer="Render.BeatRender.BeatRender"/>
+														 itemRenderer="Render.BeatRender.BeatsRender"/>
 									</mx:series> 									
 								</mx:BubbleChart>            
 								<!--<mx:Legend dataProvider="{mBeatChart}"/>-->
@@ -285,7 +302,7 @@
 						<s:HGroup width="100%"
 								  horizontalAlign="right">
 							<s:DropDownList id="mBeatTheme" x="-38" width="200"
-											
+											dataProvider="{hostComponent.mAgentThemes}"
 											prompt="Choose XGML theme"/>
 						</s:HGroup>	
 					</s:HGroup>

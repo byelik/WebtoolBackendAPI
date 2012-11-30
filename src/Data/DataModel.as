@@ -120,7 +120,7 @@ package Data
 			}
 			mLocationsList.enableAutoUpdate();
 		}
-		
+		public static const millisecondsPerDay:int = 1000 * 60 * 60 * 24;
 		private function parseOriginalBeatData():void
 		{
 			if(mBubbleBeatData)
@@ -129,7 +129,7 @@ package Data
 			}
 			for each(var originalBeatData:Object in mBeatsList)
 			{
-				var tmp:Object={beatPosX:100, beatPosY:100, beatRadius:40};
+				var tmp:Object={beatPosX:new Date(new Date().time + millisecondsPerDay * 10), beatPosY:1, beatRadius:40};
 				
 				tmp["beatId"] = originalBeatData.id;
 				tmp["beatDescription"] = originalBeatData.description;
@@ -153,9 +153,10 @@ package Data
 				tmp["type"] = originalBeatData.type;
 				tmp["xgmlTheme"] = originalBeatData.xgmlTheme;
 //				tmp["preconditions"] = originalBeatData.preConditions;
-				
-				tmp["beatPosX"] += Math.random() * 2000;
-				tmp["beatPosY"] += Math.random() * 2000;
+//				var x:Date = new Date()
+//				var y:Date = new Date(new Date().time + 10 * 10);
+//				tmp["beatPosX"] = Math.random() - 0.001;
+//				tmp["beatPosY"] = Math.random() - 0.0001;
 				mBubbleBeatData.addItem(tmp);
 			}
 			

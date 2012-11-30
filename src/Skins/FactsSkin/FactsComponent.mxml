@@ -228,7 +228,7 @@
 			</s:Panel>
 			<s:HGroup width="100%" horizontalAlign="left">
 				<s:Button id="mAddItem" label="+Item"/>
-				<s:Button id="mDeleteItem" label="-Label"/>
+				<s:Button id="mDeleteItem" label="-Item"/>
 			</s:HGroup>
 		</s:VGroup>
 		

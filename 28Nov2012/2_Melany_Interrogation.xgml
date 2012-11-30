@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Dialog xmlns="http://i-free.com/xml/xgml">
+
+    <Theme name = "SECOND_Melany_Interrogation_YouAndBoddy_HighAffinity">
+        <QAUnit name="SECOND_Melany_Interrogation_YouAndBoddy_HighAffinity_1">
+            <Pattern>* #(nBoddy) * #(pU) *</Pattern>
+            <Pattern>* #(pU) * #(nBoddy) *</Pattern>
+            <Random>
+                <Text>Detective, it's not easy to talk about it.. but just before the murder mr. Boddy.. he made.. a very rude suggestion.. if you know what I mean. I do hope it is not connected anyhow with his death!</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+                <RevealedFacts>
+                    <Fact id="100">Melany admits that mr. Boddy made an unwelcome pass at her, just shortly before his death.</Fact>
+                </RevealedFacts>
+            </Effects>
+        </QAUnit>
+    </Theme>
+
+    <Theme name = "SECOND_Melany_Interrogation_YouAndBoddy">
+        <QAUnit name="SECOND_Melany_Interrogation_YouAndBoddy_1">
+            <Pattern>* #(nBoddy) * #(pU) *</Pattern>
+            <Pattern>* #(pU) * #(nBoddy) *</Pattern>
+            <Random>
+                <Text>Recently we worked a lot with mr. Boddy. He would always call me to his study.. in the evening.. And I don't talk about the rest.. He's dead now..</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+    </Theme>
+
+    <Theme name = "SECOND_Melany_Interrogation_Philipp">
+        <QAUnit name="SECOND_Melany_Interrogation_Philipp_1">
+            <Pattern>* how long * know #(nButler) *</Pattern>
+            <Pattern> * you * relat* * #(nButler) *</Pattern>
+            <Pattern>* (#(qWhatAbout)|tell) * #(nButler) *</Pattern>
+            <Random>
+                <Text>Philipp is my father, he works a lot. Yesterday he fell down from the stairs and hurt his wrist, and mr. Boddy didn't even give him a day off! Also he tore his jacket.. He's so clumsy sometimes.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+                <RevealedFacts>
+                    <Fact id="101">Melany says that Philipp Morgan works a lot and the day before he fell from the stairs injuring his wrist.</Fact>
+                </RevealedFacts>
+            </Effects>
+        </QAUnit>
+    </Theme>
+
+    <Theme name = "SECOND_Melany_Interrogation_Suspicious">
+        <QAUnit name="SECOND_Melany_Interrogation_Suspicious_1">
+            <Pattern>* #(pU) * (suspicious|strange|unusual|interesting) *</Pattern>
+            <Pattern>* what * #(pU) * (know|tell) *</Pattern>
+            <Random>
+                <Text>Yes, detective. In the morning, before the body was found, I saw mr. Moneyghan, he was very excited.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <QAUnit name="SECOND_Melany_Interrogation_Suspicious_2">
+            <Pattern>* what * night * (crime|murder|death) *</Pattern>
+            <Random>
+                <Text>Jessica is just everywhere! Sometimes one can't get any rid of her.. To my mind, she's a bit too busy with Boddy's biography. But things went much as usual yesterday.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <QAUnit name="SECOND_Melany_Interrogation_Suspicious_3">
+            <Pattern>* who * you * (think|guess|suspic*|could) *</Pattern>
+            <Pattern>* who * (kill*|murder*|shot|shoot|strangle) *</Pattern>
+            <Pattern> * who * (benefit*|motive|reason) *</Pattern>
+            <Random>
+                <Text>Can't help you here, detective. Please do forgive me.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+    </Theme>
+
+    <Theme name = "SECOND_Melany_Interrogation_Places">
+        <QAUnit name="SECOND_Melany_Interrogation_Places_You">
+            <Pattern>* (where|what) * you * (do*|did|) * (time|evening|moment|when) * (murder*|kill*|happen|) *</Pattern>
+            <Random>
+                <Text>Like a good girl should, in the night I was in my room, all alone.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <QAUnit name="SECOND_Melany_Interrogation_Places_Philipp">
+        <Pattern>* (where|you see*|you saw) * #(nButler) * (evening|night|murder*|kill*) *</Pattern>
+        <Random>
+            <Text>I hope he was sleeping, he does need more rest at his age.</Text>
+        </Random>
+        <Effects>
+            <BeatGoalAchieved>true</BeatGoalAchieved>
+        </Effects>
+    </QAUnit>
+
+        <QAUnit name="SECOND_Melany_Interrogation_Places_Henry">
+            <Pattern>* (where|you see*|you saw) * #(nHenry) * (evening|night|murder*|kill*) *</Pattern>
+            <Random>
+                <Text>Mr. Moneyghan, most probably, was in the saloon smoking a cigar and dreaming to become even richer.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+        <QAUnit name="SECOND_Melany_Interrogation_Places_Jessica">
+            <Pattern>* (where|you see*|you saw) * #(nJess) * (evening|night|murder*|kill*) *</Pattern>
+            <Random>
+                <Text>I don't care where she goes. Perhaps, she was working on the book.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+
+
+        <QAUnit name="SECOND_Melany_Interrogation_Places_Eddy">
+            <Pattern>* (where|you see*|you saw) * #(nDoctor) * (evening|night|murder*|kill*) *</Pattern>
+            <Random>
+                <Text>Dearest doctor, I suppose, was in his room thinking about new ways to do his patients in.</Text>
+            </Random>
+            <Effects>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+    </Theme>
+
+    <Theme name = "Melany_AffinityVariator">
+		<QAUnit name = "Melany_science">
+			<Pattern>* (thesis|dissertation|studies|university|science|scholar|education) *</Pattern>
+			<Random>
+				<Text>University is all my life! Oh I wish I were a man and could become a professor! </Text>
+				<Text>Oh, I wish I was back in France, at Sorbonne University. </Text>
+			</Random>
+			<Effects>
+			
+				<AffinityChange>+50</AffinityChange>
+			</Effects>
+		</QAUnit>
+    </Theme>
+
+</Dialog>
