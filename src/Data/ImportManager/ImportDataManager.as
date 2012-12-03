@@ -2,6 +2,9 @@ package Data.ImportManager
 {
 	import Data.DataModel;
 	
+	import deng.fzip.FZip;
+	import deng.fzip.FZipFile;
+	
 	import flash.display.Loader;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -38,11 +41,20 @@ package Data.ImportManager
 		[Bindable]
 		private var mItems:ArrayCollection = new ArrayCollection();
 		
+		private var mZipLoader:FZip;
+		private var mZipFile:FZipFile;
+
+		
 		public function ImportDataManager()
 		{
-			importerFileFilter = new FileFilter("XML", "*.xml");
+			importerFileFilter = new FileFilter("zip", "*.zip");
 			importerFileReference = new FileReference();
-			fileLoader = new Loader();			
+			fileLoader = new Loader();
+			
+			mZipLoader = new FZip();
+			mZipFile = new FZipFile();
+
+				
 		}
 		
 		public function importData():void
@@ -67,7 +79,12 @@ package Data.ImportManager
 			var descriptorXml:XML;
 			var itemsXml:XML;
 			
-			xmlData = XML(importerFileReference.data);
+			mZipLoader.loadBytes(importerFileReference.data);
+			mZipFile = mZipLoader.getFileByName("Scenary_2.xml");
+			xmlData = XML(mZipFile.content);//XML(importerFileReference.data);
+
+			
+//			xmlData = XML(importerFileReference.data);
 			//parse facts
 			if(mFacts)
 			{
@@ -224,23 +241,23 @@ package Data.ImportManager
 			{
 				itemsXml = items;	
 			}
-			for each(var item:XML in itemsXml.item)
+			if(itemsXml)
 			{
-				var itemObject:Object = {"maps":[]};				
-				itemObject["itemType"] = String(item.itemType);
-				for each(var itemMap:XML in item.maps.children())
+				for each(var item:XML in itemsXml.item)
 				{
-					var mapChildren:XMLList = itemMap.children();
-					var mapObj:Object = new Object();
-					mapObj["placeType"] = mapChildren[0].toString();
-					mapObj["placeId"] = mapChildren[1].toString();
-					mapObj["count"] = mapChildren[2].toString();
-					itemObject["maps"].push(mapObj);
+					var itemObject:Object = {"maps":[]};				
+					itemObject["itemType"] = String(item.itemType);
+					for each(var itemMap:XML in item.maps.children())
+					{
+						var mapChildren:XMLList = itemMap.children();
+						var mapObj:Object = new Object();
+						mapObj["placeType"] = mapChildren[0].toString();
+						mapObj["placeId"] = mapChildren[1].toString();
+						mapObj["count"] = mapChildren[2].toString();
+						itemObject["maps"].push(mapObj);
+					}
+					mItems.addItem(itemObject);
 				}
-				
-				
-				
-				mItems.addItem(itemObject);
 			}
 //			DataModel.getSingleton().parseAgentsData(mAgents);
 			

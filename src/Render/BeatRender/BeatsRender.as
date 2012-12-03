@@ -32,15 +32,11 @@ package Render.BeatRender
 		
 		[Bindable]
 		private var mBeatColor:uint;
+		
 		private var mWhiteBeat:uint = 0xFFFFFF;
 		private var mOrangeBeat:uint = 0xFFA500;
 		private var mGreenBeat:uint = 0x008000;
-		
-		
-		/**
-		 * 
-		 * 
-		 * */
+				
 		private var stageX:Number;
 		private var stageY:Number;
 		private var dataX:Number;
@@ -60,11 +56,12 @@ package Render.BeatRender
 		[Bindable]
 		private var mBeatStrokeColor:uint;
 		
-		var beatDataProvider:BubbleSeries = parent as BubbleSeries;
+		private var beatDataProvider:BubbleSeries;
 		
 		public function BeatsRender() 
 		{
 			super();
+			
 			
 			mBeatStrokeColor = 0x000000;
 			
@@ -81,7 +78,7 @@ package Render.BeatRender
 			labelTextFormatter.bold = true;
 			labelTextFormatter.size = 12;
 			
-//			idLabel.defaultTextFormat = idLabelTextFormatter;
+//			mBeatIdLabel.defaultTextFormat = labelTextFormatter;
 			mBeatIdLabel.setTextFormat(labelTextFormatter);
 			
 			addChild(mBeatIdLabel);
@@ -124,11 +121,11 @@ package Render.BeatRender
 			var posX:Number = dataX + (event.stageX - stageX) * (hMax - hMin) / parent.width;
 			if (posX >= hMin && posX <= hMax)
 			{
-//				_data.item.beatPosX = new Date(posX);
-				for(var i:int = 0; i < beatDataProvider.selectedItems.length; i++)
-				{
-					_data.item[i].beatPosX = new Date(posX);
-				}
+				_data.item.beatPosX = new Date(posX);
+				//for(var i:int = 0; i < beatDataProvider.selectedItems.length; i++)
+				//{
+				//	_data.item[i].beatPosX = new Date(posX);
+				//}
 //				_data.item.beatPosX = new Date(posX);
 			}
 			
@@ -136,18 +133,17 @@ package Render.BeatRender
 			if (posY >= vMin && posY <= vMax)
 			{
 				_data.item.beatPosY = posY;
-			}
-			
-			beatDataProvider.dataProvider.disableAutoUpdate();
-			beatDataProvider.dataProvider.enableAutoUpdate();
-			beatDataProvider.dataProvider.refresh();
-			
+			}			
 		}
 		
 		private function stopMoving(event:MouseEvent):void
 		{
 			systemManager.removeEventListener(MouseEvent.MOUSE_MOVE, moving, true);
 			systemManager.removeEventListener(MouseEvent.MOUSE_UP, stopMoving, true);
+			beatDataProvider = parent as BubbleSeries;
+			beatDataProvider.dataProvider.disableAutoUpdate();
+			beatDataProvider.dataProvider.enableAutoUpdate();
+			beatDataProvider.dataProvider.refresh();
 		}
 		
 		[Inspectable(environment="none")]
@@ -163,20 +159,21 @@ package Render.BeatRender
 				return;
 			
 			_data = value;
-//			dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
+			dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
 		}
 		
 		private function dataExist(event:FlexEvent):void
 		{
-			trace("event");
-//			mBeatIdLabel.text = _data.item.beatId;
-//			mBeatDescriptionLabel.text = _data.item.beatDescription;
+//			trace("event");
+			mBeatIdLabel.text = _data.item.beatId;
+			mBeatDescriptionLabel.text = _data.item.beatDescription;
 		}
 		
 		
 		override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
 		{
-			//super.updateDisplayList(unscaledWidth, unscaledHeight);
+			super.updateDisplayList(unscaledWidth, unscaledHeight);
+			
 			var fill:IFill;
 			var state:String = "";
 			

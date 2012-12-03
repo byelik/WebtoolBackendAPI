@@ -108,8 +108,8 @@ package HostComponents.FactsHostComponent
 		
 		[Bindable]
 		public var tmpData:ArrayCollection = new ArrayCollection([{id:'geka', desc:10}, {id:'gang', desc:9}, 'g','côte','b','coté',
-																'xyz', 'f', 'e', 'D', 'ABC','Öhlund',
-																'Oehland','Zorn','Aaron','Ohlin',{id:'Aaron', desc:1}]);
+																  'xyz', 'f', 'e', 'D', 'ABC','Öhlund',
+																  'Oehland','Zorn','Aaron','Ohlin',{id:'Aaron', desc:1}]);
 //		[Bindable]
 //		public var mSystemFactsList:ArrayCollection = new ArrayCollection();
 
@@ -176,9 +176,9 @@ package HostComponents.FactsHostComponent
 				case "mVariableList":
 					mVariableList.addEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, finishEdirVariableDescription);
 				break
-				/*case "mCharacterFactsList":
-					mCharacterFactsList.addEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, selectCharacterFact);
-				break;*/
+				case "mCharacterFactsList":
+					mCharacterFactsList.addEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, finishEditCharacterFact);
+				break;
 				case "mAddFactOwner":
 					mAddFactOwner.addEventListener(MouseEvent.CLICK, addFactOwner);
 				break
@@ -202,6 +202,9 @@ package HostComponents.FactsHostComponent
 				break;
 				case "mDeleteItem":
 					mDeleteItem.addEventListener(MouseEvent.CLICK, deleteItem);
+				break;
+				case "mItemsGrid":
+					mItemsGrid.addEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, finishEditItemsFields);
 				break;
 			}
 		}
@@ -229,9 +232,9 @@ package HostComponents.FactsHostComponent
 				case "mVariableList":
 					mVariableList.removeEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, finishEdirVariableDescription);
 					break
-				/*case "mCharacterFactsList":
-					mCharacterFactsList.removeEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, selectCharacterFact);
-				break;*/
+				case "mCharacterFactsList":
+					mCharacterFactsList.removeEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, finishEditCharacterFact);
+				break;
 				case "mAddFactOwner":
 					mAddFactOwner.removeEventListener(MouseEvent.CLICK, addFactOwner);
 					break
@@ -255,6 +258,9 @@ package HostComponents.FactsHostComponent
 					break;
 				case "mDeleteItem":
 					mDeleteItem.addEventListener(MouseEvent.CLICK, deleteItem);
+				break;
+				case "mItemsGrid":
+					mItemsGrid.removeEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, finishEditItemsFields);
 				break;
 			}
 		}
@@ -441,11 +447,22 @@ package HostComponents.FactsHostComponent
 		}
 		
 		
-		/*private function selectCharacterFact(event:GridItemEditorEvent):void
+		private function finishEditCharacterFact(event:GridItemEditorEvent):void
 		{
-			trace(mCharacterFactsList.selectedIndex);	
-		}*/
+			//	
+		}
 		
+		private function editCharacterFactResult(result:Object):void
+		{
+			if(result == null)
+			{
+				//good
+			}
+			else
+			{
+				//error...
+			}
+		}
 		
 		private function addFactOwner(event:MouseEvent):void
 		{
@@ -664,6 +681,25 @@ package HostComponents.FactsHostComponent
 		}
 		////////////////////////deleteItem//////////////////////////////////
 		
+		
+		private function finishEditItemsFields(event:GridItemEditorEvent):void
+		{
+			//			var itemId:int = DataModel.getSingleton().mItemsData.getItemAt(event.rowIndex).type;
+			//			var factDescription:String = mSystemFacts.getItemAt(event.rowIndex).description;
+			//send some request
+			//			new HttpServiceManager('{"method":"facts.updateFactDetails","params":['+factId+', "'+xgmlId+'", "'+factDescription+'"], "jsonrpc": "2.0", "id":7}', editFactDescriptionResult);
+		}
+		
+		private function editItemsResult(result:Object):void
+		{
+			if(result == null)
+			{
+				//good
+			}
+			{
+				//error
+			}
+		}
 		
 		private function deleteVariableHandler(event:CloseEvent):void
 		{

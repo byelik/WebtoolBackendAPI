@@ -96,18 +96,18 @@
 								<s:GridColumn dataField="id" headerText="id"/>
 								<s:GridColumn dataField="description" headerText="Description"/>
 								<s:GridColumn dataField="status" headerText="Status">
-									<s:itemRenderer>
-										<fx:Component>
-											<s:GridItemRenderer>
+									<s:itemEditor> 
+										<fx:Component> 
+											<s:ComboBoxGridItemEditor dataProvider="{DataModel.getSingleton().mFactsStatusList}">
 												<fx:Script>
 													<![CDATA[
 														import Data.DataModel;
 													]]>
 												</fx:Script>
-												<s:ComboBoxGridItemEditor dataProvider="{DataModel.getSingleton().mAgentsList}"/>
-											</s:GridItemRenderer>
-										</fx:Component>
-									</s:itemRenderer>
+											</s:ComboBoxGridItemEditor>
+										</fx:Component> 
+									</s:itemEditor>
+
 								</s:GridColumn>
 							</s:ArrayList>
 						</s:columns>
@@ -182,46 +182,39 @@
 							selectionMode="multipleRows"
 							sortableColumns="true"
 							requestedRowCount="8"
-							dataProvider="{DataModel.getSingleton().mAgentsList}">
+							dataProvider="{DataModel.getSingleton().mItemsData}">
 					<s:columns>
 						<s:ArrayList>
-							<s:GridColumn dataField="name"  headerText="Type">
-								<s:itemRenderer>
-									<fx:Component>
-										<s:GridItemRenderer>
+							<s:GridColumn dataField="type" headerText="Type" width="100">
+								<s:itemEditor> 
+									<fx:Component> 
+										<s:ComboBoxGridItemEditor dataProvider="{DataModel.getSingleton().mItemsData}">
 											<fx:Script>
 												<![CDATA[
 													import Data.DataModel;
 												]]>
 											</fx:Script>
-											<s:ComboBoxGridItemEditor dataProvider="{DataModel.getSingleton().mAgentsList}"/>
-										</s:GridItemRenderer>
-									</fx:Component>
-								</s:itemRenderer>
+										</s:ComboBoxGridItemEditor>
+									</fx:Component> 
+								</s:itemEditor>
 							</s:GridColumn>
-							<s:GridColumn dataField="name" headerText="Owner">
-								<s:itemRenderer>
-									<fx:Component>
-										<s:GridItemRenderer>
+							<s:GridColumn dataField="owner" headerText="Owner" width="100">
+								<s:itemEditor> 
+									<fx:Component> 
+										<s:ComboBoxGridItemEditor dataProvider="{DataModel.getSingleton().mItemsData}">
 											<fx:Script>
 												<![CDATA[
 													import Data.DataModel;
 												]]>
 											</fx:Script>
-											<s:ComboBoxGridItemEditor dataProvider="{DataModel.getSingleton().mAgentsList}"/>
-										</s:GridItemRenderer>
-									</fx:Component>
-								</s:itemRenderer>
+										</s:ComboBoxGridItemEditor>
+									</fx:Component> 
+								</s:itemEditor>
 							</s:GridColumn>
-							<s:GridColumn dataField="name" headerText="Number" width="100">
-								<s:itemRenderer>
-									<fx:Component>
-										<s:GridItemRenderer>
-											<s:TextInput restrict="0-9"/>
-										</s:GridItemRenderer>
-									</fx:Component>
-								</s:itemRenderer>
-							</s:GridColumn>
+							<s:GridColumn dataField="count"
+										  headerText="Number"
+										  itemRenderer="Render.ItemsCountRenderer"
+										  width="50"/>
 						</s:ArrayList>
 					</s:columns>
 				</s:DataGrid>

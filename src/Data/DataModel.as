@@ -38,6 +38,22 @@ package Data
 		[Bindable]
 		public var mAgentXgml:ArrayCollection = new ArrayCollection();
 		
+		[Bindable]
+		public var mItemsData:ArrayCollection = new ArrayCollection([{type:"Cufflink", owner:"Melany", count:1},
+																	{type:"FlashLight", owner:"Bathroom", count:2},
+																	{type:"Revolver", owner:"Henry", count:3},
+																	{type:"Rope", owner:"Philipp", count:4}]);
+		[Bindable]
+		public var mTypes:ArrayCollection = new ArrayCollection([{type:"Cufflink"}, 
+																{type:"FlashLight"}, 
+																{type:"Revolver"},
+																{type:"Rope"}]);
+		
+		[Bindable]
+		public var mFactsStatusList:ArrayCollection = new ArrayCollection(["not confirmed", 
+																		   "true",
+																		   "false"]);
+		
 		public function DataModel()
 		{
 			
