@@ -184,18 +184,8 @@
 									 itemClick="mBeatsTree_itemClickHandler(event)"
 									 contentBackgroundAlpha="0"
 									 verticalScrollPolicy="auto"
+									 dataProvider="{DataModel.getSingleton().mTreeData}"
 									 itemRenderer="Skins.BeatsSkin.TreeItemLinesRenderer">
-									<mx:XMLListCollection id="mBetsTreeData">
-									<fx:XMLList id="mXmlList">
-										<Description name="ODN">
-											<folder name="Group 1: Description"/>
-											<folder name="Group 2: Description">
-												<Pfolder name="test1"/>
-												<Pfolder name="test 2"/>
-											</folder>
-										</Description>
-									</fx:XMLList>
-								</mx:XMLListCollection>
 							</mx:Tree>
 					</s:HGroup>
 				</s:BorderContainer>

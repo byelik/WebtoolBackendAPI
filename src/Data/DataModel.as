@@ -4,6 +4,7 @@ package Data
 	import Data.Beats.BeatsData;
 	import Data.Facts.FactsData;
 	import Data.Locations.LocationsData;
+	import Data.Tree.TreeData;
 	import Data.XGML.XgmslData;
 	
 	import mx.collections.ArrayCollection;
@@ -53,6 +54,9 @@ package Data
 		public var mFactsStatusList:ArrayCollection = new ArrayCollection(["not confirmed", 
 																		   "true",
 																		   "false"]);
+		
+		[Bindable]
+		public var mTreeData:ArrayCollection = new ArrayCollection();
 		
 		public function DataModel()
 		{
@@ -193,6 +197,21 @@ package Data
 				mXgmlsData.addItem(xgmls);
 			}
 			mXgmlsData.enableAutoUpdate();
+		}
+		
+		public function parseTreeData(data:Object)
+		{
+			var treeData:TreeData;
+			if(mTreeData)
+			{
+				mTreeData.removeAll();
+			}
+			for each(var item:Object in data)
+			{
+				treeData = TreeData.getNewInstance();
+				treeData.parse(item);
+				mTreeData.addItem(treeData);
+			}
 		}
 	}
 }

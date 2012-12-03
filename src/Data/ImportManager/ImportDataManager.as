@@ -11,6 +11,16 @@ package Data.ImportManager
 	import flash.net.FileFilter;
 	import flash.net.FileReference;
 	
+	import memorphic.utils.XMLUtil;
+	import memorphic.xpath.XPathQuery;
+	import memorphic.xpath.XPathUtils;
+	import memorphic.xpath.model.NodeTypes;
+	import memorphic.xpath.model.XPathContext;
+	import memorphic.xpath.parser.XPathParser;
+	import memorphic.xpath.parser.XPathSyntaxTree;
+	import memorphic.xpath.parser.XPathToken;
+	import memorphic.xpath.parser.XPathTokenizer;
+	
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
 	import mx.events.CloseEvent;
@@ -41,9 +51,13 @@ package Data.ImportManager
 		[Bindable]
 		private var mItems:ArrayCollection = new ArrayCollection();
 		
+		[Bindable]
+		private var mXgmls:ArrayCollection = new ArrayCollection();
+		
 		private var mZipLoader:FZip;
 		private var mZipFile:FZipFile;
 
+		private var mTreeObject:Object;
 		
 		public function ImportDataManager()
 		{
@@ -78,11 +92,30 @@ package Data.ImportManager
 			var agentsXml:XML;
 			var descriptorXml:XML;
 			var itemsXml:XML;
+			var xgmlsXml:XML;
+			
+			var xgmlTheme:XML;
+			
+			var treeData:Object;
 			
 			mZipLoader.loadBytes(importerFileReference.data);
 			mZipFile = mZipLoader.getFileByName("Scenary_2.xml");
 			xmlData = XML(mZipFile.content);//XML(importerFileReference.data);
 
+			//TreeData.json
+			mZipFile = mZipLoader.getFileByName("TreeData.json");
+			treeData = mZipFile.getContentAsString(mZipFile.content);
+			mTreeObject = JSON.parse(treeData as String);
+			DataModel.getSingleton().parseTreeData(mTreeObject);
+
+			//read xgml from file...
+//			mZipFile = mZipLoader.getFileByName("2_Eddy_Interrogation.xgml");
+//			xgmlTheme = new XML(mZipFile.content);
+//			for each(var importTheme in xgmlTheme.children())
+//			{
+////				trace(importTheme.@file);
+//				trace(importTheme.children()[0].@name);
+//			}
 			
 //			xmlData = XML(importerFileReference.data);
 			//parse facts
@@ -260,6 +293,29 @@ package Data.ImportManager
 				}
 			}
 //			DataModel.getSingleton().parseAgentsData(mAgents);
+			
+			//parse agents
+			if(mXgmls)
+			{
+				mXgmls.removeAll();
+			}
+			for each(var xgmls:XML in xmlData.xgml)
+			{
+				xgmlsXml = xgmls;	
+			}
+			if(xgmlsXml)
+			{
+				for each(var xgml:XML in xgmlsXml.xgml)
+				{
+					var xgmlObject:Object = {};				
+					xgmlObject["id"] = int(xgml.@id);
+					xgmlObject["className"] = String(xgml.className);
+					xgmlObject["filename"] = String(xgml.filename);
+					xgmlObject["content"] = xgml.content;
+					mXgmls.addItem(xgmlObject);
+				}
+				DataModel.getSingleton().parseXgmlsData(mXgmls);
+			}
 			
 		}
 		
