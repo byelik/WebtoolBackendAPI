@@ -95,8 +95,11 @@ package Data.ImportManager
 
 			//TreeData.json
 			mZipFile = mZipLoader.getFileByName("TreeData.json");
-			treeData = mZipFile.getContentAsString(mZipFile.content);
-			mTreeObject = JSON.parse(treeData as String);
+			if(mZipFile)
+			{
+				treeData = mZipFile.getContentAsString(mZipFile.content);
+				mTreeObject = JSON.parse(treeData as String);
+			}
 //			DataModel.getSingleton().parseTreeData(mTreeObject);
 
 			//read xgml from file...

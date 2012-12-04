@@ -25,7 +25,22 @@ package Data.ExportManager
 		private var currentMinutes:uint;
 		private var mFileName:String;
 		
-		private var mTestXML:XML = <foo id="22"><bar>44</bar>text</foo>;
+		private var mTestXML:XML = <recipe name="хлеб" preptime="5" cooktime="180">
+								  <title>Простой хлеб</title>
+								  <composition>
+								    <ingredient amount="3" unit="стакан">Мука</ingredient>
+								    <ingredient amount="0.25" unit="грамм">Дрожжи</ingredient>
+								    <ingredient amount="1.5" unit="стакан">Тёплая вода</ingredient>
+								    <ingredient amount="1" unit="чайная ложка">Соль</ingredient>
+								  </composition>
+								  <instructions>
+								    <step>Смешать все ингредиенты и тщательно замесить.</step>
+								    <step>Закрыть тканью и оставить на один час в тёплом помещении.</step>
+								    <!-- <step>Почитать вчерашнюю газету.</step> - это сомнительный шаг... -->
+								    <step>Замесить ещё раз, положить на противень и поставить в духовку.</step>
+								  </instructions>
+								</recipe>
+
 		
 //		private var mImportManager:ImportDataManager = new ImportDataManager();
 		private var mImportManager:ImportDataManager;
