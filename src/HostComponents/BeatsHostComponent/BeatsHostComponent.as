@@ -189,10 +189,13 @@ package HostComponents.BeatsHostComponent
 		
 		private var mBeatConnection:Canvas;
 		
+		[Bindable]
+		public var mBeatBuffer:ArrayCollection;
+		
 		public function BeatsHostComponent()
 		{
 			super();
-			
+			mBeatBuffer = new ArrayCollection();
 			mBeatConnection = new Canvas();
 			mSelectedBeatsId = new ArrayCollection();
 			mBeatsData = DataModel.getSingleton().mBeatsList;
@@ -897,12 +900,30 @@ package HostComponents.BeatsHostComponent
 		private function cutBeatContextMenuHandler(event:ContextMenuEvent):void
 		{
 //			drawBeatConnection();
-			DataModel.getSingleton().mBubbleBeatData.refresh();
+			if(mSelectedBeatOnGraph)
+			{
+				if(mBeatBuffer)
+				{
+					mBeatBuffer.removeAll();
+				}
+				mBeatBuffer.addItem(mSelectedBeatOnGraph);
+				if(mBeatChart.selectedChartItem)
+				{
+					DataModel.getSingleton().mBubbleBeatData.removeItemAt(mBeatChart.selectedChartItem.index);
+				}
+			}
 		}
 		
 		private function copyBeatContextMenuHandler(event:ContextMenuEvent):void
 		{
-			
+			if(mSelectedBeatOnGraph)
+			{
+				if(mBeatBuffer)
+				{
+					mBeatBuffer.removeAll();
+				}
+				mBeatBuffer.addItem(mSelectedBeatOnGraph);
+			}
 		}
 		
 		private function deleteBeatContextMenuHandler(event:ContextMenuEvent):void
@@ -910,12 +931,25 @@ package HostComponents.BeatsHostComponent
 			deleteBeatWindow();
 		}
 		
-		private function pasteBeatContextMenuHandler(event:MouseEvent):void
+		private function pasteBeatContextMenuHandler(event:ContextMenuEvent):void
 		{
-			
+			var tmp:ArrayCollection = DataModel.getSingleton().mBubbleBeatData; 
+			if(mBeatBuffer)
+			{
+				tmp.disableAutoUpdate();
+				for(var i:int; i < mBeatBuffer.length; i++)
+				{
+					mBeatsData.addItem(mBeatBuffer[i]);
+					mBeatsData.enableAutoUpdate();
+					mBeatsData.refresh();
+					tmp.addItem(mBeatBuffer[i]);
+					tmp.enableAutoUpdate();
+					tmp.refresh();
+				}
+			}
 		}
 		
-		private function renameBeatContextMenuHandler(event:MouseEvent):void
+		private function renameBeatContextMenuHandler(event:ContextMenuEvent):void
 		{
 			
 		}
