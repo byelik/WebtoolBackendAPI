@@ -56,7 +56,7 @@ package Data
 																		   "false"]);
 		
 		[Bindable]
-		public var mTreeData:ArrayCollection = new ArrayCollection();
+		public var mTreeData:ArrayCollection = new ArrayCollection([{name:"ODN", folders:[{name:"test"}]}]);
 		
 		public function DataModel()
 		{
@@ -199,7 +199,7 @@ package Data
 			mXgmlsData.enableAutoUpdate();
 		}
 		
-		public function parseTreeData(data:Object)
+		/*public function parseTreeData(data:Object):void
 		{
 			var treeData:TreeData;
 			if(mTreeData)
@@ -208,10 +208,11 @@ package Data
 			}
 			for each(var item:Object in data)
 			{
+
 				treeData = TreeData.getNewInstance();
-				treeData.parse(item);
-				mTreeData.addItem(treeData);
+				treeData.parse(data);
+				mTreeData.addItem(treeData);	
 			}
-		}
+		}*/
 	}
 }

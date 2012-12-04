@@ -1,13 +1,13 @@
 {
-	"ODN":
-	[
+	"name":"ODN",
+	"folders":[
 		{"name":"folder 1",
-		 "description": "test",
+		 "description": "test 1",
 		 "items":[{"id":1, 
 			   "description":"beat1"}]},
-		{"name":"folder 1",
-		 "description": "test",
-		 "items":[{"id":1, 
-			   "description":"beat1"}]}
+		{"name":"folder 2",
+		 "description": "test 2",
+		 "items":[{"id":2, 
+			   "description":"beat2"}]}
 	]	
 }

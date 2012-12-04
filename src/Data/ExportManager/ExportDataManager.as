@@ -22,8 +22,7 @@ package Data.ExportManager
 		private var currentMinutes:uint;
 		private var mFileName:String;
 		
-		private var mTestXML:XML = 
-									<foo id="22">
+		private var mTestXML:XML = <foo id="22">
 										<bar>44</bar>
 										text
 									</foo>;

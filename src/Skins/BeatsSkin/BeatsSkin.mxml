@@ -47,7 +47,6 @@
 			{
 				mBeatsTree.contextMenu = hostComponent.treeContextMenu;
 				mBeatChart.contextMenu = hostComponent.mBeatContextMenu;	
-				hostComponent.drawBeatConnection();
 				
 				var min:Date = new Date(new Date().time - millisecondsPerDay * 2);
 				var max:Date = new Date(new Date().time + millisecondsPerDay * 45);
@@ -129,7 +128,6 @@
 			{
 				return df.format(labelValue);	
 			}*/
-			
 		]]>
 	</fx:Script>
 	
@@ -171,7 +169,7 @@
 									 width="100%"
 									 height="100%" 
 									 allowMultipleSelection="true"
-									 labelField="@name"
+									 labelField="name"
 									 doubleClickEnabled="true"
 									 dragEnabled="true"
 									 dragMoveEnabled="true"
@@ -320,8 +318,8 @@
 						</s:HGroup>
 					</s:HGroup>
 					<s:Label text="Activities:"/>
-					<s:List id="mActivitiesList"
-								width="100%" labelField="activities"/>
+					<s:TextArea id="mActivitiesList"
+								width="100%"/>
 					<s:HGroup width="100%"
 							  horizontalAlign="center">
 						<s:Button id="mSave"

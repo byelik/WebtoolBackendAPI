@@ -2,19 +2,19 @@ package Data.Tree
 {
 	public class TreeData
 	{
-		private var mTreeFolder:Array;
+		private var mTreeFolder:Object;
 		
 		public function TreeData(data:Object = null)
 		{
 			parse(data);
 		}
 		
-		public function get treeFolder():Array
+		public function get treeFolder():Object
 		{
 			return mTreeFolder;
 		}
 
-		public function set treeFolder(value:Array):void
+		public function set treeFolder(value:Object):void
 		{
 			mTreeFolder = value;
 		}
@@ -33,7 +33,7 @@ package Data.Tree
 			}
 			else
 			{
-				mTreeFolder = (data.ODN) as Array;
+				mTreeFolder = (data) as Object;
 			}
 		}
 	}

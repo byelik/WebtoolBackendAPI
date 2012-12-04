@@ -7,18 +7,14 @@ package HostComponents.BeatsHostComponent
 	
 	import HttpService.HttpServiceManager;
 	
-	import Manager.AlertManager;
+	import Manager.EventManager;
 	
 	import Skins.BeatsSkin.SearchComponent;
 	
-	import flash.display.DisplayObject;
 	import flash.display.Sprite;
-	import flash.display.Stage;
 	import flash.events.ContextMenuEvent;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import flash.events.TextEvent;
-	import flash.media.Video;
 	import flash.ui.ContextMenu;
 	import flash.ui.ContextMenuItem;
 	
@@ -26,26 +22,18 @@ package HostComponents.BeatsHostComponent
 	import mx.charts.events.ChartItemEvent;
 	import mx.charts.series.BubbleSeries;
 	import mx.collections.ArrayCollection;
-	import mx.collections.XMLListCollection;
 	import mx.containers.Canvas;
 	import mx.controls.Alert;
 	import mx.controls.Tree;
-	import mx.controls.listClasses.IListItemRenderer;
-	import mx.core.FlexGlobals;
-	import mx.core.UIComponent;
 	import mx.events.CloseEvent;
 	import mx.events.EffectEvent;
-	import mx.events.ListEvent;
-	import mx.managers.IFocusManager;
 	import mx.managers.IFocusManagerComponent;
 	
 	import spark.collections.Sort;
 	import spark.collections.SortField;
 	import spark.components.BorderContainer;
 	import spark.components.Button;
-	import spark.components.DataGrid;
 	import spark.components.DropDownList;
-	import spark.components.List;
 	import spark.components.TextArea;
 	import spark.components.TextInput;
 	import spark.components.ToggleButton;
@@ -83,7 +71,7 @@ package HostComponents.BeatsHostComponent
 		public var mPriorityField:TextInput;
 		
 		[SkinPart(required="true")]
-		public var mActivitiesList:List;
+		public var mActivitiesList:TextArea;
 		
 		/*[SkinPart(required="true")]
 		public var mPreconditionsDescriptionField:TextArea;*/
@@ -199,10 +187,13 @@ package HostComponents.BeatsHostComponent
 		[Bindable]
 		public var mAgentThemes:ArrayCollection = new ArrayCollection();
 		
+		private var mBeatConnection:Canvas;
+		
 		public function BeatsHostComponent()
 		{
 			super();
 			
+			mBeatConnection = new Canvas();
 			mSelectedBeatsId = new ArrayCollection();
 			mBeatsData = DataModel.getSingleton().mBeatsList;
 			
@@ -280,8 +271,7 @@ package HostComponents.BeatsHostComponent
 			
 			
 			mFacts = DataModel.getSingleton().mFactsList;
-			
-			
+			EventManager.getSingleton().addEventListener(EventManager.STOP_DRAG_BEAT, drawBeatConnection);
 		}
 		
 		override protected function getCurrentSkinState():String
@@ -495,9 +485,23 @@ package HostComponents.BeatsHostComponent
 		
 		private function deleteBeatResult(result:Object):void
 		{
+			mBeatsListData.disableAutoUpdate();
 			if(result == null)
 			{
-				new HttpServiceManager('{"method":"beats.getBeats","params":[], "jsonrpc": "2.0", "id":2}', DataModel.getSingleton().parseBeatsData);
+				if(mSelectedBeatsId == mSelectedBeatOnGraph.id)
+				{
+					DataModel.getSingleton().mBubbleBeatData.removeItemAt(mBeatChart.selectedChartItem.index);
+					DataModel.getSingleton().mBubbleBeatData.enableAutoUpdate();
+					DataModel.getSingleton().mBubbleBeatData.refresh();
+				}
+				//new HttpServiceManager('{"method":"beats.getBeats","params":[], "jsonrpc": "2.0", "id":2}', DataModel.getSingleton().parseBeatsData);
+				/*for(var i:int; i < mBeatsListData.length; i++)
+				{
+					if(mSelectedBeatsId == mBeatsListData[i].id)
+					{
+						mBeatsListData
+					}
+				}*/
 			}
 		}
 		
@@ -608,7 +612,8 @@ package HostComponents.BeatsHostComponent
 				mBeatDescriptionField.text = mSelectedBeatOnGraph.beatDescription;
 				mPriorityField.text = mSelectedBeatOnGraph.exclusiveBeatPriority;
 				mTypeList.selectedItem = mSelectedBeatOnGraph.type;
-				mActivitiesList.dataProvider = mSelectedBeatOnGraph.activities;
+//				mActivitiesList.dataProvider = mSelectedBeatOnGraph.activities;
+				mActivitiesList.text = mSelectedBeatOnGraph.activities;
 				
 				mAffinityMinField.text = mSelectedBeatOnGraph.affinityMin;
 				mAffinityMaxField.text = mSelectedBeatOnGraph.affinityMax;
@@ -852,32 +857,36 @@ package HostComponents.BeatsHostComponent
 			return null;
 		}*/
 		
-		public function drawBeatConnection():void
+		public function drawBeatConnection(event:Event):void
 		{
-			var beatContainer:UIComponent = new UIComponent();
+//			var beatContainer:UIComponent = new UIComponent();
+			mBeatConnection.graphics.clear();
 			var  beatLine:Sprite = new Sprite();
 			beatLine.graphics.clear();
-			beatLine.graphics.lineStyle(3, 0x000000,1);
-			
-			for(var i:int = 0; i < mBeatSeries.items.length; i++)
+			mBeatConnection.graphics.lineStyle(1, 0x000000,1);
+			if(mBeatSeries)
 			{
-				if(mBeatSeries.items[i].item.beatsCompleted)
+				for(var i:int = 0; i < mBeatSeries.items.length; i++)
 				{
-					for(var k:int = 0; k < mBeatSeries.items[i].item.beatsCompleted.length; k++)
+					if(mBeatSeries.items[i].item.beatsCompleted)
 					{
-						for(var j:int = 0; j < mBeatSeries.items.length; j++)
+						for(var k:int = 0; k < mBeatSeries.items[i].item.beatsCompleted.length; k++)
 						{
-							if(mBeatSeries.items[j].item.beatId == mBeatSeries.items[i].item.beatsCompleted[k] )
+							for(var j:int = 0; j < mBeatSeries.items.length; j++)
 							{
-								beatLine.graphics.moveTo(mBeatSeries.items[j].x, mBeatSeries.items[j].y);
-								beatLine.graphics.lineTo(mBeatSeries.items[i].x, mBeatSeries.items[i].y);
+								if(mBeatSeries.items[j].item.beatId == mBeatSeries.items[i].item.beatsCompleted[k] )
+								{
+									mBeatConnection.graphics.moveTo(mBeatSeries.items[j].x, mBeatSeries.items[j].y);
+									mBeatConnection.graphics.lineTo(mBeatSeries.items[i].x, mBeatSeries.items[i].y);
+								}
 							}
 						}
 					}
 				}
-			}				
-			beatLine.graphics.endFill();
-			mBeatSeries.addChild(beatLine);
+				mBeatSeries.addChild(mBeatConnection);
+			}
+//			beatLine.graphics.endFill();
+			
 		}
 		
 		private function addBeatContextMenuHandler(evt:ContextMenuEvent):void 
@@ -887,7 +896,8 @@ package HostComponents.BeatsHostComponent
 		
 		private function cutBeatContextMenuHandler(event:ContextMenuEvent):void
 		{
-			
+//			drawBeatConnection();
+			DataModel.getSingleton().mBubbleBeatData.refresh();
 		}
 		
 		private function copyBeatContextMenuHandler(event:ContextMenuEvent):void

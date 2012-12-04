@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx">
+		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:Render="Render.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("HostComponents.FactsHostComponent.FactsHostComponent")]
@@ -95,16 +95,16 @@
 							<s:ArrayList>
 								<s:GridColumn dataField="id" headerText="id"/>
 								<s:GridColumn dataField="description" headerText="Description"/>
-								<s:GridColumn dataField="status" headerText="Status">
+								<s:GridColumn dataField="status" headerText="Status" editable="false">
 									<s:itemEditor> 
 										<fx:Component> 
-											<s:ComboBoxGridItemEditor dataProvider="{DataModel.getSingleton().mFactsStatusList}">
+											<Render:DropDownListRenderer dataProvider="{DataModel.getSingleton().mFactsStatusList}" mOwner="status">
 												<fx:Script>
 													<![CDATA[
 														import Data.DataModel;
 													]]>
-												</fx:Script>
-											</s:ComboBoxGridItemEditor>
+												</fx:Script>	
+											</Render:DropDownListRenderer>
 										</fx:Component> 
 									</s:itemEditor>
 
@@ -188,26 +188,26 @@
 							<s:GridColumn dataField="type" headerText="Type" width="100">
 								<s:itemEditor> 
 									<fx:Component> 
-										<s:ComboBoxGridItemEditor dataProvider="{DataModel.getSingleton().mItemsData}">
+										<Render:DropDownListRenderer dataProvider="{DataModel.getSingleton().mItemsData}" mOwner="type">
 											<fx:Script>
 												<![CDATA[
 													import Data.DataModel;
 												]]>
-											</fx:Script>
-										</s:ComboBoxGridItemEditor>
+											</fx:Script>	
+										</Render:DropDownListRenderer>
 									</fx:Component> 
 								</s:itemEditor>
 							</s:GridColumn>
 							<s:GridColumn dataField="owner" headerText="Owner" width="100">
 								<s:itemEditor> 
 									<fx:Component> 
-										<s:ComboBoxGridItemEditor dataProvider="{DataModel.getSingleton().mItemsData}">
+										<Render:DropDownListRenderer dataProvider="{DataModel.getSingleton().mItemsData}" mOwner="owner">
 											<fx:Script>
 												<![CDATA[
 													import Data.DataModel;
 												]]>
-											</fx:Script>
-										</s:ComboBoxGridItemEditor>
+											</fx:Script>	
+										</Render:DropDownListRenderer>
 									</fx:Component> 
 								</s:itemEditor>
 							</s:GridColumn>

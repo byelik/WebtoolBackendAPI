@@ -20,6 +20,8 @@ package Constants
 		public static const TITLE_DELETE_VARIABLE:String = "Внимание";
 		public static const WARNING_DELETE_VARIABLE:String = "Вы действительно хотите удалить выбранные переменные?";
 		
+		public static const STOP_DRAG_BEAT:String = "StopDragBeat";
+		
 		public function Const()
 		{
 		}

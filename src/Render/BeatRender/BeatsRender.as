@@ -1,7 +1,15 @@
 package Render.BeatRender
 {
 	
+	import Constants.Const;
+	
+	import HostComponents.FactsHostComponent.FactsHostComponent;
+	
+	import Manager.EventManager;
+	
 	import flash.display.Graphics;
+	import flash.display.Sprite;
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
 	import flash.text.TextField;
@@ -94,7 +102,15 @@ package Render.BeatRender
 			addEventListener(MouseEvent.MOUSE_DOWN, startMoving);
 			
 			addEventListener(FlexEvent.DATA_CHANGE, dataExist);
+			
+			addEventListener(FlexEvent.UPDATE_COMPLETE, refreshStage);
 		}
+		
+		private function refreshStage(event:FlexEvent):void
+		{
+			EventManager.getSingleton().fireEvent();	
+		}
+			
 		
 		private function startMoving(event:MouseEvent):void
 		{
@@ -116,8 +132,7 @@ package Render.BeatRender
 		}
 		
 		private function moving(event:MouseEvent):void
-		{
-			
+		{	
 			var posX:Number = dataX + (event.stageX - stageX) * (hMax - hMin) / parent.width;
 			if (posX >= hMin && posX <= hMax)
 			{
@@ -133,16 +148,15 @@ package Render.BeatRender
 			if (posY >= vMin && posY <= vMax)
 			{
 				_data.item.beatPosY = posY;
-			}			
+			}
 		}
-		
+
 		private function stopMoving(event:MouseEvent):void
 		{
 			systemManager.removeEventListener(MouseEvent.MOUSE_MOVE, moving, true);
 			systemManager.removeEventListener(MouseEvent.MOUSE_UP, stopMoving, true);
+			
 			beatDataProvider = parent as BubbleSeries;
-			beatDataProvider.dataProvider.disableAutoUpdate();
-			beatDataProvider.dataProvider.enableAutoUpdate();
 			beatDataProvider.dataProvider.refresh();
 		}
 		
@@ -279,7 +293,5 @@ package Render.BeatRender
 			if (fill)
 				fill.end(g);
 		}
-		
 	}
-	
 }

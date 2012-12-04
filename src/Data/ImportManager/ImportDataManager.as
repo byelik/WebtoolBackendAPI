@@ -11,19 +11,8 @@ package Data.ImportManager
 	import flash.net.FileFilter;
 	import flash.net.FileReference;
 	
-	import memorphic.utils.XMLUtil;
-	import memorphic.xpath.XPathQuery;
-	import memorphic.xpath.XPathUtils;
-	import memorphic.xpath.model.NodeTypes;
-	import memorphic.xpath.model.XPathContext;
-	import memorphic.xpath.parser.XPathParser;
-	import memorphic.xpath.parser.XPathSyntaxTree;
-	import memorphic.xpath.parser.XPathToken;
-	import memorphic.xpath.parser.XPathTokenizer;
-	
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
-	import mx.events.CloseEvent;
 
 	public class ImportDataManager
 	{
@@ -106,7 +95,7 @@ package Data.ImportManager
 			mZipFile = mZipLoader.getFileByName("TreeData.json");
 			treeData = mZipFile.getContentAsString(mZipFile.content);
 			mTreeObject = JSON.parse(treeData as String);
-			DataModel.getSingleton().parseTreeData(mTreeObject);
+//			DataModel.getSingleton().parseTreeData(mTreeObject);
 
 			//read xgml from file...
 //			mZipFile = mZipLoader.getFileByName("2_Eddy_Interrogation.xgml");
