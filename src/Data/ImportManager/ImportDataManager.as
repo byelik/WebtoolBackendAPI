@@ -1,6 +1,7 @@
 package Data.ImportManager
 {
 	import Data.DataModel;
+	import Data.ExportManager.ExportDataManager;
 	
 	import deng.fzip.FZip;
 	import deng.fzip.FZipFile;
@@ -43,7 +44,7 @@ package Data.ImportManager
 		[Bindable]
 		private var mXgmls:ArrayCollection = new ArrayCollection();
 		
-		private var mZipLoader:FZip;
+		public var mZipLoader:FZip;
 		private var mZipFile:FZipFile;
 
 		private var mTreeObject:Object;
@@ -88,6 +89,7 @@ package Data.ImportManager
 			var treeData:Object;
 			
 			mZipLoader.loadBytes(importerFileReference.data);
+//			setZipExporter(mZipLoader);
 			mZipFile = mZipLoader.getFileByName("Scenary_2.xml");
 			xmlData = XML(mZipFile.content);//XML(importerFileReference.data);
 
@@ -317,6 +319,16 @@ package Data.ImportManager
 		private function ShowAlertWnd(errorEvent:IOErrorEvent):void
 		{
 			alertHandler = Alert.show("Error while loading: "  + errorEvent, "Error",	Alert.OK);
+		}
+		
+		public function setZipExporter(value:FZip):void
+		{
+			mZipLoader = value;
+		}
+		
+		public function getZipExporter():FZip
+		{
+			return mZipLoader;
 		}
 	}
 }
