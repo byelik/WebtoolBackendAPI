@@ -65,7 +65,7 @@ package Render.BeatRender
 		private var mBeatStrokeColor:uint;
 		
 		private var beatDataProvider:BubbleSeries;
-		
+		private var mLabelTextFormatter:TextFormat;
 		public function BeatsRender() 
 		{
 			super();
@@ -76,18 +76,18 @@ package Render.BeatRender
 			mBeatIdLabel = new TextField();
 
 			mBeatIdLabel.mouseEnabled = false;
-			mBeatIdLabel.x = 6; 
+			mBeatIdLabel.x = (this.width * 0.2); 
 			mBeatIdLabel.y = 6;
 			mBeatIdLabel.autoSize = TextFieldAutoSize.LEFT;
 			
-			var labelTextFormatter:TextFormat = new TextFormat();
-			labelTextFormatter.color = 0x000000;
-			labelTextFormatter.font = "Verdana";
-			labelTextFormatter.bold = true;
-			labelTextFormatter.size = 12;
+			mLabelTextFormatter = new TextFormat();
+			mLabelTextFormatter.color = 0x000000;
+			mLabelTextFormatter.font = "Verdana";
+			mLabelTextFormatter.bold = true;
+			mLabelTextFormatter.size = 12;
 			
 //			mBeatIdLabel.defaultTextFormat = labelTextFormatter;
-			mBeatIdLabel.setTextFormat(labelTextFormatter);
+			mBeatIdLabel.setTextFormat(mLabelTextFormatter);
 			
 			addChild(mBeatIdLabel);
 			
@@ -96,7 +96,7 @@ package Render.BeatRender
 			mBeatDescriptionLabel.autoSize = TextFieldAutoSize.LEFT;
 			mBeatDescriptionLabel.x = 30;
 			mBeatDescriptionLabel.y = 6;
-			mBeatDescriptionLabel.setTextFormat(labelTextFormatter);
+			mBeatDescriptionLabel.setTextFormat(mLabelTextFormatter);
 			addChild(mBeatDescriptionLabel);
 			
 			addEventListener(MouseEvent.MOUSE_DOWN, startMoving);
@@ -108,6 +108,8 @@ package Render.BeatRender
 		
 		private function refreshStage(event:FlexEvent):void
 		{
+//			mBeatIdLabel.x = (this.width / 2);
+//			mBeatIdLabel.y = (this.height / 2);
 			EventManager.getSingleton().fireEvent();	
 		}
 			

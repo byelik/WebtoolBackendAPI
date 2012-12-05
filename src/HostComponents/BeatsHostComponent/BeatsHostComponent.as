@@ -433,9 +433,9 @@ package HostComponents.BeatsHostComponent
 			var selectedUserFacts:ArrayCollection = new ArrayCollection();
 			var selectedAgentFacts:ArrayCollection = new ArrayCollection(); 
 				
-			
-			new HttpServiceManager('{"method":"beats.updateBeat","params":[{"id":"'+mBeatsTree.selectedItem.id+'","description":"'+mBeatDescriptionField.text+'","agentId":"'+mBeatsTree.selectedItem.agentId+'","locationId":"'+mLocationList.selectedItem.id+'","type":"'+mTypeList.selectedItem+'","xgmlTheme":"'+mBeatTheme.selectedItem.xgmlTheme+'","activities":["Find(steve)","StartDialog(steve, Lets flirt with me!)","CompleteBeat(Jessica_flirt)"],"exclusiveBeatPriority":"'+mPriorityField.text+'"}],"jsonrpc":"2.0","id":21}', updateBeatResult);
-			new HttpServiceManager('{"method":"beats.updateBeatPrecondition","params":["'+mBeatsTree.selectedItem.id+'",{"description":"","factsAvailableToUser":['+selectedUserFacts+'],"factsAvailableToAgent":['+selectedAgentFacts+'],"beatsCompleted":['+mBeatsCompletedField.text+'],"affinityMin":"'+mAffinityMinField.text+'","affinityMax":"'+mAffinityMaxField.text+'","nerveMin":"'+mNerveMinField.text+'","nerveMax":"'+mNerveMaxField.text+'"}],"jsonrpc":"2.0","id":24}', updateBeatPreconditions);
+			//disable server
+//			new HttpServiceManager('{"method":"beats.updateBeat","params":[{"id":"'+mBeatsTree.selectedItem.id+'","description":"'+mBeatDescriptionField.text+'","agentId":"'+mBeatsTree.selectedItem.agentId+'","locationId":"'+mLocationList.selectedItem.id+'","type":"'+mTypeList.selectedItem+'","xgmlTheme":"'+mBeatTheme.selectedItem.xgmlTheme+'","activities":["Find(steve)","StartDialog(steve, Lets flirt with me!)","CompleteBeat(Jessica_flirt)"],"exclusiveBeatPriority":"'+mPriorityField.text+'"}],"jsonrpc":"2.0","id":21}', updateBeatResult);
+//			new HttpServiceManager('{"method":"beats.updateBeatPrecondition","params":["'+mBeatsTree.selectedItem.id+'",{"description":"","factsAvailableToUser":['+selectedUserFacts+'],"factsAvailableToAgent":['+selectedAgentFacts+'],"beatsCompleted":['+mBeatsCompletedField.text+'],"affinityMin":"'+mAffinityMinField.text+'","affinityMax":"'+mAffinityMaxField.text+'","nerveMin":"'+mNerveMinField.text+'","nerveMax":"'+mNerveMaxField.text+'"}],"jsonrpc":"2.0","id":24}', updateBeatPreconditions);
 		}
 		
 		private function updateBeatResult(result:Object):void
@@ -493,18 +493,13 @@ package HostComponents.BeatsHostComponent
 			{
 				if(mSelectedBeatsId == mSelectedBeatOnGraph.id)
 				{
-					DataModel.getSingleton().mBubbleBeatData.removeItemAt(mBeatChart.selectedChartItem.index);
-					DataModel.getSingleton().mBubbleBeatData.enableAutoUpdate();
-					DataModel.getSingleton().mBubbleBeatData.refresh();
-				}
-				//new HttpServiceManager('{"method":"beats.getBeats","params":[], "jsonrpc": "2.0", "id":2}', DataModel.getSingleton().parseBeatsData);
-				/*for(var i:int; i < mBeatsListData.length; i++)
-				{
-					if(mSelectedBeatsId == mBeatsListData[i].id)
+					if(mBeatChart.selectedChartItem)
 					{
-						mBeatsListData
+						DataModel.getSingleton().mBubbleBeatData.removeItemAt(mBeatChart.selectedChartItem.index);
+						DataModel.getSingleton().mBubbleBeatData.enableAutoUpdate();
+						DataModel.getSingleton().mBubbleBeatData.refresh();
 					}
-				}*/
+				}
 			}
 		}
 		
@@ -680,8 +675,6 @@ package HostComponents.BeatsHostComponent
 					if(mAgentThemes[j] == mSelectedBeatOnGraph.xgmlTheme)
 					{
 						mBeatTheme.selectedItem = mAgentThemes[j];
-//						mBeatTheme.selectedIndex(j);
-//						trace(mAgentThemes[j]);
 					}
 				
 				}
@@ -865,6 +858,8 @@ package HostComponents.BeatsHostComponent
 //			var beatContainer:UIComponent = new UIComponent();
 			mBeatConnection.graphics.clear();
 			var  beatLine:Sprite = new Sprite();
+			
+			
 			beatLine.graphics.clear();
 			mBeatConnection.graphics.lineStyle(1, 0x000000,1);
 			if(mBeatSeries)
@@ -881,6 +876,30 @@ package HostComponents.BeatsHostComponent
 								{
 									mBeatConnection.graphics.moveTo(mBeatSeries.items[j].x, mBeatSeries.items[j].y);
 									mBeatConnection.graphics.lineTo(mBeatSeries.items[i].x, mBeatSeries.items[i].y);
+									
+									var y:Number = mBeatSeries.items[i].y - mBeatSeries.items[j].y;
+									var x = mBeatSeries.items[i].x - mBeatSeries.items[j].x;
+									
+									var tan = y/x;
+									
+									//arrows
+									var arrowSize:Number = 15;
+									var xTo:Number = mBeatSeries.items[i].x;
+									var yTo:Number = mBeatSeries.items[i].y;
+									var angle:Number = Math.atan(-tan);
+									mBeatConnection.graphics.beginFill(0x000000);
+									mBeatConnection.graphics.moveTo(xTo, yTo);
+									
+									var bX:Number = xTo - arrowSize * Math.sin(Math.PI/3 - angle);
+									var bY:Number = yTo + arrowSize * Math.cos(Math.PI/3 - angle);
+									
+									mBeatConnection.graphics.lineTo(bX, bY);
+									
+									var cX:Number=bX-arrowSize*Math.cos(Math.PI/2 - angle);
+									var cY:Number=bY-arrowSize*Math.sin(Math.PI/2 - angle);
+									
+									mBeatConnection.graphics.lineTo(cX, cY);
+									mBeatConnection.graphics.lineTo(xTo, yTo);
 								}
 							}
 						}
@@ -939,9 +958,9 @@ package HostComponents.BeatsHostComponent
 				tmp.disableAutoUpdate();
 				for(var i:int; i < mBeatBuffer.length; i++)
 				{
-					mBeatsData.addItem(mBeatBuffer[i]);
-					mBeatsData.enableAutoUpdate();
-					mBeatsData.refresh();
+//					mBeatsData.addItem(mBeatBuffer[i]);
+//					mBeatsData.enableAutoUpdate();
+//					mBeatsData.refresh();
 					tmp.addItem(mBeatBuffer[i]);
 					tmp.enableAutoUpdate();
 					tmp.refresh();

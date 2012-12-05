@@ -7,6 +7,8 @@ package Data
 	import Data.Tree.TreeData;
 	import Data.XGML.XgmslData;
 	
+	import deng.fzip.FZip;
+	
 	import mx.collections.ArrayCollection;
 	
 	import spark.collections.Sort;
@@ -56,7 +58,10 @@ package Data
 																		   "false"]);
 		
 		[Bindable]
-		public var mTreeData:ArrayCollection = new ArrayCollection([{name:"ODN", folders:[{name:"test"}]}]);
+		public var mTreeData:XMLList = new XMLList();
+		
+		[Bindable]
+		public var mFZipObject:FZip = new FZip();
 		
 		public function DataModel()
 		{

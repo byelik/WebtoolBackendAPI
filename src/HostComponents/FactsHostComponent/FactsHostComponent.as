@@ -308,9 +308,9 @@ package HostComponents.FactsHostComponent
 		{
 			mSelectedCharacterIndex = mCharacterList.selectedIndex;
 			
-			new HttpServiceManager('{"method":"locations.getLocations","params":[],"jsonrpc":"2.0","id":0}', parseLocationsData);
-			new HttpServiceManager('{"method":"facts.getFacts","params":[], "jsonrpc": "2.0", "id":7}', parseFactsData);
-			new HttpServiceManager('{"method":"agents.getAgents","params":[],"jsonrpc":"2.0","id":0}', parseAgentsData);
+//			new HttpServiceManager('{"method":"locations.getLocations","params":[],"jsonrpc":"2.0","id":0}', parseLocationsData);
+//			new HttpServiceManager('{"method":"facts.getFacts","params":[], "jsonrpc": "2.0", "id":7}', parseFactsData);
+//			new HttpServiceManager('{"method":"agents.getAgents","params":[],"jsonrpc":"2.0","id":0}', parseAgentsData);
 			
 			//			new HttpServiceManager('{"method":"general.getFactDetails","params":["'+event.target.selectedItem.id+'"],"jsonrpc":"2.0","id":0}', factDetailResult);
 			mAffinity.text = mCharacterList.selectedItem.affinity;
@@ -537,8 +537,7 @@ package HostComponents.FactsHostComponent
 		private function selectLocation(event:IndexChangeEvent):void
 		{
 			//select location
-			new HttpServiceManager('{"method":"agents.setAgentLocation","params":["'+mCharacterList.selectedItem.id+'","'+event.target.selectedItem.id+'"], "jsonrpc": "2.0", "id":7}', setAgentLocation);
-			
+			new HttpServiceManager('{"method":"agents.setAgentLocation","params":["'+mCharacterList.selectedItem.id+'","'+event.target.selectedItem.id+'"], "jsonrpc": "2.0", "id":7}', setAgentLocation);	
 		}
 
 		private function setAgentLocation(result:Object):void
@@ -594,8 +593,6 @@ package HostComponents.FactsHostComponent
 				if(mFactsList.selectedItems)
 				{
 					new HttpServiceManager('{"method":"facts.removeFact","params":["'+mSelectedSystemFacts+'"],"jsonrpc":"2.0","id":0}', deleteFactResult);
-//					new HttpServiceManager('{"method":"facts.removeFact","params":["258","265"],"jsonrpc":"2.0","id":0}', deleteSystemFactResult);
-//					mSystemFactsList.removeItemAt(mFactsList.selectedIndex);
 					mDeleteFact.enabled = false;
 					mAddFactOwner.enabled = false;
 				}

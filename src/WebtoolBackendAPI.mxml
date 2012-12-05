@@ -42,24 +42,19 @@
 			
 			private function InitialiseApp(event:FlexEvent):void
 			{
-				mConfigLoader = new URLLoader();
-				mConfigLoader.addEventListener(IOErrorEvent.IO_ERROR, errorHandler);
-				mConfigLoader.addEventListener(Event.COMPLETE, completeLoadingConfigFile);
-				mConfigLoader.load(new URLRequest("config/config.json"));
+				//disable server
+//				mConfigLoader = new URLLoader();
+//				mConfigLoader.addEventListener(IOErrorEvent.IO_ERROR, errorHandler);
+//				mConfigLoader.addEventListener(Event.COMPLETE, completeLoadingConfigFile);
+//				mConfigLoader.load(new URLRequest("config/config.json"));
 				
-				new HttpServiceManager('{"method":"agents.getAgents","params":[],"jsonrpc":"2.0","id":0}', DataModel.getSingleton().parseAgentsData);
-				new HttpServiceManager('{"method":"locations.getLocations","params":[],"jsonrpc":"2.0","id":0}', DataModel.getSingleton().parseLocationsData);
-				new HttpServiceManager('{"method":"facts.getFacts","params":[], "jsonrpc": "2.0", "id":7}', DataModel.getSingleton().parseFactsData);
-				
-				new HttpServiceManager('{"method":"beats.getBeats","params":[], "jsonrpc": "2.0", "id":2}', DataModel.getSingleton().parseBeatsData);
+				//disable server
+//				new HttpServiceManager('{"method":"agents.getAgents","params":[],"jsonrpc":"2.0","id":0}', DataModel.getSingleton().parseAgentsData);
+//				new HttpServiceManager('{"method":"locations.getLocations","params":[],"jsonrpc":"2.0","id":0}', DataModel.getSingleton().parseLocationsData);
+//				new HttpServiceManager('{"method":"facts.getFacts","params":[], "jsonrpc": "2.0", "id":7}', DataModel.getSingleton().parseFactsData);
+//				
+//				new HttpServiceManager('{"method":"beats.getBeats","params":[], "jsonrpc": "2.0", "id":2}', DataModel.getSingleton().parseBeatsData);
 
-//				new HttpServiceManager('{"method":"xgml.getXGMLs","params":[[]],"jsonrpc":"2.0","id":3}', DataModel.getSingleton().parseXgmlsData);
-				
-//				new HttpServiceManager('{"method":"agents.getXGMLThemesForAgent","params":["steve"],"jsonrpc":"2.0","id":3}', test);
-				
-				
-//				{"method":"general.getBeatsGraphSON","params":[],"jsonrpc":"2.0","id":2}
-//				new HttpServiceManager('{"jsonrpc": "2.0", "method" : "general.extractFactsFromXGML","params":[], "id":7}', DataModel.getSingleton().parseFactsData);
 			}
 			
 			/*private function test(result:Object):void
@@ -74,15 +69,14 @@
 /*alertHandler = */Alert.show("Error while loading config file: " + event, "Error",	Alert.OK);
 			}
 			
-			private function completeLoadingConfigFile(event:Event):void
+			/*private function completeLoadingConfigFile(event:Event):void
 			{
 				mHttpServiceConfig = JSON.parse(event.target.data as String);
 				if(mHttpServiceConfig)
 				{
 					HttpServiceManager.HTTP_URL = mHttpServiceConfig.httpServiceUrl;
-				}
-				
-			}
+				}	
+			}*/
 			
 		]]>
 	</fx:Script>

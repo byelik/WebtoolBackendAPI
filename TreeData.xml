@@ -1,0 +1,7 @@
+<node label="Folders">
+                <node label="ODN">
+                    <node label="Group 1">
+                    <node label="beat 1" description="test description" id="13"/>
+                    </node>
+                </node>
+</node>

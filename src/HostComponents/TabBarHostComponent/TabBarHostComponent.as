@@ -59,20 +59,16 @@ package HostComponents.TabBarHostComponent
 			switch(event.newIndex)
 			{
 				case 0:
-					trace("Locations");
+//					trace("Locations");
 				break;
 				case 1:
-//					DataModel.getSingleton().mHttpServiceManager.sendRequest('{"jsonrpc": "2.0", "method" : "general.extractFactsFromXGML","params":[], "id":7}');
-//					trace(DataModel.getSingleton().mHttpServiceManager);
-
-					//HttpServiceManager.getResult();
-					trace("Facts");
+//					trace("Facts");
 				break;
 				case 2:
-					trace("Beats");
+//					trace("Beats");
 				break;
 				case 3:
-					trace("XGML");
+//					trace("XGML");
 				break;
 			}
 		}

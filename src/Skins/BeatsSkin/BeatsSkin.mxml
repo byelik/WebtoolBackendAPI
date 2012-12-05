@@ -25,6 +25,10 @@
 		<![CDATA[
 			import Data.DataModel;
 			
+			import Manager.EventManager;
+			
+			import Render.BeatRender.BeatsRender;
+			
 			import mx.charts.DateTimeAxis;
 			import mx.charts.HitData;
 			import mx.charts.chartClasses.IAxis;
@@ -85,12 +89,7 @@
 			{
 //				vaxis.minimum -= 500;
 //				haxis.minimum -= 500;
-			}
-			
-			protected function button2_clickHandler(event:MouseEvent):void
-			{
-//				vaxis.maximum += 500;
-//				haxis.maximum += 500;
+				
 			}
 			
 			[Bindable]
@@ -128,6 +127,19 @@
 			{
 				return df.format(labelValue);	
 			}*/
+			
+			protected function zoomIn(event:FlexEvent):void
+			{	
+				mBeatSeries.minRadius += 5;
+				mBeatChart.invalidateDisplayList();
+				trace("+++");
+			}
+			
+			protected function zoomOut(event:FlexEvent):void
+			{
+				mBeatSeries.minRadius -= 5;
+				mBeatChart.invalidateDisplayList();
+			}
 		]]>
 	</fx:Script>
 	
@@ -169,7 +181,7 @@
 									 width="100%"
 									 height="100%" 
 									 allowMultipleSelection="true"
-									 labelField="name"
+									 labelField="@label"
 									 doubleClickEnabled="true"
 									 dragEnabled="true"
 									 dragMoveEnabled="true"
@@ -177,7 +189,7 @@
 									 horizontalCenter="0"
 									 itemDoubleClick="renameItem(event)"
 									 itemEditEnd="tree1_itemEditEndHandler(event)"
-									 showRoot="true"
+									 showRoot="false"
 									 borderVisible="false"
 									 itemClick="mBeatsTree_itemClickHandler(event)"
 									 contentBackgroundAlpha="0"
@@ -197,7 +209,7 @@
 							<s:Group width="100%">
 								
 								<mx:BubbleChart id="mBeatChart" 
-												height="100%" width="100%"
+												height="500" width="1000"
 												paddingRight="5" paddingLeft="5" 
 												showDataTips="false"
 												dataProvider="{DataModel.getSingleton().mBubbleBeatData}"
@@ -247,8 +259,8 @@
 								<s:HGroup width="100%" horizontalAlign="right">
 									<s:Button id="mAddBeat" x="-6" width="80" label="Add beat"/>
 									<s:VGroup horizontalAlign="center">
-										<s:Button width="35" label="-" click="button1_clickHandler(event)"/>
-										<s:Button width="35" label="+" click="button2_clickHandler(event)"/>
+										<s:Button width="35" label="-" autoRepeat="true" buttonDown="zoomOut(event)"/>
+										<s:Button width="35" label="+" autoRepeat="true" buttonDown="zoomIn(event)"/>
 									</s:VGroup>
 								</s:HGroup>
 							</s:Group>

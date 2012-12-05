@@ -1,5 +1,6 @@
 package Data.ExportManager
 {
+	import Data.DataModel;
 	import Data.ImportManager.ImportDataManager;
 	
 	import deng.fzip.FZip;
@@ -25,7 +26,7 @@ package Data.ExportManager
 		private var currentMinutes:uint;
 		private var mFileName:String;
 		
-		private var mTestXML:XML = <recipe name="хлеб" preptime="5" cooktime="180">
+		private var mTestXML:XML =<recipe name="хлеб" preptime="5" cooktime="180">
 								  <title>Простой хлеб</title>
 								  <composition>
 								    <ingredient amount="3" unit="стакан">Мука</ingredient>
@@ -51,7 +52,7 @@ package Data.ExportManager
 			mByteArrayData = new ByteArray();
 			
 			mImportManager = new ImportDataManager();
-			mZipExporter = new FZip(); //mImportManager.getZipExporter();
+			mZipExporter = DataModel.getSingleton().mFZipObject;//new FZip(); //mImportManager.getZipExporter();
 			currentDate = new Date();
 			exportFileFilter = new FileFilter("XML", "*.zip");
 			exportFileReference = new FileReference();
@@ -63,9 +64,6 @@ package Data.ExportManager
 			currentMinutes = currentDate.getMinutes();
 			
 			setFileName(currentYear + "-" + currentMonth + "-" + currentDay + "_" + currentHour + "-" + currentMinutes + ".zip");
-			
-			mByteArrayData.writeObject(mTestXML);
-//			mZipExporter.addFile(getFileName(), mByteArrayData);
 		}
 		
 		public function setFileName(value:String):void
@@ -82,9 +80,11 @@ package Data.ExportManager
 		
 		public function exportData():void
 		{
+//			var tmp:FZip = DataModel.getSingleton().mFZipObject;
 			var tmpByteArray:ByteArray = new ByteArray();
 			mByteArrayData.writeUTFBytes(mTestXML.toString());
-			mZipExporter.addFile("Scenary_2.xml", mByteArrayData);
+			mByteArrayData.position = 0;
+			mZipExporter.addFile("Scenary.xml", mByteArrayData);
 			mZipExporter.serialize(tmpByteArray);
 			exportFileReference.save(tmpByteArray, getFileName());
 		}
