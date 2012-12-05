@@ -694,10 +694,14 @@ package HostComponents.BeatsHostComponent
 				focusManager.setFocus(mBeatDescriptionField);
 			}
 		}
-		
+		var groupId:int;
 		private function addGroupMenuEvent(event:ContextMenuEvent):void
 		{
 			
+			groupId++;
+			var treeGroupNode:XML = new XML();
+			treeGroupNode = <node>{"Group: " + groupId}</node>;
+			DataModel.getSingleton().mTreeData.appendChild(treeGroupNode);
 		}
 		
 		private function cutMenuEvent(event:ContextMenuEvent):void
@@ -721,7 +725,16 @@ package HostComponents.BeatsHostComponent
 		{
 			if(event.detail == Alert.YES)
 			{
-				//request to the server
+				var node:XML = XML(mBeatsTree.selectedItem);
+				if( node == null ) return;
+				if( node.localName() != "node" ) return;
+				
+				var children:XMLList = XMLList(node.parent()).children();
+				for(var i:Number=0; i < children.length(); i++) {
+					if( children[i].@label == node.@label ) {
+						delete children[i];
+					}
+				}
 			}
 		}
 		

@@ -29,36 +29,20 @@ package Data.ExportManager
 		private var currentMinutes:uint;
 		private var mFileName:String;
 		
-		private var mTestXML:XML =<recipe name="хлеб" preptime="5" cooktime="180">
-								  <title>Простой хлеб</title>
-								  <composition>
-								    <ingredient amount="3" unit="стакан">Мука</ingredient>
-								    <ingredient amount="0.25" unit="грамм">Дрожжи</ingredient>
-								    <ingredient amount="1.5" unit="стакан">Тёплая вода</ingredient>
-								    <ingredient amount="1" unit="чайная ложка">Соль</ingredient>
-								  </composition>
-								  <instructions>
-								    <step>Смешать все ингредиенты и тщательно замесить.</step>
-								    <step>Закрыть тканью и оставить на один час в тёплом помещении.</step>
-								    <!-- <step>Почитать вчерашнюю газету.</step> - это сомнительный шаг... -->
-								    <step>Замесить ещё раз, положить на противень и поставить в духовку.</step>
-								  </instructions>
-								</recipe>
-
-		
 		private var mXmlData:XML; 
-			
-//		private var mImportManager:ImportDataManager = new ImportDataManager();
+		private var mTreeXml:XML;
+
 		private var mImportManager:ImportDataManager;
 		private var mZipExporter:FZip;
 		private var mByteArrayData:ByteArray;
 		public function ExportDataManager()
 		{
 			mXmlData = new XML();
+			mTreeXml = new XML();
 			mByteArrayData = new ByteArray();
 			
 			mImportManager = new ImportDataManager();
-			mZipExporter = DataModel.getSingleton().mFZipObject;//new FZip(); //mImportManager.getZipExporter();
+			mZipExporter = DataModel.getSingleton().mFZipObject;
 			currentDate = new Date();
 			exportFileFilter = new FileFilter("XML", "*.zip");
 			exportFileReference = new FileReference();
@@ -92,6 +76,9 @@ package Data.ExportManager
 			mByteArrayData.writeUTFBytes(mXmlData.toString());
 			mByteArrayData.position = 0;
 			mZipExporter.addFile("Scenary.xml", mByteArrayData);
+			
+			mByteArrayData.writeUTFBytes(mTreeXml.toString());
+			mZipExporter.addFile("TreeData.xml", mByteArrayData);
 			mZipExporter.serialize(tmpByteArray);
 			exportFileReference.save(tmpByteArray, getFileName());
 		}
@@ -100,6 +87,8 @@ package Data.ExportManager
 		{
 			var agentsData:ArrayCollection = DataModel.getSingleton().mAgentsList;
 			var locationsData:ArrayCollection = DataModel.getSingleton().mLocationsList;
+			var factsData:ArrayCollection = DataModel.getSingleton().mFactsList;
+			mTreeXml = DataModel.getSingleton().mTreeData;
 			mXmlData =<data>
 							<agents>
 							</agents>
@@ -145,6 +134,12 @@ package Data.ExportManager
 				}
 				locationNode.appendChild(locationsAdjacents);
 				mXmlData.locations.appendChild(locationNode);
+			}
+			
+			//Facts
+			for(var i:int = 0; i < factsData.length; i++)
+			{
+				
 			}
 		}
 	}

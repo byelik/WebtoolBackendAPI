@@ -58,7 +58,7 @@ package Data
 																		   "false"]);
 		
 		[Bindable]
-		public var mTreeData:XMLList = new XMLList();
+		public var mTreeData:XML = new XML();
 		
 		[Bindable]
 		public var mFZipObject:FZip = new FZip();

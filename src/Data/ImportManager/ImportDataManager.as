@@ -102,6 +102,11 @@ package Data.ImportManager
 				{
 					mZipLoader.removeFileAt(i);
 				}
+				if(mZipLoader.getFileAt(i).filename == "TreeData.xml")
+				{
+					mZipLoader.removeFileAt(i);
+				}
+					
 			}
 			//TreeData.json
 			mZipFile = mZipLoader.getFileByName("TreeData.xml");
@@ -109,7 +114,7 @@ package Data.ImportManager
 			{
 //				treeData= mZipFile.getContentAsString(mZipFile.content);
 //				mTreeObject = JSON.parse(treeData as String);
-				DataModel.getSingleton().mTreeData = new XMLList(mZipFile.content);
+				DataModel.getSingleton().mTreeData = new XML(mZipFile.content);
 			}
 //			DataModel.getSingleton().parseTreeData(mTreeObject);
 
