@@ -11,6 +11,9 @@ package Data.ExportManager
 	import flash.net.FileReference;
 	import flash.utils.ByteArray;
 	import flash.utils.IDataInput;
+	
+	import mx.collections.ArrayCollection;
+	import mx.core.MXMLObjectAdapter;
 
 	public class ExportDataManager
 	{
@@ -43,12 +46,15 @@ package Data.ExportManager
 								</recipe>
 
 		
+		private var mXmlData:XML; 
+			
 //		private var mImportManager:ImportDataManager = new ImportDataManager();
 		private var mImportManager:ImportDataManager;
 		private var mZipExporter:FZip;
 		private var mByteArrayData:ByteArray;
 		public function ExportDataManager()
 		{
+			mXmlData = new XML();
 			mByteArrayData = new ByteArray();
 			
 			mImportManager = new ImportDataManager();
@@ -80,13 +86,66 @@ package Data.ExportManager
 		
 		public function exportData():void
 		{
+			prepareXmlData();
 //			var tmp:FZip = DataModel.getSingleton().mFZipObject;
 			var tmpByteArray:ByteArray = new ByteArray();
-			mByteArrayData.writeUTFBytes(mTestXML.toString());
+			mByteArrayData.writeUTFBytes(mXmlData.toString());
 			mByteArrayData.position = 0;
 			mZipExporter.addFile("Scenary.xml", mByteArrayData);
 			mZipExporter.serialize(tmpByteArray);
 			exportFileReference.save(tmpByteArray, getFileName());
+		}
+		
+		private function prepareXmlData():void
+		{
+			var agentsData:ArrayCollection = DataModel.getSingleton().mAgentsList;
+			var locationsData:ArrayCollection = DataModel.getSingleton().mLocationsList;
+			mXmlData =<data>
+							<agents>
+							</agents>
+							<locations>
+							</locations>
+							<hints>
+							</hints>
+							<facts>
+							</facts>
+							<beats>
+							</beats>
+					   </data>;
+			
+			 //Agents
+			for(var i:int = 0; i < agentsData.length; i++)
+			{
+				var agentNode:XML = new XML();
+				agentNode = <agent id={agentsData[i].id}>
+								<name>{agentsData[i].name}</name>
+								<description>{agentsData[i].description}</description>
+								<nerve>{agentsData[i].nerve}</nerve>
+								<affinity>{agentsData[i].affinity}</affinity>
+							</agent>
+				mXmlData.agents.appendChild(agentNode);
+//				mXmlData.agents.agent.@id = tmp[i].id;
+			}
+			
+			//Locations
+			for(var i:int = 0; i < locationsData.length; i++)
+			{
+				var locationNode:XML = new XML();
+				var locationsAdjacents:XML = new XML();
+				locationNode = <location id={locationsData[i].id}>
+								<name>{locationsData[i].name}</name>
+								<description>{locationsData[i].description}</description>
+							   </location>
+				locationsAdjacents = <adjacents/>;
+				for(var k:int = 0; k < locationsData[i].adjacents.length;k++)
+				{
+					var adjacent:XML = new XML();
+					adjacent = <adjacent>{locationsData[i].adjacents[k]}</adjacent>
+					locationsAdjacents.appendChild(adjacent);
+				}
+				locationNode.appendChild(locationsAdjacents);
+				mXmlData.locations.appendChild(locationNode);
+			}
 		}
 	}
 }

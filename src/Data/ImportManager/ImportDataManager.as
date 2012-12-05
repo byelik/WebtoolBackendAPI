@@ -225,7 +225,7 @@ package Data.ImportManager
 					locationObject["name"] = String(location.name);
 					locationObject["description"] = String(location.description[0]);
 					
-					for each(var adjacent:XML in factId.owners.children())
+					for each(var adjacent:XML in location.adjacents.children())
 					{
 						locationObject["adjacents"].push(int(adjacent.children()[0]));
 					}
