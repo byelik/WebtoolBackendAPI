@@ -119,8 +119,7 @@ package Render.BeatRender
 		
 		private function changeBeatsLabels(event:Event):void
 		{
-			var tmp = parent as BubbleSeries;;
-			trace(tmp);
+			var tmp = parent as BubbleSeries;
 			if(tmp)
 			{
 //				if(tmp.minRadius < 100)

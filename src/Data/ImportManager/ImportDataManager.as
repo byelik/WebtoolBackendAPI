@@ -14,6 +14,7 @@ package Data.ImportManager
 	
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
+	import mx.utils.UIDUtil;
 
 	public class ImportDataManager
 	{
@@ -112,14 +113,14 @@ package Data.ImportManager
 				}
 				for each(var factId:XML in factsXML.fact)
 				{
-					var factObject:Object = {"owners":[]};				
+					var factObject:Object = {};				
 					factObject["id"] = int(factId.@id);
-					factObject["description"] = String(factId.description);
-					factObject["xgmlId"] = String(factId.xgmlId);
-					for each(var own:XML in factId.owners.children())
+					factObject["description"] = String(factId.children()[0]);
+//					factObject["xgmlId"] = String(factId.xgmlId);
+					/*for each(var own:XML in factId.owners.children())
 					{
 						factObject["owners"].push(int(own.children()[0]));
-					}
+					}*/
 					mFacts.addItem(factObject);
 				}
 				DataModel.getSingleton().parseFactsData(mFacts);
@@ -220,13 +221,24 @@ package Data.ImportManager
 				}
 				for each(var agent:XML in agentsXml.agent)
 				{
-					var agentObject:Object = {};				
-					agentObject["id"] = int(agent.@id);
-					agentObject["name"] = String(agent.name);
-					agentObject["description"] = String(agent.description);
+					var agentObject:Object = {"facts":[]};				
+					var facts
+					agentObject["id"] = String(agent.@id);
+					agentObject["location"] = String(agent.location);
 					agentObject["nerve"] = int(agent.nerve);
 					agentObject["affinity"] = int(agent.affinity);
-					agentObject["locationId"] = int(agent.locationId);
+					for each(var fact:XML in agent.children())
+					{
+						var factChildren:XMLList = fact.children();
+						var factObj:Object = new Object();
+						factObj["fact"] = new Array();
+//						for each(var fact:XML in factChildren[1].children())
+//						{
+//							factObj["fact"].push(int(fact.children()[0]));
+//						}
+					}
+
+					
 					mAgents.addItem(agentObject);
 				}
 				DataModel.getSingleton().parseAgentsData(mAgents);
@@ -245,35 +257,6 @@ package Data.ImportManager
 					descriptorObject["id"] = int(descriptor.@id);
 					descriptorObject["scenarioId"] = String(descriptor.scenarioId);
 					mDescriptor.addItem(descriptorObject);
-				}
-	//			DataModel.getSingleton().parseAgentsData(mAgents);
-				
-				//parse items
-				if(mItems)
-				{
-					mItems.removeAll();
-				}
-				for each(var items:XML in xmlData.items)
-				{
-					itemsXml = items;	
-				}
-				if(itemsXml)
-				{
-					for each(var item:XML in itemsXml.item)
-					{
-						var itemObject:Object = {"maps":[]};				
-						itemObject["itemType"] = String(item.itemType);
-						for each(var itemMap:XML in item.maps.children())
-						{
-							var mapChildren:XMLList = itemMap.children();
-							var mapObj:Object = new Object();
-							mapObj["placeType"] = mapChildren[0].toString();
-							mapObj["placeId"] = mapChildren[1].toString();
-							mapObj["count"] = mapChildren[2].toString();
-							itemObject["maps"].push(mapObj);
-						}
-						mItems.addItem(itemObject);
-					}
 				}
 	//			DataModel.getSingleton().parseAgentsData(mAgents);
 				

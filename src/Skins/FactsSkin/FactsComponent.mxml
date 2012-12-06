@@ -11,6 +11,11 @@
 		<![CDATA[
 			import Data.DataModel;
 			
+			private function itemsFunction(item:Object, tmo:Object):String
+			{
+				return item.type;
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -185,7 +190,7 @@
 							dataProvider="{DataModel.getSingleton().mItemsData}">
 					<s:columns>
 						<s:ArrayList>
-							<s:GridColumn dataField="type" headerText="Type" width="100">
+							<s:GridColumn headerText="Type" width="100" labelFunction="{itemsFunction}">
 								<s:itemEditor> 
 									<fx:Component> 
 										<Render:DropDownListRenderer dataProvider="{DataModel.getSingleton().mItemsData}" mOwner="type">

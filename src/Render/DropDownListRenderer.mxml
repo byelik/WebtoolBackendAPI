@@ -59,6 +59,7 @@ headerText="Qty"&gt;
 			import mx.core.IVisualElement;
 			
 			import spark.events.DropDownEvent;
+			import spark.events.IndexChangeEvent;
 			
 			//--------------------------------------------------------------------------
 			//
@@ -179,7 +180,20 @@ headerText="Qty"&gt;
 				// before we close the editor.
 				callLater(dataGrid.endItemEditorSession);
 			}
+			[Bindable]
+			var tmp:Object;
+			private function test(item:Object):String
+			{
+				tmp = item;
+				trace(item.type);
+				return item.type;
+			}
 			
+			protected function comboBox_changeHandler(event:IndexChangeEvent):void
+			{
+				comboBox.selectedItem = tmp;
+				trace("change: " + comboBox.selectedItem.type);
+			}
 		]]>
 	</fx:Script>
 	
@@ -214,6 +228,6 @@ headerText="Qty"&gt;
 	@playerversion AIR 2.5
 	@productversion Flex 4.5
 	-->
-	<s:DropDownList id="comboBox" width="100%" dataProvider="{dataProvider}" labelField="{mOwner}"/>
+	<s:DropDownList id="comboBox" width="100%" dataProvider="{dataProvider}"  labelFunction="{test}" change="comboBox_changeHandler(event)"/>
 	
 </s:GridItemEditor>

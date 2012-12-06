@@ -76,7 +76,7 @@ package Data.ExportManager
 			mByteArrayData.writeUTFBytes(mXmlData.toString());
 			mByteArrayData.position = 0;
 			mZipExporter.addFile("Scenary.xml", mByteArrayData);
-			
+			mByteArrayData.clear();
 			mByteArrayData.writeUTFBytes(mTreeXml.toString());
 			mZipExporter.addFile("TreeData.xml", mByteArrayData);
 			mZipExporter.serialize(tmpByteArray);
@@ -88,6 +88,8 @@ package Data.ExportManager
 			var agentsData:ArrayCollection = DataModel.getSingleton().mAgentsList;
 			var locationsData:ArrayCollection = DataModel.getSingleton().mLocationsList;
 			var factsData:ArrayCollection = DataModel.getSingleton().mFactsList;
+			var beatsData:ArrayCollection = DataModel.getSingleton().mBubbleBeatData;
+			
 			mTreeXml = DataModel.getSingleton().mTreeData;
 			mXmlData =<data>
 							<agents>
@@ -141,6 +143,19 @@ package Data.ExportManager
 			{
 				
 			}
+			
+			
+			//Beats
+			for(var i:int = 0; i < beatsData.length; i++)
+			{
+				var beatsNode:XML = new XML();
+				beatsNode = <beat id = {beatsData[i].id}>
+							<description>{beatsData[i].description}</description>
+							<agent>{beatsData[i].agent}</agent>
+							<type>{beatsData[i].type}</type>
+							</beat>
+			}
+			
 		}
 	}
 }

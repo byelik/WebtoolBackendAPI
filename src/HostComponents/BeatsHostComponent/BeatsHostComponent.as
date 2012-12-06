@@ -85,17 +85,17 @@ package HostComponents.BeatsHostComponent
 		[SkinPart(required="true")]
 		public var mBeatsCompletedField:TextInput;
 		
-		[SkinPart(required="true")]
-		public var mAffinityMinField:TextInput;
+		/*[SkinPart(required="true")]
+		public var mAffinityMinField:TextInput;*/
 		
-		[SkinPart(required="true")]
-		public var mAffinityMaxField:TextInput;
+		/*[SkinPart(required="true")]
+		public var mAffinityMaxField:TextInput;*/
 		
-		[SkinPart(required="true")]
-		public var mNerveMinField:TextInput;
+		/*[SkinPart(required="true")]
+		public var mNerveMinField:TextInput;*/
 		
-		[SkinPart(required="true")]
-		public var mNerveMaxField:TextInput;
+		/*[SkinPart(required="true")]
+		public var mNerveMaxField:TextInput;*/
 		
 		[SkinPart(required="true")]
 		public var mSave:Button;
@@ -423,14 +423,16 @@ package HostComponents.BeatsHostComponent
 		{
 			//save data...
 			checkPriorityValue();
-			checkMinAffinityValue();
-			checkMaxAffinityValue();
-			checkMinNerveValue();
-			checkMaxNerveValue();
+			
+			//depricated
+//			checkMinAffinityValue();
+//			checkMaxAffinityValue();
+//			checkMinNerveValue();
+//			checkMaxNerveValue();
 			
 
-			var selectedUserFacts:ArrayCollection = new ArrayCollection();
-			var selectedAgentFacts:ArrayCollection = new ArrayCollection(); 
+//			var selectedUserFacts:ArrayCollection = new ArrayCollection();
+//			var selectedAgentFacts:ArrayCollection = new ArrayCollection(); 
 				
 			//disable server
 //			new HttpServiceManager('{"method":"beats.updateBeat","params":[{"id":"'+mBeatsTree.selectedItem.id+'","description":"'+mBeatDescriptionField.text+'","agentId":"'+mBeatsTree.selectedItem.agentId+'","locationId":"'+mLocationList.selectedItem.id+'","type":"'+mTypeList.selectedItem+'","xgmlTheme":"'+mBeatTheme.selectedItem.xgmlTheme+'","activities":["Find(steve)","StartDialog(steve, Lets flirt with me!)","CompleteBeat(Jessica_flirt)"],"exclusiveBeatPriority":"'+mPriorityField.text+'"}],"jsonrpc":"2.0","id":21}', updateBeatResult);
@@ -612,11 +614,13 @@ package HostComponents.BeatsHostComponent
 //				mActivitiesList.dataProvider = mSelectedBeatOnGraph.activities;
 				mActivitiesList.text = mSelectedBeatOnGraph.activities;
 				
-				mAffinityMinField.text = mSelectedBeatOnGraph.affinityMin;
-				mAffinityMaxField.text = mSelectedBeatOnGraph.affinityMax;
-				mNerveMinField.text = mSelectedBeatOnGraph.nerveMin;
-				mNerveMaxField.text = mSelectedBeatOnGraph.nerveMax;
-				mBeatsCompletedField.text = mSelectedBeatOnGraph.beatsCompleted;
+				
+				//depricated
+//				mAffinityMinField.text = mSelectedBeatOnGraph.affinityMin;
+//				mAffinityMaxField.text = mSelectedBeatOnGraph.affinityMax;
+//				mNerveMinField.text = mSelectedBeatOnGraph.nerveMin;
+//				mNerveMaxField.text = mSelectedBeatOnGraph.nerveMax;
+//				mBeatsCompletedField.text = mSelectedBeatOnGraph.beatsCompleted;
 				
 				//mBeatTheme.selectedItem = selectedBeatOnGraph.xgmlTheme;
 				for(var i:int = 0; i < mBeatsListData.length; i ++)
@@ -770,7 +774,8 @@ package HostComponents.BeatsHostComponent
 			}
 		}
 		
-		private function checkMinAffinityValue():void
+		//depricated
+		/*private function checkMinAffinityValue():void
 		{
 			firstTextElement = mAffinityMinField.text.substring(0,1);
 			if(!checkValue(firstTextElement, mAffinityMinField))
@@ -779,9 +784,10 @@ package HostComponents.BeatsHostComponent
 				mComponent = mAffinityMinField;
 				isMinAffinityOk = false;
 			}
-		}
+		}*/
 		
-		private function checkMaxAffinityValue():void
+		//depricated
+		/*private function checkMaxAffinityValue():void
 		{
 			firstTextElement = mAffinityMaxField.text.substring(0,1);
 			if(!checkValue(firstTextElement, mAffinityMaxField))
@@ -790,9 +796,10 @@ package HostComponents.BeatsHostComponent
 				mComponent = mAffinityMaxField;
 				isMaxAffinityOk = false;
 			}
-		}
+		}*/
 		
-		private function checkMinNerveValue():void
+		//depricated
+		/*private function checkMinNerveValue():void
 		{
 			firstTextElement = mNerveMinField.text.substring(0,1);
 			if(!checkValue(firstTextElement, mNerveMinField))
@@ -801,9 +808,10 @@ package HostComponents.BeatsHostComponent
 				mComponent = mNerveMinField;
 				isMinNerveOk = false;
 			}	
-		}
+		}*/
 
-		private function checkMaxNerveValue():void
+		//depricated
+		/*private function checkMaxNerveValue():void
 		{
 			firstTextElement = mNerveMaxField.text.substring(0,1);
 			if(!checkValue(firstTextElement, mNerveMaxField))
@@ -812,7 +820,8 @@ package HostComponents.BeatsHostComponent
 				mComponent = mNerveMaxField;
 				isMaxNerveOk = false;
 			}
-		}
+		}*/
+		
 		
 		private function checkValue(str:String, txtField:TextInput):Boolean
 		{

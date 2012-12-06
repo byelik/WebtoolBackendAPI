@@ -1,0 +1,964 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><data><facts><fact id="29">Melany admits that mt.</fact></facts><beats><beat id="4"><description>Philipp: Start</description><agentId>180</agentId><locationId>-1</locationId><type>normal</type><xgmlTheme></xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted/><affinityMin>0</affinityMin><affinityMax>100</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities><activity>Idle(3)</activity><activity>StartDialog(steve, Detective! I'm so glad you are here! We have a nice murder for you! Mr. Boddy was found strangled in the morning. The doctor says the murder happened in the night. We can't but wonder who could hav done it.)</activity></activities><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="8"><description>Jessica - Places</description><agentId>178</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Jessica_Interrogation_Places</xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted/><affinityMin>0</affinityMin><affinityMax>100</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="12"><description>Eddy - BoddysEnemiesHighAffinity</description><agentId>176</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Eddy_Interrogation_BoddysEnemies_HighAffinity</xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted/><affinityMin>76</affinityMin><affinityMax>100</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="41"><description>Eddy - YouAndBoddy</description><agentId>176</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Eddy_Interrogation_YouAndBoddy</xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted/><affinityMin>0</affinityMin><affinityMax>100</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="5"><description>Jessica - Suspicious</description><agentId>178</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Jessica_Interrogation_Suspicious</xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted/><affinityMin>0</affinityMin><affinityMax>100</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="6"><description>Philipp - Suspicious</description><agentId>180</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Philipp_Interrogation_Suspicious</xgmlTheme><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="7"><description>Melany - Suspicious</description><agentId>177</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Melany_Interrogation_Suspicious</xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted/><affinityMin>0</affinityMin><affinityMax>100</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="13"><description>Eddy - Suspicious</description><agentId>176</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Eddy_Interrogation_Suspicious</xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted/><affinityMin>0</affinityMin><affinityMax>100</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="14"><description>Jessica - Others</description><agentId>178</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Jessica_Interrogation_Others</xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted/><affinityMin>0</affinityMin><affinityMax>100</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="15"><description>Philipp - AboutMelany</description><agentId>180</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Philipp_Interrogation_AboutMelany</xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted/><affinityMin>0</affinityMin><affinityMax>100</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="16"><description>Philipp - Places</description><agentId>180</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Philipp_Interrogation_Places</xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted/><affinityMin>0</affinityMin><affinityMax>100</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="17"><description>Philipp - MelanyBoddy</description><agentId>180</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Philipp_Interrogation_MelanyBoddy</xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted/><affinityMin>0</affinityMin><affinityMax>75</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="18"><description>Philipp - MelanyBoddyHighAffinity</description><agentId>180</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Philipp_Interrogation_MelanyBoddy_HighAffinity</xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted/><affinityMin>76</affinityMin><affinityMax>100</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="19"><description>Philipp - MelanyKiller</description><agentId>180</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Philipp_Interrogation_MelanyKiller</xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser><factAvailableToUser>100</factAvailableToUser><factAvailableToUser>201</factAvailableToUser><factAvailableToUser>400</factAvailableToUser></factsAvailableToUser><factsAvailableToAgent/><beatsCompleted/><affinityMin>0</affinityMin><affinityMax>100</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="27"><description>Eddy - Places</description><agentId>176</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Eddy_Interrogation_Places</xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted/><affinityMin>0</affinityMin><affinityMax>100</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="29"><description>Henry - Suspenious</description><agentId>179</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Henry_Interrogation_Suspicious</xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted/><affinityMin>0</affinityMin><affinityMax>75</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="30"><description>Henry - Others</description><agentId>179</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Henry_Interrogation_Others</xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted/><affinityMin>0</affinityMin><affinityMax>100</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="31"><description>Henry - Places</description><agentId>179</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Henry_Interrogation_Places</xgmlTheme><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="32"><description>Henry - SuspiciousHighAffinity</description><agentId>179</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Henry_Interrogation_Suspicious_HighAffinity</xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted/><affinityMin>76</affinityMin><affinityMax>100</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="33"><description>Henry - BoddysEnemies</description><agentId>179</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Henry_Interrogation_BoddysEnemies</xgmlTheme><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="35"><description>Philipp - AffinityVariator</description><agentId>180</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>Philipp_AffinityVariator</xgmlTheme><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="36"><description>Melany - YouAndBoddy</description><agentId>177</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Melany_Interrogation_YouAndBoddy</xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted/><affinityMin>0</affinityMin><affinityMax>75</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="37"><description>Melany - YouAndBoddyHighAffinity</description><agentId>177</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Melany_Interrogation_YouAndBoddy</xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted/><affinityMin>76</affinityMin><affinityMax>100</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="38"><description>Melany - AffinityVariator</description><agentId>177</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>Melany_AffinityVariator</xgmlTheme><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="39"><description>Melany - Places</description><agentId>177</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Melany_Interrogation_Places</xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted/><affinityMin>76</affinityMin><affinityMax>100</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="40"><description>Melany - AboutPhilipp</description><agentId>177</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Melany_Interrogation_Philipp</xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted/><affinityMin>76</affinityMin><affinityMax>100</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="43"><description>Eddy - BoddysEnemies</description><agentId>176</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>SECOND_Eddy_Interrogation_BoddysEnemies</xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted/><affinityMin>0</affinityMin><affinityMax>75</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="44"><description>Eddy - AffinityVariator</description><agentId>176</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>Eddy_AffinityVariator</xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted/><affinityMin>0</affinityMin><affinityMax>100</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="45"><description>Henry - AffinityVariator</description><agentId>179</agentId><locationId>-1</locationId><type>repeated</type><xgmlTheme>Henry_AffinityVariator</xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted/><affinityMin>0</affinityMin><affinityMax>100</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities/><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="46"><description>DS1: Melany - find Philipp</description><agentId>177</agentId><locationId>-1</locationId><type>exclusive</type><xgmlTheme></xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser><factAvailableToUser>301</factAvailableToUser></factsAvailableToUser><factsAvailableToAgent/><beatsCompleted/><affinityMin>0</affinityMin><affinityMax>100</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities><activity>Idle(5)</activity><activity>Find(philipp)</activity><activity>StartDialog(steve, I can't believe you suspect my father! How could you! He is very religious a person he could never commit a murder!)</activity><activity>CompleteBeat()</activity></activities><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="47"><description>DS1: Philipp and Melany</description><agentId>180</agentId><locationId>-1</locationId><type>exclusive</type><xgmlTheme></xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted><beatCompleted>17</beatCompleted></beatsCompleted><affinityMin>0</affinityMin><affinityMax>100</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities><activity>Idle(2)</activity><activity>StartDialog(steve, Calm down Melly we are just talking)</activity><activity>CompleteBeat()</activity></activities><exclusiveBeatPriority>0</exclusiveBeatPriority></beat><beat id="48"><description>DS1: Philipp and Melany - 2</description><agentId>177</agentId><locationId>-1</locationId><type>exclusive</type><xgmlTheme></xgmlTheme><preConditions><preCondition><description></description><factsAvailableToUser/><factsAvailableToAgent/><beatsCompleted><beatCompleted>47</beatCompleted></beatsCompleted><affinityMin>0</affinityMin><affinityMax>100</affinityMax><nerveMin>0</nerveMin><nerveMax>100</nerveMax><userItems/><agentItems/></preCondition></preConditions><activities><activity>Idle(1)</activity><activity>StartDialog(steve, No! They want to accuse you of this horrible murder! And take you away from me! No no!)</activity><activity>CompleteBeat()</activity></activities><exclusiveBeatPriority>0</exclusiveBeatPriority></beat></beats><agents><agent id="eddy"><location>salon</location><nerve>0</nerve><affinity>0</affinity>
+	<facts>
+	<fact id="301" status="true"></fact></facts><items>
+	<item>
+		<type>gun</type>
+		<count>1</count></item></items></agent></agents><locations><location id="107"><name>hall</name><description></description><adjacents><adjacent>106</adjacent><adjacent>112</adjacent><adjacent>108</adjacent></adjacents></location><location id="106"><name>livingroom</name><description>������������������������������������������������������������������������������������������������������������������������������������������������</description><adjacents><adjacent>107</adjacent></adjacents></location><location id="112"><name>salon</name><description>������������������������������������������������������������������������������������������</description><adjacents><adjacent>107</adjacent></adjacents></location><location id="108"><name>hall2</name><description>������������������������������������������������������������������������ 2-������������������������������������ ������������������������������������������������������������������������������������������</description><adjacents><adjacent>110</adjacent><adjacent>109</adjacent><adjacent>107</adjacent></adjacents></location><location id="111"><name>bathroom</name><description>������������������������������������������������������������������������������������������������������������ ������������������������������������������������������������������������������������������������������������������������������</description><adjacents><adjacent>110</adjacent></adjacents></location><location id="110"><name>bedroom</name><description>������������������������������������������������������������������������������������������������������������������������������ (������������������������������������������������������������������������������������������������������������������������������ ������������������������������������������������������������������������������������������������������������)</description><adjacents><adjacent>111</adjacent><adjacent>108</adjacent></adjacents></location><location id="109"><name>cabinet</name><description>������������������������������������������������������������������������������������������������������������������������������ ������������������������������������������������������������������������������������������������������������������������������ ������������������������������������������������������������������������</description><adjacents><adjacent>108</adjacent></adjacents></location></locations><xgml><xgml id="38"><filename>Eddy.xgml</filename><content>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;Dialog xmlns="http://i-free.com/xml/xgml"&gt;
+
+    &lt;Import file="common_tokens.xgml"/&gt;
+    &lt;Import file="2_Eddy_Interrogation.xgml"/&gt;
+
+&lt;/Dialog&gt;</content></xgml><xgml id="39"><filename>Henry.xgml</filename><content>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;Dialog xmlns="http://i-free.com/xml/xgml"&gt;
+
+    &lt;Import file="common_tokens.xgml"/&gt;
+    &lt;Import file="2_Henry_Interrogation.xgml"/&gt;
+
+&lt;/Dialog&gt;</content></xgml><xgml id="40"><filename>Jessica.xgml</filename><content>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;Dialog xmlns="http://i-free.com/xml/xgml"&gt;
+
+    &lt;Import file="common_tokens.xgml"/&gt;
+    &lt;Import file="2_Jessica_Interrogation.xgml"/&gt;
+
+&lt;/Dialog&gt;</content></xgml><xgml id="41"><filename>Melany.xgml</filename><content>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;Dialog xmlns="http://i-free.com/xml/xgml"&gt;
+
+    &lt;Import file="common_tokens.xgml"/&gt;
+    &lt;Import file="2_Melany_Interrogation.xgml"/&gt;
+
+&lt;/Dialog&gt;</content></xgml><xgml id="42"><filename>Philipp.xgml</filename><content>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;Dialog xmlns="http://i-free.com/xml/xgml"&gt;
+
+    &lt;Import file="common_tokens.xgml"/&gt;
+    &lt;Import file="2_Philipp_Interrogation.xgml"/&gt;
+
+&lt;/Dialog&gt;</content></xgml><xgml id="54"><filename>2_Jessica_Interrogation.xgml</filename><content>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;Dialog xmlns="http://i-free.com/xml/xgml"&gt;
+
+
+    &lt;Theme name = "SECOND_Jessica_Interrogation_Others"&gt;
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Jessica_Interrogation_Others_1"&gt;
+            &lt;Pattern&gt;* (#(qWhatAbout)|describe|inform|tell) * (part*|guest*|people|others|everybody|friend*) *&lt;/Pattern&gt;
+            &lt;Pattern&gt;* who * (else|other|guest*) * (house|mansion|present) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Melany is a such a child, but she can be very quick-tempered. Sometimes she just can't control herself - goes hysterical and can be dangerous for the society.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;RevealedFacts&gt;
+                    &lt;Fact id="201"&gt;Jessica thinks that Melany can be very quick-tempered and sometimes can not control herself.&lt;/Fact&gt;
+                &lt;/RevealedFacts&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+    &lt;/Theme&gt;
+
+
+    &lt;Theme name = "SECOND_Jessica_Interrogation_Suspicious"&gt;
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Jessica_Interrogation_Suspicious_1"&gt;
+            &lt;Pattern&gt;* #(pU) * (suspicious|strange|unusual|interesting) *&lt;/Pattern&gt;
+            &lt;Pattern&gt;* what * #(pU) * (know|tell) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;The day before the murder I heard Henry talk loudly to mr. Boddy. I don't know what they talked about but it wasn't a pleasant conversation.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;RevealedFacts&gt;
+                    &lt;Fact id="200"&gt;Jessica claims to have heard mr. Boddy and Henry engaged in some loud and obviously unpleasant conversation the day before Boddy's death.&lt;/Fact&gt;
+                &lt;/RevealedFacts&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Jessica_Interrogation_Suspicious_3"&gt;
+            &lt;Pattern&gt;* who * you * (think|guess|suspic*|could) *&lt;/Pattern&gt;
+            &lt;Pattern&gt;* who * (kill*|murder*|shot|shoot|strangle) *&lt;/Pattern&gt;
+            &lt;Pattern&gt;* who * (benefit*|motive|reason) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Hard to say. Boddy had no enemies, but I know he quarelled with some of the guests. Talk to them.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+    &lt;/Theme&gt;
+
+    &lt;Theme name = "SECOND_Jessica_Interrogation_Places"&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Jessica_Interrogation_Places_You"&gt;
+            &lt;Pattern&gt;* (where|what) * you * (do*|did|) * (time|evening|moment|when) * (murder*|kill*|happen|) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;In the evening I was seeing mr. Boddy - needed to talk about the book, and then, till late, I was working on it. It's a pity he'll never see the book. He'd like it.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Jessica_Interrogation_Places_Philipp"&gt;
+            &lt;Pattern&gt;* (where|you see*|you saw) * #(nButler) * (evening|night|murder*|kill*) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Detective, I work twenty four hours a day, I have no time to watch anybody.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Jessica_Interrogation_Places_Henry"&gt;
+            &lt;Pattern&gt;* (where|you see*|you saw) * #(nHenry) * (evening|night|murder*|kill*) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;I don't know and I don't care.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Jessica_Interrogation_Places_Melany"&gt;
+            &lt;Pattern&gt;* (where|you see*|you saw) * #(nMelany) * (evening|night|murder*|kill*) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Mm.. Maybe, finally she took to sleeping in the barn. Just as a simple and humble girl should.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Jessica_Interrogation_Places_Eddy"&gt;
+            &lt;Pattern&gt;* (where|you see*|you saw) * #(nDoctor) * (evening|night|murder*|kill*) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Eddy? He's the last person on Earth whose whereabouts would interest me.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+    &lt;/Theme&gt;
+
+    &lt;Theme name = "Jessica_AffinityVariator"&gt;
+		&lt;QAUnit name="Jessp_beauty"&gt;
+				&lt;Pattern&gt;* #(pU) * (pretty|beautiful|handsome|stunning|sexy|attractive|nice|gorgeous|wonderful) *
+				&lt;/Pattern&gt;
+				&lt;Pattern&gt;* i #(vLike) * (#(pU)|your) * (hair*|leg*|dress|eye*|makeup|face|boobs|tits|bottom|buttocks|) *&lt;/Pattern&gt;
+				&lt;Random&gt;
+					&lt;Text&gt;Oh, detective, thank you so much. I can see you are a gentleman. &lt;/Text&gt;
+					&lt;Text&gt;Thank you soo much, mr. Farrett.&lt;/Text&gt;
+				&lt;/Random&gt;
+			&lt;Effects&gt;        
+				&lt;AffinityChange&gt;+50&lt;/AffinityChange&gt;
+			&lt;/Effects&gt;
+		&lt;/QAUnit&gt;
+    &lt;/Theme&gt;
+	
+&lt;/Dialog&gt;</content></xgml><xgml id="55"><filename>2_Melany_Interrogation.xgml</filename><content>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;Dialog xmlns="http://i-free.com/xml/xgml"&gt;
+
+    &lt;Theme name = "SECOND_Melany_Interrogation_YouAndBoddy_HighAffinity"&gt;
+        &lt;QAUnit name="SECOND_Melany_Interrogation_YouAndBoddy_HighAffinity_1"&gt;
+            &lt;Pattern&gt;* #(nBoddy) * #(pU) *&lt;/Pattern&gt;
+            &lt;Pattern&gt;* #(pU) * #(nBoddy) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Detective, it's not easy to talk about it.. but just before the murder mr. Boddy.. he made.. a very rude suggestion.. if you know what I mean. I do hope it is not connected anyhow with his death!&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;RevealedFacts&gt;
+                    &lt;Fact id="100"&gt;Melany admits that mr. Boddy made an unwelcome pass at her, just shortly before his death.&lt;/Fact&gt;
+                &lt;/RevealedFacts&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+    &lt;/Theme&gt;
+
+    &lt;Theme name = "SECOND_Melany_Interrogation_YouAndBoddy"&gt;
+        &lt;QAUnit name="SECOND_Melany_Interrogation_YouAndBoddy_1"&gt;
+            &lt;Pattern&gt;* #(nBoddy) * #(pU) *&lt;/Pattern&gt;
+            &lt;Pattern&gt;* #(pU) * #(nBoddy) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Recently we worked a lot with mr. Boddy. He would always call me to his study.. in the evening.. And I don't talk about the rest.. He's dead now..&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+    &lt;/Theme&gt;
+
+    &lt;Theme name = "SECOND_Melany_Interrogation_Philipp"&gt;
+        &lt;QAUnit name="SECOND_Melany_Interrogation_Philipp_1"&gt;
+            &lt;Pattern&gt;* how long * know #(nButler) *&lt;/Pattern&gt;
+            &lt;Pattern&gt; * you * relat* * #(nButler) *&lt;/Pattern&gt;
+            &lt;Pattern&gt;* (#(qWhatAbout)|tell) * #(nButler) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Philipp is my father, he works a lot. Yesterday he fell down from the stairs and hurt his wrist, and mr. Boddy didn't even give him a day off! Also he tore his jacket.. He's so clumsy sometimes.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;RevealedFacts&gt;
+                    &lt;Fact id="101"&gt;Melany says that Philipp Morgan works a lot and the day before he fell from the stairs injuring his wrist.&lt;/Fact&gt;
+                &lt;/RevealedFacts&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+    &lt;/Theme&gt;
+
+    &lt;Theme name = "SECOND_Melany_Interrogation_Suspicious"&gt;
+        &lt;QAUnit name="SECOND_Melany_Interrogation_Suspicious_1"&gt;
+            &lt;Pattern&gt;* #(pU) * (suspicious|strange|unusual|interesting) *&lt;/Pattern&gt;
+            &lt;Pattern&gt;* what * #(pU) * (know|tell) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Yes, detective. In the morning, before the body was found, I saw mr. Moneyghan, he was very excited.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;QAUnit name="SECOND_Melany_Interrogation_Suspicious_2"&gt;
+            &lt;Pattern&gt;* what * night * (crime|murder|death) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Jessica is just everywhere! Sometimes one can't get any rid of her.. To my mind, she's a bit too busy with Boddy's biography. But things went much as usual yesterday.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;QAUnit name="SECOND_Melany_Interrogation_Suspicious_3"&gt;
+            &lt;Pattern&gt;* who * you * (think|guess|suspic*|could) *&lt;/Pattern&gt;
+            &lt;Pattern&gt;* who * (kill*|murder*|shot|shoot|strangle) *&lt;/Pattern&gt;
+            &lt;Pattern&gt; * who * (benefit*|motive|reason) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Can't help you here, detective. Please do forgive me.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+    &lt;/Theme&gt;
+
+    &lt;Theme name = "SECOND_Melany_Interrogation_Places"&gt;
+        &lt;QAUnit name="SECOND_Melany_Interrogation_Places_You"&gt;
+            &lt;Pattern&gt;* (where|what) * you * (do*|did|) * (time|evening|moment|when) * (murder*|kill*|happen|) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Like a good girl should, in the night I was in my room, all alone.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;QAUnit name="SECOND_Melany_Interrogation_Places_Philipp"&gt;
+        &lt;Pattern&gt;* (where|you see*|you saw) * #(nButler) * (evening|night|murder*|kill*) *&lt;/Pattern&gt;
+        &lt;Random&gt;
+            &lt;Text&gt;I hope he was sleeping, he does need more rest at his age.&lt;/Text&gt;
+        &lt;/Random&gt;
+        &lt;Effects&gt;
+            &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+        &lt;/Effects&gt;
+    &lt;/QAUnit&gt;
+
+        &lt;QAUnit name="SECOND_Melany_Interrogation_Places_Henry"&gt;
+            &lt;Pattern&gt;* (where|you see*|you saw) * #(nHenry) * (evening|night|murder*|kill*) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Mr. Moneyghan, most probably, was in the saloon smoking a cigar and dreaming to become even richer.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;QAUnit name="SECOND_Melany_Interrogation_Places_Jessica"&gt;
+            &lt;Pattern&gt;* (where|you see*|you saw) * #(nJess) * (evening|night|murder*|kill*) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;I don't care where she goes. Perhaps, she was working on the book.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+
+        &lt;QAUnit name="SECOND_Melany_Interrogation_Places_Eddy"&gt;
+            &lt;Pattern&gt;* (where|you see*|you saw) * #(nDoctor) * (evening|night|murder*|kill*) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Dearest doctor, I suppose, was in his room thinking about new ways to do his patients in.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+    &lt;/Theme&gt;
+
+    &lt;Theme name = "Melany_AffinityVariator"&gt;
+		&lt;QAUnit name = "Melany_science"&gt;
+			&lt;Pattern&gt;* (thesis|dissertation|studies|university|science|scholar|education) *&lt;/Pattern&gt;
+			&lt;Random&gt;
+				&lt;Text&gt;University is all my life! Oh I wish I were a man and could become a professor! &lt;/Text&gt;
+				&lt;Text&gt;Oh, I wish I was back in France, at Sorbonne University. &lt;/Text&gt;
+			&lt;/Random&gt;
+			&lt;Effects&gt;
+			
+				&lt;AffinityChange&gt;+50&lt;/AffinityChange&gt;
+			&lt;/Effects&gt;
+		&lt;/QAUnit&gt;
+    &lt;/Theme&gt;
+
+&lt;/Dialog&gt;</content></xgml><xgml id="27"><filename>common_tokens.xgml</filename><content>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;Dialog xmlns="http://i-free.com/xml/xgml"&gt;
+    &lt;MultiToken name="nDoctor"&gt;(doctor|Eddy|mr. Manhater|mister Manhater|Manhater|House)&lt;/MultiToken&gt;
+    &lt;MultiToken name="nBoddy"&gt;(professor|Sheylock|mr. Boddy|mister Boddy|old fool|pervert|master|Boddy|sheylok|sheilok|Body)&lt;/MultiToken&gt;
+    &lt;MultiToken name="nMelany"&gt;(Melany|Melany Morgan|ms. Morgan|miss Morgan|Melly|Mel)&lt;/MultiToken&gt;
+    &lt;MultiToken name="nHenry"&gt;(Henry|Moneyghan|mr Moneyghan|Henry Moneyghan|mister Moneyghan)&lt;/MultiToken&gt;
+    &lt;MultiToken name="nButler"&gt;(Butler|Philip Morgan|Morgan|Philip|philipp|filipp|filip|filip morgan|philipp morgan|filipp morgan)&lt;/MultiToken&gt;
+    &lt;MultiToken name="nJess"&gt;(Jessica|mrs White|miss White|Jess|Jessica White)&lt;/MultiToken&gt;
+    &lt;MultiToken name="nLinda"&gt;(Linda|mrs Moneyghan|Linda Moneyghan|missis Moneyghan)&lt;/MultiToken&gt;
+    &lt;MultiToken name="nDrug"&gt;(drug|drugs|medicine|pill|pills|sedative)&lt;/MultiToken&gt;
+    &lt;MultiToken name="vLike"&gt;(like|love|enjoy|adore)&lt;/MultiToken&gt;
+    &lt;MultiToken name="nSteve"&gt;(Steve|Faret|Farret|Farett|Farrett|Steven)&lt;/MultiToken&gt;
+
+
+
+
+
+    &lt;MultiToken name="pU"&gt;(you|yours|thou|thee|U)&lt;/MultiToken&gt;
+    &lt;MultiToken name="nFood"&gt;(milk|honey|bread|meat|cola)&lt;/MultiToken&gt;
+    &lt;MultiToken name="pYour"&gt;(your|yor|yo)&lt;/MultiToken&gt;
+    &lt;MultiToken name="vCan"&gt;(can | could | will | would| may)&lt;/MultiToken&gt;
+    &lt;MultiToken name="qWhatBe"&gt;(tell (me|) (about|)|I am interested in|what (is|are|were|was|*ould be|)|know what)
+    &lt;/MultiToken&gt;
+    &lt;MultiToken name="qWhatBe0"&gt;(#(qWhatBe)|)&lt;/MultiToken&gt;
+    &lt;MultiToken name="qWhoBe"&gt;(tell (me|) (about|)|I am interested in|who (is|are|was|were|*ould be|)|know who)
+    &lt;/MultiToken&gt;
+    &lt;MultiToken name="qWhoBe0"&gt;(#(qWhoBe)|)&lt;/MultiToken&gt;
+    &lt;MultiToken name="qWhereBe"&gt;(I am interested in|where (is|are|was|were|*ould be|)|know where)
+    &lt;/MultiToken&gt;
+    &lt;MultiToken name="qWhereBe0"&gt;(#(qWhereBe)|)&lt;/MultiToken&gt;
+    &lt;MultiToken name="qWhatAbout"&gt;(tell (me|) (about|)|I am interested in|(what|who|where) (is|are|was|were|*ould
+        be|)|know (what|who|where) |(want|like|) to know * about|do #(pU) know about| have #(pU) * heard about|what *
+        (#(pU)|#(pYour)) * (think|thought*|opinion)|describe|inform)
+    &lt;/MultiToken&gt;
+    &lt;MultiToken name="qWhatAbout0"&gt;(#(qWhatAbout)|)&lt;/MultiToken&gt;
+    &lt;MultiToken name="qDoYouHave"&gt;(((do|if|whether) #(pU) (have|own|possess) | have #(pU) ))&lt;/MultiToken&gt;
+    &lt;MultiToken name="qWhy"&gt;(why|how come|(for|due to|) wh*|wh* reason*|wh* purpose*)&lt;/MultiToken&gt;
+    &lt;MultiToken name="qWhy0"&gt;(#(qWhy)|)&lt;/MultiToken&gt;
+    &lt;MultiToken name="mother"&gt;(mother | mothers | mother's | mom | mom's | moms| mum | mum's | mums)&lt;/MultiToken&gt;
+    &lt;MultiToken name="brother"&gt;(brother | brother* | broz | bro | broz's)&lt;/MultiToken&gt;
+    &lt;MultiToken name="father"&gt;(father* |dad |dad's | daddy | daddys | daddy's)&lt;/MultiToken&gt;
+    &lt;MultiToken name="friend"&gt;(friend*|buddy|buddies)&lt;/MultiToken&gt;
+    &lt;MultiToken name="aSilly"&gt;(silly | sily | stupid | fool* | idiot* | moron*)&lt;/MultiToken&gt;
+    &lt;MultiToken name="nNonsense"&gt;(nonsense | rubbish | drivel | garbage | twaddle | trash | babble | puffery | flummery | fool) &lt;/MultiToken&gt;
+    &lt;MultiToken name="aStupid"&gt;(stupid | fool* | silly | (tiny | narrow | small | poor | ill) (brain* | mind*) |
+        narrow-minded | idiot* | cretin* | dummy | dolt| freak)
+    &lt;/MultiToken&gt;
+    &lt;MultiToken name="aSmart"&gt;(smart | clever | intelligent | cute| wise|bright)&lt;/MultiToken&gt;
+    &lt;MultiToken name="aGood"&gt;(good | nice | fine | cool | beautiful | wonderful | well | OK | okay | okey | all right | very well | al*right* | not bad | great | not so bad | terrific | splendid | ex*el*ent|blooming|blossoming) &lt;/MultiToken&gt;
+    &lt;MultiToken name="aBad"&gt;(bad|crappy|rotten|wretched|shitty|like crap|like shit)&lt;/MultiToken&gt;
+    &lt;MultiToken name="nBadWord"&gt;(pig | bastard | suck | idiot | fuck* | motherf* | mother-fuck* | shit | ass | ass-* |
+        asshole | asswipe | gay | homos* | fag | crap*|prostitute|arschloch|arsch|bitch|dick)
+    &lt;/MultiToken&gt;
+    &lt;MultiToken name="qAreYou"&gt;(are #(pU) | (if | whether) | #(pU) are)&lt;/MultiToken&gt;
+    &lt;MultiToken name="ILiveIn"&gt;( my native country is |my native city is | i (live in | am living in | reside in | am from | come from ) )&lt;/MultiToken&gt;
+
+    &lt;MultiToken name="nHello"&gt;(((hi|hello|hallo|salute|bonjour|salut) (there|))|hey there | heil to thee |good
+        (morning|day|afternoon|evening)|g'day |g day| howdy|olleh|halo)
+    &lt;/MultiToken&gt;
+    &lt;MultiToken name="Yes"&gt;(yes|yep|ye|y|OK|yeah|yeh)&lt;/MultiToken&gt;
+
+    &lt;!-- igolubev --&gt;
+    &lt;MultiToken name="ComeOn"&gt;(#(Yes)|let us|let's|come on)&lt;/MultiToken&gt;
+
+
+    &lt;MultiToken name="No"&gt;(no|non|none|n|never|not|nope|nop|i don't|i do not)&lt;/MultiToken&gt;
+    &lt;MultiToken name="nation"&gt;
+        (american|russian|chinese|british|english|french|spanish|dutch|italian|greek|german|belgian|ukrainian|jew|jewish|canadian|austrian|japanese|polish|polack|bulgarian|hungarian|mexican|brazilian)
+    &lt;/MultiToken&gt;
+    &lt;MultiToken name="Day"&gt;(today|now|yesterday|tomorrow|after tomorrow|next week|* birthday)&lt;/MultiToken&gt;
+    &lt;MultiToken name="Weather"&gt;
+        (rain*|snow*|blizzard|frost*|wind*|storm*|breeze|cyclone|fog*|smog*|haze|sunny|sunshine|sun *
+        bright|cloudy|cold|hot|weather)
+    &lt;/MultiToken&gt;
+    &lt;MultiToken name="aColor"&gt;(red|blue|pink|yellow|black|white|teal|magenta|green|violet|orange)&lt;/MultiToken&gt;
+
+    &lt;!-- igolubev --&gt;
+    &lt;MultiToken name="YouAreWelcome"&gt;
+        ((you are|you're|#(pU)|#(pYour)) welcome|please [feel] [free] [to]|(not|do not|don't) (for that|at all|mention it)|[(is|have)] nothing to|no reason to|forget it)
+    &lt;/MultiToken&gt;
+
+    &lt;MultiToken name="aAbout"&gt;(about|on|of)&lt;/MultiToken&gt;
+    &lt;MultiToken name="aAlways2"&gt;(always)&lt;/MultiToken&gt;
+    &lt;MultiToken name="qDoYouLike"&gt;((do|Are|if) (not|) you * (not|) (like|fond|keen|fan))&lt;/MultiToken&gt;
+    &lt;MultiToken name="Edelweiss"&gt;(your (home|native|) * planet|planet * you * from|place * you * from|Edelweiss|planet * spoonies)&lt;/MultiToken&gt;
+    &lt;MultiToken name="jBored"&gt;(bored|tired|sick and tired|apathetic)&lt;/MultiToken&gt;
+    &lt;MultiToken name="jBad1"&gt;(bad|not good|crappy|shitty|inferior|awful)&lt;/MultiToken&gt;
+    &lt;MultiToken name="jBig1"&gt;(big|large|great|giant|huge|enormous|colossal|defective|terrible)&lt;/MultiToken&gt;
+    &lt;MultiToken name="jFast1"&gt;(fast|speedy|agile|blistering|light*speed|quick)&lt;/MultiToken&gt;
+    &lt;MultiToken name="jOptimum2"&gt;(optimum|optimal|best)&lt;/MultiToken&gt;
+    &lt;MultiToken name="jPerfect1"&gt;(perfect|ideal|unflawed|faultless|errorless)&lt;/MultiToken&gt;
+    &lt;MultiToken name="jSad"&gt;(sad|unhappy|depressed|sorrowful|downhearted|miserable|joyless|melanchol*|saddened)&lt;/MultiToken&gt;
+    &lt;MultiToken name="northpole"&gt;((the|) North Pole|(place|country|location|where) you ((are|come|came|) from|used to (live|dwell)|lived before)) &lt;/MultiToken&gt;
+    &lt;MultiToken name="nproblem1"&gt;(problem*|issue*|difficult*|trouble*)&lt;/MultiToken&gt;
+    &lt;MultiToken name="qWhoBeWho"&gt;(who (is|was|were))&lt;/MultiToken&gt;
+    &lt;MultiToken name="qDoYouKnow"&gt;((do|did|if|) (not) you * know)&lt;/MultiToken&gt;
+    &lt;MultiToken name="qHaveYou"&gt;((have|do|are) (not|) you (have|having|got))&lt;/MultiToken&gt;
+    &lt;MultiToken name="vThink"&gt;(think*|thought*|opinion*|suppose*|believ*|belief*)&lt;/MultiToken&gt;
+    &lt;MultiToken name="DoYouThink"&gt;((Do|if|#(qWhatAbout)) * (you|your) #(vThink))&lt;/MultiToken&gt;
+    &lt;MultiToken name="vGive"&gt;(give*|giving|yield*supply*)&lt;/MultiToken&gt;
+    &lt;MultiToken name="vLike"&gt;(like*|love|lovi*)&lt;/MultiToken&gt;
+    &lt;MultiToken name="qDoYouThink"&gt;((Do|if|#(qWhatAbout)) * (you|your) #(vThink))&lt;/MultiToken&gt;
+    &lt;MultiToken name="vUnderstand1"&gt;(understand*|comprehend*|grasp*)&lt;/MultiToken&gt;
+    &lt;MultiToken name="vWant"&gt;(want*|wish*|desire*|like*|lust*|need*|demand*)&lt;/MultiToken&gt;
+    &lt;MultiToken name="vWork"&gt;(work*|perform*|operate*|operating)&lt;/MultiToken&gt;
+
+&lt;/Dialog&gt;</content></xgml><xgml id="52"><filename>2_Eddy_Interrogation.xgml</filename><content>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;Dialog xmlns="http://i-free.com/xml/xgml"&gt;
+
+    &lt;!-- ready --&gt;
+    &lt;Theme name = "SECOND_Eddy_Interrogation_YouAndBoddy"&gt;
+        &lt;QAUnit name="SECOND_Eddy_Interrogation_YouAndBoddy_1"&gt;
+            &lt;Pattern&gt;* how long * know #(nBoddy) *&lt;/Pattern&gt;
+            &lt;Pattern&gt;* you * relat* #(nBoddy) *&lt;/Pattern&gt;
+            &lt;Pattern&gt;* (#(qWhatAbout)|tell) * #(nBoddy) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;I'll miss him. It's not easy to fin a decent partner for chess these days. Recently his health wasn't so good, so even somebody not too strong could do him in.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;RevealedFacts&gt;
+                    &lt;Fact id="400"&gt;Doctor tells that Body had some health issues and, most probably, could not show much resistance. Even somebody of less than athletic build coud do him in.&lt;/Fact&gt;
+                &lt;/RevealedFacts&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+    &lt;/Theme&gt;
+
+    &lt;!-- ready --&gt;
+    &lt;Theme name = "SECOND_Eddy_Interrogation_BoddysEnemies_HighAffinity"&gt;
+        &lt;QAUnit name="SECOND_Eddy_Interrogation_BoddysEnemies_HighAffinity_1"&gt;
+            &lt;Pattern&gt;* #(nBoddy) * (enemies|trouble|quarrel*|argue|threat*) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;I don't know much about his enemies, but he had a dear brother. That was quite enough, especially taking into account that it was Boddy who got everything after their father's death.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;RevealedFacts&gt;
+                    &lt;Fact id="401"&gt;Doctor says that there was no love lost between Henry Moneyghan and Sheylock Boddy. One of the reasons being that Sheylock was the only heir of their father.&lt;/Fact&gt;
+                &lt;/RevealedFacts&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+    &lt;/Theme&gt;
+
+    &lt;!-- ready --&gt;
+    &lt;Theme name = "SECOND_Eddy_Interrogation_BoddysEnemies"&gt;
+        &lt;QAUnit name="SECOND_Eddy_Interrogation_BoddysEnemies_1"&gt;
+            &lt;Pattern&gt;* #(nBoddy) * (enemies|trouble|quarrel*|argue|threat*) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Enemies? What kind of enemies? He was a university professor, not a member of cosa nostra.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+    &lt;/Theme&gt;
+
+
+    &lt;Theme name = "SECOND_Eddy_Interrogation_Suspicious"&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Eddy_Interrogation_Suspicious_1"&gt;
+            &lt;Pattern&gt;* #(pU) * (suspicious|strange|unusual|interesting) *&lt;/Pattern&gt;
+            &lt;Pattern&gt;* what * #(pU) * (know|tell) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Something strange? Everybody here is acting strange. If it wasn't for Boddy, this house would earn its title of "Istitution" long ago.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Eddy_Interrogation_Suspicious_2"&gt;
+            &lt;Pattern&gt;* #(nBoddy) * (recently|lately|these days|time) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Can hardly say.. After making this discovery he was acting quite weird.. Always thought that he was being followed.. Maybe there was something to it.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Eddy_Interrogation_Suspicious_3"&gt;
+            &lt;Pattern&gt;* who * you * (think|guess|suspic*|could) *&lt;/Pattern&gt;
+            &lt;Pattern&gt;* who * (kill*|murder*|shot|shoot|strangle) *&lt;/Pattern&gt;
+            &lt;Pattern&gt; * who * (benefit*|motive|reason) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;This house is a bit of a nest of vipers. Trust nobody, I won't be surprised if that was a joint venture.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+    &lt;/Theme&gt;
+
+    &lt;Theme name = "SECOND_Eddy_Interrogation_Places"&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Eddy_Interrogation_Places_You"&gt;
+            &lt;Pattern&gt;* (where|what) * you * (do*|did|) * (time|evening|moment|when) * (murder*|kill*|happen|) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Oh, your instruction is to suspect everybody? Do you always follow instructions, with women too? Ok, take it easy. All the night I spent in my room reading and fell asleep only in the morning.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Eddy_Interrogation_Places_Philipp"&gt;
+            &lt;Pattern&gt;* (where|you see*|you saw) * #(nButler) * (evening|night|murder*|kill*) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;I think he went to sleep - of course, only after saying his prayers and cleaning all glass and silverware. He does work a lot.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Eddy_Interrogation_Places_Henry"&gt;
+            &lt;Pattern&gt;* (where|you see*|you saw) * #(nHenry) * (evening|night|murder*|kill*) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Where was mr. Money? No idea.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Eddy_Interrogation_Places_Jessica"&gt;
+            &lt;Pattern&gt;* (where|you see*|you saw) * #(nJess) * (evening|night|murder*|kill*) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;If she wasn't in Boddy's bed, than she was in her room. Can't say for sure, I'm not watching her.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Eddy_Interrogation_Places_Melany"&gt;
+            &lt;Pattern&gt;* (where|you see*|you saw) * #(nMelany) * (evening|night|murder*|kill*) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Little Melany goes to bed early - gets too busy doing nothing during the day.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+    &lt;/Theme&gt;
+
+    &lt;Theme name = "Eddy_AffinityVariator"&gt;
+        &lt;QAUnit name="Eddy_chess"&gt;
+            &lt;Pattern&gt;* (medicine|chemistry|science|silence|chess|sudoku|mahjong|checkers) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Hm, Farrett? I guess, you are a clever man. &lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;AffinityChange&gt;+50&lt;/AffinityChange&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+    &lt;/Theme&gt;
+
+&lt;/Dialog&gt;</content></xgml><xgml id="53"><filename>2_Henry_Interrogation.xgml</filename><content>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;Dialog xmlns="http://i-free.com/xml/xgml"&gt;
+
+
+
+    &lt;Theme name = "SECOND_Henry_Interrogation_BoddysEnemies"&gt;
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Henry_Interrogation_BoddysEnemies_1"&gt;
+            &lt;Pattern&gt;* you * #(nBoddy) * (quarrel*|disagreement*|problem*) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Quarrels.. Well, It's all in the past now. I didn't get anything from my father, but all I have I have earned myself - and hold no grudge now. I just wanted to keep closer to what family I have.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;RevealedFacts&gt;
+                    &lt;Fact id="302"&gt;There are rumours that Henry and his brother were enemies, but all family feuds are long in the past now.&lt;/Fact&gt;
+                &lt;/RevealedFacts&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+    &lt;/Theme&gt;
+
+    &lt;Theme name = "SECOND_Henry_Interrogation_Others"&gt;
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Henry_Interrogation_Others_1"&gt;
+            &lt;Pattern&gt;* (#(qWhatAbout)|describe|inform|tell) * (part*|guest*|people|others|everybody|friend*) *&lt;/Pattern&gt;
+            &lt;Pattern&gt;* who * (else|other|guest*) * (house|mansion|present) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Philipp is a good butler. However, he's a bit too religious for his own good and was quite unhappy about Boddy's Cult studies. I'd watch out for him, if I were you.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;RevealedFacts&gt;
+                    &lt;Fact id="301"&gt;Philipp is very religious and does not approve of mr. Boddy's occult studies.&lt;/Fact&gt;
+                &lt;/RevealedFacts&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+    &lt;/Theme&gt;
+
+    &lt;Theme name = "SECOND_Henry_Interrogation_Suspicious_HighAffinity"&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Henry_Interrogation_Suspicious_HighAffinity_1"&gt;
+            &lt;Pattern&gt;* who * you * (think|guess|suspic*|could) *&lt;/Pattern&gt;
+            &lt;Pattern&gt;* who * (kill*|murder*|shot|shoot|strangle) *&lt;/Pattern&gt;
+            &lt;Pattern&gt; * who * (benefit*|motive|reason) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;I don't want to accuse anybody, but recently I heard the butler talk to his daughter. He was quite beyond himself with anger when knew that old Boddy made a pass at his little angel.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;RevealedFacts&gt;
+                    &lt;Fact id="300"&gt;Philipp threatened to kill mr. Boddy when he knew, he had been harrassing Philip's only daughter.&lt;/Fact&gt;
+                &lt;/RevealedFacts&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+    &lt;/Theme&gt;
+
+    &lt;Theme name = "SECOND_Henry_Interrogation_Suspicious"&gt;
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Henry_Interrogation_Suspicious_1"&gt;
+            &lt;Pattern&gt;* who * you * (think|guess|suspic*|could) *&lt;/Pattern&gt;
+            &lt;Pattern&gt;* who * (kill*|murder*|shot|shoot|strangle) *&lt;/Pattern&gt;
+            &lt;Pattern&gt; * who * (benefit*|motive|reason) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;How could I know! Or even better - why should I tell you if you can always use my words against me.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Henry_Interrogation_Suspicious_2"&gt;
+            &lt;Pattern&gt;* #(pU) * (suspicious|strange|unusual|interesting) *&lt;/Pattern&gt;
+            &lt;Pattern&gt;* what * #(pU) * (know|tell) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;I just remember that yesterday Melany ran out of the study all red in the face. Perhaps the old geezer told her one of his dirty jokes?&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Henry_Interrogation_Suspicious_3"&gt;
+            &lt;Pattern&gt;* #(nBoddy) * (recently|lately|these days|time) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Well.. What can I say.. He was just as crazy as usual.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+    &lt;/Theme&gt;
+
+
+
+    &lt;Theme name = "SECOND_Henry_Interrogation_Places"&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Henry_Interrogation_Places_You"&gt;
+            &lt;Pattern&gt;* (where|what) * you * (do*|did|) * (time|evening|moment|when) * (murder*|kill*|happen|) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;I was in the saloon - I like to have a glass or two and a good cigar before going to bed. After that I went back to my room and fell asleep.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Henry_Interrogation_Places_Philipp"&gt;
+            &lt;Pattern&gt;* (where|you see*|you saw) * #(nButler) * (evening|night|murder*|kill*) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;You know, when I was in the saloon I saw Philipp walking to and fro, ad he looked very nervous.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Henry_Interrogation_Places_Eddy"&gt;
+            &lt;Pattern&gt;* (where|you see*|you saw) * #(nDoctor) * (evening|night|murder*|kill*) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;I haven't seen him since last night. And I'm quite happy about it, frankly speaking.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Henry_Interrogation_Places_Jessica"&gt;
+            &lt;Pattern&gt;* (where|you see*|you saw) * #(nJess) * (evening|night|murder*|kill*) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Miss White? I saw her with Boddy in the evening, they were discussing something - but all in whisper.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Henry_Interrogation_Places_Melany"&gt;
+            &lt;Pattern&gt;* (where|you see*|you saw) * #(nMelany) * (evening|night|murder*|kill*) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;She's been around the drawing room the whole evening. I couldn't care less about where she spent the night.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+    &lt;/Theme&gt;
+
+    &lt;Theme name = "Henry_AffinityVariator"&gt;
+		&lt;QAUnit name="Henry_money"&gt;
+            &lt;Pattern&gt;* (money|finance|rich|prestige|account|bank|mortgage) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;I always say - money is what rules the world. Who has money - has everything.&lt;/Text&gt;
+                &lt;Text&gt;Detective, seems, you are a clever man.&lt;/Text&gt;
+                &lt;Text&gt;If you want my advice on the finance - don't go into the stock exchange now. Wait till the
+                    elections are over.
+                &lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;AffinityChange&gt;+15&lt;/AffinityChange&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+    &lt;/Theme&gt;
+&lt;/Dialog&gt;</content></xgml><xgml id="56"><filename>2_Philipp_Interrogation.xgml</filename><content>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;Dialog xmlns="http://i-free.com/xml/xgml"&gt;
+
+
+
+
+    &lt;Theme name = "SECOND_Philipp_Interrogation_MelanyBoddy_HighAffinity"&gt;
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Philipp_Interrogation_MelanyBoddy_HighAffinity_1"&gt;
+            &lt;Pattern&gt;* #(nMelany) * #(nBoddy) * you *&lt;/Pattern&gt;
+            &lt;Pattern&gt;* you * #(nMelany) * #(nBoddy) *&lt;/Pattern&gt;
+
+            &lt;Random&gt;
+                &lt;Text&gt;What are you talking about, sir? I'm not a murderer, I'd never. Of course, mr. Boddy's conduct appalled me so I ask him to make his apologies to Melany, but that was that.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;RevealedFacts&gt;
+                    &lt;Fact id="500"&gt;Philipp says that he had been offended by mr. Boddy's behaviour, but denies that he killed him.&lt;/Fact&gt;
+                &lt;/RevealedFacts&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+    &lt;/Theme&gt;
+
+    &lt;Theme name = "SECOND_Philipp_Interrogation_MelanyBoddy"&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Philipp_Interrogation_MelanyBoddy_1"&gt;
+            &lt;Pattern&gt;* #(nMelany) * #(nBoddy) * you *&lt;/Pattern&gt;
+            &lt;Pattern&gt;* you * #(nMelany) * #(nBoddy) *&lt;/Pattern&gt;
+
+            &lt;Random&gt;
+                &lt;Text&gt;How dare you talk about this ugly, this hideous matter? I don't want any talking about it!&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+    &lt;/Theme&gt;
+
+
+    &lt;Theme name = "SECOND_Philipp_Interrogation_AboutMelany"&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Philipp_Interrogation_AboutMelany_1"&gt;
+            &lt;Pattern&gt;* about #(nMelany) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;She's an angel, mr. Farrett. She's the most important thing in my life. If someone dares to question her honour, I swear, he'll regret.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;RevealedFacts&gt;
+                    &lt;Fact id="502"&gt;Philipp warns everybody against disrespecting his daughter.&lt;/Fact&gt;
+                &lt;/RevealedFacts&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+    &lt;/Theme&gt;
+
+
+    &lt;Theme name = "SECOND_Philipp_Interrogation_MelanyKiller"&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Philipp_Interrogation_MelanyKiller_1"&gt;
+            &lt;Pattern&gt;* #(nMelany) * (murder|kill|do it) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;No, sir. Mr. Boddy did a vile thing, but Melany is but a child, she's not able to kill a person. I've raised her a good Christian, she's so kind-hearted!&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+                &lt;RevealedFacts&gt;
+                    &lt;Fact id="501"&gt;Philipp thinks that Melany is not somebody who could commit a murder.&lt;/Fact&gt;
+                &lt;/RevealedFacts&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+    &lt;/Theme&gt;
+
+
+
+    &lt;Theme name = "SECOND_Philipp_Interrogation_Suspicious"&gt;
+
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Philipp_Interrogation_Suspicious_2"&gt;
+            &lt;Pattern&gt;* #(pU) * (suspicious|strange|unusual|interesting) *&lt;/Pattern&gt;
+            &lt;Pattern&gt;* what * #(pU) * (know|tell) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Sir, everything goes as it should - I keep the house in order, the guests keep disrupting it.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Philipp_Interrogation_Suspicious_3"&gt;
+            &lt;Pattern&gt;* #(nBoddy) * (recently|lately|these days|time) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Mr. Boddy was very much excited about his discovery. He kept telling that it will establish hisname in the world of the modern archeology.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+    &lt;/Theme&gt;
+
+
+
+    &lt;Theme name = "SECOND_Philipp_Interrogation_Places"&gt;
+
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Philipp_Interrogation_Places_You"&gt;
+            &lt;Pattern&gt;* (where|what) * you * (do*|did|) * (time|evening|moment|when) * (murder*|kill*|happen|) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;In the evening I wasn't feeling well, but there was a lot of things to do. The guests left me more cleaning than usually.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Philipp_Interrogation_Places_Henry"&gt;
+            &lt;Pattern&gt;* (where|you see*|you saw) * #(nHenry) * (evening|night|murder*|kill*) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;I saw mr. Moneyghan in the saloon late in the evening.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Philipp_Interrogation_Places_Eddy"&gt;
+            &lt;Pattern&gt;* (where|you see*|you saw) * #(nDoctor) * (evening|night|murder*|kill*) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;When I was cleaning in the hall I saw mr. Manhater read something in his room - the door was open.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Philipp_Interrogation_Places_Jessica"&gt;
+            &lt;Pattern&gt;* (where|you see*|you saw) * #(nJess) * (evening|night|murder*|kill*) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;I didn't see her through the whole course of the evening.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+        &lt;!-- ready --&gt;
+        &lt;QAUnit name="SECOND_Philipp_Interrogation_Places_Melany"&gt;
+            &lt;Pattern&gt;* (where|you see*|you saw) * #(nMelany) * (evening|night|murder*|kill*) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Yesterday Melany was helping me to clean the house. We parted late at night.&lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+
+
+
+    &lt;/Theme&gt;
+
+    &lt;Theme name = "Philipp_AffinityVariator"&gt;
+		&lt;QAUnit name="Philipp_anti_religion"&gt;
+            &lt;Pattern&gt;* (i am|i'm) * (atheist|agnostic|pagan*|not religious) *&lt;/Pattern&gt;
+            &lt;Pattern&gt;* i (don't|do not) (believe|trust|worship|fear) * (God*|Jesus|Christ*) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Mr. Farrett, the Lord tells us "It is mine to avenge; I will repay" so I leave you to His will, to
+                    reap what you sow. It is beyond my duty to talk to you, quite beyond. But I'll pray for you. See, if
+                    it helps you with your interrogation.
+                &lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;AffinityChange&gt;-50&lt;/AffinityChange&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+        &lt;QAUnit name="Philipp_religion"&gt;
+            &lt;Pattern&gt;* (faith|church|christian|bible|pious|pray|jesus|christ|god) *&lt;/Pattern&gt;
+            &lt;Random&gt;
+                &lt;Text&gt;Pray to God and he will save you from the deepest pit of darkness. It is not
+                    miserable to be blind; he only is miserable who cannot acqiuesce in his blindness.
+                &lt;/Text&gt;
+                &lt;Text&gt;We must be humble in front of God, if pride turned some of the angels into demons,
+                    then humility can doubtless make angels out of demons
+                &lt;/Text&gt;
+                &lt;Text&gt;When a man is getting better he understands more and more clearly the evil that is still left in
+                    him. When a man is getting worse he understands his own badness less and less.
+                    So let us pray to God to open our eyes to our faults.
+                &lt;/Text&gt;
+            &lt;/Random&gt;
+            &lt;Effects&gt;
+                &lt;AffinityChange&gt;+40&lt;/AffinityChange&gt;
+                &lt;BeatGoalAchieved&gt;true&lt;/BeatGoalAchieved&gt;
+            &lt;/Effects&gt;
+        &lt;/QAUnit&gt;
+    &lt;/Theme&gt;
+
+&lt;/Dialog&gt;</content></xgml></xgml><descriptor><id>0</id><scenarioId>Scenary_2</scenarioId></descriptor></data>
