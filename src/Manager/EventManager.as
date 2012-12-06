@@ -9,6 +9,8 @@ package Manager
 		private static var msSingleton:EventManager;
 		
 		public static var STOP_DRAG_BEAT:String = "StopDragBeat";
+		public static var CHANGE_BEATS_LABELS:String = "ChangeBeatsLabels";
+		
 		public function EventManager(target:IEventDispatcher=null)
 		{
 			super(target);
@@ -23,9 +25,9 @@ package Manager
 			return msSingleton;
 		}
 		
-		public function fireEvent():void
+		public function fireEvent(event:String):void
 		{
-			dispatchEvent(new Event(EventManager.STOP_DRAG_BEAT));
+			dispatchEvent(new Event(event));
 		}
 	}
 }

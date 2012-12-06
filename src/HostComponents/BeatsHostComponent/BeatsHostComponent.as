@@ -240,7 +240,6 @@ package HostComponents.BeatsHostComponent
 			treeContextMenu.customItems.push(pasteMenuItem);
 			treeContextMenu.customItems.push(renameMenuItem);
 			
-			
 //			treeContextMenu.addEventListener(ContextMenuEvent.MENU_SELECT, getSelectedElement);
 			
 			var addBeatContextMenuItem:ContextMenuItem = new ContextMenuItem("Add Beat");
@@ -701,7 +700,7 @@ package HostComponents.BeatsHostComponent
 			groupId++;
 			var treeGroupNode:XML = new XML();
 			treeGroupNode = <node>{"Group: " + groupId}</node>;
-			DataModel.getSingleton().mTreeData.appendChild(treeGroupNode);
+			DataModel.getSingleton().mTreeData.children()[0].appendChild(treeGroupNode);
 		}
 		
 		private function cutMenuEvent(event:ContextMenuEvent):void

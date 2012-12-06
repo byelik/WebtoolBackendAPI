@@ -76,7 +76,7 @@ package Render.BeatRender
 			mBeatIdLabel = new TextField();
 
 			mBeatIdLabel.mouseEnabled = false;
-			mBeatIdLabel.x = (this.width * 0.2); 
+			mBeatIdLabel.x = 4; 
 			mBeatIdLabel.y = 6;
 			mBeatIdLabel.autoSize = TextFieldAutoSize.LEFT;
 			
@@ -88,7 +88,7 @@ package Render.BeatRender
 			
 //			mBeatIdLabel.defaultTextFormat = labelTextFormatter;
 			mBeatIdLabel.setTextFormat(mLabelTextFormatter);
-			
+			mBeatIdLabel.defaultTextFormat = mLabelTextFormatter;
 			addChild(mBeatIdLabel);
 			
 			mBeatDescriptionLabel = new TextField();
@@ -104,15 +104,50 @@ package Render.BeatRender
 			addEventListener(FlexEvent.DATA_CHANGE, dataExist);
 			
 			addEventListener(FlexEvent.UPDATE_COMPLETE, refreshStage);
+			
+			EventManager.getSingleton().addEventListener(EventManager.CHANGE_BEATS_LABELS, changeBeatsLabels);
 		}
 		
 		private function refreshStage(event:FlexEvent):void
 		{
+			
+			
 //			mBeatIdLabel.x = (this.width / 2);
 //			mBeatIdLabel.y = (this.height / 2);
-			EventManager.getSingleton().fireEvent();	
+			EventManager.getSingleton().fireEvent(EventManager.STOP_DRAG_BEAT);	
 		}
-			
+		
+		private function changeBeatsLabels(event:Event):void
+		{
+			var tmp = parent as BubbleSeries;;
+			trace(tmp);
+			if(tmp)
+			{
+//				if(tmp.minRadius < 100)
+//				{
+//					mLabelTextFormatter.size =-2;
+//					mBeatIdLabel.setTextFormat(mLabelTextFormatter);
+//					mBeatDescriptionLabel.setTextFormat(mLabelTextFormatter);
+					if(tmp.minRadius == -10)
+					{
+						mBeatIdLabel.visible = false;
+						mBeatDescriptionLabel.visible = false;
+					}
+//				}
+				if(tmp.minRadius > -10)
+				{
+					mBeatIdLabel.visible = true;
+					mBeatDescriptionLabel.visible = true;
+					mLabelTextFormatter.size +=2;
+					mBeatIdLabel.setTextFormat(mLabelTextFormatter);
+					mBeatDescriptionLabel.setTextFormat(mLabelTextFormatter);
+					mBeatIdLabel.x = tmp.minRadius / 2;
+					mBeatIdLabel.y = tmp.minRadius / 2;
+					mBeatDescriptionLabel.x = (tmp.minRadius / 2) + 40;
+					mBeatDescriptionLabel.y = tmp.minRadius / 2;
+				}
+			}	
+		}
 		
 		private function startMoving(event:MouseEvent):void
 		{
@@ -180,7 +215,6 @@ package Render.BeatRender
 		
 		private function dataExist(event:FlexEvent):void
 		{
-//			trace("event");
 			mBeatIdLabel.text = _data.item.beatId;
 			mBeatDescriptionLabel.text = _data.item.beatDescription;
 		}

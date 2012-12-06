@@ -132,13 +132,24 @@
 			{	
 				mBeatSeries.minRadius += 5;
 				mBeatChart.invalidateDisplayList();
-				trace("+++");
+				EventManager.getSingleton().fireEvent(EventManager.CHANGE_BEATS_LABELS);
+				if(mBeatSeries.minRadius == 100)
+				{
+					mZoomIn.enabled = false;
+					mZoomOut.enabled = true;
+				}
 			}
 			
 			protected function zoomOut(event:FlexEvent):void
 			{
 				mBeatSeries.minRadius -= 5;
 				mBeatChart.invalidateDisplayList();
+				EventManager.getSingleton().fireEvent(EventManager.CHANGE_BEATS_LABELS);
+				if(mBeatSeries.minRadius == -10)
+				{
+					mZoomOut.enabled = false;
+					mZoomIn.enabled = true;
+				}
 			}
 		]]>
 	</fx:Script>
@@ -259,8 +270,8 @@
 								<s:HGroup width="100%" horizontalAlign="right">
 									<s:Button id="mAddBeat" x="-6" width="80" label="Add beat"/>
 									<s:VGroup horizontalAlign="center">
-										<s:Button width="35" label="-" autoRepeat="true" buttonDown="zoomOut(event)"/>
-										<s:Button width="35" label="+" autoRepeat="true" buttonDown="zoomIn(event)"/>
+										<s:Button id="mZoomIn" width="35" label="+" autoRepeat="true" buttonDown="zoomIn(event)"/>
+										<s:Button id="mZoomOut" width="35" label="-" autoRepeat="true" buttonDown="zoomOut(event)"/>
 									</s:VGroup>
 								</s:HGroup>
 							</s:Group>

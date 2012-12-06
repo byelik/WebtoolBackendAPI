@@ -92,42 +92,13 @@ package Data.ImportManager
 //			setZipExporter(mZipLoader);
 			DataModel.getSingleton().mFZipObject = mZipLoader;
 			mZipFile = mZipLoader.getFileByName("Scenary.xml");
-			if(mZipFile)
-			{
-				xmlData = XML(mZipFile.content);//XML(importerFileReference.data);
-			}
-			for(var i:int; i < mZipLoader.getFileCount(); i++)
-			{
-				if(mZipLoader.getFileAt(i).filename == "Scenary.xml")
-				{
-					mZipLoader.removeFileAt(i);
-				}
-				if(mZipLoader.getFileAt(i).filename == "TreeData.xml")
-				{
-					mZipLoader.removeFileAt(i);
-				}
-					
-			}
-			//TreeData.json
-			mZipFile = mZipLoader.getFileByName("TreeData.xml");
-			if(mZipFile)
-			{
-//				treeData= mZipFile.getContentAsString(mZipFile.content);
-//				mTreeObject = JSON.parse(treeData as String);
-				DataModel.getSingleton().mTreeData = new XML(mZipFile.content);
-			}
-//			DataModel.getSingleton().parseTreeData(mTreeObject);
-
-			//read xgml from file...
-//			mZipFile = mZipLoader.getFileByName("2_Eddy_Interrogation.xgml");
-//			xgmlTheme = new XML(mZipFile.content);
-//			for each(var importTheme in xgmlTheme.children())
-//			{
-////				trace(importTheme.@file);
-//				trace(importTheme.children()[0].@name);
-//			}
 			
-//			xmlData = XML(importerFileReference.data);
+			//TreeData.json
+			
+			if(mZipFile)
+			{
+				xmlData = XML(mZipFile.content);
+			}
 			//parse facts
 			if(mFacts)
 			{
@@ -328,7 +299,27 @@ package Data.ImportManager
 					}
 					DataModel.getSingleton().parseXgmlsData(mXgmls);
 				}
-			}	
+			}
+			mZipFile = mZipLoader.getFileByName("TreeData.xml");
+			if(mZipFile)
+			{
+//				treeData= mZipFile.getContentAsString(mZipFile.content);
+//				mTreeObject = JSON.parse(treeData as String);
+				DataModel.getSingleton().mTreeData = new XML(mZipFile.content);
+			}
+			
+			for(var i:int; i < mZipLoader.getFileCount(); i++)
+			{
+				if(mZipLoader.getFileAt(i).filename == "Scenary.xml")
+				{
+					mZipLoader.removeFileAt(i);
+				}
+				if(mZipLoader.getFileAt(i).filename == "TreeData.xml")
+				{
+					mZipLoader.removeFileAt(i);
+				}
+				
+			}
 		}
 		
 		private function errorHandler(event:IOErrorEvent):void
