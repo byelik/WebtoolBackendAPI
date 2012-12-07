@@ -585,9 +585,27 @@ package HostComponents.BeatsHostComponent
 			addBeatHandler();
 		}
 		
+		//FIX ME change creation of object...
 		private function addBeatHandler():void
 		{
-			new HttpServiceManager('{"method":"beats.addBeat","params":[{}],"jsonrpc":"2.0","id":7}', addBeatResult);
+//			new HttpServiceManager('{"method":"beats.addBeat","params":[{}],"jsonrpc":"2.0","id":7}', addBeatResult);
+			var beatIdList:Array = new Array();
+			var beatId:int = 1;
+			if(DataModel.getSingleton().mBubbleBeatData.length > 1)
+			{
+				for(var i:int = 0; i < DataModel.getSingleton().mBubbleBeatData.length; i++)
+				{
+					beatIdList.push(DataModel.getSingleton().mBubbleBeatData[i].id);
+				}
+				
+				beatIdList.sort(Array.NUMERIC);
+				beatId += beatIdList[beatIdList.length - 1];
+				trace(beatId);
+				//			mBeatsData.addItem(result);
+				DataModel.getSingleton().mBubbleBeatData.addItem(beatId);
+				var tmp:ArrayCollection = DataModel.getSingleton().mBubbleBeatData
+				focusManager.setFocus(mBeatDescriptionField);
+			}
 		}
 		
 		private function selectBeatOnGraph(event:ChartItemEvent):void
