@@ -317,7 +317,7 @@ package HostComponents.FactsHostComponent
 			mNerve.text = mCharacterList.selectedItem.nerve;
 			for(var i:int = 0; i < mLocations.length; i++)
 			{
-				if(mCharacterList.selectedItem.locationId == mLocations[i].id)
+				if(mCharacterList.selectedItem.location == mLocations[i].id)
 				{
 					mLocationList.selectedItem = mLocations[i];
 					mSelectedLocationIndex = i;

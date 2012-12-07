@@ -114,11 +114,13 @@ package Data
 		
 		public function parseAgentsData(data:Object):void
 		{
-			mAgentsList.disableAutoUpdate();
+			
 			var agents:AgentsData;
 			if(mAgentsList)
 			{
 //				mAgentsList.removeAll();
+				mAgentsList.disableAutoUpdate();
+//				mAgentsList.refresh();
 			}
 			for each(var item:Object in data)
 			{
@@ -131,11 +133,14 @@ package Data
 		
 		public function parseLocationsData(data:Object):void
 		{
-			mLocationsList.disableAutoUpdate();
+			
 			var locations:LocationsData;
 			if(mLocationsList)
 			{
-//				mLocationsList.removeAll();
+				
+				mLocationsList.removeAll();
+				mLocationsList.disableAutoUpdate();
+				mLocationsList.refresh();
 			}
 			for each(var item:Object in data)
 			{
