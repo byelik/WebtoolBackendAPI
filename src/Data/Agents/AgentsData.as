@@ -2,26 +2,51 @@ package Data.Agents
 {
 	public class AgentsData
 	{
-		private var mId:int;
-		private var mName:String;
-		private var mDescription:String;
+		private var mId:String;
+		private var mLocation:String;
 		private var mNerve:int;
 		private var mAffinity:int;
-		private var mLocationId:int;
+		private var mFacts:Array;
+		private var mItems:Array;
 		
 		public function AgentsData(data:Object = null)
 		{
 			parse(data);
 		}
 		
-		public function get locationId():int
+		public function get items():Array
 		{
-			return mLocationId;
+			return mItems;
 		}
-		
-		public function set locationId(value:int):void
+
+		public function set items(value:Array):void
 		{
-			mLocationId = value;
+			mItems = value;
+		}
+
+		public function get facts():Array
+		{
+			return mFacts;
+		}
+
+		public function set facts(value:Array):void
+		{
+			mFacts = value;
+		}
+
+		public function get location():String
+		{
+			return mLocation;
+		}
+
+		public function set location(value:String):void
+		{
+			mLocation = value;
+		}
+
+		public static function getNewInstance():AgentsData
+		{
+			return new AgentsData();
 		}
 		
 		public function get affinity():int
@@ -44,37 +69,12 @@ package Data.Agents
 			mNerve = value;
 		}
 		
-		public function get description():String
-		{
-			return mDescription;
-		}
-		
-		public function set description(value:String):void
-		{
-			mDescription = value;
-		}
-		
-		public function get name():String
-		{
-			return mName;
-		}
-		
-		public function set name(value:String):void
-		{
-			mName = value;
-		}
-		
-		public static function getNewInstance():AgentsData
-		{
-			return new AgentsData();
-		}
-		
-		public function get id():int
+		public function get id():String
 		{
 			return mId;
 		}
 		
-		public function set id(value:int):void
+		public function set id(value:String):void
 		{
 			mId = value;
 		}
@@ -83,21 +83,21 @@ package Data.Agents
 		{
 			if(!data)
 			{
-				mId = 0;
-				mName = "";
-				mDescription = "";
+				mId = "";
+				mLocation = "";
 				mNerve = 0;
 				mAffinity = 0;
-				mLocationId = 0;
+				mFacts = null;
+				mItems = null;
 			}
 			else
 			{
-				mId = int(data.id);
-				mName = String(data.name);
-				mDescription = String(data.description);
+				mId = String(data.id);
+				mLocation = String(data.location);
 				mNerve = int(data.nerve);
 				mAffinity = int(data.affinity);
-				mLocationId = int(data.locationId);
+				mFacts = (data.facts) as Array;
+				mItems = (data.items) as Array;
 			}
 		}
 	}

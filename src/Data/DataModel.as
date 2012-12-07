@@ -118,7 +118,7 @@ package Data
 			var agents:AgentsData;
 			if(mAgentsList)
 			{
-				mAgentsList.removeAll();
+//				mAgentsList.removeAll();
 			}
 			for each(var item:Object in data)
 			{
@@ -135,7 +135,7 @@ package Data
 			var locations:LocationsData;
 			if(mLocationsList)
 			{
-				mLocationsList.removeAll();
+//				mLocationsList.removeAll();
 			}
 			for each(var item:Object in data)
 			{

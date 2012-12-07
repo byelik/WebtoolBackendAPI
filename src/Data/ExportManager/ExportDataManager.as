@@ -87,34 +87,7 @@ package Data.ExportManager
 		
 		private function cancelSaving(event:Event):void
 		{
-			trace("saving of file was canceled");
-			/*for(var i:int; i < mZipExporter.getFileCount(); i++)
-			{
-				if(mZipExporter.getFileAt(i).filename == "Scenary.xml")
-				{
-					mZipExporter.removeFileAt(i);
-				}
-				if(mZipExporter.getFileAt(i).filename == "TreeData.xml")
-				{
-					mZipExporter.removeFileAt(i);
-				}
-			}*/
 			deleteFiles(mZipExporter, "Scenary.xml", "TreeData.xml");
-		}
-		
-		public static function deleteFiles(fZip:FZip, scenaryFileName:String = null, treeDataFileName:String = null):void
-		{
-			for(var i:int; i < fZip.getFileCount(); i++)
-			{
-				if(fZip.getFileAt(i).filename == scenaryFileName)
-				{
-					fZip.removeFileAt(i);
-				}
-				if(fZip.getFileAt(i).filename == treeDataFileName)
-				{
-					fZip.removeFileAt(i);
-				}
-			}
 		}
 		
 		private function prepareXmlData():void
@@ -142,12 +115,33 @@ package Data.ExportManager
 			for(var i:int = 0; i < agentsData.length; i++)
 			{
 				var agentNode:XML = new XML();
+				var agentFacts:XML = new XML();
+				var agentItems:XML = new XML();
 				agentNode = <agent id={agentsData[i].id}>
-								<name>{agentsData[i].name}</name>
-								<description>{agentsData[i].description}</description>
+								<location>{agentsData[i].location}</location>
 								<nerve>{agentsData[i].nerve}</nerve>
 								<affinity>{agentsData[i].affinity}</affinity>
 							</agent>
+				agentFacts = <facts/>
+				agentItems = <items/>
+				for(var k:int = 0; k < agentsData[i].facts.length;k++)
+				{
+					var fact:XML = new XML();
+					fact = <fact id ={agentsData[i].facts[k].id} status={agentsData[i].facts[k].status}></fact>
+					agentFacts.appendChild(fact);
+				}
+				agentNode.appendChild(agentFacts);	
+				for(var k:int = 0; k < agentsData[i].items.length;k++)
+				{
+					var item:XML = new XML();
+					item = <item> 
+							<type>{agentsData[i].items[k].type}</type>
+							<count>{agentsData[i].items[k].count}</count>
+						  </item>
+					agentItems.appendChild(item);
+				}
+				agentNode.appendChild(agentItems);
+				
 				mXmlData.agents.appendChild(agentNode);
 //				mXmlData.agents.agent.@id = tmp[i].id;
 			}
@@ -157,9 +151,8 @@ package Data.ExportManager
 			{
 				var locationNode:XML = new XML();
 				var locationsAdjacents:XML = new XML();
+				var locationItems:XML = new XML();
 				locationNode = <location id={locationsData[i].id}>
-								<name>{locationsData[i].name}</name>
-								<description>{locationsData[i].description}</description>
 							   </location>
 				locationsAdjacents = <adjacents/>;
 				for(var k:int = 0; k < locationsData[i].adjacents.length;k++)
@@ -169,6 +162,19 @@ package Data.ExportManager
 					locationsAdjacents.appendChild(adjacent);
 				}
 				locationNode.appendChild(locationsAdjacents);
+				
+				locationItems = <items/>
+				for(var k:int = 0; k < locationsData[i].items.length;k++)
+				{
+					var item:XML = new XML();
+					item = <item> 
+							<type>{locationsData[i].items[k].type}</type>
+							<count>{locationsData[i].items[k].count}</count>
+						  </item>
+					locationItems.appendChild(item);
+				}
+				locationNode.appendChild(locationItems);
+				
 				mXmlData.locations.appendChild(locationNode);
 			}
 			
@@ -190,6 +196,21 @@ package Data.ExportManager
 							</beat>
 			}
 			
+		}
+		
+		public static function deleteFiles(fZip:FZip, scenaryFileName:String = null, treeDataFileName:String = null):void
+		{
+			for(var i:int; i < fZip.getFileCount(); i++)
+			{
+				if(fZip.getFileAt(i).filename == scenaryFileName)
+				{
+					fZip.removeFileAt(i);
+				}
+				if(fZip.getFileAt(i).filename == treeDataFileName)
+				{
+					fZip.removeFileAt(i);
+				}
+			}
 		}
 	}
 }

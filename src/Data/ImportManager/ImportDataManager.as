@@ -30,8 +30,8 @@ package Data.ImportManager
 		[Bindable]
 		private var mBeats:ArrayCollection = new ArrayCollection();
 		
-		[Bindable]
-		private var mLocations:ArrayCollection = new ArrayCollection();
+//		[Bindable]
+//		private var mLocations:ArrayCollection = new ArrayCollection();
 		
 		[Bindable]
 		private var mAgents:ArrayCollection = new ArrayCollection();
@@ -187,6 +187,7 @@ package Data.ImportManager
 				DataModel.getSingleton().parseBeatsData(mBeats);
 				
 				//parse locations
+				var mLocations:ArrayCollection = new ArrayCollection();
 				if(mLocations)
 				{
 					mLocations.removeAll();
@@ -197,14 +198,19 @@ package Data.ImportManager
 				}
 				for each(var location:XML in locationsXml.location)
 				{
-					var locationObject:Object = {"adjacents":[]};				
-					locationObject["id"] = int(location.@id);
-					locationObject["name"] = String(location.name);
-					locationObject["description"] = String(location.description[0]);
-					
+					var locationObject:Object = {"adjacents":[], "items":[]};				
+					locationObject["id"] = String(location.@id);
 					for each(var adjacent:XML in location.adjacents.children())
 					{
-						locationObject["adjacents"].push(int(adjacent.children()[0]));
+						locationObject["adjacents"].push(String(adjacent.children()[0]));
+					}
+					for each(var item:XML in location.items.children())
+					{
+						var locationItemsObject:Object = new Object();
+						locationItemsObject["type"] = (String(item.children()[0]));
+						locationItemsObject["count"] = (int(item.children()[1]));
+						
+						locationObject["items"].push(locationItemsObject);
 					}
 					mLocations.addItem(locationObject);
 				}
@@ -221,24 +227,27 @@ package Data.ImportManager
 				}
 				for each(var agent:XML in agentsXml.agent)
 				{
-					var agentObject:Object = {"facts":[]};				
-					var facts
+					var agentObject:Object = {"facts":[], "items":[]};				
 					agentObject["id"] = String(agent.@id);
 					agentObject["location"] = String(agent.location);
 					agentObject["nerve"] = int(agent.nerve);
 					agentObject["affinity"] = int(agent.affinity);
-					for each(var fact:XML in agent.children())
+					for each(var fact:XML in agent.facts.children())
 					{
-						var factChildren:XMLList = fact.children();
-						var factObj:Object = new Object();
-						factObj["fact"] = new Array();
-//						for each(var fact:XML in factChildren[1].children())
-//						{
-//							factObj["fact"].push(int(fact.children()[0]));
-//						}
+						var agentFactsObject:Object = new Object();						
+						agentFactsObject["id"] = fact.@id.toString();
+						agentFactsObject["status"] = fact.@status.toString();
+						
+						agentObject["facts"].push(agentFactsObject);
 					}
-
-					
+					for each(var item:XML in agent.items.children())
+					{
+						var agentItemsObject:Object = new Object();
+						agentItemsObject["type"] = (String(item.children()[0]));
+						agentItemsObject["count"] = (int(item.children()[1]));
+						
+						agentObject["items"].push(agentItemsObject);
+					}
 					mAgents.addItem(agentObject);
 				}
 				DataModel.getSingleton().parseAgentsData(mAgents);
@@ -247,10 +256,6 @@ package Data.ImportManager
 				{
 					mDescriptor.removeAll();
 				}
-				/*for each(var s:XML in xmlData.agents)
-				{
-					agentsXml = agents;	
-				}*/
 				for each(var descriptor:XML in xmlData.descriptor)
 				{
 					var descriptorObject:Object = {};				

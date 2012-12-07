@@ -26,7 +26,7 @@
 			<s:HGroup verticalAlign="middle">
 				<s:Label text="Character"/>
 				<s:DropDownList id="mCharacterList"
-								labelField="name"
+								labelField="id"
 								width="300"
 								dataProvider="{hostComponent.mAgents}"/>				
 			</s:HGroup>
@@ -144,7 +144,7 @@
 					<s:DropDownList id="mLocationList"
 									minWidth="300"
 									maxWidth="300"
-									labelField="name"
+									labelField="id"
 									dataProvider="{hostComponent.mLocations}"/>
 					<s:HGroup width="100%" horizontalAlign="right">
 						<s:Button id="mAddFact"
