@@ -289,20 +289,8 @@ package Data.ImportManager
 //				treeData= mZipFile.getContentAsString(mZipFile.content);
 //				mTreeObject = JSON.parse(treeData as String);
 				DataModel.getSingleton().mTreeData = new XML(mZipFile.content);
-			}
-			
-			for(var i:int; i < mZipLoader.getFileCount(); i++)
-			{
-				if(mZipLoader.getFileAt(i).filename == "Scenary.xml")
-				{
-					mZipLoader.removeFileAt(i);
-				}
-				if(mZipLoader.getFileAt(i).filename == "TreeData.xml")
-				{
-					mZipLoader.removeFileAt(i);
-				}
-				
-			}
+			}			
+			ExportDataManager.deleteFiles(mZipLoader, "Scenary.xml", "TreeData.xml");
 		}
 		
 		private function errorHandler(event:IOErrorEvent):void

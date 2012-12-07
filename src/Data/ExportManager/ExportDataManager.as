@@ -7,6 +7,7 @@ package Data.ExportManager
 	import deng.fzip.FZipFile;
 	
 	import flash.display.Loader;
+	import flash.events.Event;
 	import flash.net.FileFilter;
 	import flash.net.FileReference;
 	import flash.utils.ByteArray;
@@ -80,7 +81,40 @@ package Data.ExportManager
 			mByteArrayData.writeUTFBytes(mTreeXml.toString());
 			mZipExporter.addFile("TreeData.xml", mByteArrayData);
 			mZipExporter.serialize(tmpByteArray);
+			exportFileReference.addEventListener(Event.CANCEL, cancelSaving);
 			exportFileReference.save(tmpByteArray, getFileName());
+		}
+		
+		private function cancelSaving(event:Event):void
+		{
+			trace("saving of file was canceled");
+			/*for(var i:int; i < mZipExporter.getFileCount(); i++)
+			{
+				if(mZipExporter.getFileAt(i).filename == "Scenary.xml")
+				{
+					mZipExporter.removeFileAt(i);
+				}
+				if(mZipExporter.getFileAt(i).filename == "TreeData.xml")
+				{
+					mZipExporter.removeFileAt(i);
+				}
+			}*/
+			deleteFiles(mZipExporter, "Scenary.xml", "TreeData.xml");
+		}
+		
+		public static function deleteFiles(fZip:FZip, scenaryFileName:String = null, treeDataFileName:String = null):void
+		{
+			for(var i:int; i < fZip.getFileCount(); i++)
+			{
+				if(fZip.getFileAt(i).filename == scenaryFileName)
+				{
+					fZip.removeFileAt(i);
+				}
+				if(fZip.getFileAt(i).filename == treeDataFileName)
+				{
+					fZip.removeFileAt(i);
+				}
+			}
 		}
 		
 		private function prepareXmlData():void
