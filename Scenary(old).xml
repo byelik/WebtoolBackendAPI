@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<data>
+	<facts>
+		<fact id="29">Melany admits that mt.</fact>
+		<fact id="30">Byelik</fact>
+	</facts>
+	<beats>
+		<beat id="4">
+			<description>Philipp: Start</description>
+			<agentId>180</agentId>
+			<locationId>-1</locationId>
+			<type>normal</type>
+			<xgmlTheme></xgmlTheme>
+			<preConditions>
+				<preCondition>
+					<description></description>
+					<factsAvailableToUser/><factsAvailableToAgent/>
+					<beatsCompleted/>
+					<affinityMin>0</affinityMin>
+					<affinityMax>100</affinityMax>
+					<nerveMin>0</nerveMin>
+					<nerveMax>100</nerveMax>
+					<userItems/>
+					<agentItems/>
+					</preCondition>
+			</preConditions>
+			<activities>
+				<activity>Idle(3)</activity>
+				<activity>StartDialog(steve, Detective! I'm so glad you are here! We have a nice murder for you! Mr. Boddy was found strangled in the morning. The doctor says the murder happened in the night. We can't but wonder who could hav done it.)</activity>
+			</activities>
+			<exclusiveBeatPriority>0</exclusiveBeatPriority>
+		</beat>
+	</beats>
+	<agents>
+		<agent id="eddy">
+			<location>salon</location>
+			<nerve>0</nerve>
+			<affinity>0</affinity>
+			<facts>
+				<fact id="301" status="true"></fact>
+				<fact id="302" status="false"></fact>
+				<fact id="303" status="notConfirmed"></fact>
+			</facts>
+			<items>
+				<item>
+					<type>gun</type>
+					<count>1</count>
+				</item>
+				<item>
+					<type>ball</type>
+					<count>2</count>
+				</item>
+			</items>
+		</agent>
+	</agents>
+	<locations>
+		<location id="hall">
+			<adjacents>
+				<adjacent>school</adjacent>
+				<adjacent>house</adjacent>
+				<adjacent>робота</adjacent>
+			</adjacents>
+			<items>
+				<item>
+					<type>gun</type>
+					<count>1333</count>
+				</item>
+				<item>
+					<type>gun</type>
+					<count>1</count>
+				</item>
+				<item>
+					<type>gun</type>
+					<count>3442341</count>
+				</item>
+			</items>
+		</location>
+		<location id="saloon">
+			<adjacents>
+				<adjacent>livingroom</adjacent>
+				<adjacent>salon</adjacent>
+				<adjacent>hall2</adjacent>
+			</adjacents>
+			<items>
+				<item>
+					<type>ball</type>
+					<count>13</count>
+				</item>
+			</items>
+		</location>
+	</locations>
+	<xgml>
+		<xgml id="38">
+			<filename>Eddy.xgml</filename>
+			<content>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+			&lt;Dialog xmlns="http://i-free.com/xml/xgml"&gt;
+		
+		    &lt;Import file="common_tokens.xgml"/&gt;
+		    &lt;Import file="2_Eddy_Interrogation.xgml"/&gt;
+		
+			&lt;/Dialog&gt;
+			</content>
+		</xgml>
+	</xgml>
+	<descriptor>
+		<id>0</id>
+		<scenarioId>Scenary_2</scenarioId>
+	</descriptor>
+</data>

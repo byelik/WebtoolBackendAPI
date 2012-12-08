@@ -129,7 +129,7 @@ package HostComponents.FactsHostComponent
 		private var indexNewElement:int 
 		
 		private var mSelectedCharacterIndex:int;
-		private var mSelectedLocationIndex:int;
+//		private var mSelectedLocationIndex:int;
 		
 		public function FactsHostComponent()
 		{
@@ -284,10 +284,10 @@ package HostComponents.FactsHostComponent
 				mAgents.sort = dataSort;
 				mAgents.refresh();
 			}
-			if(mLocations)
+			if(DataModel.getSingleton().mLocationsList)
 			{
-				mLocations.sort = dataSort;
-				mLocations.refresh();	
+				DataModel.getSingleton().mLocationsList.sort = dataSort;
+				DataModel.getSingleton().mLocationsList.refresh();	
 			}
 			if(DataModel.getSingleton().mFactsList)
 			{
@@ -308,24 +308,22 @@ package HostComponents.FactsHostComponent
 		{
 			mSelectedCharacterIndex = mCharacterList.selectedIndex;
 			
-//			new HttpServiceManager('{"method":"locations.getLocations","params":[],"jsonrpc":"2.0","id":0}', parseLocationsData);
-//			new HttpServiceManager('{"method":"facts.getFacts","params":[], "jsonrpc": "2.0", "id":7}', parseFactsData);
-//			new HttpServiceManager('{"method":"agents.getAgents","params":[],"jsonrpc":"2.0","id":0}', parseAgentsData);
-			
-			//			new HttpServiceManager('{"method":"general.getFactDetails","params":["'+event.target.selectedItem.id+'"],"jsonrpc":"2.0","id":0}', factDetailResult);
 			mAffinity.text = mCharacterList.selectedItem.affinity;
 			mNerve.text = mCharacterList.selectedItem.nerve;
-			for(var i:int = 0; i < mLocations.length; i++)
+			for(var i:int = 0; i < DataModel.getSingleton().mLocationsList.length; i++)
 			{
-				if(mCharacterList.selectedItem.location == mLocations[i].id)
+				if(mCharacterList.selectedItem.location == DataModel.getSingleton().mLocationsList[i].id)
 				{
-					mLocationList.selectedItem = mLocations[i];
-					mSelectedLocationIndex = i;
+					
+//					mLocationList.selectedItem = DataModel.getSingleton().mLocationsList[i];
+//					trace(mLocationList.selectedItem.id);
+					mLocationList.selectedIndex = i;
+//					mSelectedLocationIndex = i;
 				}
 				
 			}
 			
-			if(mCharacterFactItems)
+			/*if(mCharacterFactItems)
 			{
 				mCharacterFactItems.removeAll();
 			}
@@ -343,10 +341,10 @@ package HostComponents.FactsHostComponent
 						mCharacterFactItems.addItem(factsOwner);
 					}	
 				}
-			}	
+			}*/	
 		}
 		
-		private function parseLocationsData(data:Object):void
+		/*private function parseLocationsData(data:Object):void
 		{
 			DataModel.getSingleton().parseLocationsData(data);
 			mCharacterList.selectedIndex = mSelectedCharacterIndex;
@@ -366,7 +364,7 @@ package HostComponents.FactsHostComponent
 			DataModel.getSingleton().parseAgentsData(data);
 			mCharacterList.selectedIndex = mSelectedCharacterIndex;
 			mLocationList.selectedIndex = mSelectedLocationIndex;
-		}
+		}*/
 		
 		private function factDetailResult(result:Object):void
 		{
@@ -537,7 +535,7 @@ package HostComponents.FactsHostComponent
 		private function selectLocation(event:IndexChangeEvent):void
 		{
 			//select location
-			new HttpServiceManager('{"method":"agents.setAgentLocation","params":["'+mCharacterList.selectedItem.id+'","'+event.target.selectedItem.id+'"], "jsonrpc": "2.0", "id":7}', setAgentLocation);	
+			//new HttpServiceManager('{"method":"agents.setAgentLocation","params":["'+mCharacterList.selectedItem.id+'","'+event.target.selectedItem.id+'"], "jsonrpc": "2.0", "id":7}', setAgentLocation);	
 		}
 
 		private function setAgentLocation(result:Object):void
@@ -553,13 +551,9 @@ package HostComponents.FactsHostComponent
 		{
 			var randomFactId:Number = Math.ceil(Math.random()*1000); 
 			var factObj:Object = ({id:randomFactId, description:"New Fact"});
-//			new HttpServiceManager('{"method":"facts.addFact","params":[{"description":"New Fact"}],"jsonrpc":"2.0","id":9}', addFactResult);
 			DataModel.getSingleton().mFactsList.addEventListener(CollectionEvent.COLLECTION_CHANGE, getIndex);
-//			DataModel.getSingleton().mFactsList
-//			mSystemFacts.addItem(result);
 			DataModel.getSingleton().mFactsList.addItem(factObj);
 			var tmp:ArrayCollection = DataModel.getSingleton().mFactsList; 
-			
 			mFactsList.startItemEditorSession(indexNewElement, 1)
 		}
 		

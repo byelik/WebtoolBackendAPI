@@ -145,7 +145,7 @@
 									minWidth="300"
 									maxWidth="300"
 									labelField="id"
-									dataProvider="{hostComponent.mLocations}"/>
+									dataProvider="{DataModel.getSingleton().mLocationsList}"/>
 					<s:HGroup width="100%" horizontalAlign="right">
 						<s:Button id="mAddFact"
 								  label="+Fact"/>

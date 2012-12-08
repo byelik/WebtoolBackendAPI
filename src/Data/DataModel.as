@@ -118,9 +118,9 @@ package Data
 			var agents:AgentsData;
 			if(mAgentsList)
 			{
-//				mAgentsList.removeAll();
-				mAgentsList.disableAutoUpdate();
-//				mAgentsList.refresh();
+				mAgentsList.removeAll();
+//				mAgentsList.disableAutoUpdate();
+				mAgentsList.refresh();
 			}
 			for each(var item:Object in data)
 			{
@@ -128,7 +128,7 @@ package Data
 				agents.parse(item);
 				mAgentsList.addItem(agents);
 			}
-			mAgentsList.enableAutoUpdate();
+//			mAgentsList.enableAutoUpdate();
 		}
 		
 		public function parseLocationsData(data:Object):void
@@ -139,7 +139,7 @@ package Data
 			{
 				
 				mLocationsList.removeAll();
-				mLocationsList.disableAutoUpdate();
+//				mLocationsList.disableAutoUpdate();
 				mLocationsList.refresh();
 			}
 			for each(var item:Object in data)
@@ -148,7 +148,7 @@ package Data
 				locations.parse(item);
 				mLocationsList.addItem(locations);
 			}
-			mLocationsList.enableAutoUpdate();
+//			mLocationsList.enableAutoUpdate();
 		}
 		public static const millisecondsPerDay:int = 1000 * 60 * 60 * 24;
 		private function parseOriginalBeatData():void
