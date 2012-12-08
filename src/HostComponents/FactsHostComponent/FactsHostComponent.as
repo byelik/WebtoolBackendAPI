@@ -289,10 +289,10 @@ package HostComponents.FactsHostComponent
 				mLocations.sort = dataSort;
 				mLocations.refresh();	
 			}
-			if(mSystemFacts)
+			if(DataModel.getSingleton().mFactsList)
 			{
-				mSystemFacts.sort = sortFacts;
-				mSystemFacts.refresh();
+				DataModel.getSingleton().mFactsList.sort = sortFacts;
+				DataModel.getSingleton().mFactsList.refresh();
 			}
 		}
 		
@@ -329,9 +329,9 @@ package HostComponents.FactsHostComponent
 			{
 				mCharacterFactItems.removeAll();
 			}
-			for(var j:int = 0; j < mSystemFacts.length; j++)
+			for(var j:int = 0; j < DataModel.getSingleton().mFactsList.length; j++)
 			{	
-				var factsOwner:Object = mSystemFacts[j]; 
+				var factsOwner:Object = DataModel.getSingleton().mFactsList[j]; 
 				if(!factsOwner.owners)
 				{
 					continue;
@@ -400,7 +400,7 @@ package HostComponents.FactsHostComponent
 			//add variable and refresh all data
 			
 			mVariableItems.addItem({id:"New Variable", description: ""}); 
-			mSystemFacts.addEventListener(CollectionEvent.COLLECTION_CHANGE, getIndex);
+//			mSystemFacts.addEventListener(CollectionEvent.COLLECTION_CHANGE, getIndex);
 		}
 		
 		private function addVariableResult(result:Object):void
@@ -551,11 +551,16 @@ package HostComponents.FactsHostComponent
 		
 		private function addFact(event:MouseEvent):void
 		{
-//			focusManager.setFocus(mFactsDescriptionArea);
-//			mFactsDescriptionArea.text = "New Fact";
-//			mSystemFactsList.addItem({id:"1", description:"New Fact"});
-			new HttpServiceManager('{"method":"facts.addFact","params":[{"description":"New Fact"}],"jsonrpc":"2.0","id":9}', addFactResult);
-			mSystemFacts.addEventListener(CollectionEvent.COLLECTION_CHANGE, getIndex);
+			var randomFactId:Number = Math.ceil(Math.random()*1000); 
+			var factObj:Object = ({id:randomFactId, description:"New Fact"});
+//			new HttpServiceManager('{"method":"facts.addFact","params":[{"description":"New Fact"}],"jsonrpc":"2.0","id":9}', addFactResult);
+			DataModel.getSingleton().mFactsList.addEventListener(CollectionEvent.COLLECTION_CHANGE, getIndex);
+//			DataModel.getSingleton().mFactsList
+//			mSystemFacts.addItem(result);
+			DataModel.getSingleton().mFactsList.addItem(factObj);
+			var tmp:ArrayCollection = DataModel.getSingleton().mFactsList; 
+			
+			mFactsList.startItemEditorSession(indexNewElement, 1)
 		}
 		
 		private function addFactResult(result:Object):void
@@ -620,10 +625,10 @@ package HostComponents.FactsHostComponent
 		
 		private function finishEditSystemFactDescription(event:GridItemEditorEvent):void
 		{
-			var factId:int = mSystemFacts.getItemAt(event.rowIndex).id;
-			var xgmlId:String = mSystemFacts.getItemAt(event.rowIndex).xgml;
-			var factDescription:String = mSystemFacts.getItemAt(event.rowIndex).description;
-			new HttpServiceManager('{"method":"facts.updateFactDetails","params":['+factId+', "'+xgmlId+'", "'+factDescription+'"], "jsonrpc": "2.0", "id":7}', editFactDescriptionResult);
+//			var factId:int = DataModel.getSingleton().mFactsList.getItemAt(event.rowIndex).id;
+//			var xgmlId:String = DataModel.getSingleton().mFactsList.getItemAt(event.rowIndex).xgml;
+			var factDescription:String = DataModel.getSingleton().mFactsList.getItemAt(event.rowIndex).description;
+//			new HttpServiceManager('{"method":"facts.updateFactDetails","params":['+factId+', "'+xgmlId+'", "'+factDescription+'"], "jsonrpc": "2.0", "id":7}', editFactDescriptionResult);
 		}
 		
 		private function editFactDescriptionResult(result:Object):void

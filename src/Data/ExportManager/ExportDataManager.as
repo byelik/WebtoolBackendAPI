@@ -181,7 +181,11 @@ package Data.ExportManager
 			//Facts
 			for(var i:int = 0; i < factsData.length; i++)
 			{
-				
+				var factsNode:XML = new XML();
+				factsNode = <fact id ={factsData[i].id}>
+							{factsData[i].description}
+							</fact>
+				mXmlData.facts.appendChild(factsNode);
 			}
 			
 			
@@ -194,6 +198,7 @@ package Data.ExportManager
 							<agent>{beatsData[i].agent}</agent>
 							<type>{beatsData[i].type}</type>
 							</beat>
+				mXmlData.beats.appendChild(beatsNode);
 			}
 			
 		}
