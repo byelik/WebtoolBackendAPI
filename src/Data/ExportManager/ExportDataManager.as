@@ -71,6 +71,8 @@ package Data.ExportManager
 		
 		public function exportData():void
 		{
+			//FIX ME (check is file exist...)
+			deleteFiles(mZipExporter, "Scenary.xml");
 			prepareXmlData();
 //			var tmp:FZip = DataModel.getSingleton().mFZipObject;
 			var tmpByteArray:ByteArray = new ByteArray();
@@ -79,6 +81,7 @@ package Data.ExportManager
 			mZipExporter.addFile("Scenary.xml", mByteArrayData);
 			mByteArrayData.clear();
 			mByteArrayData.writeUTFBytes(mTreeXml.toString());
+			deleteFiles(mZipExporter, "TreeData.xml");
 			mZipExporter.addFile("TreeData.xml", mByteArrayData);
 			mZipExporter.serialize(tmpByteArray);
 			exportFileReference.addEventListener(Event.CANCEL, cancelSaving);
@@ -207,14 +210,14 @@ package Data.ExportManager
 		{
 			for(var i:int; i < fZip.getFileCount(); i++)
 			{
-				if(fZip.getFileAt(i).filename == scenaryFileName)
+				if((fZip.getFileAt(i).filename == treeDataFileName) ||(fZip.getFileAt(i).filename == scenaryFileName))
 				{
 					fZip.removeFileAt(i);
 				}
-				if(fZip.getFileAt(i).filename == treeDataFileName)
-				{
-					fZip.removeFileAt(i);
-				}
+//				if(fZip.getFileAt(i).filename == scenaryFileName)
+//				{
+//					fZip.removeFileAt(i);
+//				}			
 			}
 		}
 	}

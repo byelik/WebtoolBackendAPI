@@ -552,11 +552,16 @@ package HostComponents.BeatsHostComponent
 		{
 			//refresh search...
 			//close search tree... and show beats tree
-			mSearchField.mSearchInputField.text = "";
-			if(mSearchField)
-			{
-				mSearchField.mSearchMatch.removeAll();
-			}
+//			mSearchField.mSearchInputField.text = "";
+//			if(mSearchField)
+//			{
+//				mSearchField.mSearchMatch.removeAll();
+//			}
+//			open all nodes...
+//			mBeatsTree.openItems = DataModel.getSingleton().mTreeData..node;
+			
+//			close all nodes...
+//			mBeatsTree.openItems = [];
 		}
 		
 		/*private function getSelectedElement(event:ContextMenuEvent):void

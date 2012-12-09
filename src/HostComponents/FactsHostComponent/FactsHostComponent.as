@@ -1,8 +1,5 @@
 package HostComponents.FactsHostComponent
 {
-	
-
-	
 	import Constants.Const;
 	
 	import Data.DataModel;
@@ -535,7 +532,12 @@ package HostComponents.FactsHostComponent
 		private function selectLocation(event:IndexChangeEvent):void
 		{
 			//select location
-			//new HttpServiceManager('{"method":"agents.setAgentLocation","params":["'+mCharacterList.selectedItem.id+'","'+event.target.selectedItem.id+'"], "jsonrpc": "2.0", "id":7}', setAgentLocation);	
+			//new HttpServiceManager('{"method":"agents.setAgentLocation","params":["'+mCharacterList.selectedItem.id+'","'+event.target.selectedItem.id+'"], "jsonrpc": "2.0", "id":7}', setAgentLocation);
+			for(var i:int = 0; i < DataModel.getSingleton().mAgentsList.length; i++)
+			{
+				DataModel.getSingleton().mAgentsList[i].location = mLocationList.selectedItem.id;	
+			}
+			
 		}
 
 		private function setAgentLocation(result:Object):void
@@ -577,7 +579,7 @@ package HostComponents.FactsHostComponent
 			
 			for(var i:int = 0; i < selectedObjects.length; i++)
 			{
-				mSelectedSystemFacts.addItem(selectedObjects[i].id);
+				mSelectedSystemFacts.addItem(selectedObjects[i]);
 			}						
 			Alert.yesLabel = "Да";
 			Alert.noLabel = "Нет";
@@ -591,9 +593,14 @@ package HostComponents.FactsHostComponent
 				trace("delete selected fact(s)");
 				if(mFactsList.selectedItems)
 				{
-					new HttpServiceManager('{"method":"facts.removeFact","params":["'+mSelectedSystemFacts+'"],"jsonrpc":"2.0","id":0}', deleteFactResult);
-					mDeleteFact.enabled = false;
-					mAddFactOwner.enabled = false;
+					for(var i:int = 0; i < mSelectedSystemFacts.length; i++)
+					{
+						DataModel.getSingleton().mFactsList.removeItemAt(mFactsList.selectedIndex);
+						mDeleteFact.enabled = false;
+						mAddFactOwner.enabled = false;
+					}
+					
+					
 				}
 			}
 			else
@@ -601,20 +608,6 @@ package HostComponents.FactsHostComponent
 				trace("just close wnd ");
 			}
 				
-		}
-		
-		private function deleteFactResult(result:Object):void
-		{
-			trace(result);
-			if(result)
-			{
-//				Alert.show("Code: " + result.code + "\n\Message: " + result.message, "Error", Alert.OK);
-				Alert.show("Ошибка при удалении", "Ошибка", Alert.OK);
-			}
-			if(result == null)
-			{
-				new HttpServiceManager('{"method":"facts.getFacts","params":[], "jsonrpc": "2.0", "id":7}', DataModel.getSingleton().parseFactsData);
-			}
 		}
 		
 		private function finishEditSystemFactDescription(event:GridItemEditorEvent):void
