@@ -84,8 +84,6 @@
 				</s:DataGrid>	
 			</s:Panel>
 			
-			<!--<s:Label text="Character facts"/>-->
-			<!--<s:HGroup verticalAlign="middle">-->
 				<s:Panel title="Character facts">
 					<s:DataGrid id="mCharacterFactsList"
 								width="355" 

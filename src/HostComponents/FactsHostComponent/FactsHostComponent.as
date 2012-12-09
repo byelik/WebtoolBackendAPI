@@ -303,19 +303,13 @@ package HostComponents.FactsHostComponent
 		
 		public function getCharacterData():void
 		{
-			mSelectedCharacterIndex = mCharacterList.selectedIndex;
-			
 			mAffinity.text = mCharacterList.selectedItem.affinity;
 			mNerve.text = mCharacterList.selectedItem.nerve;
 			for(var i:int = 0; i < DataModel.getSingleton().mLocationsList.length; i++)
 			{
 				if(mCharacterList.selectedItem.location == DataModel.getSingleton().mLocationsList[i].id)
-				{
-					
-//					mLocationList.selectedItem = DataModel.getSingleton().mLocationsList[i];
-//					trace(mLocationList.selectedItem.id);
+				{					
 					mLocationList.selectedIndex = i;
-//					mSelectedLocationIndex = i;
 				}
 				
 			}
@@ -373,21 +367,29 @@ package HostComponents.FactsHostComponent
 		{
 //			trace(mAffinity.text);
 			firstTextElement = mAffinity.text.substring(0,1);
-			if(checkValue(firstTextElement, mAffinity))
+			if(!checkValue(firstTextElement, mAffinity))
 			{
 				Alert.show(Const.ERROR_INPUT_AFFINITY_VALUE, Const.TITLE_ERROR_WINDOW, Alert.OK, null, alertHandler);
 				mComponent = mAffinity;
+			}
+			else
+			{
+				mCharacterList.selectedItem.affinity = mAffinity.text; 
 			}
 		}
 		
 		private function inputNerveValue(event:TextOperationEvent):void
 		{
 			firstTextElement = mNerve.text.substring(0,1);
-			if(checkValue(firstTextElement, mNerve))
+			if(!checkValue(firstTextElement, mNerve))
 			{
 				Alert.show(Const.ERROR_INPUT_NERVE_VALUE, Const.TITLE_ERROR_WINDOW, Alert.OK, null, alertHandler);
 				mComponent = mNerve;
-			}	
+			}
+			else
+			{
+				mCharacterList.selectedItem.nerve = mNerve.text;
+			}
 		}
 		
 		private function addVariable(event:MouseEvent):void
@@ -465,7 +467,7 @@ package HostComponents.FactsHostComponent
 			{
 				mAddFactOwner.enabled = false;
 //				var selectedObjects:Vector.<Object> = mFactsList.selectedItems;
-				new HttpServiceManager('{"method":"facts.addFactOwner","params":["'+mFactsList.selectedItem.id+'","'+mCharacterList.selectedItem.id+'"],"jsonrpc":"2.0","id":9}', addFactOwnerResult);
+//				new HttpServiceManager('{"method":"facts.addFactOwner","params":["'+mFactsList.selectedItem.id+'","'+mCharacterList.selectedItem.id+'"],"jsonrpc":"2.0","id":9}', addFactOwnerResult);
 			}
 		}
 			
@@ -590,7 +592,6 @@ package HostComponents.FactsHostComponent
 		{			
 			if(event.detail == Alert.YES)
 			{
-				trace("delete selected fact(s)");
 				if(mFactsList.selectedItems)
 				{
 					for(var i:int = 0; i < mSelectedSystemFacts.length; i++)
@@ -713,9 +714,11 @@ package HostComponents.FactsHostComponent
 		{
 			if(parseInt(str) == 0 && txtField.text.length > 1 || parseInt(txtField.text) > Const.MAX_VALUE || txtField.text == Const.EMPTY_STRING)	
 			{
-				return true;
+				trace("false");
+				return false;
 			}
-			return false;
+			trace("true");
+			return true;
 		}
 		
 		private function alertHandler(event:CloseEvent):void
