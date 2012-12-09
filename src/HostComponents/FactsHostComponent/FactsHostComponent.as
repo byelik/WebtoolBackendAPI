@@ -110,8 +110,6 @@ package HostComponents.FactsHostComponent
 //		[Bindable]
 //		public var mSystemFactsList:ArrayCollection = new ArrayCollection();
 
-		[Bindable]
-		public var mCharacterFactItems:ArrayCollection = new ArrayCollection();
 		
 		[Bindable]
 		public var mVariableItems:ArrayCollection = new ArrayCollection();
@@ -301,8 +299,32 @@ package HostComponents.FactsHostComponent
 			getCharacterData();
 		}
 		
+		[Bindable]
+		public var tmp:ArrayCollection = new ArrayCollection();
 		public function getCharacterData():void
 		{
+			if(DataModel.getSingleton().mCharacterFacts)
+			{
+				DataModel.getSingleton().mCharacterFacts.removeAll();
+				DataModel.getSingleton().mCharacterFacts.refresh();
+			}
+			var characterFact:ArrayCollection = new ArrayCollection();
+			if(characterFact)
+			{
+				characterFact.removeAll();
+				characterFact.refresh();
+				characterFact.addItem(mCharacterList.selectedItem.facts);
+			}
+			for(var i:int = 0; i < characterFact.length; i++)
+			{
+				for(var j:int = 0; j < characterFact[i].length; j++)
+				{
+					DataModel.getSingleton().mCharacterFacts.addItem(characterFact[i][j]);	
+				}	
+			}
+			
+//			tmp = DataModel.getSingleton().mCharacterFactsList; 
+			
 			mAffinity.text = mCharacterList.selectedItem.affinity;
 			mNerve.text = mCharacterList.selectedItem.nerve;
 			for(var i:int = 0; i < DataModel.getSingleton().mLocationsList.length; i++)
@@ -463,74 +485,41 @@ package HostComponents.FactsHostComponent
 		
 		private function addFactOwner(event:MouseEvent):void
 		{
+			var factObj:Object;
 			if(mFactsList.selectedItems)
 			{
-				mAddFactOwner.enabled = false;
-//				var selectedObjects:Vector.<Object> = mFactsList.selectedItems;
-//				new HttpServiceManager('{"method":"facts.addFactOwner","params":["'+mFactsList.selectedItem.id+'","'+mCharacterList.selectedItem.id+'"],"jsonrpc":"2.0","id":9}', addFactOwnerResult);
+				
+				for(var i:int = 0; i < mFactsList.selectedItems.length; i++)
+				{
+					factObj = (mFactsList.selectedItems);	
+				}
+				for(var j:int = 0; j < factObj.length; j++)
+				{
+//					DataModel.getSingleton().mCharacterFacts.addItem({id:factObj[j].id, status:"true"});
+					mCharacterList.selectedItem.facts.push({id:factObj[j].id, status:"true"});
+					mCharacterList.invalidateDisplayList();
+					
+				}
+				
 			}
+//			mCharacterList.selectedItem.facts = null;
+//			mCharacterList.selectedItem.facts.push(DataModel.getSingleton().mCharacterFacts);
+			var tmp:ArrayCollection = DataModel.getSingleton().mAgentsList;
+			mAddFactOwner.enabled = false;
 		}
 			
-		private function addFactOwnerResult(result:Object):void
-		{
-			if(result != null)
-			{
-				//error
-			}
-			else
-			{
-				mCharacterFactItems.addItem(mFactsList.selectedItem);
-			}
-			
-		}
-		
-		
-		
-		
-		 
 		private function deleteFactOwner(event:MouseEvent):void
 		{
 			var indx:Vector.<Object> = mCharacterFactsList.selectedItems;
-			if(mSelectedCharacterFactsItemIndex)
-			{
-				mSelectedCharacterFactsItemIndex = null;
-			}
-			mSelectedCharacterFactsItemIndex = mCharacterFactsList.selectedItems;
-			
-			if(mSelectedCharacterFacts)
-			{
-				mSelectedCharacterFacts.removeAll();
-			}
-				
-			if(mCharacterFactsList.selectedItems)
+			if(indx)
 			{
 				for(var i:int = 0; i < indx.length; i++)
 				{
-					mSelectedCharacterFacts.addItem(indx[i].id);
+					DataModel.getSingleton().mCharacterFacts.removeItemAt(mCharacterFactsList.selectedIndex);
 				}
-				new HttpServiceManager('{"method":"facts.removeFactOwner","params":["'+mSelectedCharacterFacts+'","'+mCharacterList.selectedItem.id+'"], "jsonrpc": "2.0", "id":7}', deleteFactOwnerResult);
-				mDeleteFactOwner.enabled = false;
 			}
 		}
-		
-		private function deleteFactOwnerResult(result:Object):void
-		{
-			if(result !=null)
-			{
-				//error
-				Alert.show("Не удалось удалить факт персонажа", "Ошибка", Alert.OK);
-			}
-			else
-			{
-				for(var i:int = 0; i < mSelectedCharacterFactsItemIndex.length; i++)
-				{
-					mCharacterFactItems.removeItemAt(mCharacterFactsList.selectedIndex);
-				}
-//				mCharacterFactItems.removeItemAt(mSelectedCharacterFactsItemIndex);
-//				mCharacterFactItems.removeItemAt(mCharacterFactsList.selectedIndex);
-			}
-		}
-		
+				
 		private function selectLocation(event:IndexChangeEvent):void
 		{
 			//select location
