@@ -321,9 +321,7 @@ package HostComponents.FactsHostComponent
 				{
 					DataModel.getSingleton().mCharacterFacts.addItem(characterFact[i][j]);	
 				}	
-			}
-			
-//			tmp = DataModel.getSingleton().mCharacterFactsList; 
+			} 
 			
 			mAffinity.text = mCharacterList.selectedItem.affinity;
 			mNerve.text = mCharacterList.selectedItem.nerve;
@@ -485,6 +483,7 @@ package HostComponents.FactsHostComponent
 		
 		private function addFactOwner(event:MouseEvent):void
 		{
+//			DataModel.getSingleton().mCharacterFacts.removeAll();
 			var factObj:Object;
 			if(mFactsList.selectedItems)
 			{
@@ -495,9 +494,19 @@ package HostComponents.FactsHostComponent
 				}
 				for(var j:int = 0; j < factObj.length; j++)
 				{
-//					DataModel.getSingleton().mCharacterFacts.addItem({id:factObj[j].id, status:"true"});
-					mCharacterList.selectedItem.facts.push({id:factObj[j].id, status:"true"});
-					mCharacterList.invalidateDisplayList();
+					for(var k:int = 0; k < DataModel.getSingleton().mAgentsList.length; k++)
+					{
+						if(mCharacterList.selectedItem.id == DataModel.getSingleton().mAgentsList[k].id)
+						{
+//							DataModel.getSingleton().mAgentsList[k].facts.removeAll();
+//							DataModel.getSingleton().mAgentsList[k].facts.addItem(mCharacterFactsList.dataProvider);
+//						}
+							DataModel.getSingleton().mAgentsList[k].facts.addItem({id:factObj[j].id, status:"true", description:factObj[j].description});
+						}
+						mCharacterList.selectedItem.facts.push({id:factObj[j].id, status:"true", description:factObj[j].description});
+//						mCharacterList.invalidateDisplayList();
+//						DataModel.getSingleton().mCharacterFacts.addItem(mCharacterList.selectedItem.facts);
+					}
 					
 				}
 				
@@ -506,6 +515,11 @@ package HostComponents.FactsHostComponent
 //			mCharacterList.selectedItem.facts.push(DataModel.getSingleton().mCharacterFacts);
 			var tmp:ArrayCollection = DataModel.getSingleton().mAgentsList;
 			mAddFactOwner.enabled = false;
+//			mCharacterFactsList.invalidateDisplayList();
+			
+			
+			var t:ArrayCollection = DataModel.getSingleton().mCharacterFacts;
+//			DataModel.getSingleton().mAgentsList.refresh();
 		}
 			
 		private function deleteFactOwner(event:MouseEvent):void

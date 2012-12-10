@@ -1,35 +1,37 @@
 package Data.Agents
 {
+	import mx.collections.ArrayCollection;
+
 	public class AgentsData
 	{
 		private var mId:String;
 		private var mLocation:String;
 		private var mNerve:int;
 		private var mAffinity:int;
-		private var mFacts:Array;
-		private var mItems:Array;
+		private var mFacts:ArrayCollection;
+		private var mItems:ArrayCollection;
 		
 		public function AgentsData(data:Object = null)
 		{
 			parse(data);
 		}
 		
-		public function get items():Array
+		public function get items():ArrayCollection
 		{
 			return mItems;
 		}
 
-		public function set items(value:Array):void
+		public function set items(value:ArrayCollection):void
 		{
 			mItems = value;
 		}
 
-		public function get facts():Array
+		public function get facts():ArrayCollection
 		{
 			return mFacts;
 		}
 
-		public function set facts(value:Array):void
+		public function set facts(value:ArrayCollection):void
 		{
 			mFacts = value;
 		}
@@ -96,8 +98,8 @@ package Data.Agents
 				mLocation = String(data.location);
 				mNerve = int(data.nerve);
 				mAffinity = int(data.affinity);
-				mFacts = (data.facts) as Array;
-				mItems = (data.items) as Array;
+				mFacts = new ArrayCollection((data.facts) as Array);
+				mItems = new ArrayCollection((data.items) as Array);
 			}
 		}
 	}
