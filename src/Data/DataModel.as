@@ -183,9 +183,10 @@ package Data
 				
 				tmp["beatId"] = originalBeatData.id;
 				tmp["beatDescription"] = originalBeatData.description;
+				tmp["beatsCompleted"] = originalBeatData.beatsCompleted;
 				for each(var beatPrecondition:Object in originalBeatData.preconditions)
 				{
-					tmp["beatsCompleted"] = beatPrecondition.beatsCompleted;
+//					tmp["beatsCompleted"] = beatPrecondition.beatsCompleted;
 					tmp["affinityMax"] = beatPrecondition.affinityMax;
 					tmp["affinityMin"] = beatPrecondition.affinityMin;
 					tmp["beatPreconditionsDescription"] = beatPrecondition.description;

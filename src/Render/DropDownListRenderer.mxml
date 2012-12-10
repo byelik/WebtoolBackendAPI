@@ -67,7 +67,7 @@ headerText="Qty"&gt;
 			//
 			//--------------------------------------------------------------------------
 			[Bindable]
-			public var mOwner:String;
+			public var labelField:String;
 			/**
 			 *  @private
 			 * 
@@ -75,7 +75,7 @@ headerText="Qty"&gt;
 			 */ 
 			override public function get value():Object
 			{
-				return comboBox.selectedItem;            
+				return dropDownList.selectedItem;            
 			}
 			
 			/**
@@ -86,7 +86,7 @@ headerText="Qty"&gt;
 			 */ 
 			override public function set value(newValue:Object):void
 			{
-				comboBox.selectedItem = newValue;
+				dropDownList.selectedItem = newValue;
 			}
 			
 			//--------------------------------------------------------------------------
@@ -141,8 +141,8 @@ headerText="Qty"&gt;
 			{
 				super.prepare();
 				
-				comboBox.addEventListener(DropDownEvent.OPEN, dropDown_openHandler);
-				comboBox.openDropDown();
+				dropDownList.addEventListener(DropDownEvent.OPEN, dropDown_openHandler);
+				dropDownList.openDropDown();
 			}
 			
 			
@@ -152,7 +152,7 @@ headerText="Qty"&gt;
 			override public function setFocus():void
 			{
 				// delegate focus to the combox box.
-				comboBox.setFocus();
+				dropDownList.setFocus();
 			}
 			
 			/**
@@ -165,8 +165,8 @@ headerText="Qty"&gt;
 				// session. We listen to the dataGroup here instead of the dropDown
 				// part to avoid closing the editor when the dropDown's 
 				// scrollbar is clicked.
-				if (comboBox.dataGroup)
-					comboBox.dataGroup.addEventListener(MouseEvent.MOUSE_DOWN, dataGroup_mouseClickHandler, false, 0, true);
+				if (dropDownList.dataGroup)
+					dropDownList.dataGroup.addEventListener(MouseEvent.MOUSE_DOWN, dataGroup_mouseClickHandler, false, 0, true);
 			}
 			
 			/**
@@ -191,8 +191,8 @@ headerText="Qty"&gt;
 			
 			protected function comboBox_changeHandler(event:IndexChangeEvent):void
 			{
-				comboBox.selectedItem = tmp;
-				trace("change: " + comboBox.selectedItem.type);
+				dropDownList.selectedItem = tmp;
+				trace("change: " + dropDownList.selectedItem.type);
 			}
 		]]>
 	</fx:Script>
@@ -228,6 +228,6 @@ headerText="Qty"&gt;
 	@playerversion AIR 2.5
 	@productversion Flex 4.5
 	-->
-	<s:DropDownList id="comboBox" width="100%" dataProvider="{dataProvider}"  labelFunction="{test}" change="comboBox_changeHandler(event)"/>
+	<s:DropDownList id="dropDownList" width="100%" dataProvider="{dataProvider}"  labelField="{labelField}"/>
 	
 </s:GridItemEditor>

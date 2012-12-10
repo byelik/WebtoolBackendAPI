@@ -86,6 +86,8 @@ package Data.ExportManager
 			mZipExporter.serialize(tmpByteArray);
 			exportFileReference.addEventListener(Event.CANCEL, cancelSaving);
 			exportFileReference.save(tmpByteArray, getFileName());
+//			var tmp:ArrayCollection = DataModel.getSingleton().mCharacterFactsList;
+//			trace(tmp);
 		}
 		
 		private function cancelSaving(event:Event):void
@@ -196,11 +198,36 @@ package Data.ExportManager
 			for(var i:int = 0; i < beatsData.length; i++)
 			{
 				var beatsNode:XML = new XML();
+				var beatsThemes:XML = new XML();
+				var completedBeats:XML = new XML();
 				beatsNode = <beat id = {beatsData[i].id}>
 							<description>{beatsData[i].description}</description>
 							<agent>{beatsData[i].agent}</agent>
 							<type>{beatsData[i].type}</type>
+							<exclusiveBeatPriority>{beatsData[i].exclusiveBeatPriority}</exclusiveBeatPriority>
 							</beat>
+				
+				
+				beatsThemes = <themes/>
+				completedBeats = <completedBeats/>
+					
+				for(var k:int = 0; k < beatsData[i].xgmlTheme.length;k++)
+				{
+					var theme:XML = new XML();
+					theme = <theme>{beatsData[i].xgmlTheme}</theme>
+					beatsThemes.appendChild(theme);
+				}
+				beatsNode.appendChild(beatsThemes);	
+				
+				for(var k:int = 0; k < beatsData[i].beatsCompleted.length;k++)
+				{
+					var beatCompleted:XML = new XML();
+					beatCompleted = <beat>{beatsData[i].beatsCompleted}</beat>
+					completedBeats.appendChild(beatCompleted);
+				}
+				beatsNode.appendChild(completedBeats);
+				completedBeats
+					
 				mXmlData.beats.appendChild(beatsNode);
 			}
 			

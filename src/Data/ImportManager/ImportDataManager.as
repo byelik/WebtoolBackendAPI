@@ -116,11 +116,6 @@ package Data.ImportManager
 					var factObject:Object = {};				
 					factObject["id"] = int(factId.@id);
 					factObject["description"] = String(factId.children()[0]);
-//					factObject["xgmlId"] = String(factId.xgmlId);
-					/*for each(var own:XML in factId.owners.children())
-					{
-						factObject["owners"].push(int(own.children()[0]));
-					}*/
 					mFacts.addItem(factObject);
 				}
 				DataModel.getSingleton().parseFactsData(mFacts);
@@ -136,7 +131,7 @@ package Data.ImportManager
 				}
 				for each(var beat:XML in beatsXML.beat)
 				{
-					var beatsObject:Object = {"activities":[], "preConditions":[]};	
+					var beatsObject:Object = {"activities":[], "preConditions":[], "beatsCompleted":[]};	
 					for each(var beatActivity:XML in beat.activities.children())
 					{
 						beatsObject["activities"].push(beatActivity.children()[0].toString());		
@@ -146,6 +141,11 @@ package Data.ImportManager
 					beatsObject["description"] = String(beat.description);
 					beatsObject["exclusiveBeatPriority"] = int(beat.exclusiveBeatPriority);
 					beatsObject["id"] = int(beat.@id);
+					for each(var beatCompleted:XML in beat.completedBeats.children())
+					{
+						beatsObject["beatsCompleted"].push(int(beatCompleted.children()[0]));
+					}
+	
 					beatsObject["locationId"] = int(beat.locationId);
 	//				beatsObject["preConditions"] = (beat.preConditions) as Array;
 					beatsObject["type"] = String(beat.type);
@@ -165,11 +165,11 @@ package Data.ImportManager
 						{
 							preconditionObj["factsAvailableToAgent"].push(int(agentFact.children()[0]));
 						}
-						preconditionObj["beatsCompleted"] = new Array();
+						/*preconditionObj["beatsCompleted"] = new Array();
 						for each(var beatCompleted:XML in preconditionChildren[3].children())
 						{
 							preconditionObj["beatsCompleted"].push(int(beatCompleted.children()[0]));
-						}
+						}*/
 						preconditionObj["affinityMin"] = preconditionChildren[4].toString();
 						preconditionObj["affinityMax"] = preconditionChildren[5].toString();
 						preconditionObj["nerveMax"] = preconditionChildren[6].toString();

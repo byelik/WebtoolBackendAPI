@@ -608,30 +608,11 @@ package HostComponents.FactsHostComponent
 //			new HttpServiceManager('{"method":"facts.updateFactDetails","params":['+factId+', "'+xgmlId+'", "'+factDescription+'"], "jsonrpc": "2.0", "id":7}', editFactDescriptionResult);
 		}
 		
-		private function editFactDescriptionResult(result:Object):void
-		{
-			if(result == null)
-			{
-				//good
-			}
-			{
-				//error
-			}
-		}
-		
 		////////////////////////addItem//////////////////////////////////
 		private function addItem(event:MouseEvent):void
 		{
-			
+			DataModel.getSingleton().mItemsData.addItem({owner:DataModel.getSingleton().mAgentsList[0].id, type:DataModel.getSingleton().mAgentsList[0].items[0].type, count:1});
 		}
-		
-		private function addItemResult(result:Object):void
-		{
-			
-		}
-		////////////////////////addItem//////////////////////////////////
-		
-		
 		
 		////////////////////////deleteItem//////////////////////////////////
 		private function deleteItem(event:MouseEvent):void
@@ -650,16 +631,16 @@ package HostComponents.FactsHostComponent
 		{
 			if(event.detail == Alert.YES)
 			{
-				// send to the server selected items, after response we delete selected items
+				var index:Vector.<Object> = mItemsGrid.selectedItems;
+				if(index)
+				{
+					for(var i:int = 0; i < index.length; i++)
+					{
+						DataModel.getSingleton().mItemsData.removeItemAt(mItemsGrid.selectedIndex);
+					}
+				}
 			}
 		}
-		
-		private function deleteItemResult(result:Object):void
-		{
-			
-		}
-		////////////////////////deleteItem//////////////////////////////////
-		
 		
 		private function finishEditItemsFields(event:GridItemEditorEvent):void
 		{

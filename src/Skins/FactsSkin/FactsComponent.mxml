@@ -13,7 +13,7 @@
 			
 			private function itemsFunction(item:Object, tmo:Object):String
 			{
-				return item.type;
+				return item.count;
 			}
 			
 		]]>
@@ -88,7 +88,7 @@
 					<s:DataGrid id="mCharacterFactsList"
 								width="355" 
 								borderVisible="true"
-								dataProvider="{hostComponent.mCharacterFactItems}" 
+								dataProvider="{DataModel.getSingleton().mCharacterFacts}" 
 								editable="true"
 								resizableColumns="false" 
 								selectionMode="multipleRows"
@@ -97,11 +97,11 @@
 						<s:columns>
 							<s:ArrayList>
 								<s:GridColumn dataField="id" headerText="id"/>
-								<s:GridColumn dataField="description" headerText="Description"/>
-								<s:GridColumn dataField="status" headerText="Status" editable="false">
+								<!--<s:GridColumn dataField="description" headerText="Description"/>-->
+								<s:GridColumn dataField="status" headerText="Status" editable="true">
 									<s:itemEditor> 
 										<fx:Component> 
-											<Render:DropDownListRenderer dataProvider="{DataModel.getSingleton().mFactsStatusList}" mOwner="status">
+											<Render:DropDownListRenderer dataProvider="{DataModel.getSingleton().mFactsStatusList}" labelField="status">
 												<fx:Script>
 													<![CDATA[
 														import Data.DataModel;
@@ -188,10 +188,10 @@
 							dataProvider="{DataModel.getSingleton().mItemsData}">
 					<s:columns>
 						<s:ArrayList>
-							<s:GridColumn headerText="Type" width="100" labelFunction="{itemsFunction}">
+							<s:GridColumn dataField="type" headerText="Type" width="100">
 								<s:itemEditor> 
 									<fx:Component> 
-										<Render:DropDownListRenderer dataProvider="{DataModel.getSingleton().mItemsData}" mOwner="type">
+										<Render:DropDownListRenderer dataProvider="{DataModel.getSingleton().mItemsData}" labelField="type">
 											<fx:Script>
 												<![CDATA[
 													import Data.DataModel;
@@ -204,7 +204,7 @@
 							<s:GridColumn dataField="owner" headerText="Owner" width="100">
 								<s:itemEditor> 
 									<fx:Component> 
-										<Render:DropDownListRenderer dataProvider="{DataModel.getSingleton().mItemsData}" mOwner="owner">
+										<Render:DropDownListRenderer dataProvider="{DataModel.getSingleton().mItemsData}" labelField="owner">
 											<fx:Script>
 												<![CDATA[
 													import Data.DataModel;
@@ -214,10 +214,7 @@
 									</fx:Component> 
 								</s:itemEditor>
 							</s:GridColumn>
-							<s:GridColumn dataField="count"
-										  headerText="Number"
-										  itemRenderer="Render.ItemsCountRenderer"
-										  width="50"/>
+							<s:GridColumn dataField="count" headerText="Number" width="100" labelFunction="itemsFunction"/>    
 						</s:ArrayList>
 					</s:columns>
 				</s:DataGrid>

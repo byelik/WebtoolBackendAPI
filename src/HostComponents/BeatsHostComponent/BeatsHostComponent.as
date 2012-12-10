@@ -643,7 +643,7 @@ package HostComponents.BeatsHostComponent
 //				mAffinityMaxField.text = mSelectedBeatOnGraph.affinityMax;
 //				mNerveMinField.text = mSelectedBeatOnGraph.nerveMin;
 //				mNerveMaxField.text = mSelectedBeatOnGraph.nerveMax;
-//				mBeatsCompletedField.text = mSelectedBeatOnGraph.beatsCompleted;
+				mBeatsCompletedField.text = mSelectedBeatOnGraph.beatsCompleted;
 				
 				//mBeatTheme.selectedItem = selectedBeatOnGraph.xgmlTheme;
 				for(var i:int = 0; i < mBeatsListData.length; i ++)
