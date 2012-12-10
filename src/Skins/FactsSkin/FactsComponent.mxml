@@ -167,8 +167,8 @@
 									rowHeight="25">
 							<s:columns>
 								<s:ArrayList>
-									<s:GridColumn dataField="id" headerText="id" width="50"/>
-									<s:GridColumn dataField="description" headerText="Description"/>
+									<s:GridColumn dataField="id" headerText="id" width="70" resizable="true"/>
+									<s:GridColumn dataField="description" headerText="Description" resizable="true"/>
 								</s:ArrayList>
 							</s:columns>
 						</s:DataGrid>	

@@ -284,10 +284,6 @@
 			
 			<s:HGroup width="100%" right="10">
 				<s:VGroup width="100%">
-					<!--<s:DropDownList id="mAgentList"
-					labelField="label"
-					width="90"
-					prompt="Select agent"/>-->
 					<!-- here must be visualization component of connections... -->
 					<s:Label text="Description:"/>
 					<s:TextArea id="mBeatDescriptionField"
@@ -302,7 +298,7 @@
 							<s:DropDownList id="mChooseAgentList"
 											width="200"
 											prompt="Choose agent"
-											labelField="name"
+											labelField="id"
 											dataProvider="{DataModel.getSingleton().mAgentsList}"/>	
 						</s:HGroup>
 						<s:HGroup width="100%"
@@ -364,7 +360,7 @@
 									 prompt="Comma - separated list fo ids"
 									 width="300"/>	
 					</s:HGroup>
-					<s:HGroup
+					<!--<s:HGroup
 						verticalAlign="middle">
 						<s:HGroup width="92" horizontalAlign="left">
 							<s:Label text="Location:"/>	
@@ -372,9 +368,9 @@
 						<s:DropDownList id="mLocationList"
 										width="120"
 										prompt="Choose location"
-										labelField="name"
+										labelField="id"
 										dataProvider="{DataModel.getSingleton().mLocationsList}"/>
-					</s:HGroup>
+					</s:HGroup>-->
 					<s:Spacer/>
 					<s:Spacer/>
 					<s:Spacer/>

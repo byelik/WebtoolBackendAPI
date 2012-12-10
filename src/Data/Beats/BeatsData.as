@@ -5,7 +5,7 @@ package Data.Beats
 	public class BeatsData
 	{
 		private var mActivities:ArrayCollection;
-		private var mAgentId:int;
+		private var mAgent:String;
 		private var mDescription:String;
 		private var mExclusiveBeatPriority:int;
 		private var mId:int;
@@ -111,14 +111,14 @@ package Data.Beats
 			mDescription = value;
 		}
 		
-		public function get agentId():int
+		public function get agent():String
 		{
-			return mAgentId;
+			return mAgent;
 		}
 		
-		public function set agentId(value:int):void
+		public function set agent(value:String):void
 		{
-			mAgentId = value;
+			mAgent = value;
 		}
 		
 		public function get activities():ArrayCollection
@@ -136,7 +136,7 @@ package Data.Beats
 			if(!data)
 			{
 				mActivities = null;
-				mAgentId = 0;
+				mAgent = "";
 				mDescription = "";
 				mExclusiveBeatPriority = 0;
 				mId = 0;
@@ -149,7 +149,7 @@ package Data.Beats
 			else
 			{
 				mActivities = new ArrayCollection((data.activities) as Array);
-				mAgentId = int(data.agentId);
+				mAgent = String(data.agent);
 				mDescription = String(data.description);
 				mExclusiveBeatPriority = int(data.exclusiveBeatPriority);
 				mId = int(data.id);

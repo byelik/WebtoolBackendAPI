@@ -210,7 +210,7 @@ package Data.ExportManager
 				
 				beatsThemes = <themes/>
 				completedBeats = <completedBeats/>
-					
+				//FIX ME when export	
 				for(var k:int = 0; k < beatsData[i].xgmlTheme.length;k++)
 				{
 					var theme:XML = new XML();

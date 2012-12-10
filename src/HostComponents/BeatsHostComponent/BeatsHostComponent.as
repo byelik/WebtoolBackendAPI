@@ -61,8 +61,8 @@ package HostComponents.BeatsHostComponent
 		[SkinPart(required="true")]
 		public var mBeatTheme:DropDownList;
 		
-		[SkinPart(required="true")]
-		public var mLocationList:DropDownList;
+		/*[SkinPart(required="true")]
+		public var mLocationList:DropDownList;*/
 		
 		[SkinPart(required="true")]
 		public var mTypeList:DropDownList;
@@ -292,9 +292,9 @@ package HostComponents.BeatsHostComponent
 				case "mChooseAgentList":
 					mChooseAgentList.addEventListener(Event.CHANGE, chooseAgent);
 				break;
-				case "mLocationList":
+				/*case "mLocationList":
 					mLocationList.addEventListener(Event.CHANGE, selectLocation);
-				break;
+				break;*/
 				case "mTypeList":
 					mTypeList.addEventListener(Event.CHANGE, selectType);
 				break;
@@ -325,6 +325,15 @@ package HostComponents.BeatsHostComponent
 				case "mBeatChart":
 					mBeatChart.addEventListener(ChartItemEvent.ITEM_CLICK, selectBeatOnGraph);
 				break;
+				case "mBeatsCompletedField":
+					mBeatsCompletedField.addEventListener(TextOperationEvent.CHANGE, setCompletedBeats);
+				break;
+				case "mBeatDescriptionField":
+					mBeatDescriptionField.addEventListener(TextOperationEvent.CHANGE, setBeatDescription);
+				break;
+				case "mPriorityField":
+					mPriorityField.addEventListener(TextOperationEvent.CHANGE, checkPriorityValue);
+				break;
 				/*case "mBeatsTree":
 					mBeatsTree.addEventListener(ListEvent.ITEM_ROLL_OVER, rollOverTreeItem);
 				break;*/
@@ -348,9 +357,9 @@ package HostComponents.BeatsHostComponent
 				case "mChooseAgentList":
 					mChooseAgentList.removeEventListener(Event.CHANGE, chooseAgent);
 				break;
-				case "mLocationList":
+				/*case "mLocationList":
 					mLocationList.removeEventListener(Event.CHANGE, selectLocation);
-				break;
+				break;*/
 				case "mTypeList":
 					mTypeList.removeEventListener(Event.CHANGE, selectType);
 				break;
@@ -381,6 +390,15 @@ package HostComponents.BeatsHostComponent
 				case "mBeatChart":
 					mBeatChart.removeEventListener(ChartItemEvent.ITEM_CLICK, selectBeatOnGraph);
 				break;
+				case "mBeatsCompletedField":
+					mBeatsCompletedField.removeEventListener(TextOperationEvent.CHANGE, setCompletedBeats);
+				break;
+				case "mBeatDescriptionField":
+					mBeatDescriptionField.removeEventListener(TextOperationEvent.CHANGE, setBeatDescription);
+				break;
+				case "mPriorityField":
+					mPriorityField.removeEventListener(TextOperationEvent.CHANGE, checkPriorityValue);
+				break;
 				/*case "mBeatsTree":
 					mBeatsTree.removeEventListener(ListEvent.ITEM_ROLL_OVER, rollOverTreeItem);
 				break;*/
@@ -400,17 +418,30 @@ package HostComponents.BeatsHostComponent
 		
 		private function chooseAgent(event:IndexChangeEvent):void
 		{
-			//choose agentt...
+			if(mSelectedBeatOnGraph)
+			{
+				for(var i:int = 0; i < DataModel.getSingleton().mBubbleBeatData.length; i++)
+				{
+					if(mSelectedBeatOnGraph.id == DataModel.getSingleton().mBubbleBeatData[i].id)
+					{
+						DataModel.getSingleton().mBubbleBeatData[i].agent = mChooseAgentList.selectedItem.id;
+					}
+				}
+			}
 		}
-		
-		private function selectLocation(event:IndexChangeEvent):void
-		{
-			//select location...
-		}
-		
+			
 		private function selectType(event:IndexChangeEvent):void
 		{
-			//select type...
+			if(mSelectedBeatOnGraph)
+			{
+				for(var i:int = 0; i < DataModel.getSingleton().mBubbleBeatData.length; i++)
+				{
+					if(mSelectedBeatOnGraph.id == DataModel.getSingleton().mBubbleBeatData[i].id)
+					{
+						DataModel.getSingleton().mBubbleBeatData[i].type = mTypeList.selectedItem;
+					}
+				}
+			}
 		}
 		
 		private var isPriorityOk:Boolean;
@@ -422,15 +453,8 @@ package HostComponents.BeatsHostComponent
 		private function saveData(event:MouseEvent):void
 		{
 			//save data...
-			checkPriorityValue();
+//			checkPriorityValue();
 			
-			//depricated
-//			checkMinAffinityValue();
-//			checkMaxAffinityValue();
-//			checkMinNerveValue();
-//			checkMaxNerveValue();
-			
-
 //			var selectedUserFacts:ArrayCollection = new ArrayCollection();
 //			var selectedAgentFacts:ArrayCollection = new ArrayCollection(); 
 				
@@ -654,27 +678,50 @@ package HostComponents.BeatsHostComponent
 					}
 				}
 				
-				for(var k:int = 0; k < DataModel.getSingleton().mLocationsList.length; k++)
+				/*for(var k:int = 0; k < DataModel.getSingleton().mLocationsList.length; k++)
 				{
 					if(mSelectedBeatOnGraph.locationId == DataModel.getSingleton().mLocationsList[k].id)
 					{
 						mLocationList.selectedItem = DataModel.getSingleton().mLocationsList[k];
 					}
 					
-				}
+				}*/
 				
 				var mAgentsData:ArrayCollection = DataModel.getSingleton().mAgentsList;
 				for(var j:int = 0; j <  mAgentsData.length; j ++)
 				{
-					if(mSelectedBeatOnGraph.agentId == mAgentsData[j].id)
+					if(mSelectedBeatOnGraph.agent == mAgentsData[j].id)
 					{
-						mChooseAgentList.selectedItem = mAgentsData[j];
-						new HttpServiceManager('{"method":"general.getXGMLThemesForAgent","params":["'+mChooseAgentList.selectedItem.name+'"],"jsonrpc":"2.0","id":8}', getXgmlThemesForAgentResult);
+						mChooseAgentList.selectedIndex = j;
 					}
 				}
 			}
 		}
 		
+		
+		private function setCompletedBeats(event:TextOperationEvent):void
+		{
+			if(mSelectedBeatOnGraph)
+			{
+				mSelectedBeatOnGraph.beatsCompleted = mBeatsCompletedField.text;
+			}
+		}
+		//FIX ME: refresh text via input...
+		private function setBeatDescription(event:TextOperationEvent):void
+		{
+			if(mSelectedBeatOnGraph)
+			{
+				for(var i:int = 0; i < DataModel.getSingleton().mBubbleBeatData.length; i++)
+				{
+					if(mSelectedBeatOnGraph.id == DataModel.getSingleton().mBubbleBeatData[i].id)
+					{
+						DataModel.getSingleton().mBubbleBeatData[i].description = mBeatDescriptionField.text;
+						mSelectedBeatOnGraph.beatDescription = DataModel.getSingleton().mBubbleBeatData[i].description;						
+					}
+				}
+				 
+			}
+		}
 		
 		private function getXgmlThemesForAgentResult(result:Object):void
 		{
@@ -786,65 +833,29 @@ package HostComponents.BeatsHostComponent
 		
 		
 		
-		private function checkPriorityValue():void
+		private function checkPriorityValue(event:TextOperationEvent):void
 		{
 			firstTextElement = mPriorityField.text.substring(0,1);
-			if(!checkValue(firstTextElement, mPriorityField))
+			if(mSelectedBeatOnGraph)
 			{
-				Alert.show(Const.ERROR_INPUT_PROIRITY_VALUE, Const.TITLE_ERROR_WINDOW, Alert.OK, null, alertHandler);
-				mComponent = mPriorityField;
-				isPriorityOk = false;
+				if(!checkValue(firstTextElement, mPriorityField))
+				
+				{
+					Alert.show(Const.ERROR_INPUT_PROIRITY_VALUE, Const.TITLE_ERROR_WINDOW, Alert.OK, null, alertHandler);
+					mComponent = mPriorityField;
+				}
+				else
+				{
+					for(var i:int = 0; i < DataModel.getSingleton().mBubbleBeatData.length; i++)
+					{
+						if(mSelectedBeatOnGraph.id == DataModel.getSingleton().mBubbleBeatData[i].id)
+						{
+							DataModel.getSingleton().mBubbleBeatData[i].exclusiveBeatPriority = mPriorityField.text;
+						}
+					}
+				}
 			}
-		}
-		
-		//depricated
-		/*private function checkMinAffinityValue():void
-		{
-			firstTextElement = mAffinityMinField.text.substring(0,1);
-			if(!checkValue(firstTextElement, mAffinityMinField))
-			{
-				Alert.show(Const.ERROR_INPUT_AFFINITY_VALUE, Const.TITLE_ERROR_WINDOW, Alert.OK, null, alertHandler);
-				mComponent = mAffinityMinField;
-				isMinAffinityOk = false;
-			}
-		}*/
-		
-		//depricated
-		/*private function checkMaxAffinityValue():void
-		{
-			firstTextElement = mAffinityMaxField.text.substring(0,1);
-			if(!checkValue(firstTextElement, mAffinityMaxField))
-			{
-				Alert.show(Const.ERROR_INPUT_AFFINITY_VALUE, Const.TITLE_ERROR_WINDOW, Alert.OK, null, alertHandler);
-				mComponent = mAffinityMaxField;
-				isMaxAffinityOk = false;
-			}
-		}*/
-		
-		//depricated
-		/*private function checkMinNerveValue():void
-		{
-			firstTextElement = mNerveMinField.text.substring(0,1);
-			if(!checkValue(firstTextElement, mNerveMinField))
-			{
-				Alert.show(Const.ERROR_INPUT_NERVE_VALUE, Const.TITLE_ERROR_WINDOW, Alert.OK, null, alertHandler);
-				mComponent = mNerveMinField;
-				isMinNerveOk = false;
-			}	
-		}*/
-
-		//depricated
-		/*private function checkMaxNerveValue():void
-		{
-			firstTextElement = mNerveMaxField.text.substring(0,1);
-			if(!checkValue(firstTextElement, mNerveMaxField))
-			{
-				Alert.show(Const.ERROR_INPUT_NERVE_VALUE, Const.TITLE_ERROR_WINDOW, Alert.OK, null, alertHandler);
-				mComponent = mNerveMaxField;
-				isMaxNerveOk = false;
-			}
-		}*/
-		
+		}		
 		
 		private function checkValue(str:String, txtField:TextInput):Boolean
 		{
@@ -852,11 +863,6 @@ package HostComponents.BeatsHostComponent
 			{
 				return false;
 			}
-			isPriorityOk = true;
-			isMinAffinityOk = true;
-			isMaxAffinityOk = true;
-			isMinNerveOk = true;
-			isMaxNerveOk = true;
 			return true;
 		}
 		
@@ -916,6 +922,7 @@ package HostComponents.BeatsHostComponent
 						{
 							for(var j:int = 0; j < mBeatSeries.items.length; j++)
 							{
+								//FIX ME when set beatsCompleted...
 								if(mBeatSeries.items[j].item.beatId == mBeatSeries.items[i].item.beatsCompleted[k] )
 								{
 									mBeatConnection.graphics.moveTo(mBeatSeries.items[j].x, mBeatSeries.items[j].y);

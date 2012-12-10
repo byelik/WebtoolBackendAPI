@@ -36,7 +36,9 @@ package Data
 		
 		[Bindable]
 		public var mBubbleBeatData:ArrayCollection = new ArrayCollection([{beatPosX:1, beatPosY:1, beatRadius:40,
-																	beatId:1, beatDescription:"desc", beatType:"normal", beatCompleted:""}]);
+																		   id:1, description:" ", type:"normal", 
+																		   beatsCompleted:"0", agent:"",
+																		   xgmlTheme:"", exclusiveBeatPriority:0}]);
 		
 		[Bindable]
 		public var mXgmlsData:ArrayCollection = new ArrayCollection();
@@ -197,7 +199,7 @@ package Data
 					tmp["subjects"] = beatPrecondition.subjects;
 				}
 				tmp["activities"] = originalBeatData.activities;
-				tmp["agentId"] = originalBeatData.agentId;
+				tmp["agent"] = originalBeatData.agent;
 				tmp["exclusiveBeatPriority"] = originalBeatData.exclusiveBeatPriority;
 				tmp["id"] = originalBeatData.id;
 				tmp["locationId"] = originalBeatData.locationId;

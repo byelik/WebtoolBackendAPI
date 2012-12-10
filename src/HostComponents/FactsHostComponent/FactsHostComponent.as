@@ -543,7 +543,7 @@ package HostComponents.FactsHostComponent
 		private function addFact(event:MouseEvent):void
 		{
 			var randomFactId:Number = Math.ceil(Math.random()*1000); 
-			var factObj:Object = ({id:randomFactId, description:"New Fact"});
+			var factObj:Object = ({id: "fact_"+randomFactId, description:"New Fact"});
 			DataModel.getSingleton().mFactsList.addEventListener(CollectionEvent.COLLECTION_CHANGE, getIndex);
 			DataModel.getSingleton().mFactsList.addItem(factObj);
 			var tmp:ArrayCollection = DataModel.getSingleton().mFactsList; 

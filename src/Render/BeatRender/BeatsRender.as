@@ -109,9 +109,7 @@ package Render.BeatRender
 		}
 		
 		private function refreshStage(event:FlexEvent):void
-		{
-			
-			
+		{						
 //			mBeatIdLabel.x = (this.width / 2);
 //			mBeatIdLabel.y = (this.height / 2);
 			EventManager.getSingleton().fireEvent(EventManager.STOP_DRAG_BEAT);	

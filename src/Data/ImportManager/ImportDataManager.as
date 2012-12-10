@@ -137,7 +137,7 @@ package Data.ImportManager
 						beatsObject["activities"].push(beatActivity.children()[0].toString());		
 					}
 					
-					beatsObject["agentId"] = int(beat.agentId);
+					beatsObject["agent"] = String(beat.agent);
 					beatsObject["description"] = String(beat.description);
 					beatsObject["exclusiveBeatPriority"] = int(beat.exclusiveBeatPriority);
 					beatsObject["id"] = int(beat.@id);
