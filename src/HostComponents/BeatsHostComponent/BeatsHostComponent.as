@@ -655,7 +655,7 @@ package HostComponents.BeatsHostComponent
 			
 			if(mSelectedBeatOnGraph)
 			{
-				mBeatDescriptionField.text = mSelectedBeatOnGraph.beatDescription;
+				mBeatDescriptionField.text = mSelectedBeatOnGraph.description;
 				mPriorityField.text = mSelectedBeatOnGraph.exclusiveBeatPriority;
 				mTypeList.selectedItem = mSelectedBeatOnGraph.type;
 //				mActivitiesList.dataProvider = mSelectedBeatOnGraph.activities;
@@ -716,7 +716,7 @@ package HostComponents.BeatsHostComponent
 					if(mSelectedBeatOnGraph.id == DataModel.getSingleton().mBubbleBeatData[i].id)
 					{
 						DataModel.getSingleton().mBubbleBeatData[i].description = mBeatDescriptionField.text;
-						mSelectedBeatOnGraph.beatDescription = DataModel.getSingleton().mBubbleBeatData[i].description;						
+						mSelectedBeatOnGraph.description = DataModel.getSingleton().mBubbleBeatData[i].description;						
 					}
 				}
 				 
@@ -832,7 +832,7 @@ package HostComponents.BeatsHostComponent
 		
 		
 		
-		
+		//TODO: if beat.type == exclusive do not enter excluSiveBeatPriority 
 		private function checkPriorityValue(event:TextOperationEvent):void
 		{
 			firstTextElement = mPriorityField.text.substring(0,1);
@@ -923,7 +923,7 @@ package HostComponents.BeatsHostComponent
 							for(var j:int = 0; j < mBeatSeries.items.length; j++)
 							{
 								//FIX ME when set beatsCompleted...
-								if(mBeatSeries.items[j].item.beatId == mBeatSeries.items[i].item.beatsCompleted[k] )
+								if(mBeatSeries.items[j].item.id == mBeatSeries.items[i].item.beatsCompleted[k] )
 								{
 									mBeatConnection.graphics.moveTo(mBeatSeries.items[j].x, mBeatSeries.items[j].y);
 									mBeatConnection.graphics.lineTo(mBeatSeries.items[i].x, mBeatSeries.items[i].y);

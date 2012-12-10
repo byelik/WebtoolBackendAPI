@@ -37,8 +37,9 @@ package Data
 		[Bindable]
 		public var mBubbleBeatData:ArrayCollection = new ArrayCollection([{beatPosX:1, beatPosY:1, beatRadius:40,
 																		   id:1, description:" ", type:"normal", 
-																		   beatsCompleted:"0", agent:"",
-																		   xgmlTheme:"", exclusiveBeatPriority:0}]);
+																		   beatsCompleted:"", agent:"",
+																		   xgmlTheme:"", exclusiveBeatPriority:0,
+																		   preConditions:"", activities:[]}]);
 		
 		[Bindable]
 		public var mXgmlsData:ArrayCollection = new ArrayCollection();
@@ -184,11 +185,11 @@ package Data
 				var tmp:Object={beatPosX:new Date(new Date().time + millisecondsPerDay * 10), beatPosY:1, beatRadius:40};
 				
 				tmp["beatId"] = originalBeatData.id;
-				tmp["beatDescription"] = originalBeatData.description;
+				tmp["description"] = originalBeatData.description;
 				tmp["beatsCompleted"] = originalBeatData.beatsCompleted;
-				for each(var beatPrecondition:Object in originalBeatData.preconditions)
+				tmp["preConditions"] = originalBeatData.preConditions;
+				/*for each(var beatPrecondition:Object in originalBeatData.preconditions)
 				{
-//					tmp["beatsCompleted"] = beatPrecondition.beatsCompleted;
 					tmp["affinityMax"] = beatPrecondition.affinityMax;
 					tmp["affinityMin"] = beatPrecondition.affinityMin;
 					tmp["beatPreconditionsDescription"] = beatPrecondition.description;
@@ -197,7 +198,7 @@ package Data
 					tmp["nerveMax"] = beatPrecondition.nerveMax;
 					tmp["nerveMin"] = beatPrecondition.nerveMin;
 					tmp["subjects"] = beatPrecondition.subjects;
-				}
+				}*/
 				tmp["activities"] = originalBeatData.activities;
 				tmp["agent"] = originalBeatData.agent;
 				tmp["exclusiveBeatPriority"] = originalBeatData.exclusiveBeatPriority;

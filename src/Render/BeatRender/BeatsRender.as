@@ -212,8 +212,11 @@ package Render.BeatRender
 		
 		private function dataExist(event:FlexEvent):void
 		{
-			mBeatIdLabel.text = _data.item.beatId;
-			mBeatDescriptionLabel.text = _data.item.beatDescription;
+			mBeatIdLabel.text = _data.item.id;
+			if(_data.item.description != " ")
+			{
+				mBeatDescriptionLabel.text = _data.item.description;
+			}
 		}
 		
 		

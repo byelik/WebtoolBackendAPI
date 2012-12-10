@@ -200,16 +200,18 @@ package Data.ExportManager
 				var beatsNode:XML = new XML();
 				var beatsThemes:XML = new XML();
 				var completedBeats:XML = new XML();
+				var preCondition:XML = new XML();
+				var beatsActivities:XML = new XML();
 				beatsNode = <beat id = {beatsData[i].id}>
 							<description>{beatsData[i].description}</description>
 							<agent>{beatsData[i].agent}</agent>
 							<type>{beatsData[i].type}</type>
 							<exclusiveBeatPriority>{beatsData[i].exclusiveBeatPriority}</exclusiveBeatPriority>
 							</beat>
-				
-				
 				beatsThemes = <themes/>
 				completedBeats = <completedBeats/>
+				preCondition = <preCondition/>
+				beatsActivities = <activities/>
 				//FIX ME when export	
 				for(var k:int = 0; k < beatsData[i].xgmlTheme.length;k++)
 				{
@@ -226,8 +228,24 @@ package Data.ExportManager
 					completedBeats.appendChild(beatCompleted);
 				}
 				beatsNode.appendChild(completedBeats);
-				completedBeats
-					
+				
+				for(var k:int = 0; k < beatsData[i].preConditions.length; k++)
+				{
+					preCondition = <preCondition>
+								   {beatsData[i].preConditions}
+								   </preCondition>
+				}
+				beatsNode.appendChild(preCondition);
+				
+				
+				for(var k:int = 0; k < beatsData[i].activities.length;k++)
+				{
+					var activity:XML = new XML();
+					activity = <activity>{beatsData[i].activity}</activity>
+					beatsActivities.appendChild(activity);
+				}
+				beatsNode.appendChild(beatsActivities);
+				
 				mXmlData.beats.appendChild(beatsNode);
 			}
 			

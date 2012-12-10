@@ -97,7 +97,7 @@
 						<s:columns>
 							<s:ArrayList>
 								<s:GridColumn dataField="id" headerText="id"/>
-								<!--<s:GridColumn dataField="description" headerText="Description"/>-->
+								<s:GridColumn dataField="description" headerText="Description"/>
 								<s:GridColumn dataField="status" headerText="Status" editable="true">
 									<s:itemEditor> 
 										<fx:Component> 

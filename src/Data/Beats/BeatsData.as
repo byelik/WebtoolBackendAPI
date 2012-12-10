@@ -12,14 +12,9 @@ package Data.Beats
 		private var mLocationId:int;
 		private var mType:String;
 		private var mXgmlTheme:String;
-		private var mPreconditions:ArrayCollection;
+		private var mPreconditions:String;
 		private var mRadius:String = "30";
-		private var mBeatsCompleted:ArrayCollection;
-		//		private var mPreconditions:ArrayCollection([{affinityMax:int, affinityMin:int, beatsCompleted:Array, 
-		//													description:String, factsAvailableToAgent:Array, factsAvailableToUser:Array, 
-		//													nerveMax:int, nerveMin:int, subjects:Array}]);
-		
-		
+		private var mBeatsCompleted:ArrayCollection;		
 		
 		public function BeatsData(data:Object = null)
 		{
@@ -61,12 +56,12 @@ package Data.Beats
 			mType = value;
 		}
 		
-		public function get preconditions():ArrayCollection
+		public function get preConditions():String
 		{
 			return mPreconditions;
 		}
 		
-		public function set preconditions(value:ArrayCollection):void
+		public function set preConditions(value:String):void
 		{
 			mPreconditions = value;
 		}
@@ -156,7 +151,7 @@ package Data.Beats
 				mLocationId = int(data.locationId);
 				mType = String(data.type);
 				mXgmlTheme = String(data.xgmlTheme);
-				mPreconditions = new ArrayCollection((data.preConditions) as Array);
+				mPreconditions = String(data.preConditions);
 				mBeatsCompleted = new ArrayCollection((data.beatsCompleted) as Array);
 				
 			}

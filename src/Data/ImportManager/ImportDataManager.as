@@ -150,7 +150,8 @@ package Data.ImportManager
 	//				beatsObject["preConditions"] = (beat.preConditions) as Array;
 					beatsObject["type"] = String(beat.type);
 					beatsObject["xgmlTheme"] = String(beat.xgmlTheme);
-					for each(var beatPrecondition:XML in beat.preConditions.children())
+					beatsObject["preConditions"] = String(beat.preConditions);
+					/*for each(var beatPrecondition:XML in beat.preConditions.children())
 					{
 						var preconditionChildren:XMLList = beatPrecondition.children();
 						var preconditionObj:Object = new Object();
@@ -165,11 +166,11 @@ package Data.ImportManager
 						{
 							preconditionObj["factsAvailableToAgent"].push(int(agentFact.children()[0]));
 						}
-						/*preconditionObj["beatsCompleted"] = new Array();
+						preconditionObj["beatsCompleted"] = new Array();
 						for each(var beatCompleted:XML in preconditionChildren[3].children())
 						{
 							preconditionObj["beatsCompleted"].push(int(beatCompleted.children()[0]));
-						}*/
+						}
 						preconditionObj["affinityMin"] = preconditionChildren[4].toString();
 						preconditionObj["affinityMax"] = preconditionChildren[5].toString();
 						preconditionObj["nerveMax"] = preconditionChildren[6].toString();
@@ -181,7 +182,7 @@ package Data.ImportManager
 						}
 						
 						beatsObject["preConditions"].push(preconditionObj);
-					}
+					}*/
 					mBeats.addItem(beatsObject);
 				}
 				DataModel.getSingleton().parseBeatsData(mBeats);
