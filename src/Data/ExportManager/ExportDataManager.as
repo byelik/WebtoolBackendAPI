@@ -259,10 +259,6 @@ package Data.ExportManager
 				{
 					fZip.removeFileAt(i);
 				}
-//				if(fZip.getFileAt(i).filename == scenaryFileName)
-//				{
-//					fZip.removeFileAt(i);
-//				}			
 			}
 		}
 	}

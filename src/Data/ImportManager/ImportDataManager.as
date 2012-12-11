@@ -3,6 +3,10 @@ package Data.ImportManager
 	import Data.DataModel;
 	import Data.ExportManager.ExportDataManager;
 	
+	import HostComponents.FactsHostComponent.FactsHostComponent;
+	
+	import Skins.FactsSkin.FactsComponent;
+	
 	import deng.fzip.FZip;
 	import deng.fzip.FZipFile;
 	
@@ -58,17 +62,6 @@ package Data.ImportManager
 			
 			mZipLoader = new FZip();
 			mZipFile = new FZipFile();
-
-			if(DataModel.getSingleton().mItemsData)
-			{
-				DataModel.getSingleton().mItemsData.removeAll();
-				DataModel.getSingleton().mItemsData.refresh();
-			}
-			if(DataModel.getSingleton().mCharacterFacts)
-			{
-				DataModel.getSingleton().mCharacterFacts.removeAll();
-				DataModel.getSingleton().mCharacterFacts.refresh();
-			}
 		}
 		
 		public function importData():void
@@ -86,6 +79,18 @@ package Data.ImportManager
 		
 		private function loadFile(event:Event):void
 		{
+			//clear character facts and items list...
+			if(DataModel.getSingleton().mItemsData)
+			{
+				DataModel.getSingleton().mItemsData.removeAll();
+				DataModel.getSingleton().mItemsData.refresh();
+			}
+			if(DataModel.getSingleton().mCharacterFacts)
+			{
+				DataModel.getSingleton().mCharacterFacts.removeAll();
+				DataModel.getSingleton().mCharacterFacts.refresh();
+			}
+			
 			var factsXML:XML;
 			var beatsXML:XML;
 			var locationsXml:XML;

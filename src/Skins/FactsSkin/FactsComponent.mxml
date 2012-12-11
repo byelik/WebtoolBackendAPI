@@ -30,14 +30,15 @@
 								width="300"
 								dataProvider="{hostComponent.mAgents}"/>				
 			</s:HGroup>
-			<s:HGroup verticalAlign="middle" width="100%">
+			<s:HGroup verticalAlign="middle" width="100%"
+					  includeInLayout="{mCharacterList.selectedItem}"
+					  visible="{mCharacterList.selectedItem}">
 				<s:Label width="54" text="Affinity"/>
 				<s:TextInput id="mAffinity"
 							 maxChars="3"
 							 restrict="0-9"
 							 width="50"
-							 text="0"
-							 enabled="{mCharacterList.selectedItem}"/>
+							 text="0"/>
 				<s:HGroup width="100%" horizontalAlign="right">
 					<s:Label text="Nerve"
 							 left="350"/>	
@@ -49,8 +50,7 @@
 								 maxChars="3"
 								 restrict="0-9"
 								 width="50"
-								 text="0"
-								 enabled="{mCharacterList.selectedItem}"/>
+								 text="0"/>
 				</s:HGroup>			
 			</s:HGroup>
 			<s:HGroup width="357" verticalAlign="middle" enabled="false">

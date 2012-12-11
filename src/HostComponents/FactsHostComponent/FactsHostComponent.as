@@ -483,7 +483,6 @@ package HostComponents.FactsHostComponent
 		
 		private function addFactOwner(event:MouseEvent):void
 		{
-//			DataModel.getSingleton().mCharacterFacts.removeAll();
 			var factObj:Object;
 			if(mFactsList.selectedItems)
 			{
@@ -504,6 +503,7 @@ package HostComponents.FactsHostComponent
 					}					
 				}
 			}
+//			var tmp:ArrayCollection = DataModel.getSingleton().mAgentsList;
 			mAddFactOwner.enabled = false;
 		}
 			
@@ -515,6 +515,16 @@ package HostComponents.FactsHostComponent
 				for(var i:int = 0; i < indx.length; i++)
 				{
 					DataModel.getSingleton().mCharacterFacts.removeItemAt(mCharacterFactsList.selectedIndex);
+					for(var k:int = 0; k < DataModel.getSingleton().mAgentsList.length; k++)
+					{
+						if(mCharacterList.selectedItem.id == DataModel.getSingleton().mAgentsList[k].id)
+						{
+							//for(var j:int = 0; j < DataModel.getSingleton().mAgentsList[k].facts.length; j++)
+							//{
+								DataModel.getSingleton().mAgentsList[k].facts.removeItemAt(k);
+							//}
+						}
+					}
 				}
 				var tmp:ArrayCollection = DataModel.getSingleton().mAgentsList;
 			}
@@ -522,27 +532,15 @@ package HostComponents.FactsHostComponent
 				
 		private function selectLocation(event:IndexChangeEvent):void
 		{
-			//select location
-			//new HttpServiceManager('{"method":"agents.setAgentLocation","params":["'+mCharacterList.selectedItem.id+'","'+event.target.selectedItem.id+'"], "jsonrpc": "2.0", "id":7}', setAgentLocation);
 			for(var i:int = 0; i < DataModel.getSingleton().mAgentsList.length; i++)
 			{
 				DataModel.getSingleton().mAgentsList[i].location = mLocationList.selectedItem.id;	
-			}
-			
+			}			
 		}
 
-		private function setAgentLocation(result:Object):void
-		{
-			trace("Result set Location: " + result);
-			if(result == null)
-			{
-				//good
-			}
-		}
-		
 		private function addFact(event:MouseEvent):void
 		{
-			var randomFactId:Number = Math.ceil(Math.random()*1000); 
+			var randomFactId:Number = Math.ceil(Math.random()*3000); 
 			var factObj:Object = ({id: "fact_"+randomFactId, description:"New Fact"});
 			DataModel.getSingleton().mFactsList.addEventListener(CollectionEvent.COLLECTION_CHANGE, getIndex);
 			DataModel.getSingleton().mFactsList.addItem(factObj);
