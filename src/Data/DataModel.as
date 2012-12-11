@@ -47,16 +47,19 @@ package Data
 		[Bindable]
 		public var mAgentXgml:ArrayCollection = new ArrayCollection();
 		
+		
+		//ItemsList
 		[Bindable]
-		public var mItemsData:ArrayCollection = new ArrayCollection();//new ArrayCollection([{type:"Cufflink", owner:"Melany", count:1},
-//																	{type:"FlashLight", owner:"Bathroom", count:2},
-//																	{type:"Revolver", owner:"Henry", count:3},
-//																	{type:"Rope", owner:"Philipp", count:4}]);
+		public var mItemsData:ArrayCollection = new ArrayCollection();
+		
+		//Items type
 		[Bindable]
-		public var mTypes:ArrayCollection = new ArrayCollection([{type:"Cufflink"}, 
-																{type:"FlashLight"}, 
-																{type:"Revolver"},
-																{type:"Rope"}]);
+		public var mItemsTypesList:ArrayCollection = new ArrayCollection();
+		
+		//ItemsOwnersList
+		[Bindable]
+		public var mItemsOwnersList:ArrayCollection = new ArrayCollection();
+		
 		
 		[Bindable]
 		public var mFactsStatusList:ArrayCollection = new ArrayCollection(["not confirmed", 
@@ -140,6 +143,8 @@ package Data
 				for(var j:int = 0; j < mAgentsList[i].items.length; j++)
 				{
 					mItemsData.addItem({owner:mAgentsList[i].id, type:mAgentsList[i].items[j].type, count:mAgentsList[i].items[j].count});
+					mItemsOwnersList.addItem(mAgentsList[i].id);
+					mItemsTypesList.addItem(mAgentsList[i].items[j].type);
 				}
 			}
 //			mAgentsList.enableAutoUpdate();
@@ -168,6 +173,8 @@ package Data
 				for(var j:int = 0; j < mLocationsList[i].items.length; j++)
 				{
 					mItemsData.addItem({owner:mLocationsList[i].id, type:mLocationsList[i].items[j].type, count:mLocationsList[i].items[j].count});
+					mItemsOwnersList.addItem(mLocationsList[i].id);
+					mItemsTypesList.addItem(mLocationsList[i].items[j].type);
 				}
 			}
 			

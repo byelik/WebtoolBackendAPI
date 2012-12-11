@@ -338,7 +338,8 @@
 					</s:HGroup>
 					<s:Label text="Activities:"/>
 					<s:TextArea id="mActivitiesList"
-								width="100%"/>
+								width="100%"
+								prompt="Activities"/>
 					<s:HGroup width="100%"
 							  horizontalAlign="center">
 						<s:Button id="mSave"
@@ -417,7 +418,9 @@
 						</s:HGroup>
 					</s:HGroup>-->
 					<s:Label text="Preconditions function"/>
-					<s:TextArea id="mPreconditionsFunction" width="100%" height="111"/>
+					<s:TextArea id="mPreconditionsFunction" 
+								width="100%" height="234"
+								prompt="precondition function..."/>
 				</s:VGroup>	
 			</s:HGroup>	
 		</s:VGroup>

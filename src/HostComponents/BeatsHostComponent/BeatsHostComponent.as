@@ -487,6 +487,8 @@ package HostComponents.BeatsHostComponent
 			}
 				
 		}
+		
+		//FIX ME call if beat(s) is was selected...
 		private function deleteBeat(event:MouseEvent):void
 		{
 			deleteBeatWindow();
@@ -503,19 +505,6 @@ package HostComponents.BeatsHostComponent
 		{
 			if(event.detail == Alert.YES)
 			{
-				new HttpServiceManager('{"method":"beats.removeBeat","params":["'+mSelectedBeatsId+'"],"jsonrpc":"2.0","id":45}', deleteBeatResult);
-			}
-			else
-			{
-				//close window...
-			}
-		}
-		
-		private function deleteBeatResult(result:Object):void
-		{
-			mBeatsListData.disableAutoUpdate();
-			if(result == null)
-			{
 				if(mSelectedBeatsId == mSelectedBeatOnGraph.id)
 				{
 					if(mBeatChart.selectedChartItem)
@@ -524,7 +513,7 @@ package HostComponents.BeatsHostComponent
 						DataModel.getSingleton().mBubbleBeatData.enableAutoUpdate();
 						DataModel.getSingleton().mBubbleBeatData.refresh();
 					}
-				}
+				}	
 			}
 		}
 		
@@ -650,26 +639,15 @@ package HostComponents.BeatsHostComponent
 			{
 				mSelectedBeatsId.addItem(event.currentTarget.selectedChartItems[i].item.beatId);
 			}
-//			trace(mSelectedBeatsId);
-			//mSelectedBeatsId.addItem(mSelectedBeatOnGraph.beatId);
 			
 			if(mSelectedBeatOnGraph)
 			{
 				mBeatDescriptionField.text = mSelectedBeatOnGraph.description;
 				mPriorityField.text = mSelectedBeatOnGraph.exclusiveBeatPriority;
 				mTypeList.selectedItem = mSelectedBeatOnGraph.type;
-//				mActivitiesList.dataProvider = mSelectedBeatOnGraph.activities;
 				mActivitiesList.text = mSelectedBeatOnGraph.activities;
-				
-				
-				//depricated
-//				mAffinityMinField.text = mSelectedBeatOnGraph.affinityMin;
-//				mAffinityMaxField.text = mSelectedBeatOnGraph.affinityMax;
-//				mNerveMinField.text = mSelectedBeatOnGraph.nerveMin;
-//				mNerveMaxField.text = mSelectedBeatOnGraph.nerveMax;
 				mBeatsCompletedField.text = mSelectedBeatOnGraph.beatsCompleted;
 				
-				//mBeatTheme.selectedItem = selectedBeatOnGraph.xgmlTheme;
 				for(var i:int = 0; i < mBeatsListData.length; i ++)
 				{
 					if(mSelectedBeatOnGraph.xgmlTheme == mBeatsListData[i].xgmlTheme)
@@ -677,16 +655,7 @@ package HostComponents.BeatsHostComponent
 						mBeatTheme.selectedItem = mBeatsListData[i];
 					}
 				}
-				
-				/*for(var k:int = 0; k < DataModel.getSingleton().mLocationsList.length; k++)
-				{
-					if(mSelectedBeatOnGraph.locationId == DataModel.getSingleton().mLocationsList[k].id)
-					{
-						mLocationList.selectedItem = DataModel.getSingleton().mLocationsList[k];
-					}
-					
-				}*/
-				
+								
 				var mAgentsData:ArrayCollection = DataModel.getSingleton().mAgentsList;
 				for(var j:int = 0; j <  mAgentsData.length; j ++)
 				{

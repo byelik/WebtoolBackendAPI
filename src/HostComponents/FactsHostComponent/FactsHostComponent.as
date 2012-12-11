@@ -607,7 +607,10 @@ package HostComponents.FactsHostComponent
 		////////////////////////addItem//////////////////////////////////
 		private function addItem(event:MouseEvent):void
 		{
+			//FIX ME if data null
 			DataModel.getSingleton().mItemsData.addItem({owner:DataModel.getSingleton().mAgentsList[0].id, type:DataModel.getSingleton().mAgentsList[0].items[0].type, count:1});
+			var tmp:ArrayCollection = DataModel.getSingleton().mItemsData;
+			trace(tmp);
 		}
 		
 		////////////////////////deleteItem//////////////////////////////////

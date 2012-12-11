@@ -44,9 +44,6 @@ package Data.ImportManager
 		private var mDescriptor:ArrayCollection = new ArrayCollection();
 		
 		[Bindable]
-		private var mItems:ArrayCollection = new ArrayCollection();
-		
-		[Bindable]
 		private var mXgmls:ArrayCollection = new ArrayCollection();
 		
 		public var mZipLoader:FZip;

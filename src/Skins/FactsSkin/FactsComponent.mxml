@@ -188,32 +188,40 @@
 					<s:columns>
 						<s:ArrayList>
 							<s:GridColumn dataField="type" headerText="Type" width="100">
-								<s:itemEditor> 
-									<fx:Component> 
-										<Render:DropDownListRenderer dataProvider="{DataModel.getSingleton().mItemsData}" labelField="type">
+								<s:itemEditor>
+									<fx:Component>
+										<s:ComboBoxGridItemEditor dataProvider="{DataModel.getSingleton().mItemsTypesList}">
 											<fx:Script>
 												<![CDATA[
 													import Data.DataModel;
 												]]>
-											</fx:Script>	
-										</Render:DropDownListRenderer>
-									</fx:Component> 
+											</fx:Script>
+											
+										</s:ComboBoxGridItemEditor>
+										</fx:Component>
 								</s:itemEditor>
 							</s:GridColumn>
-							<s:GridColumn dataField="owner" headerText="Owner" width="100">
-								<s:itemEditor> 
-									<fx:Component> 
-										<Render:DropDownListRenderer dataProvider="{DataModel.getSingleton().mItemsData}" labelField="owner">
+							<s:GridColumn 
+								dataField="owner" 
+								headerText="Owner" 
+								width="100">
+								<s:itemEditor>
+									<fx:Component>
+										<s:ComboBoxGridItemEditor dataProvider="{DataModel.getSingleton().mItemsOwnersList}">
 											<fx:Script>
 												<![CDATA[
 													import Data.DataModel;
 												]]>
-											</fx:Script>	
-										</Render:DropDownListRenderer>
-									</fx:Component> 
+											</fx:Script>
+										</s:ComboBoxGridItemEditor>								
+										</fx:Component>
 								</s:itemEditor>
 							</s:GridColumn>
-							<s:GridColumn dataField="count" headerText="Number" width="100" labelFunction="itemsFunction"/>    
+							<s:GridColumn 
+								dataField="count" 
+								headerText="Number" 
+								width="100">
+							</s:GridColumn>
 						</s:ArrayList>
 					</s:columns>
 				</s:DataGrid>

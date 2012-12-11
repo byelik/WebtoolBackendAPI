@@ -180,20 +180,7 @@ headerText="Qty"&gt;
 				// before we close the editor.
 				callLater(dataGrid.endItemEditorSession);
 			}
-			[Bindable]
-			var tmp:Object;
-			private function test(item:Object):String
-			{
-				tmp = item;
-				trace(item.type);
-				return item.type;
-			}
 			
-			protected function comboBox_changeHandler(event:IndexChangeEvent):void
-			{
-				dropDownList.selectedItem = tmp;
-				trace("change: " + dropDownList.selectedItem.type);
-			}
 		]]>
 	</fx:Script>
 	
