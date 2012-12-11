@@ -59,7 +59,16 @@ package Data.ImportManager
 			mZipLoader = new FZip();
 			mZipFile = new FZipFile();
 
-				
+			if(DataModel.getSingleton().mItemsData)
+			{
+				DataModel.getSingleton().mItemsData.removeAll();
+				DataModel.getSingleton().mItemsData.refresh();
+			}
+			if(DataModel.getSingleton().mCharacterFacts)
+			{
+				DataModel.getSingleton().mCharacterFacts.removeAll();
+				DataModel.getSingleton().mCharacterFacts.refresh();
+			}
 		}
 		
 		public function importData():void

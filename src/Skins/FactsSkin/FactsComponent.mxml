@@ -51,10 +51,9 @@
 								 width="50"
 								 text="0"
 								 enabled="{mCharacterList.selectedItem}"/>
-				</s:HGroup>
-				
+				</s:HGroup>			
 			</s:HGroup>
-			<s:HGroup width="357" verticalAlign="middle">
+			<s:HGroup width="357" verticalAlign="middle" enabled="false">
 				<s:Label text="Memory"/>
 				<s:HGroup width="100%" horizontalAlign="right">
 					<s:Button id="mAddVariable"
@@ -65,7 +64,7 @@
 				</s:HGroup>
 				
 			</s:HGroup>
-			<s:Panel title="Memory">
+			<s:Panel title="Memory" enabled="false">
 				<s:DataGrid id="mVariableList" 
 							width="358" 
 							borderVisible="true"

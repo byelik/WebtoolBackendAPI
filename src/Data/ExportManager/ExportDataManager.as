@@ -33,7 +33,7 @@ package Data.ExportManager
 		private var mXmlData:XML; 
 		private var mTreeXml:XML;
 
-		private var mImportManager:ImportDataManager;
+//		private var mImportManager:ImportDataManager;
 		private var mZipExporter:FZip;
 		private var mByteArrayData:ByteArray;
 		public function ExportDataManager()
@@ -42,7 +42,7 @@ package Data.ExportManager
 			mTreeXml = new XML();
 			mByteArrayData = new ByteArray();
 			
-			mImportManager = new ImportDataManager();
+//			mImportManager = new ImportDataManager();
 			mZipExporter = DataModel.getSingleton().mFZipObject;
 			currentDate = new Date();
 			exportFileFilter = new FileFilter("XML", "*.zip");
