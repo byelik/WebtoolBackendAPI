@@ -503,7 +503,6 @@ package HostComponents.FactsHostComponent
 					}					
 				}
 			}
-//			var tmp:ArrayCollection = DataModel.getSingleton().mAgentsList;
 			mAddFactOwner.enabled = false;
 		}
 			
@@ -519,10 +518,7 @@ package HostComponents.FactsHostComponent
 					{
 						if(mCharacterList.selectedItem.id == DataModel.getSingleton().mAgentsList[k].id)
 						{
-							//for(var j:int = 0; j < DataModel.getSingleton().mAgentsList[k].facts.length; j++)
-							//{
-								DataModel.getSingleton().mAgentsList[k].facts.removeItemAt(k);
-							//}
+							DataModel.getSingleton().mAgentsList[k].facts.removeItemAt(k);
 						}
 					}
 				}
@@ -607,7 +603,7 @@ package HostComponents.FactsHostComponent
 		////////////////////////addItem//////////////////////////////////
 		private function addItem(event:MouseEvent):void
 		{
-			//FIX ME if data null
+			//FIX ME if data null and added to Datamodel.agents and locations
 			DataModel.getSingleton().mItemsData.addItem({owner:DataModel.getSingleton().mAgentsList[0].id, type:DataModel.getSingleton().mAgentsList[0].items[0].type, count:1});
 			var tmp:ArrayCollection = DataModel.getSingleton().mItemsData;
 			trace(tmp);
@@ -631,14 +627,29 @@ package HostComponents.FactsHostComponent
 			if(event.detail == Alert.YES)
 			{
 				var index:Vector.<Object> = mItemsGrid.selectedItems;
+				var itm:ArrayCollection = DataModel.getSingleton().mAgentsList;
 				if(index)
 				{
 					for(var i:int = 0; i < index.length; i++)
 					{
+						for(var k:int = 0; k < DataModel.getSingleton().mAgentsList.length; k++)
+						{
+							for(var j:int = 0; j < DataModel.getSingleton().mAgentsList[k].items.length; j++)
+							{
+								if(mItemsGrid.selectedItem.id == DataModel.getSingleton().mAgentsList[k].id)
+								{
+									DataModel.getSingleton().mAgentsList[k].items.removeItemAt(j);
+								}
+//								
+							}
+							
+						}
 						DataModel.getSingleton().mItemsData.removeItemAt(mItemsGrid.selectedIndex);
 					}
+					
 				}
 			}
+			var tmp:ArrayCollection = DataModel.getSingleton().mAgentsList;
 		}
 		
 		private function finishEditItemsFields(event:GridItemEditorEvent):void

@@ -97,16 +97,18 @@ package Data.ExportManager
 		
 		private function prepareXmlData():void
 		{
-			for(var i:int = 0; i < DataModel.getSingleton().mAgentsList.length; i++)
+			var agentsList:ArrayCollection = DataModel.getSingleton().mAgentsList;
+			var itemsData:ArrayCollection = DataModel.getSingleton().mItemsData;
+			for(var i:int = 0; i < agentsList.length; i++)
 			{
-				for(var j:int = 0; j < DataModel.getSingleton().mAgentsList[i].items.length; j++)
+				for(var j:int = 0; j < agentsList[i].items.length; j++)
 				{
-					for(var k:int = 0; k < DataModel.getSingleton().mItemsData.length; k++)
+					for(var k:int = 0; k < itemsData.length; k++)
 					{
-						if(DataModel.getSingleton().mAgentsList[i].id == DataModel.getSingleton().mItemsData[k].owner)
+						if(agentsList[i].id == itemsData[k].owner)
 						{
-							DataModel.getSingleton().mAgentsList[i].items[j].type = DataModel.getSingleton().mItemsData[k].type;
-							DataModel.getSingleton().mAgentsList[i].items[j].count = DataModel.getSingleton().mItemsData[k].count;
+							agentsList[i].items[j].type = itemsData[k].type;
+							agentsList[i].items[j].count = itemsData[k].count;
 						}
 					}
 				}
