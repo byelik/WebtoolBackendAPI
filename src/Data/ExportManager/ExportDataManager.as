@@ -97,19 +97,28 @@ package Data.ExportManager
 		
 		private function prepareXmlData():void
 		{
-			var agentsList:ArrayCollection = DataModel.getSingleton().mAgentsList;
-			var itemsData:ArrayCollection = DataModel.getSingleton().mItemsData;
-			for(var i:int = 0; i < agentsList.length; i++)
+//			var agentsList:ArrayCollection = DataModel.getSingleton().mAgentsList;
+//			var itemsData:ArrayCollection = DataModel.getSingleton().mItemsData;
+			for(var i:int = 0; i < DataModel.getSingleton().mAgentsList.length; i++)
 			{
-				for(var j:int = 0; j < agentsList[i].items.length; j++)
+				DataModel.getSingleton().mAgentsList[i].items.removeAll();
+				for(var k:int = 0; k < DataModel.getSingleton().mItemsData.length; k++)
 				{
-					for(var k:int = 0; k < itemsData.length; k++)
+					if(DataModel.getSingleton().mAgentsList[i].id == DataModel.getSingleton().mItemsData[k].owner)
 					{
-						if(agentsList[i].id == itemsData[k].owner)
-						{
-							agentsList[i].items[j].type = itemsData[k].type;
-							agentsList[i].items[j].count = itemsData[k].count;
-						}
+						DataModel.getSingleton().mAgentsList[i].items.addItem({type:DataModel.getSingleton().mItemsData[k].type, count:DataModel.getSingleton().mItemsData[k].count});
+					}
+				}
+			}
+			
+			for(var i:int = 0; i < DataModel.getSingleton().mLocationsList.length; i++)
+			{
+				DataModel.getSingleton().mLocationsList[i].items.removeAll();
+				for(var k:int = 0; k < DataModel.getSingleton().mItemsData.length; k++)
+				{
+					if(DataModel.getSingleton().mLocationsList[i].id == DataModel.getSingleton().mItemsData[k].owner)
+					{
+						DataModel.getSingleton().mLocationsList[i].items.addItem({type:DataModel.getSingleton().mItemsData[k].type, count:DataModel.getSingleton().mItemsData[k].count});
 					}
 				}
 			}

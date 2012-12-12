@@ -198,9 +198,6 @@ package HostComponents.FactsHostComponent
 				case "mDeleteItem":
 					mDeleteItem.addEventListener(MouseEvent.CLICK, deleteItem);
 				break;
-				case "mItemsGrid":
-					mItemsGrid.addEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, finishEditItemsFields);
-				break;
 			}
 		}
 		
@@ -253,9 +250,6 @@ package HostComponents.FactsHostComponent
 					break;
 				case "mDeleteItem":
 					mDeleteItem.addEventListener(MouseEvent.CLICK, deleteItem);
-				break;
-				case "mItemsGrid":
-					mItemsGrid.removeEventListener(GridItemEditorEvent.GRID_ITEM_EDITOR_SESSION_SAVE, finishEditItemsFields);
 				break;
 			}
 		}
@@ -603,10 +597,28 @@ package HostComponents.FactsHostComponent
 		////////////////////////addItem//////////////////////////////////
 		private function addItem(event:MouseEvent):void
 		{
+			var itemOwner:String = "input Owner";
+			var itemType:String = "input Type";
+			//DataModel.getSingleton().mAgentsList[0].id
+			/*for(var i:int = 0; i < DataModel.getSingleton().mAgentsList.length; i++)
+			{
+				if(DataModel.getSingleton().mAgentsList[i].items != null)
+				{
+					itemType = DataModel.getSingleton().mAgentsList[i].items[0].type;
+				}
+				else
+				{
+					itemType = "test";
+				}
+			}*/
 			//FIX ME if data null and added to Datamodel.agents and locations
-			DataModel.getSingleton().mItemsData.addItem({owner:DataModel.getSingleton().mAgentsList[0].id, type:DataModel.getSingleton().mAgentsList[0].items[0].type, count:1});
-			var tmp:ArrayCollection = DataModel.getSingleton().mItemsData;
-			trace(tmp);
+			DataModel.getSingleton().mItemsData.addItem({owner:itemOwner, 
+															type:itemType, 
+															count:1});
+//			var items:ArrayCollection = DataModel.getSingleton().mItemsData;
+//			var agent:ArrayCollection = DataModel.getSingleton().mAgentsList;
+//			var locationItems:ArrayCollection = DataModel.getSingleton().mLocationsList;
+//			trace(tmp);
 		}
 		
 		////////////////////////deleteItem//////////////////////////////////
@@ -636,7 +648,7 @@ package HostComponents.FactsHostComponent
 						{
 							for(var j:int = 0; j < DataModel.getSingleton().mAgentsList[k].items.length; j++)
 							{
-								if(mItemsGrid.selectedItem.id == DataModel.getSingleton().mAgentsList[k].id)
+								if(mItemsGrid.selectedItem.owner == DataModel.getSingleton().mAgentsList[k].id)
 								{
 									DataModel.getSingleton().mAgentsList[k].items.removeItemAt(j);
 								}
@@ -650,14 +662,6 @@ package HostComponents.FactsHostComponent
 				}
 			}
 			var tmp:ArrayCollection = DataModel.getSingleton().mAgentsList;
-		}
-		
-		private function finishEditItemsFields(event:GridItemEditorEvent):void
-		{
-			//			var itemId:int = DataModel.getSingleton().mItemsData.getItemAt(event.rowIndex).type;
-			//			var factDescription:String = mSystemFacts.getItemAt(event.rowIndex).description;
-			//send some request
-			//			new HttpServiceManager('{"method":"facts.updateFactDetails","params":['+factId+', "'+xgmlId+'", "'+factDescription+'"], "jsonrpc": "2.0", "id":7}', editFactDescriptionResult);
 		}
 		
 		private function editItemsResult(result:Object):void

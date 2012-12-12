@@ -1,9 +1,11 @@
 package Data.Locations
 {
+	import mx.collections.ArrayCollection;
+
 	public class LocationsData
 	{
 		private var mId:String;
-		private var mItems:Array;
+		private var mItems:ArrayCollection;
 		private var mAdjacents:Array;
 		
 		public function LocationsData(data:Object = null)
@@ -16,12 +18,12 @@ package Data.Locations
 			return new LocationsData();
 		}
 		
-		public function get items():Array
+		public function get items():ArrayCollection
 		{
 			return mItems;
 		}
 
-		public function set items(value:Array):void
+		public function set items(value:ArrayCollection):void
 		{
 			mItems = value;
 		}
@@ -57,7 +59,7 @@ package Data.Locations
 			else
 			{
 				mId = String(data.id);
-				mItems = (data.items) as Array;
+				mItems = new ArrayCollection((data.items) as Array);
 				mAdjacents = (data.adjacents) as Array;
 			}
 		}
