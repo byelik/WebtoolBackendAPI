@@ -780,7 +780,7 @@ package HostComponents.BeatsHostComponent
 		{
 			groupId++;
 			var treeGroupNode:XML = new XML();
-			var childrenList:XMLList = DataModel.getSingleton().mTreeData.children();
+//			var childrenList:XMLList = DataModel.getSingleton().mTreeData.children();
 			treeGroupNode = <node label="Group:">{"Group: " + groupId}</node>;
 			if(mBeatsTree.selectedItem != null)
 			{
@@ -791,11 +791,25 @@ package HostComponents.BeatsHostComponent
 		private function cutMenuEvent(event:ContextMenuEvent):void
 		{
 			trace("cut event");
+			if(mBeatsTree.selectedItems)
+			{
+				mBeatsTreeItemsBuffer = mBeatsTree.selectedItem;
+				var deleteNode:XML = mBeatsTree.selectedItem as XML;
+				mBeatsTree.selectedItem = deleteNode.parent();
+				delete mBeatsTree.selectedItem.node[deleteNode.childIndex()];
+			}
 		}
-		
+		var mBeatsTreeItemsBuffer:*;
 		private function copyMenuEvent(event:ContextMenuEvent):void
 		{
-			trace("copy event");
+			
+			if(mBeatsTree.selectedItems)
+			{
+				mBeatsTreeItemsBuffer = mBeatsTree.selectedItem;
+				var deleteNode:XML = mBeatsTree.selectedItem as XML;
+				mBeatsTree.selectedItem = deleteNode.parent();
+				delete mBeatsTree.selectedItem.node[deleteNode.childIndex()];
+			}
 		}
 		
 		private function deleteMenuEvent(event:ContextMenuEvent):void
@@ -809,28 +823,25 @@ package HostComponents.BeatsHostComponent
 		{
 			if(event.detail == Alert.YES)
 			{
-				var node:XML = XML(mBeatsTree.selectedItem);
-				if( node == null ) return;
-				if( node.localName() != "node" ) return;
+				/*var deleteNode:* = mBeatsTree.selectedItems;
+				for(var i:int = 0; i < deleteNode.length; i++)
+				{
+					mBeatsTree.selectedItem = deleteNode[i].parent();
+					delete mBeatsTree.selectedItem.node[deleteNode[i].childIndex()];
+				}*/
 				
-				var children:XMLList = XMLList(node.parent()).children();
-				for(var i:Number=0; i < children.length(); i++) {
-					if( children[i].@label == node.@label ) {
-						delete children[i];
-					}
-				}
+				
 			}
 		}
 		
-		private function deleteBeatLevelResult(result:Object):void
-		{
-			//result...
-		}
-		
-		
 		private function pasteMenuEvent(event:ContextMenuEvent):void
 		{
-			trace("paste event");
+//			var treeGroupNode:XML = new XML();
+//			treeGroupNode = <node label="Group:">{"Group: " + groupId}</node>;
+			if(mBeatsTree.selectedItem != null)
+			{
+				mBeatsTree.selectedItem.(mBeatsTreeItemsBuffer);
+			}
 		}
 		
 		private function renameMenuEvent(event:ContextMenuEvent):void
@@ -839,9 +850,6 @@ package HostComponents.BeatsHostComponent
 			mBeatsTree.editable = true;
 			mBeatsTree.editedItemPosition = {columnIndex:0, rowIndex:mBeatsTree.selectedIndex};
 		}
-		
-		
-		
 		
 		//TODO: if beat.type == exclusive do not enter excluSiveBeatPriority 
 		private function checkPriorityValue(event:TextOperationEvent):void

@@ -112,47 +112,6 @@ package Data.ImportManager
 			
 			mZipLoader.loadBytes(importerFileReference.data);
 			DataModel.getSingleton().mFZipObject = mZipLoader;
-			
-			
-			
-			/*for(var i:uint = 0; i < mZipLoader.getFileCount(); i++)
-			{
-				mXgmlFiles = mZipLoader.getFileAt(i);
-//				trace(mXgmlFiles.filename);
-				
-				var extensionIndex:Number = mXgmlFiles.filename.lastIndexOf( '.' );				
-				var extension:String = mXgmlFiles.filename.substr( extensionIndex + 1, mXgmlFiles.filename.length );
-//				trace(extension);
-				if(extension == "xgml")
-				{
-//					trace(mXgmlFiles.filename);
-					if(mXgmlFiles)
-					{
-						mXgmlThemeData = XML(mXgmlFiles.content);
-						if(mXgmlThemeData)
-						{
-							for each(var agent:XML in mXgmlThemeData.children())
-							{
-								xgmlsXml = agent;
-								trace(xgmlsXml.@name.toString());
-								DataModel.getSingleton().mAgentThemesList.addItem(xgmlsXml.@name.toString());
-							}
-//							for each(var factId:XML in factsXML.fact)
-//							{
-//								var factObject:Object = {};				
-//								factObject["id"] = int(factId.@id);
-//								factObject["description"] = String(factId.children()[0]);
-//								mFacts.addItem(factObject);
-//							}
-//							DataModel.getSingleton().parseFactsData(mFacts);
-						}
-					}
-				}
-				
-			}*/
-			
-			
-			
 			mZipFile = mZipLoader.getFileByName("Scenary.xml");
 
 			if(mZipFile)
