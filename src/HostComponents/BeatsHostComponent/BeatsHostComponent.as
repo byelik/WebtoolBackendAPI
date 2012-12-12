@@ -739,11 +739,14 @@ package HostComponents.BeatsHostComponent
 		var groupId:int;
 		private function addGroupMenuEvent(event:ContextMenuEvent):void
 		{
-			
 			groupId++;
 			var treeGroupNode:XML = new XML();
-			treeGroupNode = <node>{"Group: " + groupId}</node>;
-			DataModel.getSingleton().mTreeData.children()[0].appendChild(treeGroupNode);
+			var childrenList:XMLList = DataModel.getSingleton().mTreeData.children();
+			treeGroupNode = <node label="Group:">{"Group: " + groupId}</node>;
+			if(mBeatsTree.selectedItem != null)
+			{
+				mBeatsTree.selectedItem.appendChild(treeGroupNode);
+			}
 		}
 		
 		private function cutMenuEvent(event:ContextMenuEvent):void
