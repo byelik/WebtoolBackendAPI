@@ -878,10 +878,13 @@ package HostComponents.BeatsHostComponent
 		public function drawBeatConnection(event:Event):void
 		{
 //			var beatContainer:UIComponent = new UIComponent();
+			
 			mBeatConnection.graphics.clear();
 			var  beatLine:Sprite = new Sprite();
-			
-			
+			beatLine.mouseEnabled = false;
+			beatLine.mouseChildren = false;
+			mBeatConnection.mouseEnabled = false;
+			mBeatConnection.mouseChildren = false;
 			beatLine.graphics.clear();
 			mBeatConnection.graphics.lineStyle(1, 0x000000,1);
 			if(mBeatSeries)
@@ -897,32 +900,38 @@ package HostComponents.BeatsHostComponent
 								//FIX ME when set beatsCompleted...
 								if(mBeatSeries.items[j].item.id == mBeatSeries.items[i].item.beatsCompleted[k] )
 								{
-									mBeatConnection.graphics.moveTo(mBeatSeries.items[j].x, mBeatSeries.items[j].y);
-									mBeatConnection.graphics.lineTo(mBeatSeries.items[i].x, mBeatSeries.items[i].y);
-									
 									var y:Number = mBeatSeries.items[i].y - mBeatSeries.items[j].y;
 									var x = mBeatSeries.items[i].x - mBeatSeries.items[j].x;
 									
 									var tan = y/x;
+									var angle:Number = Math.atan(-tan);
+									angle = x < 0 ? angle + Math.PI : angle; 
+									
+									var dx:Number = 15*Math.cos(angle);
+									var dy:Number = 15*Math.sin(angle);
+									
+									mBeatConnection.graphics.moveTo(mBeatSeries.items[j].x+dx, mBeatSeries.items[j].y-dy);
+									mBeatConnection.graphics.lineTo(mBeatSeries.items[i].x - dx, mBeatSeries.items[i].y + dy);
+									
 									
 									//arrows
 									var arrowSize:Number = 15;
 									var xTo:Number = mBeatSeries.items[i].x;
 									var yTo:Number = mBeatSeries.items[i].y;
-									var angle:Number = Math.atan(-tan);
+									
 									mBeatConnection.graphics.beginFill(0x000000);
-									mBeatConnection.graphics.moveTo(xTo, yTo);
+									mBeatConnection.graphics.moveTo(xTo - dx, yTo + dy);
 									
 									var bX:Number = xTo - arrowSize * Math.sin(Math.PI/3 - angle);
 									var bY:Number = yTo + arrowSize * Math.cos(Math.PI/3 - angle);
 									
-									mBeatConnection.graphics.lineTo(bX, bY);
+									mBeatConnection.graphics.lineTo(bX - dx, bY + dy);
 									
 									var cX:Number=bX-arrowSize*Math.cos(Math.PI/2 - angle);
 									var cY:Number=bY-arrowSize*Math.sin(Math.PI/2 - angle);
 									
-									mBeatConnection.graphics.lineTo(cX, cY);
-									mBeatConnection.graphics.lineTo(xTo, yTo);
+									mBeatConnection.graphics.lineTo(cX - dx, cY + dy);
+									mBeatConnection.graphics.lineTo(xTo - dx, yTo + dy);
 								}
 							}
 						}
@@ -930,8 +939,6 @@ package HostComponents.BeatsHostComponent
 				}
 				mBeatSeries.addChild(mBeatConnection);
 			}
-//			beatLine.graphics.endFill();
-			
 		}
 		
 		private function addBeatContextMenuHandler(evt:ContextMenuEvent):void 
@@ -941,7 +948,6 @@ package HostComponents.BeatsHostComponent
 		
 		private function cutBeatContextMenuHandler(event:ContextMenuEvent):void
 		{
-//			drawBeatConnection();
 			if(mSelectedBeatOnGraph)
 			{
 				if(mBeatBuffer)
@@ -981,9 +987,6 @@ package HostComponents.BeatsHostComponent
 				tmp.disableAutoUpdate();
 				for(var i:int; i < mBeatBuffer.length; i++)
 				{
-//					mBeatsData.addItem(mBeatBuffer[i]);
-//					mBeatsData.enableAutoUpdate();
-//					mBeatsData.refresh();
 					tmp.addItem(mBeatBuffer[i]);
 					tmp.enableAutoUpdate();
 					tmp.refresh();
