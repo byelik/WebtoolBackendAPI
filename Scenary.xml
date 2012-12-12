@@ -2,8 +2,8 @@
   <agents>
     <agent id="eddy">
       <location>saloon</location>
-      <nerve>0</nerve>
-      <affinity>0</affinity>
+      <nerve>10</nerve>
+      <affinity>20</affinity>
       <facts>
         <fact id="301" status="true"/>
         <fact id="302" status="false"/>
@@ -22,8 +22,8 @@
     </agent>
 	<agent id="byelik">
       <location>hall</location>
-      <nerve>0</nerve>
-      <affinity>0</affinity>
+      <nerve>50</nerve>
+      <affinity>60</affinity>
       <facts>
         <fact id="301" status="true"/>
         <fact id="302" status="false"/>
@@ -37,19 +37,6 @@
     </agent>
   </agents>
   <locations>
-    <location id="saloon">
-      <adjacents>
-        <adjacent>livingroom</adjacent>
-        <adjacent>salon</adjacent>
-        <adjacent>hall2</adjacent>
-      </adjacents>
-      <items>
-        <item>
-          <type>ball</type>
-          <count>13</count>
-        </item>
-      </items>
-    </location>
     <location id="hall">
       <adjacents>
         <adjacent>school</adjacent>
@@ -58,31 +45,73 @@
       </adjacents>
       <items>
         <item>
-          <type>gun</type>
+          <type>gun bazuka</type>
           <count>1333</count>
         </item>
         <item>
-          <type>gun</type>
+          <type>gun AK</type>
           <count>1</count>
         </item>
         <item>
-          <type>gun</type>
+          <type>gun Tank</type>
           <count>3442341</count>
+        </item>
+      </items>
+    </location>
+	<location id="byelik school">
+      <adjacents>
+        <adjacent>робота</adjacent>
+      </adjacents>
+      <items>
+        <item>
+          <type>gun M16</type>
+          <count>333</count>
         </item>
       </items>
     </location>
   </locations>
   <hints/>
   <facts>
-    <fact id="29">Melany admits that mt.</fact>
-    <fact id="30">Byelik</fact>
-    <fact id="173.4327571466565">New Fact</fact>
+    <fact id="301">Melany admits that mt.</fact>
+    <fact id="302">Byelik</fact>
+    <fact id="303">New Fact</fact>
   </facts>
   <beats>
     <beat id="4">
       <description>undefined</description>
+      <agent>byelik</agent>
+      <type>normal</type>
+	  <exclusiveBeatPriority>0</exclusiveBeatPriority>
+	  <themes>
+		<theme>test</theme>
+	  </themes>
+	  <completedBeats>
+        <beat>46</beat>
+      </completedBeats>
+    </beat>
+    <beat id="46">
+      <description>undefined</description>
       <agent>undefined</agent>
       <type>normal</type>
+	  <exclusiveBeatPriority>0</exclusiveBeatPriority>
+	  <themes>
+		<theme>test</theme>
+	  </themes>
+	  <completedBeats>
+        <beat></beat>
+      </completedBeats>
+    </beat>
+    <beat id="5">
+      <description>undefined</description>
+      <agent>undefined</agent>
+      <type>normal</type>
+	  <exclusiveBeatPriority>0</exclusiveBeatPriority>
+	  <themes>
+		<theme>test</theme>
+	  </themes>
+	  <completedBeats>
+        <beat>46</beat>
+      </completedBeats>
     </beat>
   </beats>
 </data>

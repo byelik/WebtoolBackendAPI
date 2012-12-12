@@ -309,7 +309,7 @@
 						<s:HGroup width="100%"
 								  horizontalAlign="right">
 							<s:DropDownList id="mBeatTheme" x="-38" width="200"
-											dataProvider="{hostComponent.mAgentThemes}"
+											dataProvider="{DataModel.getSingleton().mThemesList}" 
 											prompt="Choose XGML theme"/>
 						</s:HGroup>	
 					</s:HGroup>

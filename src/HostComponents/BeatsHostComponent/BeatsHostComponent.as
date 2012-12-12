@@ -411,23 +411,32 @@ package HostComponents.BeatsHostComponent
 			}
 		}
 		
-		/*private function selectAgent(event:IndexChangeEvent):void
-		{
-			//select agent...
-		}*/
-		
 		private function chooseAgent(event:IndexChangeEvent):void
 		{
 			if(mSelectedBeatOnGraph)
 			{
+				if(DataModel.getSingleton().mThemesList)
+				{
+					DataModel.getSingleton().mThemesList.removeAll();	
+				}
 				for(var i:int = 0; i < DataModel.getSingleton().mBubbleBeatData.length; i++)
 				{
 					if(mSelectedBeatOnGraph.id == DataModel.getSingleton().mBubbleBeatData[i].id)
 					{
 						DataModel.getSingleton().mBubbleBeatData[i].agent = mChooseAgentList.selectedItem.id;
+						for(var j:int = 0; j < DataModel.getSingleton().mAgentThemesList.length; j++)
+						{
+							if(DataModel.getSingleton().mBubbleBeatData[i].agent == DataModel.getSingleton().mAgentThemesList[j].agentName)
+							{
+								DataModel.getSingleton().mThemesList.addAll(new ArrayCollection(DataModel.getSingleton().mAgentThemesList[j].themes));
+//								DataModel.getSingleton().mThemesList.addItem(DataModel.getSingleton().mAgentThemesList[j].themes);
+								break;
+							}
+						}
 					}
 				}
 			}
+//			var tmp:ArrayCollection = DataModel.getSingleton().mThemesList; 
 		}
 			
 		private function selectType(event:IndexChangeEvent):void
@@ -629,8 +638,7 @@ package HostComponents.BeatsHostComponent
 		private function selectBeatOnGraph(event:ChartItemEvent):void
 		{
 			event.stopImmediatePropagation();
-			mSelectedBeatOnGraph = event.hitData.item;		
-			
+			mSelectedBeatOnGraph = event.hitData.item;
 			if(mSelectedBeatsId)
 			{
 				mSelectedBeatsId.removeAll();
@@ -648,20 +656,51 @@ package HostComponents.BeatsHostComponent
 				mActivitiesList.text = mSelectedBeatOnGraph.activities;
 				mBeatsCompletedField.text = mSelectedBeatOnGraph.beatsCompleted;
 				
-				for(var i:int = 0; i < mBeatsListData.length; i ++)
+				/*for(var i:int = 0; i < mBeatsListData.length; i ++)
 				{
 					if(mSelectedBeatOnGraph.xgmlTheme == mBeatsListData[i].xgmlTheme)
 					{
 						mBeatTheme.selectedItem = mBeatsListData[i];
 					}
-				}
-								
-				var mAgentsData:ArrayCollection = DataModel.getSingleton().mAgentsList;
-				for(var j:int = 0; j <  mAgentsData.length; j ++)
+				}*/
+				if(DataModel.getSingleton().mThemesList)
 				{
-					if(mSelectedBeatOnGraph.agent == mAgentsData[j].id)
+					DataModel.getSingleton().mThemesList.removeAll();	
+				}
+				for(var i:int = 0; i < DataModel.getSingleton().mBubbleBeatData.length; i++)
+				{
+					if(mSelectedBeatOnGraph.id == DataModel.getSingleton().mBubbleBeatData[i].id)
+					{
+						for(var j:int = 0; j < DataModel.getSingleton().mAgentThemesList.length; j++)
+						{
+							if(DataModel.getSingleton().mBubbleBeatData[i].agent == DataModel.getSingleton().mAgentThemesList[j].agentName)
+							{
+								DataModel.getSingleton().mThemesList.addAll(new ArrayCollection(DataModel.getSingleton().mAgentThemesList[j].themes));
+//								DataModel.getSingleton().mThemesList.addItem(DataModel.getSingleton().mAgentThemesList[j].themes);
+								break;
+							}
+						}
+					}
+				}
+				
+				
+				
+				
+				
+				
+				
+				
+				var agentsData:ArrayCollection = DataModel.getSingleton().mAgentsList;
+				for(var j:int = 0; j < agentsData.length; j ++)
+				{
+					if(mSelectedBeatOnGraph.agent == agentsData[j].id)
 					{
 						mChooseAgentList.selectedIndex = j;
+						break;
+					}
+					else
+					{
+						mChooseAgentList.selectedIndex = -1;
 					}
 				}
 			}
@@ -692,7 +731,7 @@ package HostComponents.BeatsHostComponent
 			}
 		}
 		
-		private function getXgmlThemesForAgentResult(result:Object):void
+		/*private function getXgmlThemesForAgentResult(result:Object):void
 		{
 			if(result.code)
 			{
@@ -721,7 +760,7 @@ package HostComponents.BeatsHostComponent
 				
 				}
 			}
-		}
+		}*/
 		
 		private function addBeatResult(result:Object):void
 		{

@@ -25,7 +25,12 @@ package Data.ImportManager
 		private var importerFileFilter:FileFilter;
 		private var importerFileReference:FileReference;
 		private var fileLoader:Loader;
-		private var xmlData:XML;
+		private var mXmlData:XML;
+		
+		//xgml
+		private var mXgmlThemeData:XML;
+		private var mXgmlFiles:FZipFile;
+		
 		private var alertHandler:Alert;
 		
 		[Bindable]
@@ -43,12 +48,15 @@ package Data.ImportManager
 		[Bindable]
 		private var mDescriptor:ArrayCollection = new ArrayCollection();
 		
-		[Bindable]
-		private var mXgmls:ArrayCollection = new ArrayCollection();
+//		[Bindable]
+//		private var mXgmls:ArrayCollection = new ArrayCollection();
 		
 		public var mZipLoader:FZip;
 		private var mZipFile:FZipFile;
-
+		
+		[Bindable]
+		private var mAgentsNamesList:ArrayCollection = new ArrayCollection();
+		
 //		private var mTreeObject:XML;
 		
 		public function ImportDataManager()
@@ -59,6 +67,8 @@ package Data.ImportManager
 			
 			mZipLoader = new FZip();
 			mZipFile = new FZipFile();
+			
+			mXgmlFiles = new FZipFile();
 		}
 		
 		public function importData():void
@@ -96,29 +106,67 @@ package Data.ImportManager
 			var itemsXml:XML;
 			var xgmlsXml:XML;
 			
-			var xgmlTheme:XML;
+			var xgmlThemeXML:XML;
 			
 			var treeData:Object;
 			
 			mZipLoader.loadBytes(importerFileReference.data);
-//			setZipExporter(mZipLoader);
 			DataModel.getSingleton().mFZipObject = mZipLoader;
+			
+			
+			
+			/*for(var i:uint = 0; i < mZipLoader.getFileCount(); i++)
+			{
+				mXgmlFiles = mZipLoader.getFileAt(i);
+//				trace(mXgmlFiles.filename);
+				
+				var extensionIndex:Number = mXgmlFiles.filename.lastIndexOf( '.' );				
+				var extension:String = mXgmlFiles.filename.substr( extensionIndex + 1, mXgmlFiles.filename.length );
+//				trace(extension);
+				if(extension == "xgml")
+				{
+//					trace(mXgmlFiles.filename);
+					if(mXgmlFiles)
+					{
+						mXgmlThemeData = XML(mXgmlFiles.content);
+						if(mXgmlThemeData)
+						{
+							for each(var agent:XML in mXgmlThemeData.children())
+							{
+								xgmlsXml = agent;
+								trace(xgmlsXml.@name.toString());
+								DataModel.getSingleton().mAgentThemesList.addItem(xgmlsXml.@name.toString());
+							}
+//							for each(var factId:XML in factsXML.fact)
+//							{
+//								var factObject:Object = {};				
+//								factObject["id"] = int(factId.@id);
+//								factObject["description"] = String(factId.children()[0]);
+//								mFacts.addItem(factObject);
+//							}
+//							DataModel.getSingleton().parseFactsData(mFacts);
+						}
+					}
+				}
+				
+			}*/
+			
+			
+			
 			mZipFile = mZipLoader.getFileByName("Scenary.xml");
-			
-			//TreeData.json
-			
+
 			if(mZipFile)
 			{
-				xmlData = XML(mZipFile.content);
+				mXmlData = XML(mZipFile.content);
 			}
 			//parse facts
 			if(mFacts)
 			{
 				mFacts.removeAll();
 			}
-			if(xmlData)
+			if(mXmlData)
 			{
-				for each(var fact:XML in xmlData.facts)
+				for each(var fact:XML in mXmlData.facts)
 				{
 					factsXML = fact;	
 				}
@@ -136,7 +184,7 @@ package Data.ImportManager
 				{
 					mBeats.removeAll();
 				}
-				for each(var beats:XML in xmlData.beats)
+				for each(var beats:XML in mXmlData.beats)
 				{
 					beatsXML = beats;
 				}
@@ -162,38 +210,6 @@ package Data.ImportManager
 					beatsObject["type"] = String(beat.type);
 					beatsObject["xgmlTheme"] = String(beat.xgmlTheme);
 					beatsObject["preConditions"] = String(beat.preConditions);
-					/*for each(var beatPrecondition:XML in beat.preConditions.children())
-					{
-						var preconditionChildren:XMLList = beatPrecondition.children();
-						var preconditionObj:Object = new Object();
-						preconditionObj["description"] = preconditionChildren[0].toString();
-						preconditionObj["factsAvailableToUser"] = new Array();
-						for each(var userFact:XML in preconditionChildren[1].children())
-						{
-							preconditionObj["factsAvailableToUser"].push(int(userFact.children()[0]));
-						}
-						preconditionObj["factsAvailableToAgent"] = new Array();
-						for each(var agentFact:XML in preconditionChildren[2].children())
-						{
-							preconditionObj["factsAvailableToAgent"].push(int(agentFact.children()[0]));
-						}
-						preconditionObj["beatsCompleted"] = new Array();
-						for each(var beatCompleted:XML in preconditionChildren[3].children())
-						{
-							preconditionObj["beatsCompleted"].push(int(beatCompleted.children()[0]));
-						}
-						preconditionObj["affinityMin"] = preconditionChildren[4].toString();
-						preconditionObj["affinityMax"] = preconditionChildren[5].toString();
-						preconditionObj["nerveMax"] = preconditionChildren[6].toString();
-						preconditionObj["nerveMin"] = preconditionChildren[6].toString();				
-						preconditionObj["subjects"] = new Array();
-						for each(var subject:XML in preconditionChildren[7].children())
-						{
-							preconditionObj["subjects"].push(int(subject.children()[0]));
-						}
-						
-						beatsObject["preConditions"].push(preconditionObj);
-					}*/
 					mBeats.addItem(beatsObject);
 				}
 				DataModel.getSingleton().parseBeatsData(mBeats);
@@ -204,7 +220,7 @@ package Data.ImportManager
 				{
 					mLocations.removeAll();
 				}
-				for each(var locations:XML in xmlData.locations)
+				for each(var locations:XML in mXmlData.locations)
 				{
 					locationsXml = locations;	
 				}
@@ -233,7 +249,11 @@ package Data.ImportManager
 				{
 					mAgents.removeAll();
 				}
-				for each(var agents:XML in xmlData.agents)
+				if(mAgentsNamesList)
+				{
+					mAgentsNamesList.removeAll();
+				}
+				for each(var agents:XML in mXmlData.agents)
 				{
 					agentsXml = agents;	
 				}
@@ -241,6 +261,10 @@ package Data.ImportManager
 				{
 					var agentObject:Object = {"facts":[], "items":[]};				
 					agentObject["id"] = String(agent.@id);
+					
+					
+					mAgentsNamesList.addItem(agentObject.id);
+					
 					agentObject["location"] = String(agent.location);
 					agentObject["nerve"] = int(agent.nerve);
 					agentObject["affinity"] = int(agent.affinity);
@@ -268,47 +292,70 @@ package Data.ImportManager
 				{
 					mDescriptor.removeAll();
 				}
-				for each(var descriptor:XML in xmlData.descriptor)
+				for each(var descriptor:XML in mXmlData.descriptor)
 				{
 					var descriptorObject:Object = {};				
 					descriptorObject["id"] = int(descriptor.@id);
 					descriptorObject["scenarioId"] = String(descriptor.scenarioId);
 					mDescriptor.addItem(descriptorObject);
 				}
-	//			DataModel.getSingleton().parseAgentsData(mAgents);
-				
-				//parse agents
-				if(mXgmls)
-				{
-					mXgmls.removeAll();
-				}
-				for each(var xgmls:XML in xmlData.xgml)
-				{
-					xgmlsXml = xgmls;	
-				}
-				if(xgmlsXml)
-				{
-					for each(var xgml:XML in xgmlsXml.xgml)
-					{
-						var xgmlObject:Object = {};				
-						xgmlObject["id"] = int(xgml.@id);
-						xgmlObject["className"] = String(xgml.className);
-						xgmlObject["filename"] = String(xgml.filename);
-						xgmlObject["content"] = xgml.content;
-						mXgmls.addItem(xgmlObject);
-					}
-					DataModel.getSingleton().parseXgmlsData(mXgmls);
-				}
+				parseAgnetsFiles(mAgentsNamesList);
 			}
 			mZipFile = mZipLoader.getFileByName("TreeData.xml");
 			if(mZipFile)
 			{
-//				treeData= mZipFile.getContentAsString(mZipFile.content);
-//				mTreeObject = JSON.parse(treeData as String);
 				DataModel.getSingleton().mTreeData = new XML(mZipFile.content);
 			}			
 			ExportDataManager.deleteFiles(mZipLoader, "Scenary.xml", "TreeData.xml");
 		}
+		
+		private function parseAgnetsFiles(agentsNames:ArrayCollection):void
+		{		
+			parseThemesFiles(agentsNames);
+		}
+		
+		private function parseThemesFiles(themesFileName:ArrayCollection):void
+		{
+			if(DataModel.getSingleton().mAgentThemesList)
+			{
+				DataModel.getSingleton().mAgentThemesList.removeAll();
+			}
+			var agentXgmlFile:XML;
+			var themesFilesList:ArrayCollection = new ArrayCollection();
+			var themesList:ArrayCollection = new ArrayCollection();
+			var xgmlThemesFile:XML;
+			for(var i:int = 0; i < themesFileName.length; i++)
+			{
+				mXgmlFiles = mZipLoader.getFileByName(themesFileName[i] + ".xgml");
+				if(mXgmlFiles)
+				{
+					agentXgmlFile = new XML(mXgmlFiles.content);
+					for each(var fileThemeInAgentFile:XML in agentXgmlFile.children())
+					{
+//						trace(fileThemeInAgentFile.@file.toString());
+						mXgmlFiles = mZipLoader.getFileByName(fileThemeInAgentFile.@file.toString());
+						if(mXgmlFiles)
+						{
+							xgmlThemesFile = new XML(mXgmlFiles.content);
+							for each(var themes:XML in xgmlThemesFile.children())
+							{					
+								themesList.addItem(themes.@name.toString());
+							}
+						}
+					}
+					
+					var str:String = themesList.toString();
+					var theme:Array = str.split(",");
+					DataModel.getSingleton().mAgentThemesList.addItem({agentName:themesFileName[i], themes:theme});
+				}
+			}
+			var tmp:ArrayCollection = DataModel.getSingleton().mAgentThemesList;
+		}
+		
+		/*private function getThemesList():ArrayCollection
+		{
+			return
+		}*/
 		
 		private function errorHandler(event:IOErrorEvent):void
 		{

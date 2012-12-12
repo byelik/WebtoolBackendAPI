@@ -66,15 +66,11 @@ package Data.ExportManager
 		{
 			return mFileName;
 		}
-		//FIX ME delete Scenary.xml && TreeData.xml when complete and when cancel...
-		
 		
 		public function exportData():void
 		{
-			//FIX ME (check is file exist...)
 			deleteFiles(mZipExporter, "Scenary.xml");
 			prepareXmlData();
-//			var tmp:FZip = DataModel.getSingleton().mFZipObject;
 			var tmpByteArray:ByteArray = new ByteArray();
 			mByteArrayData.writeUTFBytes(mXmlData.toString());
 			mByteArrayData.position = 0;
@@ -238,8 +234,7 @@ package Data.ExportManager
 				beatsThemes = <themes/>
 				completedBeats = <completedBeats/>
 				preCondition = <preCondition/>
-				beatsActivities = <activities/>
-				//FIX ME when export	
+				beatsActivities = <activities/>	
 				for(var k:int = 0; k < beatsData[i].xgmlTheme.length;k++)
 				{
 					var theme:XML = new XML();

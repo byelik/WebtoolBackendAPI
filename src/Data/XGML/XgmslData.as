@@ -4,34 +4,22 @@ package Data.XGML
 
 	public class XgmslData
 	{
-		private var mId:int;
-		private var mClassName:String;
 		private var mFileName:String;
-		private var mContent:XML;
+		private var mFilesWithThemes:XML;
 		
 		public function XgmslData(data:Object = null)
 		{
 			parse(data);
 		}
 		
-		public function get id():int
+		public function get filesWithThemes():XML
 		{
-			return mId;
+			return mFilesWithThemes;
 		}
 
-		public function set id(value:int):void
+		public function set filesWithThemes(value:XML):void
 		{
-			mId = value;
-		}
-
-		public function get className():String
-		{
-			return mClassName;
-		}
-
-		public function set className(value:String):void
-		{
-			mClassName = value;
+			mFilesWithThemes = value;
 		}
 
 		public function get filename():String
@@ -44,16 +32,6 @@ package Data.XGML
 			mFileName = value;
 		}
 
-		public function get content():XML
-		{
-			return mContent;
-		}
-
-		public function set content(value:XML):void
-		{
-			mContent = value;
-		}
-
 		public static function getNewInstance():XgmslData
 		{
 			return new XgmslData();
@@ -63,17 +41,13 @@ package Data.XGML
 		{
 			if(!data)
 			{
-				mId = 0;
-				mClassName = "";
 				mFileName = "";
-				mContent = null;
+				mFilesWithThemes = null;
 			}
 			else
 			{
-				mId = int(data.id);
-				mClassName = String(data.className);
 				mFileName = String(data.filename);
-				mContent = XML(data.content);
+				mFilesWithThemes = (data.file as XML);
 			}
 		}
 	}

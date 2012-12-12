@@ -72,6 +72,12 @@ package Data
 		[Bindable]
 		public var mFZipObject:FZip = new FZip();
 		
+		[Bindable]
+		public var mAgentThemesList:ArrayCollection = new ArrayCollection();
+		
+		[Bindable]
+		public var mThemesList:ArrayCollection = new ArrayCollection();
+		
 		public function DataModel()
 		{
 			
@@ -189,7 +195,7 @@ package Data
 			}
 			for each(var originalBeatData:Object in mBeatsList)
 			{
-				var tmp:Object={beatPosX:new Date(new Date().time + millisecondsPerDay * 10), beatPosY:1, beatRadius:40};
+				var tmp:Object={beatPosX:new Date(new Date().time + millisecondsPerDay * 10), beatPosY:20, beatRadius:40};
 				
 				tmp["beatId"] = originalBeatData.id;
 				tmp["description"] = originalBeatData.description;
@@ -217,7 +223,7 @@ package Data
 //				var x:Date = new Date()
 //				var y:Date = new Date(new Date().time + 10 * 10);
 //				tmp["beatPosX"] = Math.random() - 0.001;
-//				tmp["beatPosY"] = Math.random() - 0.0001;
+				tmp["beatPosY"] = Math.random() * 50;
 				mBubbleBeatData.addItem(tmp);
 			}
 			

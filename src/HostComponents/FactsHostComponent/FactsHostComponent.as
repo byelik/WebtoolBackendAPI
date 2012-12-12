@@ -611,7 +611,6 @@ package HostComponents.FactsHostComponent
 					itemType = "test";
 				}
 			}*/
-			//FIX ME if data null and added to Datamodel.agents and locations
 			DataModel.getSingleton().mItemsData.addItem({owner:itemOwner, 
 															type:itemType, 
 															count:1});
