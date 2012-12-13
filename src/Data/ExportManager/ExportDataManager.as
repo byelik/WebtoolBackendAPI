@@ -77,6 +77,7 @@ package Data.ExportManager
 //			mByteArrayData.position = 0;
 			mZipExporter.addFile("Scenary.xml", mByteArrayData);
 			mByteArrayData.clear();
+			
 			mByteArrayData.writeUTFBytes(mTreeXml.toString());
 			deleteFiles(mZipExporter, "TreeData.xml");
 			mZipExporter.addFile("TreeData.xml", mByteArrayData);
@@ -280,7 +281,7 @@ package Data.ExportManager
 				for(var k:int = 0; k < beatsData[i].beatsCompleted.length;k++)
 				{
 					var beatCompleted:XML = new XML();
-					beatCompleted = <beat>{beatsData[i].beatsCompleted}</beat>
+					beatCompleted = <beat>{beatsData[i].beatsCompleted[k]}</beat>
 					completedBeats.appendChild(beatCompleted);
 				}
 				beatsNode.appendChild(completedBeats);

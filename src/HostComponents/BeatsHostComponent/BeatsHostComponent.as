@@ -728,8 +728,8 @@ package HostComponents.BeatsHostComponent
 			if(mSelectedBeatOnGraph)
 			{
 				var str:String = mBeatsCompletedField.text.toString();
-				var theme:Array = str.split(",");
-				mSelectedBeatOnGraph.beatsCompleted = theme;
+				var tmpArr:Array = str.split(",");
+				mSelectedBeatOnGraph.beatsCompleted = tmpArr;
 			}
 		}
 		//FIX ME: refresh text via input...
