@@ -36,12 +36,11 @@ package Data.ExportManager
 
 //		private var mImportManager:ImportDataManager;
 		private var mZipExporter:FZip;
-		private var mByteArrayData:ByteArray;
+		
 		public function ExportDataManager()
 		{
 			mXmlData = new XML();
 			mTreeXml = new XML();
-			mByteArrayData = new ByteArray();
 			
 //			mImportManager = new ImportDataManager();
 			mZipExporter = DataModel.getSingleton().mFZipObject;
@@ -70,19 +69,25 @@ package Data.ExportManager
 		
 		public function exportData():void
 		{
+			var mByteArrayData:ByteArray = new ByteArray();
+			
 			deleteFiles(mZipExporter, "Scenary.xml");
 			prepareXmlData();
 			var tmpByteArray:ByteArray = new ByteArray();
 			mByteArrayData.writeUTFBytes(mXmlData.toString());
-//			mByteArrayData.position = 0;
-			mZipExporter.addFile("Scenary.xml", mByteArrayData);
+			mZipExporter.addFile("Scenary.xml", mByteArrayData,true);
 			mByteArrayData.clear();
 			
 			mByteArrayData.writeUTFBytes(mTreeXml.toString());
 			deleteFiles(mZipExporter, "TreeData.xml");
-			mZipExporter.addFile("TreeData.xml", mByteArrayData);
+			mZipExporter.addFile("TreeData.xml", mByteArrayData,true);
 			mZipExporter.serialize(tmpByteArray);
 			exportFileReference.addEventListener(Event.CANCEL, cancelSaving);
+			
+			var zFile:FZipFile = new FZipFile();
+			zFile = mZipExporter.getFileByName("2_Eddy_Interrogation.xgml");
+			var debugXML:XML = new XML(zFile.content);
+			
 			exportFileReference.save(tmpByteArray, getFileName());
 		}
 		

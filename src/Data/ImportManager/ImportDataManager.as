@@ -109,7 +109,6 @@ package Data.ImportManager
 			var xgmlThemeXML:XML;
 			
 			var treeData:Object;
-			
 			mZipLoader.loadBytes(importerFileReference.data);
 			DataModel.getSingleton().mFZipObject = mZipLoader;
 			
@@ -117,17 +116,17 @@ package Data.ImportManager
 			mZipFile = mZipLoader.getFileByName("TreeData.xml");
 			if(mZipFile)
 			{
-				var treeXML:XML = new XML(mZipFile.content);
-				
-				for each(var group:XML in treeXML.children())
-				{
-					for each(var label:XML in group.children())
-					{
-						trace("Group:" + group.children().@label);
-						trace("Label" + label.children().@label + label.children().@description + label.children().@id + label.children().@x + label.children().@y);	
-					}
-					
-				}
+//				var treeXML:XML = new XML(mZipFile.content);
+//				
+//				for each(var group:XML in treeXML.children())
+//				{
+//					for each(var label:XML in group.children())
+//					{
+//						trace("Group:" + group.children().@label);
+//						trace("Label" + label.children().@label + label.children().@description + label.children().@id + label.children().@x + label.children().@y);	
+//					}
+//					
+//				}
 				DataModel.getSingleton().mTreeData = new XML(mZipFile.content);
 			}	
 			
@@ -277,10 +276,11 @@ package Data.ImportManager
 					descriptorObject["scenarioId"] = String(descriptor.scenarioId);
 					mDescriptor.addItem(descriptorObject);
 				}
-				parseAgnetsFiles(mAgentsNamesList);
+//				parseAgnetsFiles(mAgentsNamesList);
 			}
 					
 			ExportDataManager.deleteFiles(mZipLoader, "Scenary.xml", "TreeData.xml");
+			
 		}
 		
 		private function parseAgnetsFiles(agentsNames:ArrayCollection):void
@@ -323,7 +323,7 @@ package Data.ImportManager
 					DataModel.getSingleton().mAgentThemesList.addItem({agentName:themesFileName[i], themes:theme});
 				}
 			}
-			var tmp:ArrayCollection = DataModel.getSingleton().mAgentThemesList;
+//			var tmp:ArrayCollection = DataModel.getSingleton().mAgentThemesList;
 		}
 				
 		private function errorHandler(event:IOErrorEvent):void
