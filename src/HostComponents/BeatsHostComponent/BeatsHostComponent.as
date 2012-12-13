@@ -5,8 +5,6 @@ package HostComponents.BeatsHostComponent
 	
 	import Data.DataModel;
 	
-	import HttpService.HttpServiceManager;
-	
 	import Manager.EventManager;
 	
 	import Skins.BeatsSkin.SearchComponent;
@@ -145,18 +143,11 @@ package HostComponents.BeatsHostComponent
 		private var dataSortField:SortField;
 		private var dataSort:Sort;
 		
-//		private var addGroupMenuItem:ContextMenuItem;
-//		private var cutMenuItem:ContextMenuItem;
-//		private var copyMenuItem:ContextMenuItem;
-//		private var deleteMenuItem:ContextMenuItem;
-//		private var pasteMenuItem:ContextMenuItem;
-//		private var renameMenuItem:ContextMenuItem;
+
 		
-		//[Bindable]
 		public var treeContextMenu:ContextMenu;
 		
-		//[Bindable]
-		
+		private var groupId:int;
 		
 		[Bindable]
 		public var mFacts:ArrayCollection;
@@ -334,12 +325,12 @@ package HostComponents.BeatsHostComponent
 				case "mPriorityField":
 					mPriorityField.addEventListener(TextOperationEvent.CHANGE, checkPriorityValue);
 				break;
-				/*case "mBeatsTree":
-					mBeatsTree.addEventListener(ListEvent.ITEM_ROLL_OVER, rollOverTreeItem);
-				break;*/
-				/*case "mBeatsTree":
-					mBeatsTree.addEventListener(ListEvent.ITEM_CLICK, treeItemClick);
-				break;*/
+				case "mBeatTheme":
+					mBeatTheme.addEventListener(Event.CHANGE, selectBeatTheme);
+				break;
+				case "mActivitiesList":
+					mActivitiesList.addEventListener(TextOperationEvent.CHANGE, setBeatActivities);
+				break;
 				default:
 					//default
 				break;
@@ -351,15 +342,9 @@ package HostComponents.BeatsHostComponent
 			super.partRemoved(partName, instance);
 			switch(partName)
 			{
-				/*case "mAgentList":
-					mAgentList.removeEventListener(Event.CHANGE, selectAgent);
-					break;*/
 				case "mChooseAgentList":
 					mChooseAgentList.removeEventListener(Event.CHANGE, chooseAgent);
 				break;
-				/*case "mLocationList":
-					mLocationList.removeEventListener(Event.CHANGE, selectLocation);
-				break;*/
 				case "mTypeList":
 					mTypeList.removeEventListener(Event.CHANGE, selectType);
 				break;
@@ -399,12 +384,12 @@ package HostComponents.BeatsHostComponent
 				case "mPriorityField":
 					mPriorityField.removeEventListener(TextOperationEvent.CHANGE, checkPriorityValue);
 				break;
-				/*case "mBeatsTree":
-					mBeatsTree.removeEventListener(ListEvent.ITEM_ROLL_OVER, rollOverTreeItem);
-				break;*/
-				/*case "mBeatsTree":
-					mBeatsTree.removeEventListener(ListEvent.ITEM_CLICK, treeItemClick);
-				break;*/
+				case "mBeatTheme":
+					mBeatTheme.removeEventListener(Event.CHANGE, selectBeatTheme);
+				break;
+				case "mActivitiesList":
+					mActivitiesList.removeEventListener(TextOperationEvent.CHANGE, setBeatActivities);
+				break;
 				default:
 					//default
 				break;
@@ -461,6 +446,7 @@ package HostComponents.BeatsHostComponent
 		
 		private function saveData(event:MouseEvent):void
 		{
+			trace(mSelectedBeatOnGraph.activties);
 			//save data...
 //			checkPriorityValue();
 			
@@ -671,7 +657,7 @@ package HostComponents.BeatsHostComponent
 				mTypeList.selectedItem = mSelectedBeatOnGraph.type;
 				mActivitiesList.text = mSelectedBeatOnGraph.activities;
 				mBeatsCompletedField.text = mSelectedBeatOnGraph.beatsCompleted;
-				
+				mBeatTheme.selectedItem = mSelectedBeatOnGraph.xgmlTheme;
 				/*for(var i:int = 0; i < mBeatsListData.length; i ++)
 				{
 					if(mSelectedBeatOnGraph.xgmlTheme == mBeatsListData[i].xgmlTheme)
@@ -749,56 +735,11 @@ package HostComponents.BeatsHostComponent
 			}
 		}
 		
-		/*private function getXgmlThemesForAgentResult(result:Object):void
-		{
-			if(result.code)
-			{
-				Alert.show("Ошибка при загрузке списка тем для агента", "Внимание", Alert.OK);
-			}
-			else
-			{
-				if(mAgentThemes)
-				{
-					mAgentThemes.removeAll();
-				}
-				var str:String = result.toString();
-				var themes:Array = str.split(",");
-				for(var i:int = 0; i < themes.length; i++)
-				{
-					mAgentThemes.addItem(themes[i]);	
-				}
-				
-				mBeatTheme.dataProvider = mAgentThemes;
-				for(var j:int; j < mAgentThemes.length; j++)
-				{
-					if(mAgentThemes[j] == mSelectedBeatOnGraph.xgmlTheme)
-					{
-						mBeatTheme.selectedItem = mAgentThemes[j];
-					}
-				
-				}
-			}
-		}*/
 		
-		private function addBeatResult(result:Object):void
-		{
-			if(result.code)
-			{
-				Alert.show("Error", "Error", Alert.OK);
-			}
-			else
-			{
-//				good	
-				mBeatsData.addItem(result);
-				focusManager.setFocus(mBeatDescriptionField);
-			}
-		}
-		var groupId:int;
 		private function addGroupMenuEvent(event:ContextMenuEvent):void
 		{
 			groupId++;
 			var treeGroupNode:XML = new XML();
-//			var childrenList:XMLList = DataModel.getSingleton().mTreeData.children();
 			treeGroupNode = <node label="Group:">{"Group: " + groupId}</node>;
 			if(mBeatsTree.selectedItem != null)
 			{
@@ -824,11 +765,6 @@ package HostComponents.BeatsHostComponent
 			if(mBeatsTree.selectedItems)
 			{
 				mBeatsTreeItemsBuffer = new XML(mBeatsTree.selectedItem.toString());
-				
-				trace(mBeatsTreeItemsBuffer);
-//				var deleteNode:XML = mBeatsTree.selectedItem as XML;
-//				mBeatsTree.selectedItem = deleteNode.parent();
-//				delete mBeatsTree.selectedItem.node[deleteNode.childIndex()];
 			}
 		}
 		
@@ -843,16 +779,8 @@ package HostComponents.BeatsHostComponent
 		{
 			if(event.detail == Alert.YES)
 			{
-				/*var deleteNode:* = mBeatsTree.selectedItems;
-				for(var i:int = 0; i < deleteNode.length; i++)
-				{
-					mBeatsTree.selectedItem = deleteNode[i].parent();
-					delete mBeatsTree.selectedItem.node[deleteNode[i].childIndex()];
-				}*/
 				
 				var deleteNode:XML = mBeatsTree.selectedItem as XML;
-//				mBeatsTree.selectedItem = deleteNode.parent();
-//				(mBeatsTree.dataProvider as XML)
 				var children:XMLList = XMLList(deleteNode.parent()).children();
 				for (var i:Number=0; i < children.length(); i++) 
 				{
@@ -904,6 +832,25 @@ package HostComponents.BeatsHostComponent
 			}
 		}		
 		
+		private function selectBeatTheme(event:IndexChangeEvent):void
+		{
+			if(mSelectedBeatOnGraph)
+			{
+				mSelectedBeatOnGraph.xgmlTheme = mBeatTheme.selectedItem;
+			}
+		}
+		
+		private function setBeatActivities(event:TextOperationEvent):void
+		{
+			if(mSelectedBeatOnGraph)
+			{
+				var str:String = mActivitiesList.text.toString();
+				var tmpArr:Array = str.split(",");
+				mSelectedBeatOnGraph.activities = tmpArr;	
+			}
+			
+		}
+		
 		private function checkValue(str:String, txtField:TextInput):Boolean
 		{
 			if(parseInt(str) == 0 && txtField.text.length > 1 || parseInt(txtField.text) > Const.MAX_VALUE || txtField.text == Const.EMPTY_STRING)	
@@ -929,27 +876,7 @@ package HostComponents.BeatsHostComponent
 			beatTypeList.sort = dataSort;
 			beatTypeList.refresh();
 		}
-		
-		/*private var beatType:String = "normal";
-		private function getBeatType():String
-		{
-			//for each(var type:String in beatTypeList)
-			//{
-			//	if(beatType == type)
-			//	{
-			//		return beatType;
-			//	}
-			//}
-			for(var i:int = 0; i < beatTypeList.length; i++)
-			{
-				if(mBeatsTree.selectedItem.type == beatTypeList[i])
-				{
-					mTypeList.selectedItem = beatTypeList[i];
-				}
-			}
-			return null;
-		}*/
-		
+				
 		public function drawBeatConnection(event:Event):void
 		{
 //			var beatContainer:UIComponent = new UIComponent();

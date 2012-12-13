@@ -110,7 +110,8 @@ package Data.ImportManager
 			
 			var treeData:Object;
 			mZipLoader.loadBytes(importerFileReference.data);
-			DataModel.getSingleton().mFZipObject = mZipLoader;
+			DataModel.getSingleton().mFZipObject.loadBytes(importerFileReference.data);
+//			DataModel.getSingleton().mFZipObject = mZipLoader;
 			
 			
 			mZipFile = mZipLoader.getFileByName("TreeData.xml");
@@ -276,7 +277,7 @@ package Data.ImportManager
 					descriptorObject["scenarioId"] = String(descriptor.scenarioId);
 					mDescriptor.addItem(descriptorObject);
 				}
-//				parseAgnetsFiles(mAgentsNamesList);
+				parseAgnetsFiles(mAgentsNamesList);
 			}
 					
 			ExportDataManager.deleteFiles(mZipLoader, "Scenary.xml", "TreeData.xml");

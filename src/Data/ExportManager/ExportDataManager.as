@@ -70,10 +70,10 @@ package Data.ExportManager
 		public function exportData():void
 		{
 			var mByteArrayData:ByteArray = new ByteArray();
-			
+			var tmpByteArray:ByteArray = new ByteArray();
 			deleteFiles(mZipExporter, "Scenary.xml");
 			prepareXmlData();
-			var tmpByteArray:ByteArray = new ByteArray();
+			
 			mByteArrayData.writeUTFBytes(mXmlData.toString());
 			mZipExporter.addFile("Scenary.xml", mByteArrayData,true);
 			mByteArrayData.clear();
@@ -156,7 +156,7 @@ package Data.ExportManager
 					groupNode = <node label="Group">
 								</node>
 					var node:XML = new XML();	
-					node = <label/>
+					node = <node label={"beat: " + beatsData[i].id}></node>
 					node.@id = beatsData[i].id;
 					node.@x = beatsData[i].beatPosX;
 					node.@y = beatsData[i].beatPosX;
@@ -303,7 +303,7 @@ package Data.ExportManager
 				for(var k:int = 0; k < beatsData[i].activities.length;k++)
 				{
 					var activity:XML = new XML();
-					activity = <activity>{beatsData[i].activity}</activity>
+					activity = <activity>{beatsData[i].activities[k]}</activity>
 					beatsActivities.appendChild(activity);
 				}
 				beatsNode.appendChild(beatsActivities);
