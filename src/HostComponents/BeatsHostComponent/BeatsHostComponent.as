@@ -461,7 +461,6 @@ package HostComponents.BeatsHostComponent
 		
 		private function saveData(event:MouseEvent):void
 		{
-			mSelectedBeatOnGraph.beatsCompleted = mBeatsCompletedField.text;
 			//save data...
 //			checkPriorityValue();
 			
@@ -728,7 +727,9 @@ package HostComponents.BeatsHostComponent
 		{
 			if(mSelectedBeatOnGraph)
 			{
-				mSelectedBeatOnGraph.beatsCompleted = mBeatsCompletedField.text;
+				var str:String = mBeatsCompletedField.text.toString();
+				var theme:Array = str.split(",");
+				mSelectedBeatOnGraph.beatsCompleted = theme;
 			}
 		}
 		//FIX ME: refresh text via input...
