@@ -110,24 +110,7 @@
 			{
 				return ""+value+"%";
 			}
-			
-			/*private function formatDataTip(hitData:HitData):String
-			{
-				//var nome:String = hitData.item.nome;
-				//var status:String = hitData.item.status;
-				var dtInicio:Date = hitData.item.beatPosX;
-				var dtTermino:Date = hitData.item.beatPosY;
-				//var andamento:Number = hitData.item.andamento;
-				//var prioridade:Number = hitData.item.prioridade;
-				//return "<b>"+nome+"</b><br>Status: "+status+"<br>Início: "+df.format(dtInicio)+"<br>Término previsto: "+df.format(dtTermino)+"<br>Andamento: "+nf.format(andamento)+"%"+"<br>Priodidade: "+ prioridade/10;
-				return "<br>Início: "+df.format(dtInicio)+"<br>Término previsto: "+df.format(dtTermino);
-			}*/
-			
-			/*private function formatHAxis(labelValue:Object, previousValue:Object, axis:IAxis):String 
-			{
-				return df.format(labelValue);	
-			}*/
-			
+						
 			protected function zoomIn(event:FlexEvent):void
 			{	
 				mBeatSeries.minRadius += 5;
@@ -168,16 +151,9 @@
 				height="100%">
 		<s:VGroup width="100%" height="100%" id="VerticalContentGroup">
 			<s:HGroup>
-				<!--<s:TextInput id="mSearchField"
-							 width="300"
-							 prompt="Search"/>-->
 				<BeatsSkin:SearchComponent id="mSearchField" mSearchFieldPromt="Search" depth="1000"/>
-				<!--<s:ComboBox width="361" change="combobox1_changeHandler(event)"
-							dataProvider="{mBetsTreeData}" labelField="name"/>-->
 				<s:Button id="mRefreshSearch"
 						  label="Refresh"/>
-				
-							 
 			</s:HGroup>
 			<s:HGroup width="100%">
 				<s:BorderContainer id="mTreeBorderContainer"
@@ -206,7 +182,7 @@
 									 contentBackgroundAlpha="0"
 									 verticalScrollPolicy="auto"
 									 dataProvider="{DataModel.getSingleton().mTreeData}"
-									 itemRenderer="Skins.BeatsSkin.TreeItemLinesRenderer">
+									 itemRenderer="Skins.BeatsSkin.TreeItemLinesRenderer" allowDragSelection="true">
 							</mx:Tree>
 					</s:HGroup>
 				</s:BorderContainer>
@@ -265,8 +241,7 @@
 														 stroke="{stroke1}"
 														 itemRenderer="Render.BeatRender.BeatsRender"/>
 									</mx:series> 									
-								</mx:BubbleChart>            
-								<!--<mx:Legend dataProvider="{mBeatChart}"/>-->
+								</mx:BubbleChart>
 								<s:HGroup width="100%" horizontalAlign="right">
 									<s:Button id="mAddBeat" x="-6" width="80" label="Add beat"/>
 									<s:VGroup horizontalAlign="center">

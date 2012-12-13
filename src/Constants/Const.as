@@ -22,6 +22,8 @@ package Constants
 		
 		public static const STOP_DRAG_BEAT:String = "StopDragBeat";
 		
+		public static const millisecondsPerDay:int = 1000 * 60 * 60 * 24;
+		
 		public function Const()
 		{
 		}

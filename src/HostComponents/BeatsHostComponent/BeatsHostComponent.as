@@ -461,6 +461,7 @@ package HostComponents.BeatsHostComponent
 		
 		private function saveData(event:MouseEvent):void
 		{
+			mSelectedBeatOnGraph.beatsCompleted = mBeatsCompletedField.text;
 			//save data...
 //			checkPriorityValue();
 			
@@ -629,8 +630,24 @@ package HostComponents.BeatsHostComponent
 				beatId += beatIdList[beatIdList.length - 1];
 				trace(beatId);
 				//			mBeatsData.addItem(result);
-				DataModel.getSingleton().mBubbleBeatData.addItem(beatId);
-				var tmp:ArrayCollection = DataModel.getSingleton().mBubbleBeatData
+				
+				var tmp:Object={beatPosX:new Date(new Date().time + Const.millisecondsPerDay * Math.random()*40), beatPosY:20, beatRadius:40};
+				
+				tmp["beatId"] = beatId;
+				tmp["description"] = "";
+				tmp["beatsCompleted"] = "";
+				tmp["preConditions"] = "";
+				tmp["activities"] = "";
+				tmp["agent"] = "";
+				tmp["exclusiveBeatPriority"] = "";
+				tmp["id"] = beatId;
+				tmp["locationId"] = "";
+				tmp["type"] = "normal";
+				tmp["xgmlTheme"] = "";
+				tmp["beatPosY"] = Math.random() * 50;
+				
+				DataModel.getSingleton().mBubbleBeatData.addItem(tmp);
+				var tp:ArrayCollection = DataModel.getSingleton().mBubbleBeatData;
 				focusManager.setFocus(mBeatDescriptionField);
 			}
 		}
@@ -805,10 +822,12 @@ package HostComponents.BeatsHostComponent
 			
 			if(mBeatsTree.selectedItems)
 			{
-				mBeatsTreeItemsBuffer = mBeatsTree.selectedItem;
-				var deleteNode:XML = mBeatsTree.selectedItem as XML;
-				mBeatsTree.selectedItem = deleteNode.parent();
-				delete mBeatsTree.selectedItem.node[deleteNode.childIndex()];
+				mBeatsTreeItemsBuffer = new XML(mBeatsTree.selectedItem.toString());
+				
+				trace(mBeatsTreeItemsBuffer);
+//				var deleteNode:XML = mBeatsTree.selectedItem as XML;
+//				mBeatsTree.selectedItem = deleteNode.parent();
+//				delete mBeatsTree.selectedItem.node[deleteNode.childIndex()];
 			}
 		}
 		
@@ -830,7 +849,15 @@ package HostComponents.BeatsHostComponent
 					delete mBeatsTree.selectedItem.node[deleteNode[i].childIndex()];
 				}*/
 				
-				
+				var deleteNode:XML = mBeatsTree.selectedItem as XML;
+//				mBeatsTree.selectedItem = deleteNode.parent();
+//				(mBeatsTree.dataProvider as XML)
+				var children:XMLList = XMLList(deleteNode.parent()).children();
+				for (var i:Number=0; i < children.length(); i++) 
+				{
+					delete children[i];
+
+				}
 			}
 		}
 		
@@ -840,7 +867,7 @@ package HostComponents.BeatsHostComponent
 //			treeGroupNode = <node label="Group:">{"Group: " + groupId}</node>;
 			if(mBeatsTree.selectedItem != null)
 			{
-				mBeatsTree.selectedItem.(mBeatsTreeItemsBuffer);
+				mBeatsTree.selectedItem.appendChild(mBeatsTreeItemsBuffer);
 			}
 		}
 		
@@ -945,7 +972,8 @@ package HostComponents.BeatsHostComponent
 							for(var j:int = 0; j < mBeatSeries.items.length; j++)
 							{
 								//FIX ME when set beatsCompleted...
-								if(mBeatSeries.items[j].item.id == mBeatSeries.items[i].item.beatsCompleted[k] )
+								if(mBeatSeries.items[j].item.id == mBeatSeries.items[i].item.
+									beatsCompleted[k] )
 								{
 									var y:Number = mBeatSeries.items[i].y - mBeatSeries.items[j].y;
 									var x = mBeatSeries.items[i].x - mBeatSeries.items[j].x;

@@ -87,6 +87,7 @@
 	  </themes>
 	  <completedBeats>
         <beat>46</beat>
+        <beat>5</beat>
       </completedBeats>
     </beat>
     <beat id="46">
@@ -98,7 +99,7 @@
 		<theme>test</theme>
 	  </themes>
 	  <completedBeats>
-        <beat></beat>
+        <beat>5</beat>
       </completedBeats>
     </beat>
     <beat id="5">

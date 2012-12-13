@@ -39,33 +39,5 @@ package Data.Tree
 			}
 		}
 		
-		/*public function toJson():String
-		 {
-			  res="{ name:\""+name+"\" data:[ ";
-			  for each(var i:Person in children)
-			  {
-				  res+=i.toJson()+",";
-			  }
-			  res=res.substr(res.length-1);
-			  res+="]}";
-		 }*/
-		/*public class Person
-		{
-				
-				public var name:String;
-				public var children:ArrayCollection;
-				
-				public function Person(_name:String, _children:ArrayCollection = null)
-				{
-					this.name = _name;
-					if(_children != null)
-					{
-						this.children = _children;
-					}//end Person constructor
-				
-				}//end Person class
-			
-		}//end package declaration*/
-		
 	}
 }

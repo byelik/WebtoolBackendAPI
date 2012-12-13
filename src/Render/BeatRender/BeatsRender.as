@@ -3,6 +3,8 @@ package Render.BeatRender
 	
 	import Constants.Const;
 	
+	import Data.DataModel;
+	
 	import HostComponents.FactsHostComponent.FactsHostComponent;
 	
 	import Manager.EventManager;
@@ -114,7 +116,6 @@ package Render.BeatRender
 //			mBeatIdLabel.y = (this.height / 2);
 			EventManager.getSingleton().fireEvent(EventManager.STOP_DRAG_BEAT);	
 		}
-		
 		private function changeBeatsLabels(event:Event):void
 		{
 			var tmp = parent as BubbleSeries;
@@ -171,6 +172,28 @@ package Render.BeatRender
 			if (posX >= hMin && posX <= hMax)
 			{
 				_data.item.beatPosX = new Date(posX);
+				
+				/*for each(var treeXML:Object in DataModel.getSingleton().mTreeData)
+				{
+					for each(var group:XML in treeXML.children())
+					{
+						for each(var label:XML in group.children())
+						{
+							if(tmp.id == label.children().@id)
+							{
+								tmp["beatPosX"] = new Date(String(label.children().@x));
+								tmp["beatPosY"] = int(label.children().@y);	
+							}
+							
+						}
+						
+					}
+					
+				}*/
+				
+				
+				
+				
 				//for(var i:int = 0; i < beatDataProvider.selectedItems.length; i++)
 				//{
 				//	_data.item[i].beatPosX = new Date(posX);

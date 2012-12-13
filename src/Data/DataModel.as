@@ -1,5 +1,7 @@
 package Data
 {
+	import Constants.Const;
+	
 	import Data.Agents.AgentsData;
 	import Data.Beats.BeatsData;
 	import Data.Facts.FactsData;
@@ -35,11 +37,7 @@ package Data
 		public var mLocationsList:ArrayCollection = new ArrayCollection();
 		
 		[Bindable]
-		public var mBubbleBeatData:ArrayCollection = new ArrayCollection([{beatPosX:1, beatPosY:1, beatRadius:40,
-																		   id:1, description:" ", type:"normal", 
-																		   beatsCompleted:"", agent:"",
-																		   xgmlTheme:"", exclusiveBeatPriority:0,
-																		   preConditions:"", activities:[]}]);
+		public var mBubbleBeatData:ArrayCollection = new ArrayCollection();
 		
 		[Bindable]
 		public var mXgmlsData:ArrayCollection = new ArrayCollection();
@@ -186,7 +184,7 @@ package Data
 			
 //			mLocationsList.enableAutoUpdate();
 		}
-		public static const millisecondsPerDay:int = 1000 * 60 * 60 * 24;
+		
 		private function parseOriginalBeatData():void
 		{
 			if(mBubbleBeatData)
@@ -195,23 +193,12 @@ package Data
 			}
 			for each(var originalBeatData:Object in mBeatsList)
 			{
-				var tmp:Object={beatPosX:new Date(new Date().time + millisecondsPerDay * 10), beatPosY:20, beatRadius:40};
+				var tmp:Object={beatPosX:new Date(new Date().time + Const.millisecondsPerDay * 10), beatPosY:20, beatRadius:40};
 				
 				tmp["beatId"] = originalBeatData.id;
 				tmp["description"] = originalBeatData.description;
 				tmp["beatsCompleted"] = originalBeatData.beatsCompleted;
 				tmp["preConditions"] = originalBeatData.preConditions;
-				/*for each(var beatPrecondition:Object in originalBeatData.preconditions)
-				{
-					tmp["affinityMax"] = beatPrecondition.affinityMax;
-					tmp["affinityMin"] = beatPrecondition.affinityMin;
-					tmp["beatPreconditionsDescription"] = beatPrecondition.description;
-					tmp["factsAvailableToAgent"] = beatPrecondition.factsAvailableToAgent;
-					tmp["factsAvailableToUser"] = beatPrecondition.factsAvailableToUser;
-					tmp["nerveMax"] = beatPrecondition.nerveMax;
-					tmp["nerveMin"] = beatPrecondition.nerveMin;
-					tmp["subjects"] = beatPrecondition.subjects;
-				}*/
 				tmp["activities"] = originalBeatData.activities;
 				tmp["agent"] = originalBeatData.agent;
 				tmp["exclusiveBeatPriority"] = originalBeatData.exclusiveBeatPriority;
@@ -219,11 +206,24 @@ package Data
 				tmp["locationId"] = originalBeatData.locationId;
 				tmp["type"] = originalBeatData.type;
 				tmp["xgmlTheme"] = originalBeatData.xgmlTheme;
-//				tmp["preconditions"] = originalBeatData.preConditions;
-//				var x:Date = new Date()
-//				var y:Date = new Date(new Date().time + 10 * 10);
-//				tmp["beatPosX"] = Math.random() - 0.001;
-				tmp["beatPosY"] = Math.random() * 50;
+				
+				for each(var treeXML:Object in DataModel.getSingleton().mTreeData)
+				{
+					for each(var group:XML in treeXML.children())
+					{
+						for each(var label:XML in group.children())
+						{
+							if(tmp.id == label.children().@id)
+							{
+								tmp["beatPosX"] = new Date(String(label.children().@x));
+								tmp["beatPosY"] = int(label.children().@y);	
+							}
+							
+						}
+						
+					}
+						
+				}
 				mBubbleBeatData.addItem(tmp);
 			}
 			

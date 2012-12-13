@@ -12,6 +12,7 @@ package Data.ExportManager
 	import flash.net.FileReference;
 	import flash.utils.ByteArray;
 	import flash.utils.IDataInput;
+	import flash.xml.XMLNode;
 	
 	import mx.collections.ArrayCollection;
 	import mx.core.MXMLObjectAdapter;
@@ -73,7 +74,7 @@ package Data.ExportManager
 			prepareXmlData();
 			var tmpByteArray:ByteArray = new ByteArray();
 			mByteArrayData.writeUTFBytes(mXmlData.toString());
-			mByteArrayData.position = 0;
+//			mByteArrayData.position = 0;
 			mZipExporter.addFile("Scenary.xml", mByteArrayData);
 			mByteArrayData.clear();
 			mByteArrayData.writeUTFBytes(mTreeXml.toString());
@@ -82,8 +83,6 @@ package Data.ExportManager
 			mZipExporter.serialize(tmpByteArray);
 			exportFileReference.addEventListener(Event.CANCEL, cancelSaving);
 			exportFileReference.save(tmpByteArray, getFileName());
-//			var tmp:ArrayCollection = DataModel.getSingleton().mCharacterFactsList;
-//			trace(tmp);
 		}
 		
 		private function cancelSaving(event:Event):void
@@ -93,8 +92,6 @@ package Data.ExportManager
 		
 		private function prepareXmlData():void
 		{
-//			var agentsList:ArrayCollection = DataModel.getSingleton().mAgentsList;
-//			var itemsData:ArrayCollection = DataModel.getSingleton().mItemsData;
 			for(var i:int = 0; i < DataModel.getSingleton().mAgentsList.length; i++)
 			{
 				DataModel.getSingleton().mAgentsList[i].items.removeAll();
@@ -125,7 +122,44 @@ package Data.ExportManager
 			var factsData:ArrayCollection = DataModel.getSingleton().mFactsList;
 			var beatsData:ArrayCollection = DataModel.getSingleton().mBubbleBeatData;
 			
-			mTreeXml = DataModel.getSingleton().mTreeData;
+//			mTreeXml = DataModel.getSingleton().mTreeData;
+			
+			/*mTreeXml = <node label="Folders">
+							  <node label="ODN">
+							         <node label="Group 1">
+							                 <node label="beat 1" description="test description" id="4" x="Sun Dec 23 12:31:53 GMT+0200 2012" y="50"/>
+							         </node>
+							         <node label="Group 2">
+							                 <node label="beat 2" description="test description" id="46" x="Thu Jan 3 19:19:30 GMT+0200 2013" y="70"/>
+							         </node>
+							         <node label="Group 1">
+							                 <node label="beat 3" description="test description" id="5" x="Thu Dec 20 20:48:17 GMT+0200 2012" y="60"/>
+							         </node>
+							  </node>
+							</node>
+			*/
+				mTreeXml = new XML();
+				var odnNode:XML = new XML();
+				odnNode = <node label="ODN">
+					  </node>
+				mTreeXml = <node label="Folders">
+						  </node>
+				for(var i:int = 0; i < beatsData.length; i++)
+				{
+					var groupNode:XML = new XML();
+					groupNode = <node label="Group">
+								</node>
+					var node:XML = new XML();	
+					node = <label/>
+					node.@id = beatsData[i].id;
+					node.@x = beatsData[i].beatPosX;
+					node.@y = beatsData[i].beatPosX;
+					groupNode.appendChild(node);
+					odnNode.appendChild(groupNode);	
+				}
+				
+				mTreeXml.appendChild(odnNode);
+				
 			mXmlData =<data>
 							<agents>
 							</agents>

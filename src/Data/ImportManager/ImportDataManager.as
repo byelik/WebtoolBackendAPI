@@ -112,6 +112,25 @@ package Data.ImportManager
 			
 			mZipLoader.loadBytes(importerFileReference.data);
 			DataModel.getSingleton().mFZipObject = mZipLoader;
+			
+			
+			mZipFile = mZipLoader.getFileByName("TreeData.xml");
+			if(mZipFile)
+			{
+				var treeXML:XML = new XML(mZipFile.content);
+				
+				for each(var group:XML in treeXML.children())
+				{
+					for each(var label:XML in group.children())
+					{
+						trace("Group:" + group.children().@label);
+						trace("Label" + label.children().@label + label.children().@description + label.children().@id + label.children().@x + label.children().@y);	
+					}
+					
+				}
+				DataModel.getSingleton().mTreeData = new XML(mZipFile.content);
+			}	
+			
 			mZipFile = mZipLoader.getFileByName("Scenary.xml");
 
 			if(mZipFile)
@@ -260,11 +279,7 @@ package Data.ImportManager
 				}
 				parseAgnetsFiles(mAgentsNamesList);
 			}
-			mZipFile = mZipLoader.getFileByName("TreeData.xml");
-			if(mZipFile)
-			{
-				DataModel.getSingleton().mTreeData = new XML(mZipFile.content);
-			}			
+					
 			ExportDataManager.deleteFiles(mZipLoader, "Scenary.xml", "TreeData.xml");
 		}
 		
@@ -310,12 +325,7 @@ package Data.ImportManager
 			}
 			var tmp:ArrayCollection = DataModel.getSingleton().mAgentThemesList;
 		}
-		
-		/*private function getThemesList():ArrayCollection
-		{
-			return
-		}*/
-		
+				
 		private function errorHandler(event:IOErrorEvent):void
 		{
 			trace("Error:" + event);
