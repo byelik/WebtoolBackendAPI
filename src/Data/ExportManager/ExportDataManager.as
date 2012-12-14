@@ -84,10 +84,6 @@ package Data.ExportManager
 			mZipExporter.serialize(tmpByteArray);
 			exportFileReference.addEventListener(Event.CANCEL, cancelSaving);
 			
-			var zFile:FZipFile = new FZipFile();
-			zFile = mZipExporter.getFileByName("2_Eddy_Interrogation.xgml");
-			var debugXML:XML = new XML(zFile.content);
-			
 			exportFileReference.save(tmpByteArray, getFileName());
 		}
 		
