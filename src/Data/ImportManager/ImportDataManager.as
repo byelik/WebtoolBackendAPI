@@ -187,7 +187,7 @@ package Data.ImportManager
 	//				beatsObject["preConditions"] = (beat.preConditions) as Array;
 					beatsObject["type"] = String(beat.type);
 					beatsObject["xgmlTheme"] = String(beat.xgmlTheme);
-					beatsObject["preConditions"] = String(beat.preConditions);
+					beatsObject["preConditions"] = String(beat.preCondition);
 					mBeats.addItem(beatsObject);
 				}
 				DataModel.getSingleton().parseBeatsData(mBeats);

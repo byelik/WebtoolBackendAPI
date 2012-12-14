@@ -113,7 +113,7 @@ package HostComponents.BeatsHostComponent
 		[SkinPart(required="true")]
 		public var hideBeatsTree:Resize;
 		
-		[SkinPart(required="true")]
+		[SkinPart(required="false")]
 		public var mSearchField:SearchComponent;
 		
 		[SkinPart(required="true")]
@@ -130,6 +130,9 @@ package HostComponents.BeatsHostComponent
 		
 		[SkinPart(required="true")]
 		public var mBubbleCanvas:Canvas;
+		
+		[SkinPart]
+		public var mPreconditionsFunction:TextArea;
 		
 		private var mComponent:IFocusManagerComponent;
 		private var firstTextElement:String;
@@ -331,6 +334,9 @@ package HostComponents.BeatsHostComponent
 				case "mActivitiesList":
 					mActivitiesList.addEventListener(TextOperationEvent.CHANGE, setBeatActivities);
 				break;
+				case "mPreconditionsFunction":
+					mPreconditionsFunction.addEventListener(TextOperationEvent.CHANGE, setBeatPrecondition);
+				break;
 				default:
 					//default
 				break;
@@ -389,6 +395,9 @@ package HostComponents.BeatsHostComponent
 				break;
 				case "mActivitiesList":
 					mActivitiesList.removeEventListener(TextOperationEvent.CHANGE, setBeatActivities);
+				break;
+				case "mPreconditionsFunction":
+					mPreconditionsFunction.removeEventListener(TextOperationEvent.CHANGE, setBeatPrecondition);
 				break;
 				default:
 					//default
@@ -537,9 +546,68 @@ package HostComponents.BeatsHostComponent
 			mBeatsTree.includeInLayout = false;
 		}
 		
+		/**/
+		
+		/*private function expandParents(xmlNode:XML):void
+		{
+			while (xmlNode.parent() != null)
+			{  
+				xmlNode = xmlNode.parent();
+				mBeatsTree.expandItem(xmlNode,true, false);
+			}
+		}//expandParents
+		
+		//uses e4x to find a node, then calls expand parents to make it visible,
+		//then selects it      
+		private function findNodeById(sId:String):void
+		{
+			var xmllistDescendants:XMLList  = DataModel.getSingleton().mTreeData.descendants().(@label == sId);
+			expandParents(xmllistDescendants[0]);
+			mBeatsTree.selectedItem = xmllistDescendants[0];
+		}*/
+		
+		[Bindable]
+		private var searchResult:*;
+		private var searchResultIndex:uint = 0;
+
+		private function findByName(value:String):void
+		{
+			var searchStr:String = mSearchField.mSearchInputField.text;
+			mBeatsTree.expandChildrenOf(DataModel.getSingleton().mTreeData[0], false);
+			searchResult = DataModel.getSingleton().mTreeData.node.(@label.toLowerCase().search(searchStr.toLowerCase()) > -1);
+			searchResultIndex = 0;
+			if (searchResult[searchResultIndex] != null)
+			{
+				expandNode(searchResult[searchResultIndex]);
+			}
+			else
+			{
+				Alert.show("Ошибка в запросе", "Ошибка", Alert.OK);
+			}
+		}
+		private function expandNode(xmlNode:XML):void
+		{
+			while (xmlNode.parent() != null) {
+				xmlNode = xmlNode.parent();
+				mBeatsTree.expandItem(xmlNode, true, false);
+				mBeatsTree.selectedItem = searchResult[searchResultIndex];
+			}
+		}
+		
+		
+		
+		
+		/**/
+		
+		
+		
+		
+		
+		
 		private function seacrhEvent(event:TextOperationEvent):void
 		{
-			for(var i:int = 0; i < beatTypeList.length; i++)
+			findByName(mSearchField.mSearchInputField.text);
+			/*for(var i:int = 0; i < beatTypeList.length; i++)
 			{
 				if(mSearchField.mSearchInputField.text == beatTypeList[i].substr(0,3))
 				{
@@ -553,18 +621,21 @@ package HostComponents.BeatsHostComponent
 				{
 					mSearchField.mSearchMatch.removeAll();
 				}
-			}
+			}*/
 		}
 		
 		private function refreshSearch(event:MouseEvent):void
 		{
+			
+//			findNodeById(mSearchField.mSearchInputField.text);
+			
 			//refresh search...
 			//close search tree... and show beats tree
-//			mSearchField.mSearchInputField.text = "";
-//			if(mSearchField)
-//			{
-//				mSearchField.mSearchMatch.removeAll();
-//			}
+			mSearchField.mSearchInputField.text = "";
+			if(mSearchField)
+			{
+				mSearchField.mSearchMatch.removeAll();
+			}
 //			open all nodes...
 //			mBeatsTree.openItems = DataModel.getSingleton().mTreeData..node;
 			
@@ -658,6 +729,7 @@ package HostComponents.BeatsHostComponent
 				mActivitiesList.text = mSelectedBeatOnGraph.activities;
 				mBeatsCompletedField.text = mSelectedBeatOnGraph.beatsCompleted;
 				mBeatTheme.selectedItem = mSelectedBeatOnGraph.xgmlTheme;
+				mPreconditionsFunction.text = mSelectedBeatOnGraph.preConditions;
 				/*for(var i:int = 0; i < mBeatsListData.length; i ++)
 				{
 					if(mSelectedBeatOnGraph.xgmlTheme == mBeatsListData[i].xgmlTheme)
@@ -849,6 +921,14 @@ package HostComponents.BeatsHostComponent
 				mSelectedBeatOnGraph.activities = tmpArr;	
 			}
 			
+		}
+		
+		private function setBeatPrecondition(event:TextOperationEvent):void
+		{
+			if(mSelectedBeatOnGraph)
+			{
+				mSelectedBeatOnGraph.preConditions = mPreconditionsFunction.text;
+			}
 		}
 		
 		private function checkValue(str:String, txtField:TextInput):Boolean
