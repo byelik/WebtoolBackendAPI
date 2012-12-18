@@ -155,7 +155,7 @@ package Data.ExportManager
 					node = <node label={"beat: " + beatsData[i].id}></node>
 					node.@id = beatsData[i].id;
 					node.@x = beatsData[i].beatPosX;
-					node.@y = beatsData[i].beatPosX;
+					node.@y = beatsData[i].beatPosY;
 					groupNode.appendChild(node);
 					odnNode.appendChild(groupNode);	
 				}
