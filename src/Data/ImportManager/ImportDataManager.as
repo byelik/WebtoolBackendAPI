@@ -313,8 +313,11 @@ package Data.ImportManager
 						{
 							xgmlThemesFile = new XML(mXgmlFiles.content);
 							for each(var themes:XML in xgmlThemesFile.children())
-							{					
-								themesList.addItem(themes.@name.toString());
+							{	
+								if(themes.name().localName == "Theme")
+								{
+									themesList.addItem(themes.@name.toString());
+								}
 							}
 						}
 					}
