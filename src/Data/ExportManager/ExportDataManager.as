@@ -271,12 +271,12 @@ package Data.ExportManager
 				completedBeats = <completedBeats/>
 				preCondition = <preCondition/>
 				beatsActivities = <activities/>	
-				for(var k:int = 0; k < beatsData[i].xgmlTheme.length;k++)
-				{
+				//for(var k:int = 0; k < beatsData[i].xgmlTheme.length;k++)
+				//{
 					var theme:XML = new XML();
 					theme = <theme>{beatsData[i].xgmlTheme}</theme>
 					beatsThemes.appendChild(theme);
-				}
+				//}
 				beatsNode.appendChild(beatsThemes);	
 				
 				for(var k:int = 0; k < beatsData[i].beatsCompleted.length;k++)
