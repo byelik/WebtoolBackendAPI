@@ -1,7 +1,13 @@
 <node label="Folders">
-                <node label="ODN">
-                    <node label="Group 1">
-                    <node label="beat 1" description="test description" id="13"/>
-                    </node>
-                </node>
+  <node label="ODN">
+    <node label="Group">
+      <node label="beat: 4" id="4" x="Mon Dec 24 10:53:23 GMT+0200 2012" y="40"/>
+    </node>
+    <node label="Group">
+      <node label="beat: 46" id="46" x="Mon Dec 31 08:41:06 GMT+0200 2012" y="60"/>
+    </node>
+    <node label="Group">
+      <node label="beat: 5" id="5" x="Fri Dec 21 02:21:38 GMT+0200 2012" y="70"/>
+    </node>
+  </node>
 </node>

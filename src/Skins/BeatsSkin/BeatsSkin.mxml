@@ -245,8 +245,8 @@
 								<s:HGroup width="100%" horizontalAlign="right">
 									<s:Button id="mAddBeat" x="-6" width="80" label="Add beat"/>
 									<s:VGroup horizontalAlign="center">
-										<s:Button id="mZoomIn" width="35" label="+" autoRepeat="true" buttonDown="zoomIn(event)"/>
-										<s:Button id="mZoomOut" width="35" label="-" autoRepeat="true" buttonDown="zoomOut(event)"/>
+										<s:Button id="mZoomIn" width="35" label="+" autoRepeat="true" buttonDown="zoomIn(event)" enabled="false"/>
+										<s:Button id="mZoomOut" width="35" label="-" autoRepeat="true" buttonDown="zoomOut(event)" enabled="false"/>
 									</s:VGroup>
 								</s:HGroup>
 							</s:Group>

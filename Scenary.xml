@@ -1,118 +1,895 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <data>
-  <agents>
-    <agent id="eddy">
-      <location>saloon</location>
-      <nerve>10</nerve>
-      <affinity>20</affinity>
-      <facts>
-        <fact id="301" status="true"/>
-        <fact id="302" status="false"/>
-        <fact id="303" status="notConfirmed"/>
-      </facts>
-      <items>
-        <item>
-          <type>gun</type>
-          <count>1</count>
-        </item>
-        <item>
-          <type>ball</type>
-          <count>2</count>
-        </item>
-      </items>
-    </agent>
-	<agent id="byelik">
-      <location>hall</location>
-      <nerve>50</nerve>
-      <affinity>60</affinity>
-      <facts>
-        <fact id="301" status="true"/>
-        <fact id="302" status="false"/>
-      </facts>
-      <items>
-        <item>
-          <type>gun</type>
-          <count>1</count>
-        </item>
-      </items>
-    </agent>
-  </agents>
-  <locations>
-    <location id="hall">
-      <adjacents>
-        <adjacent>school</adjacent>
-        <adjacent>house</adjacent>
-        <adjacent>робота</adjacent>
-      </adjacents>
-      <items>
-        <item>
-          <type>gun bazuka</type>
-          <count>1333</count>
-        </item>
-        <item>
-          <type>gun AK</type>
-          <count>1</count>
-        </item>
-        <item>
-          <type>gun Tank</type>
-          <count>3442341</count>
-        </item>
-      </items>
-    </location>
-	<location id="byelik school">
-      <adjacents>
-        <adjacent>робота</adjacent>
-      </adjacents>
-      <items>
-        <item>
-          <type>gun M16</type>
-          <count>333</count>
-        </item>
-      </items>
-    </location>
-  </locations>
-  <hints/>
-  <facts>
-    <fact id="301">Melany admits that mt.</fact>
-    <fact id="302">Byelik</fact>
-    <fact id="303">New Fact</fact>
-  </facts>
-  <beats>
-    <beat id="4">
-      <description>undefined</description>
-      <agent>byelik</agent>
-      <type>normal</type>
-	  <exclusiveBeatPriority>0</exclusiveBeatPriority>
-	  <themes>
-		<theme>test</theme>
-	  </themes>
-	  <completedBeats>
-        <beat>46</beat>
-        <beat>5</beat>
-      </completedBeats>
-    </beat>
-    <beat id="46">
-      <description>undefined</description>
-      <agent>undefined</agent>
-      <type>normal</type>
-	  <exclusiveBeatPriority>0</exclusiveBeatPriority>
-	  <themes>
-		<theme>test</theme>
-	  </themes>
-	  <completedBeats>
-        <beat>5</beat>
-      </completedBeats>
-    </beat>
-    <beat id="5">
-      <description>undefined</description>
-      <agent>undefined</agent>
-      <type>normal</type>
-	  <exclusiveBeatPriority>0</exclusiveBeatPriority>
-	  <themes>
-		<theme>test</theme>
-	  </themes>
-	  <completedBeats>
-        <beat>46</beat>
-      </completedBeats>
-    </beat>
-  </beats>
+
+	<include>../GeneralBehavior.xml</include>
+
+    <description>
+        <name>Scenary_1</name>
+        <description>short description Scenary_1</description>
+        <story>Long description of the guilty story Scenary_1</story>
+        <image>image_id</image>
+        <maxFacts>10</maxFacts>
+        <maxScore>100</maxScore>
+        <maxTime>600</maxTime>
+    </description>
+
+    <globalVariables>
+		<var id="game" type="String" value="plays"/>	
+	</globalVariables>	
+	
+    <agents>
+        <agent id="eddy">
+            <location>livingroom</location>
+        </agent>
+        <agent id="jessica">
+            <location>salon</location>
+        </agent>
+        <agent id="henry">
+            <location>bedroom</location>
+        </agent>
+        <agent id="steve">            
+            <location>hall</location>
+        </agent>
+        <agent id="melany">
+            <location>bathroom</location>
+        </agent>
+        <agent id="philipp">            
+            <location>hall</location>
+        </agent>
+    </agents>
+    <locations>
+        <location id="hall">            
+            <adjacents>
+                <adjacent>livingroom</adjacent>
+                <adjacent>salon</adjacent>
+                <adjacent>hall2</adjacent>
+            </adjacents>
+            <items>
+                <item>
+                    <type>gun</type>
+                    <count>1</count>
+                </item>
+            </items>			
+        </location>
+        <location id="livingroom">
+            <adjacents>
+                <adjacent>hall</adjacent>
+            </adjacents>
+        </location>
+        <location id="salon">
+            <adjacents>
+                <adjacent>hall</adjacent>
+            </adjacents>
+        </location>
+        <location id="hall2">
+            <adjacents>
+                <adjacent>bedroom</adjacent>
+                <adjacent>cabinet</adjacent>
+                <adjacent>hall</adjacent>
+            </adjacents>
+        </location>
+        <location id="bathroom">
+            <adjacents>
+                <adjacent>bedroom</adjacent>
+            </adjacents>
+        </location>
+        <location id="bedroom">
+            <adjacents>
+                <adjacent>bathroom</adjacent>
+                <adjacent>hall2</adjacent>
+            </adjacents>
+            <items>
+                <item>
+                    <type>safeKey</type>
+                    <count>1</count>
+                </item>
+            </items>				
+        </location>
+        <location id="cabinet">
+            <adjacents>
+                <adjacent>hall2</adjacent>
+            </adjacents>
+            <items>
+                <item>
+                    <type>sleepingPills</type>
+                    <count>1</count>
+                </item>
+                <item>
+                    <type>whiskeyBottle</type>
+                    <count>1</count>
+                </item>				
+            </items>			
+        </location>
+    </locations>
+	
+    <hints>
+	
+		<!-- 1 -->		
+        <hint>
+           <precondition>a.item("steve", "gun")==0 AND !a.fact("steve", "D3", "true")</precondition>
+           <text>Looks like he's been shot.. First thing then is to find the weapon, isn't it.</text>
+        </hint>
+
+		<!-- 2 -->			
+        <hint>
+           <precondition>!a.fact("steve", "H3", "true")</precondition>
+           <text>I'm very much interested as to where Henry was all the night before the murder.</text>
+        </hint>
+
+		<!-- 3 -->			
+        <hint>
+           <precondition>!a.fact("steve", "P5", "notConfirmed")</precondition>
+           <text>Why not ask Philip where he was before the murder. And also he could say where Eddy and Jessica were.</text>
+        </hint>	   
+
+		<!-- 4 -->			
+        <hint>
+           <precondition>!a.fact("steve", "D8", "true")</precondition>
+           <text>I guess I'll try to ask doctor what he thinks about the lady.. What's her name.. Jessica. She's a bit too pretty to be innocent.</text>
+        </hint>	  		
+
+		<!-- 5 -->		
+        <hint>
+           <precondition>!a.fact("steve", "D7", "true")</precondition>
+           <text>I'd better keep an eye on old Philipp. Eddy seems nicer - maybe I'll ask him.</text>
+        </hint>	 		
+		
+		<!-- 7 -->
+        <hint>
+           <precondition>a.item("steve", "gun")==1 AND !a.fact("steve", "D3", "true")</precondition>
+           <text>Doctor seems to be a nice chap. I'd better try to befriend him and make a hint or two about the gun.</text>
+        </hint>		
+		
+		<!-- 8 -->
+        <hint>
+           <precondition>a.fact("steve", "D3", "true") AND !a.fact("steve", "D4", "true")</precondition>
+           <text>I guess I'd betted allow doc to see his departed friend once again.</text>
+        </hint>			
+		
+		<!-- 9 -->
+        <hint>
+           <precondition>a.fact("steve", "D4", "true") AND !a.fact("steve", "P3", "notConfirmed")</precondition>
+           <text>I'm so tired.. Why don't I go to sleep.. Or should I chat with the butler instead?</text>
+        </hint>			
+		
+		<!-- 10 -->
+        <hint>
+           <precondition>a.fact("steve", "D4", "true") AND !a.fact("steve", "J1", "true")</precondition>
+           <text>I guess pretty Jessica could add some interesting details.. I wonder if she heard anything suspicious.</text>
+        </hint>				
+		
+		<!-- 11 -->
+        <hint>
+           <precondition>a.fact("steve", "P3", "notConfirmed")</precondition>
+           <text>It seems that the only thing that interests the butler is his arthritis. I guess, Henry is also out of suspicions now.</text>
+        </hint>			
+		
+		<!-- 12 -->
+        <hint>
+           <precondition>a.fact("steve", "J1", "true") AND !a.fact("steve", "P2", "true")</precondition>
+           <text>I wonder if Philipp also heard something suspicious from the study.</text>
+        </hint>			
+		
+		<!-- 13 -->
+        <hint>
+           <precondition>a.item("steve", "safeKey")==1 AND !a.fact("steve", "H4", "notConfirmed")</precondition>
+           <text>Hm, have I already asked Henry about Philipp? I'd better do.</text>
+        </hint>			
+		
+		<!-- 14 -->
+        <hint>
+           <precondition>a.fact("steve", "H4", "notConfirmed")</precondition>
+           <text>Looks like Henry, plain and simple, dislikes Philipp. And while I'm busy with thte both of them the real murderer is somewhere near.</text>
+        </hint>	
+
+		<!-- 15 -->
+        <hint>
+           <precondition>a.fact("steve", "P4", "true") AND !a.fact("steve", "P1", "true")</precondition>
+           <text>I'll try asking Melany to say something more about Henry in the bathroom.</text>
+        </hint>	
+
+		<!-- 16 -->
+        <hint>
+           <precondition>a.fact("steve", "P5", "true")</precondition>
+           <text>Ok, ok. The old man suffers from arthritis, nothing interesting here.</text>
+        </hint>	
+
+		<!-- 17 -->
+        <hint>
+           <precondition>a.fact("steve", "M3", "notConfirmed")</precondition>
+           <text>It seems it only goes as far as the arthritis with Philipp. Ok, let's suspect the others.</text>
+        </hint>	
+
+		<!-- 18 -->
+        <hint>
+           <precondition>a.fact("steve", "P2", "true")</precondition>
+           <text>Of course - nothing intersting in choking. I knew that anyway.. I don't think I'll talk to the old bore again. Or maybe.. Maybe I'd better be friendly with him - just in case.</text>
+        </hint>	
+		
+		<!-- 19 -->
+        <hint>
+           <precondition>a.fact("steve", "H1", "true") AND !a.fact("steve", "H2", "notConfirmed")</precondition>
+           <text>Finally something interesting. Sleeping drug stolen! It seems worthwhile to talk to Henry about it.</text>
+        </hint>			
+
+		<!-- 20 -->
+        <hint>
+           <precondition>a.fact("steve", "H2", "notConfirmed") AND !a.fact("steve", "D2", "true")</precondition>
+           <text>And what if Henry is just trying to set Melany up? I'd better ask the doctor what he thinks about all this fainting story.</text>
+        </hint>	
+
+		<!-- 21 -->
+        <hint>
+           <precondition>a.fact("steve", "D2", "true") AND !a.fact("steve", "D1", "true")</precondition>
+           <text>Ok. Suppose Melany just pretended to faint. But I've forgotten to ask her about the sleeping drug.</text>
+        </hint>	
+
+		<!-- 22 -->
+        <hint>
+           <precondition>a.fact("steve", "H2", "notConfirmed") AND !a.fact("steve", "D1", "true")</precondition>
+           <text>If somebody had taken Henry's medecine, maybe, it's all the doctor's doings? I'd better go and ask him - he seems an honest man.</text>
+        </hint>	
+
+		<!-- 23 -->
+        <hint>
+           <precondition>a.fact("steve", "H3", "true") AND a.fact("steve", "M2", "notConfirmed")</precondition>
+           <text>It feels Melany could be a liar. It would do no harm to check her alibi asking those who were near.</text>
+        </hint>	
+
+		<!-- 24 -->
+        <hint>
+           <precondition>a.fact("steve", "M2", "false") AND !a.fact("steve", "P4", "true")</precondition>
+           <text>Henry says he was in the bathroom. But who could possibly confirm his words? Why don't I try asking Philipp?</text>
+        </hint>	
+		
+		<!-- 25 -->
+        <hint>
+           <precondition>a.fact("steve", "P5", "notConfirmed") AND !a.fact("steve", "D6", "true")</precondition>
+           <text>Who could tell me whether Philipp is really ill and not pretending? I guess the daughter or the butler.</text>
+        </hint>			
+		
+		<!-- 26 -->
+        <hint>
+           <precondition>a.fact("steve", "M1", "true")</precondition>
+           <text>Of course it is strange that Melany did not hear Henry. But it puts her under suspicion.. However, with a bed like this.. I guess, I could keep closer to her bed.</text>
+        </hint>			
+
+    </hints>
+	
+    <facts>
+
+<!-- Факты Мелани -->
+
+        <fact id="M1">
+            <text>Melany claims not to have heard Henry singing next door - though Philipp could hear him well from downstairs.</text>
+        </fact>	
+		
+        <fact id="M2">
+            <text>Melany claims to have been fast asleep by 11 PM.</text>
+        </fact>			
+		
+        <fact id="M3">
+            <text>Melany confirms that her father is crippled with arthritis and has trouble walking.</text>
+        </fact>	
+
+<!-- Факты Генри -->			
+
+        <fact id="H1">
+            <text>Henry says his sleeping pills are missing.</text>
+        </fact>	
+		
+        <fact id="H2">
+            <text>Henry remembered that it is only Melany, who could have taken his sleeping pills.</text>
+        </fact>	
+
+        <fact id="H3">
+            <text>Henry heard Melany enter her bedroom only a quarter past 11.</text>
+        </fact>	
+
+        <fact id="H4">
+            <text>Henry thinks that Philipp who has access to many safes and locks could have mercenary plans.</text>
+        </fact>			
+		
+<!-- Факты Филиппа -->	
+	
+        <fact id="P0">
+            <text>The corpse has a bullet hole in it.</text>
+        </fact>
+
+        <fact id="P1">
+            <text>Philipp mentions a key from safe.</text>
+        </fact>
+
+        <fact id="P2">
+            <text>At 11 o'clock Philipp heard choking cough from Boddy's study. </text>
+        </fact>
+
+        <fact id="P3">
+            <text>Philip thinks that Henry could possibly murder Boddy, because he was upstairs.</text>
+        </fact>
+
+        <fact id="P4">
+            <text>Philipp heard Henry sing in the bathroom at 11 PM.</text>
+        </fact>		
+ 
+        <fact id="P5">
+            <text>Philipp confirms that the doctor spent all evening till 1 AM in the salon with Jessica and later was with him in the drawing room. However, when the gun fired he was sleeping.</text>
+        </fact>
+
+        <fact id="P6">
+            <text>Philipp confirms that Jessica spent all the evening till 1 AM in the salon.</text>
+        </fact>		
+ 
+ <!-- Факты Эдди -->
+ 
+        <fact id="D1">
+            <text>Henry's medecine wasn't on the shelf after Melany fainted.</text>
+        </fact>	
+ 
+        <fact id="D2">
+            <text>Melany got to her senses too quick.</text>
+        </fact>	
+
+        <fact id="D3">
+            <text>Doctor supposes Boddy could have been already dead when he was shot.</text>
+        </fact>	
+
+        <fact id="D4">
+            <text>Boddy was poisoned.</text>
+        </fact>	
+
+        <fact id="D5">
+            <text>Boddy was poisoned with Henry Moneyghan's sleeping pills.</text>
+        </fact>		
+
+        <fact id="D6">
+            <text>Doctor confirms Philipp's heavy arthritis that can prevent him from walking.</text>
+        </fact>		
+
+        <fact id="D7">
+            <text>Doctor confirms that Philipp spent all the evening in the salon with him and Jessica, serving whiskey.</text>
+        </fact>		
+
+        <fact id="D8">
+            <text>Jessica was the last who came after the gun fired, and the doctor is suspicious of her.</text>
+        </fact>				
+ 
+ <!-- Факты Джессики --> 
+ 
+        <fact id="J1">
+            <text>About 11 PM Jessica heard something heavy fall in the study and then something screeched,</text>
+        </fact>		
+
+        <fact id="J2">
+            <text>From 11 PM to 1 AM Jessica was in the salon with the doctor.</text>
+        </fact>				
+ 
+ 
+    </facts>
+
+
+    <beats>
+	
+    <!-- BEATS eddy  -->
+	
+        <beat id="1_Eddy_D1">
+            <description>D1</description>
+            <agent>eddy</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Eddy_Interrogation_D1</theme>
+            </themes>
+            <preCondition>a.fact("steve", "H2", "notConfirmed") AND a.fact("steve", "D2", "true")</preCondition>			
+        </beat>	
+
+        <beat id="1_Eddy_D2">
+            <description>D2</description>
+            <agent>eddy</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Eddy_Interrogation_D2</theme>
+            </themes>
+            <preCondition>a.fact("steve", "H2", "notConfirmed")</preCondition>			
+        </beat>	
+
+        <beat id="1_Eddy_D2_After">
+            <description>D2_After</description>
+            <agent>eddy</agent>
+            <type>normal</type>
+            <completedBeats>
+                <beat>1_Eddy_D2</beat>
+            </completedBeats>			
+            <themes>
+                <theme>1_Eddy_Interrogation_D2_After</theme>
+            </themes>
+        </beat>			
+
+        <beat id="1_Eddy_D3">
+            <description>D3</description>
+            <agent>eddy</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Eddy_Interrogation_D3</theme>
+            </themes>
+            <preCondition>a.affinity(80, 100)</preCondition>			
+        </beat>		
+	
+        <beat id="1_Eddy_D4D5">
+            <description>D4D5</description>
+            <agent>eddy</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Eddy_Interrogation_D4D5</theme>
+            </themes>
+            <preCondition>a.affinity(80, 100) AND a.fact("steve", "D3", "true")</preCondition>			
+        </beat>		
+	
+        <beat id="1_Eddy_D6">
+            <description>D6</description>
+            <agent>eddy</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Eddy_Interrogation_D6</theme>
+            </themes>
+            <preCondition>a.fact("steve", "P5", "notConfirmed")</preCondition>			
+        </beat>			
+	
+        <beat id="1_Eddy_D7">
+            <description>D7</description>
+            <agent>eddy</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Eddy_Interrogation_D7</theme>
+            </themes>
+        </beat>			
+	
+        <beat id="1_Eddy_D8">
+            <description>D8</description>
+            <agent>eddy</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Eddy_Interrogation_D8</theme>
+            </themes>
+        </beat>			
+	
+	
+        <beat id="1_Eddy_Extra">
+            <description>Extra</description>
+            <agent>eddy</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Eddy_Interrogation_Extra</theme>
+            </themes>
+        </beat>		
+	
+        <beat id="1_Eddy_Extra_NotHighAffinity">
+            <description>Extra_NotHighAffinity</description>
+            <agent>eddy</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Eddy_Interrogation_Extra_NotHighAffinity</theme>
+            </themes>
+            <preCondition>a.affinity(-100, 25)</preCondition>				
+        </beat>		
+	
+        <beat id="1_Eddy_Extra_HighAffinity">
+            <description>Extra_HighAffinity</description>
+            <agent>eddy</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Eddy_Interrogation_Extra_HighAffinity</theme>
+            </themes>
+            <preCondition>a.affinity(26, 100)</preCondition>				
+        </beat>		
+	
+    <!-- BEATS henry  -->	
+	
+        <beat id="1_Henry_H1">
+            <description>H1</description>
+            <agent>henry</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Henry_Interrogation_H1</theme>
+            </themes>
+            <preCondition>a.fact("steve", "H3", "true") AND a.affinity(30, 100)</preCondition>			
+        </beat>		
+
+        <beat id="1_Henry_H2">
+            <description>H2</description>
+            <agent>henry</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Henry_Interrogation_H2</theme>
+            </themes>
+            <preCondition>a.fact("steve", "H1", "true")</preCondition>			
+        </beat>		
+	
+	
+        <beat id="1_Henry_H3_M2">
+            <description>H3_M2</description>
+            <agent>henry</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Henry_Interrogation_H3_M2</theme>
+            </themes>
+            <preCondition>a.fact("steve", "M2", "notConfirmed")</preCondition>			
+        </beat>			
+	
+        <beat id="1_Henry_H3_noM2">
+            <description>H3_noM2</description>
+            <agent>henry</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Henry_Interrogation_H3_noM2</theme>
+            </themes>
+            <preCondition>!a.fact("steve", "M2", "notConfirmed")</preCondition>			
+        </beat>			
+	
+        <beat id="1_Henry_H4">
+            <description>H4</description>
+            <agent>henry</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Henry_Interrogation_H4</theme>
+            </themes>
+            <preCondition>a.item("steve", "safeKey")==1</preCondition>			
+        </beat>	
+
+        <beat id="1_Henry_Extra">
+            <description>Extra</description>
+            <agent>henry</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Henry_Interrogation_Extra</theme>
+            </themes>		
+        </beat>	
+
+    <!-- BEATS jessica  -->			
+	
+        <beat id="1_Jessica_J1">
+            <description>J1</description>
+            <agent>jessica</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Jessica_Interrogation_J1</theme>
+            </themes>
+            <preCondition>(a.fact("steve", "D7", "true") OR a.fact("steve", "D4", "true")) AND a.affinity(70, 100)</preCondition>			
+        </beat>	
+
+        <beat id="1_Jessica_J2">
+            <description>J2</description>
+            <agent>jessica</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Jessica_Interrogation_J2_1</theme>
+                <theme>1_Jessica_Interrogation_J2_2</theme>
+            </themes>			
+          </beat>	
+
+        <beat id="1_Jessica_Extra">
+            <description>Extra</description>
+            <agent>jessica</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Jessica_Interrogation_Extra</theme>
+            </themes>		
+        </beat>			
+		
+        <beat id="1_Jessica_Extra_LowAffinity">
+            <description>Extra_LowAffinity</description>
+            <agent>jessica</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Jessica_Interrogation_Extra_LowAffinity</theme>
+            </themes>	
+            <preCondition>a.affinity(-100, -50)</preCondition>					
+        </beat>				
+		
+		
+        <beat id="1_Jessica_Extra_NotLowAffinity">
+            <description>Extra_NotLowAffinity</description>
+            <agent>jessica</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Jessica_Interrogation_Extra_NotLowAffinity</theme>
+            </themes>	
+            <preCondition>a.affinity(-49, 100)</preCondition>					
+        </beat>		
+	
+        <beat id="1_Jessica_D8_After">
+            <description>D8_After</description>
+            <agent>jessica</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Jessica_Interrogation_D8_After</theme>
+            </themes>	
+            <preCondition>a.fact("steve", "D8", "true")</preCondition>					
+        </beat>		
+
+		
+    <!-- BEATS melany  -->				
+		
+        <beat id="1_Melany_M1">
+            <description>M1</description>
+            <agent>melany</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Melany_Interrogation_M1</theme>
+            </themes>
+            <preCondition>a.fact("steve", "H3", "true")</preCondition>			
+        </beat>			
+		
+        <beat id="1_Melany_M2">
+            <description>M2</description>
+            <agent>melany</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Melany_Interrogation_M2</theme>
+            </themes>
+        </beat>				
+		
+        <beat id="1_Melany_M3">
+            <description>M3</description>
+            <agent>melany</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Melany_Interrogation_M3</theme>
+            </themes>
+            <preCondition>a.fact("steve", "P6", "notConfirmed") OR a.fact("steve", "P6", "true")</preCondition>			
+        </beat>			
+		
+        <beat id="1_Melany_Extra">
+            <description>Extra</description>
+            <agent>melany</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Melany_Interrogation_Extra</theme>
+            </themes>		
+        </beat>			
+		
+    <!-- BEATS philipp  -->			
+		
+		
+        <beat id="1_Philipp_P1">
+            <description>P1</description>
+            <agent>philipp</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Philipp_Interrogation_P1</theme>
+            </themes>
+            <preCondition>a.fact("steve", "H2", "true") AND a.fact("steve", "J1", "true") AND a.fact("steve", "P4", "true") AND a.item("steve", "safeKey")==1 AND a.affinity(10, 100)</preCondition>		
+        </beat>			
+		
+        <beat id="1_Philipp_P1_After">
+            <description>P1_After</description>
+            <agent>philipp</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Philipp_Interrogation_P1_After</theme>
+            </themes>
+            <preCondition>a.fact("steve", "P1", "true")</preCondition>		
+        </beat>			
+		
+        <beat id="1_Philipp_P2">
+            <description>P2</description>
+            <agent>philipp</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Philipp_Interrogation_P2</theme>
+            </themes>
+            <preCondition>a.fact("steve", "J1", "true")</preCondition>		
+        </beat>				
+		
+        <beat id="1_Philipp_P3">
+            <description>P3</description>
+            <agent>philipp</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Philipp_Interrogation_P3</theme>
+            </themes>
+            <preCondition>a.fact("steve", "D4", "true")</preCondition>		
+        </beat>			
+		
+        <beat id="1_Philipp_P4">
+            <description>P4</description>
+            <agent>philipp</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Philipp_Interrogation_P4</theme>
+            </themes>
+            <preCondition>a.fact("steve", "M2", "false")</preCondition>		
+        </beat>			
+	
+        <beat id="1_Philipp_P4_After">
+            <description>P4_After</description>
+            <agent>philipp</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Philipp_Interrogation_P4_After</theme>
+            </themes>
+            <preCondition>a.fact("steve", "P4", "true")</preCondition>		
+        </beat>		
+	
+        <beat id="1_Philipp_Interrogation_P5P6">
+            <description>P5P6</description>
+            <agent>philipp</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Philipp_Interrogation_P5P6_1</theme>
+                <theme>1_Philipp_Interrogation_P5P6_2</theme>				
+            </themes>
+        </beat>		
+	
+        <beat id="1_Philipp_Extra">
+            <description>Extra</description>
+            <agent>philipp</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Philipp_Interrogation_Extra</theme>
+            </themes>		
+        </beat>		
+	
+        <beat id="1_Philipp_Extra_LowAffinity">
+            <description>Extra_LowAffinity</description>
+            <agent>philipp</agent>
+            <type>normal</type>
+            <themes>
+                <theme>1_Philipp_Interrogation_Extra_LowAffinity</theme>
+            </themes>		
+            <preCondition>a.affinity(-100, -50)</preCondition>			
+        </beat>		
+	
+<!-- Final scene -->
+
+        <beat id="1_Philipp_DS_Final">
+            <description>DS_Final</description>
+            <agent>philipp</agent>
+            <type>exclusive</type>
+			<priority>20</priority>
+            <behavior>
+				Find steve
+				Idle 10
+				Speak steve "Sir we have all gathered together so that you could name the murderer."
+            </behavior>			
+            <preCondition>a.fact("steve", "P1", "true") AND a.item("steve", "whiskeyBottle")==1</preCondition>			
+        </beat>	
+
+        <beat id="1_Philipp_DS_Final_Dialog">
+            <description>DS_Final_CatchAll</description>
+            <agent>philipp</agent>
+            <type>exclusive</type>
+			<priority>20</priority>
+            <themes>
+                <theme>1_Philipp_Interrogation_DS_Final</theme>
+            </themes>	
+            <completedBeats>
+               <beat>1_Philipp_DS_Final</beat>
+            </completedBeats>			
+		</beat>		
+		
+
+        <beat id="1_Eddy_DS_Final">
+            <description>DS_Final</description>
+            <agent>eddy</agent>
+            <type>exclusive</type>
+			<priority>20</priority>
+            <behavior>
+				Find steve
+            </behavior>			
+            <preCondition>a.fact("steve", "P1", "true") AND a.item("steve", "whiskeyBottle")==1</preCondition>			
+        </beat>			
+
+        <beat id="1_Eddy_DS_Final_Dialog">
+            <description>DS_Final_CatchAll</description>
+            <agent>eddy</agent>
+            <type>exclusive</type>
+			<priority>20</priority>
+            <themes>
+                <theme>1_Eddy_Interrogation_DS_Final</theme>
+            </themes>	
+            <completedBeats>
+               <beat>1_Eddy_DS_Final</beat>
+            </completedBeats>			
+		</beat>	
+		
+        <beat id="1_Henry_DS_Final">
+            <description>DS_Final</description>
+            <agent>henry</agent>
+            <type>exclusive</type>
+			<priority>20</priority>
+            <behavior>
+				Find steve
+            </behavior>			
+            <preCondition>a.fact("steve", "P1", "true") AND a.item("steve", "whiskeyBottle")==1</preCondition>			
+        </beat>			
+
+        <beat id="1_Henry_DS_Final_Dialog">
+            <description>DS_Final_CatchAll</description>
+            <agent>henry</agent>
+            <type>exclusive</type>
+			<priority>20</priority>
+            <themes>
+                <theme>1_Henry_Interrogation_DS_Final</theme>
+            </themes>	
+            <completedBeats>
+               <beat>1_Henry_DS_Final</beat>
+            </completedBeats>			
+		</beat>			
+		
+        <beat id="1_Jessica_DS_Final">
+            <description>DS_Final</description>
+            <agent>jessica</agent>
+            <type>exclusive</type>
+			<priority>20</priority>
+            <behavior>
+				Find steve
+            </behavior>			
+            <preCondition>a.fact("steve", "P1", "true") AND a.item("steve", "whiskeyBottle")==1</preCondition>			
+        </beat>	
+
+        <beat id="1_Jessica_DS_Final_Dialog">
+            <description>DS_Final_CatchAll</description>
+            <agent>jessica</agent>
+            <type>exclusive</type>
+			<priority>20</priority>
+            <themes>
+                <theme>1_Jessica_Interrogation_DS_Final</theme>
+            </themes>	
+            <completedBeats>
+               <beat>1_Jessica_DS_Final</beat>
+            </completedBeats>			
+		</beat>				
+		
+        <beat id="1_Melany_DS_Final">
+            <description>DS_Final</description>
+            <agent>melany</agent>
+            <type>exclusive</type>
+			<priority>20</priority>
+            <behavior>
+				Find steve
+            </behavior>			
+            <preCondition>a.fact("steve", "P1", "true") AND a.item("steve", "whiskeyBottle")==1</preCondition>			
+        </beat>			
+	
+        <beat id="1_Melany_DS_Final_Dialog">
+            <description>DS_Final_CatchAll</description>
+            <agent>melany</agent>
+            <type>exclusive</type>
+			<priority>20</priority>
+            <themes>
+                <theme>1_Melany_Interrogation_DS_Final</theme>
+            </themes>	
+            <completedBeats>
+               <beat>1_Melany_DS_Final</beat>
+            </completedBeats>			
+		</beat>		
+	
+        <beat id="1_Jessica_Final_Won">
+            <description>Final</description>
+            <agent>jessica</agent>
+            <type>exclusive</type>
+			<priority>20</priority>
+            <behavior>
+				Find steve
+				Idle 3
+				Speak steve "Yes, it was me! I did poison him! The dirty old geezer had been using me for years - only to build his own career. I just wanted to take back what was mine by right - my intellectual property."
+				Idle 10
+				GameOver true
+            </behavior>	
+            <preCondition>a.variable("game")=="won"</preCondition>			
+		</beat>			
+
+        <beat id="1_Jessica_Final_Lost">
+            <description>Final</description>
+            <agent>jessica</agent>
+            <type>exclusive</type>
+			<priority>20</priority>
+            <behavior>
+				GameOver false
+            </behavior>	
+            <preCondition>a.variable("game")=="lost"</preCondition>			
+		</beat>			
+	
+    </beats>
+
 </data>

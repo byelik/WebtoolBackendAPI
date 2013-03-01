@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Dialog xmlns="http://i-free.com/xml/xgml">
+
+   <Import file="2_Eddy_Interrogation.xgml"/>
+
+</Dialog>

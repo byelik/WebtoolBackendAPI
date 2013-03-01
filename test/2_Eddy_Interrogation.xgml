@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Dialog xmlns="http://i-free.com/xml/xgml">
+
+    <Theme name = "Eddy_AffinityVariator">
+        <QAUnit name="Eddy_chess">
+            <Pattern>* (medicine|chemistry|science|silence|chess|sudoku|mahjong|checkers) *</Pattern>
+            <Random>
+                <Text>Hm, Farrett? I guess, you are a clever man. </Text>
+            </Random>
+            <Effects>
+                <AffinityChange>+50</AffinityChange>
+                <BeatGoalAchieved>true</BeatGoalAchieved>
+            </Effects>
+        </QAUnit>
+    </Theme>
+
+</Dialog>
